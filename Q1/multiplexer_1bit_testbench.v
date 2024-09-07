@@ -3,25 +3,38 @@
 module multiplexer_test_bench;
 
     //Inputs
-    reg Sum_1;
-    reg Sum_2;
-    reg Cout_1;
-    reg Cout_2;
+    reg A;
+    reg B;
+    reg Select;
 
     //Outputs
-    wire Carry;
-    wire Sum;
+    wire Out;
 
     //Instantiate
     multiplexer_1bit uut (
-        .
+        .A(A),
+        .B(B),
+        .Select(Select),
+        .Out(Out)
     )
 
-    //Test simulation
+    // Test stimulus
     initial begin
-        //Monitor
-        $monitor("At time%t: Sum_1 = %b, Sum_2 = %b, Cout_1 = %b, Cout_2 = %b", $time, A, B, Cin, Sum, Cout);
+        // Monitor changes in inputs and output
+        $monitor("At time %t: A = %b, B = %b, Select = %b -> Out = %b", 
+                 $time, A, B, Select, Out);
 
-        //Apply Inputs
+        // Apply test inputs
+        A = 0; B = 0; Select = 0; #10;  // Expected Out = A (0)
+        A = 0; B = 1; Select = 0; #10;  // Expected Out = A (0)
+        A = 1; B = 0; Select = 0; #10;  // Expected Out = A (1)
+        A = 1; B = 1; Select = 0; #10;  // Expected Out = A (1)
+        
+        A = 0; B = 0; Select = 1; #10;  // Expected Out = B (0)
+        A = 0; B = 1; Select = 1; #10;  // Expected Out = B (1)
+        A = 1; B = 0; Select = 1; #10;  // Expected Out = B (0)
+        A = 1; B = 1; Select = 1; #10;  // Expected Out = B (1)
 
+        // End the simulation
+        $finish;
     end

@@ -8,15 +8,15 @@ module full_adder (
     output wire Cout    // Carry output
 );
 
-    wire L1;        // Intermediate wire for A XOR B
-    wire L2;        // Intermediate wire for A AND B
-    wire L3;        // Intermediate wire for (A XOR B) AND Cin
+    wire AxorB;        // Intermediate wire for A XOR B
+    wire AandB;        // Intermediate wire for A AND B
+    wire AxorBandC;        // Intermediate wire for (A XOR B) AND Cin
 
     // Structural logic using gates
-    xor (L1, A, B);              // XOR gate for A and B
-    xor (Sum, L1, Cin);          // XOR gate for (A XOR B) and Cin
-    and (L2, A, B);              // AND gate for A and B
-    and (L3, L1, Cin);          // AND gate for (A XOR B) and Cin
-    or  (Cout, L2, L3);         // OR gate for carry-out
+    xor (AxorB, A, B);              // XOR gate for A and B
+    xor (Sum, AxorB, Cin);          // XOR gate for (A XOR B) and Cin
+    and (AandB, A, B);              // AND gate for A and B
+    and (AxorBandC, AxorB, Cin);          // AND gate for (A XOR B) and Cin
+    or  (Cout, AandB, AxorBandC);         // OR gate for carry-out
 
 endmodule

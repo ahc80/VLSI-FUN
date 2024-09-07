@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps  // Time unit / time precision
 
-module full_adder_tb;
+module full_adder_test_bench;
 
     // Inputs to the full adder
     reg A;

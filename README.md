@@ -1,4 +1,4 @@
-
+Delays are every 10 nanoseconds
 
 ## Immediate objectives
 
@@ -12,24 +12,15 @@
 
     This is the list for our immediate time frame. Copy paste tasks from the questions down below.
     
-
         ### Syntax
         - Task (what problems it corresponds to- not always exhaustive list)
             -- PERSON [who will complete task], DEADLINE
 
-- (Q1, 4) Implement a Full Adder 
-    -- Andrew, 9/7 EOD
-- (Q1, 4) Implement a testbench for  Full Adder
-    -- Andrew 9/7 EOD
 
-- (Q1) Implement a 1 input multiplexer 
-    -- Audrey, 9/7 EOD
-- (Q1) Implement a testbench for multiplexer
-    -- Andrew, 9/7 EOD
 
-- (Q1) Implement a Concatinate
+- (Q1) Implement a Concatenate
     -- Audrey, 9/7 EOD
-- (Q1) Implement a testbench for Concatinate
+- (Q1) Implement a testbench for Concatenate
     -- Audrey, 9/7 EOD
 
 - (Q1) Implement a Red Box
@@ -63,3 +54,17 @@
 - Implement in Verilog and simulate (STRUCTURAL)
 - Implement in Verilog and simulate (BEHAVIOURAL)
 - Use modelsim to verify if both versions are equivalent
+
+
+
+## Completed tasks
+
+- (Q1, 4) Implement a Full Adder 
+    -- Andrew, 9/7 EOD
+- (Q1, 4) Implement a testbench for  Full Adder
+    -- Andrew 9/7 EOD
+
+- (Q1) Implement a 1 input multiplexer 
+    -- Audrey, 9/7 EOD
+- (Q1) Implement a testbench for multiplexer
+    -- Andrew, 9/7 EOD

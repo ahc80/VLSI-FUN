@@ -6,6 +6,8 @@
 - What exactly is structural vs behavioural? Is this a verbose way of saying we shouldnt use verilog libraries blindly?
 -- "Stack overflow says: behavioural refers to always blocks, and structural refers to modules instances"
 - Q1 multiplexers: how should we connect the multiplexers? If select bit is 1, which input do we choose? Does it matter?
+- What exactly does reg do? Why must we use it in testbenches?
+- Is there a better name for "red" in Q1?
 
 # Todo List
 
@@ -16,14 +18,14 @@
         - Task (what problems it corresponds to- not always exhaustive list)
             -- PERSON [who will complete task], DEADLINE
 
-- (Q1, 4) Implement a Full Adder 
+- ~~(Q1, 4) Implement a Full Adder ~~
     -- Andrew, 9/7 EOD
-- (Q1, 4) Implement a testbench for  Full Adder
+- ~~(Q1, 4) Implement a testbench for  Full Adder~~
     -- Andrew 9/7 EOD
-- (Q1) Implement a 4 input multiplexer 
+- ~~(Q1) Implement a 4 input multiplexer ~~
     -- Audrey, 9/7 EOD
-- (Q1) Implement a testbench for Full Adder
-    -- Audrey, 9/7 EOD
+- ~~(Q1) Implement a testbench for multiplexer~~
+    -- ~~Audrey~~ Andrew, 9/7 EOD
 
 - Flesh out long term tasks lists
     -- Anyone, 9/8 EOD

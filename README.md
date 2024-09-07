@@ -4,6 +4,7 @@
 
 # Questions for Saab
 - What exactly is structural vs behavioural? Is this a verbose way of saying we shouldnt use verilog libraries blindly?
+-- "Stack overflow says: behavioural refers to always blocks, and structural refers to modules instances"
 - Q1 multiplexers: how should we connect the multiplexers? If select bit is 1, which input do we choose? Does it matter?
 
 # Todo List

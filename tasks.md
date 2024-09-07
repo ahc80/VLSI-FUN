@@ -6,31 +6,39 @@
 
 # Todo List
 
-    This is the list for our immediate timeframe. Copy paste tasks from the questions down below
+    This is the list for our immediate time frame. Copy paste tasks from the questions down below.
+    
 
         ### Syntax
-        - Task (what problems it corresponds to--not always exhaustive list)
+        - Task (what problems it corresponds to- not always exhaustive list)
             -- PERSON [who will complete task], DEADLINE
 
-- Implement a Full Adder (Q1 and 4)
+- (Q1, 4) Implement a Full Adder 
     -- Andrew, 9/7 EOD
-- Implement a testbench for  Full Adder
+- (Q1, 4) Implement a testbench for  Full Adder
     -- Andrew 9/7 EOD
-- Implement a 4 input multiplexer (used in Q1)
+- (Q1) Implement a 4 input multiplexer 
     -- Audrey, 9/7 EOD
-- Implement a testbench for Full Adder
+- (Q1) Implement a testbench for Full Adder
     -- Audrey, 9/7 EOD
 
-
-# Question 1
-
-
-# Question 2
+- Flesh out long term tasks lists
+    -- Anyone, 9/8 EOD
 
 
-# Question 3
+# Long term tasks
+
+## Question 1
+- Implement, test, and name mid-layer module (boxed in red)
+- Figure out what the tree diagrams mean
+- Confirm with saab that we only have to implement the conditional sum adder
+
+## Question 2
 
 
-# Question 4
+## Question 3
+
+
+## Question 4
 
 

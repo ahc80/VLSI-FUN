@@ -42,3 +42,9 @@
 ## Question 4
 
 
+## Question 5
+- Derive transition table
+- Derive flow table
+- Implement in Verilog and simulate (STRUCTURAL)
+- Implement in Verilog and simulate (BEHAVIOURAL)
+- Use modelsim to verify if both versions are equivalent

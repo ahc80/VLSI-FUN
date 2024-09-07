@@ -18,7 +18,7 @@ Delays are every 10 nanoseconds
 
 
 
-- (Q1) Implement a Concatenate
+- (Q1) Implement a Concatenate FOR ALL BITS
     -- Audrey, 9/7 EOD
 - (Q1) Implement a testbench for Concatenate
     -- Audrey, 9/7 EOD

@@ -2,7 +2,9 @@
 
 ## Immediate objectives
 
-
+# Questions for Saab
+- What exactly is structural vs behavioural? Is this a verbose way of saying we shouldnt use verilog libraries blindly?
+- Q1 multiplexers: how should we connect the multiplexers? If select bit is 1, which input do we choose? Does it matter?
 
 # Todo List
 

@@ -7,6 +7,7 @@ Delays are every 10 nanoseconds
 -- "Stack overflow says: behavioural refers to always blocks, and structural refers to modules instances"
 - Q1 multiplexers: how should we connect the multiplexers? If select bit is 1, which input do we choose? Does it matter?
 - Do we put the instance name outside the logic gates or do we keep it inside?
+- What is the difference between using the assign method for coding rather than using the logic gates. Online sources say that the assign is a higher level of structural. Which one is better?
 
 # Todo List
 
@@ -18,13 +19,14 @@ Delays are every 10 nanoseconds
 
 
 
-- (Q1) Implement a Concatenate FOR ALL BITS
-    -- Audrey, 9/7 EOD
+- (Q1) Implement a Concatenate
+    -- Andrew, 9/8 EOD
+    -- Note: Need team meeting for this and ask saab about it. 
 - (Q1) Implement a testbench for Concatenate
     -- Audrey, 9/7 EOD
 
 - (Q1) Implement a Red Box
-    -- Audrey, 9/7 EOD
+    -- Andrew, 9/8 EOD
 - (Q1) Implement a testbench for Red Box
     -- Andrew, 9/7 EOD
 

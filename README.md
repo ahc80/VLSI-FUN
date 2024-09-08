@@ -6,7 +6,7 @@ Delays are every 10 nanoseconds
 - What exactly is structural vs behavioural? Is this a verbose way of saying we shouldnt use verilog libraries blindly?
 -- "Stack overflow says: behavioural refers to always blocks, and structural refers to modules instances"
 - Q1 multiplexers: how should we connect the multiplexers? If select bit is 1, which input do we choose? Does it matter?
-- 
+- Do we put the instance name outside the logic gates or do we keep it inside?
 
 # Todo List
 
@@ -66,5 +66,6 @@ Delays are every 10 nanoseconds
 
 - (Q1) Implement a 1 input multiplexer 
     -- Audrey, 9/7 EOD
+    -- Edited By Andrew, 9/8
 - (Q1) Implement a testbench for multiplexer
     -- Andrew, 9/7 EOD

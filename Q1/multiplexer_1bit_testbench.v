@@ -8,13 +8,13 @@ module multiplexer_test_bench;
     reg Select;
 
     //Outputs
-    wire Out;
+    wire Out;   
 
     //Instantiate
     multiplexer_1bit uut (
         .A(A),
         .B(B),
-        .Select(Select),
+        .Select(Select_bit),
         .Out(Out)
     )
 

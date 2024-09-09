@@ -18,6 +18,12 @@ module red_box (
     wire mux_out3, mux_out4;  // MUX3, MUX4 outputs
 
     // Instantiate Full Adders
+
+    //  Cin = 1 for FA1
+    //  Cin = 0 for FA2
+    //  Cin = 1 for FA3
+    //  Cin = 0 for FA4
+
     full_adder FA1 (
         .A(x2),
         .B(y2),  

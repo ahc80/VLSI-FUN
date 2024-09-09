@@ -20,6 +20,3 @@ module multiplexer_1bit (
     or  (S, A_AND_Select, B_AND_nSelect);
 
 endmodule
-
-
-

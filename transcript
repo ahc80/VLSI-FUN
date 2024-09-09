@@ -1,0 +1,91 @@
+# Compile of concatenator.v failed with 1 errors.
+# Compile of full_adder.v was successful.
+# Compile of full_adder_testbench.v was successful.
+# Compile of multiplexer.v failed with 1 errors.
+# Compile of multiplexer_testbench.v failed with 2 errors.
+# Compile of red.v failed with 1 errors.
+# 6 compiles, 4 failed with 5 errors.
+# Compile of multiplexer.v failed with 1 errors.
+# Compile of multiplexer.v failed with 1 errors.
+# Compile of concatenator.v failed with 1 errors.
+# Compile of full_adder.v was successful.
+# Compile of full_adder_testbench.v was successful.
+# Compile of multiplexer.v failed with 1 errors.
+# Compile of multiplexer_testbench.v failed with 2 errors.
+# Compile of red.v failed with 1 errors.
+# 6 compiles, 4 failed with 5 errors.
+# Compile of concatenator.v failed with 1 errors.
+# Compile of full_adder.v was successful.
+# Compile of full_adder_testbench.v was successful.
+# Compile of multiplexer.v failed with 1 errors.
+# Compile of multiplexer_testbench.v failed with 2 errors.
+# Compile of red.v failed with 1 errors.
+# 6 compiles, 4 failed with 5 errors.
+dataset reload -f
+# Dataset not found: 
+# Compile of concatenator.v failed with 1 errors.
+# Compile of full_adder.v was successful.
+# Compile of full_adder_testbench.v was successful.
+# Compile of multiplexer.v failed with 1 errors.
+# Compile of multiplexer_testbench.v failed with 2 errors.
+# Compile of red.v failed with 1 errors.
+# 6 compiles, 4 failed with 5 errors.
+# Compile of concatenator.v failed with 1 errors.
+# Compile of full_adder.v was successful.
+# Compile of full_adder_testbench.v was successful.
+# Compile of multiplexer.v failed with 1 errors.
+# Compile of multiplexer_testbench.v failed with 2 errors.
+# Compile of red.v failed with 1 errors.
+# 6 compiles, 4 failed with 5 errors.
+# Compile of concatenator.v failed with 1 errors.
+# Compile of full_adder.v was successful.
+# Compile of full_adder_testbench.v was successful.
+# Compile of multiplexer.v failed with 1 errors.
+# Compile of multiplexer_testbench.v failed with 2 errors.
+# Compile of red.v failed with 1 errors.
+# 6 compiles, 4 failed with 5 errors.
+dataset reload -f
+# Dataset not found: 
+# Compile of concatenator.v failed with 1 errors.
+# Compile of full_adder.v was successful.
+# Compile of full_adder_testbench.v was successful.
+# Compile of multiplexer.v was successful.
+# Compile of multiplexer_testbench.v failed with 2 errors.
+# Compile of red.v failed with 1 errors.
+# 6 compiles, 3 failed with 4 errors.
+dataset reload -f
+# Dataset not found: 
+# Compile of full_adder.v failed with 1 errors.
+# Compile of full_adder_testbench.v failed with 1 errors.
+# Compile of red.v failed with 1 errors.
+# 3 compiles, 6 failed with 3 errors.
+# Project file C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/318 first assignment.mpf is write protected, data cannot be saved.
+# Unable to save project.
+# Project file C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/318 first assignment.mpf is write protected, data cannot be saved.
+# Unable to save project.
+dataset reload -f
+# Dataset not found: 
+dataset reload -f
+# Dataset not found: 
+# Compile of full_adder.v failed with 1 errors.
+# Compile of full_adder_testbench.v failed with 1 errors.
+# Compile of red.v failed with 1 errors.
+# 3 compiles, 5 failed with 3 errors.
+# Project file C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/318 first assignment.mpf is write protected, data cannot be saved.
+# Unable to save project.
+# Project file C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/318 first assignment.mpf is write protected, data cannot be saved.
+# Unable to save project.
+# Project file C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/318 first assignment.mpf is write protected, data cannot be saved.
+# Unable to save project.
+# Project file C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/318 first assignment.mpf is write protected, data cannot be saved.
+# Unable to save project.
+# Project file C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/318 first assignment.mpf is write protected, data cannot be saved.
+# Unable to save project.
+# Compile of full_adder.v failed with 1 errors.
+# Compile of full_adder_testbench.v failed with 1 errors.
+# Compile of red.v failed with 1 errors.
+# Compile of multiplexe_1bitr.v failed with 1 errors.
+# Compile of multiplexer_1bit_testbench.v failed with 1 errors.
+# 5 compiles, 5 failed with 5 errors.
+# Project file C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/318 first assignment.mpf is write protected, data cannot be saved.
+# Unable to save project.

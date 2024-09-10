@@ -7,16 +7,16 @@ module multiplexer_test_bench;
     reg B;
     reg Select;
 
-    //Outputs
-    wire Out;   
+    // Output of the multiplexer
+    wire S;
 
-    //Instantiate
+    // Instantiate the Unit Under Test (UUT)
     multiplexer_1bit uut (
         .A(A),
         .B(B),
-        .Select(Select_bit),
-        .Out(Out)
-    )
+        .Select_bit(Select),
+        .S(S)
+    );
 
     // Test stimulus
     initial begin

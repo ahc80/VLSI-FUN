@@ -11,12 +11,13 @@ module multiplexer_1bit (
 
     wire A_AND_Select;
     wire B_AND_nSelect;
+    wire nSelect_bit;
 
-    not (nSelect_bit, Select_bit);
-    
-    and (A_AND_Select, A, Select_bit);
-    and (B_AND_nSelect, B, nSelect_bit);
-   
-    or  (S, A_AND_Select, B_AND_nSelect);
+    not u_not(nSelect_bit, Select_bit);
+
+    and u_and1(A_AND_Select, A, Select_bit);
+    and u_and2(B_AND_nSelect, B, nSelect_bit);
+
+    or u_or(S, A_AND_Select, B_AND_nSelect);
 
 endmodule

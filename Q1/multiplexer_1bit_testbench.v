@@ -1,4 +1,8 @@
-`timescale 1ns / 1ps //Time unit /time precision
+// ECSE 318 
+// Andrew Chen and Audrey Michel
+// This is the test bench for a 1-bit multiplexer. 
+
+`timescale 1ns / 1ns //Time unit /time precision
 
 module multiplexer_test_bench;
 

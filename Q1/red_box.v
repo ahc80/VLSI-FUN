@@ -1,3 +1,10 @@
+// ECSE 318 
+// Andrew Chen and Audrey Michel
+// This one of the top-level modules for the circuit that holds 
+// 2 Fulls adders, 4 multiplexers, 2 concatenators.
+
+`timescale 1ns/1ns
+
 module red_box (
     input x2, //Going to make the variables based off of the first "red_box"
     input y2, //But they should apply to all of the "red_box".

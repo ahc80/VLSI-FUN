@@ -1,11 +1,16 @@
+// ECSE 318 
+// Andrew Chen and Audrey Michel
+// This is the full adder.
 //This is in 2001 Verilog
 
+`timescale 1ns/1ns
+
 module full_adder (
-    input  wire A,      // First input bit
-    input  wire B,      // Second input bit
-    input  wire Cin,    // Carry input bit
-    output wire Sum,    // Sum output
-    output wire Cout    // Carry output
+    input A,      // First input bit
+    input B,      // Second input bit
+    input Cin,    // Carry input bit
+    output Sum,    // Sum output
+    output Cout    // Carry output
 );
 
     wire AxorB;        // Intermediate wire for A XOR B

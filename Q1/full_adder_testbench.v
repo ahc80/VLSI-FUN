@@ -1,4 +1,8 @@
-`timescale 1ns / 1ps  // Time unit / time precision
+// ECSE 318 
+// Andrew Chen and Audrey Michel
+// This is the test bench for the full adder. 
+
+`timescale 1ns / 1ns  // Time unit / time precision
 
 module full_adder_test_bench;
 

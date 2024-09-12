@@ -3,8 +3,7 @@
 module 4_CAS_array (
     input[3:0] M,     // Same as Diagonal from CAS. MSB is leftmost on diagram
     input[3:0] A,     // Same as A from CAS. the LSB is part of D later        
-    input B, 
-    input C_in,
+    input B,          // The "horizontal" input on the diagram
 
     output Q,
     output[3:0] S
@@ -13,7 +12,7 @@ module 4_CAS_array (
     wire[3:0] C_out_wire    // MSB determines Q value
 
     // Rightmust CAS on diagram
-    controlled_adder_substractor cas0 (
+    controlled_adder_substractor cas0 (                     // IS IT BAD TO INSTANTIATE HERE OUT OF GEN BLOCK?
         .A(A[0]),
         .B(B),
         .Diagonal(M[0]),

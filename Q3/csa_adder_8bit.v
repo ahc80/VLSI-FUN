@@ -1,16 +1,16 @@
 // ECSE 318 
 // Andrew Chen and Audrey Michel
 
-`timescale 1ps/1fs // Set timescale to 1 nanosecond with 1 picosecond precision
+`timescale 1ns/1ps // Set timescale to 1 nanosecond with 1 picosecond precision
 
 module csa(
     input [7:0] a, b, c, d, e, f, g, h, i, j,
     output [17:0] s
 );
 
-    wire [7:0] s8;
-    wire [8:0] s9, c8;
-    wire [9:0] s10, c9;
+    wire [7:0]  s8;
+    wire [8:0]  s9,   c8;
+    wire [9:0]  s10,  c9;
     wire [10:0] s11, c10;
     wire [11:0] s12, c11;
     wire [12:0] s13, c12;
@@ -106,24 +106,29 @@ module csa(
 
 endmodule : csa
 
+//Let us make a N bit version for flexibility
+//In the hw the lowest case was 8
 module NBitCSA #(
-    parameter N = 8 //default case
+    parameter N = 8 //default
 )(
-    input [N-1:0] A, B, C,
+    input [N-1:0] A, B, C, //We are adding three numbers at the same time
     output [N-1:0] S,
-    output [N:0] Carry
+    output [N:0] Carry 
 );
 
-wire [N:0] Carry_bs;  // preshift
-
+wire [N:0] Carry_b4s;  // Carry Before Shift
+    // XOR is used to only count the Sum 
+    // if 1 ^ 1 ^ 1 then 1 for Sum
+    // if 1 ^ 1 ^ 0 then 0 for Sum
+    // if 1 ^ 0 ^ 1 then 1 for Sum ... etc
     genvar i;
     generate
-        for (i = 0; i < N; i = i + 1) begin : CSA_instance
+        for (i = 0; i < N; i = i + 1) begin : CSA_instance 
             assign S[i] = A[i] ^ B[i] ^ C[i];
-            assign Carry_bs[i] = A[i] & B[i] | A[i] & C[i] | B[i] & C[i];
+            assign Carry_b4s[i] = A[i] & B[i] | A[i] & C[i] | B[i] & C[i];
         end
     endgenerate
 
-  assign Carry[N:0] = {Carry_bs[N-1:0], 1'b0};
+  assign Carry[N:0] = {Carry_b4s[N-1:0], 1'b0}; //Shifts the carry by one bit
 
 endmodule

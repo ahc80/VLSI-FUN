@@ -1,12 +1,12 @@
 // ECSE 318 
 // Andrew Chen and Audrey Michel
 
-`timescale 1ps/1fs // Set timescale to 1 nanosecond with 1 picosecond precision
+`timescale 1ns/1ps // Set timescale to 1 nanosecond with 1 picosecond precision
 
 module csa_tb(
 
 );
-    reg [7:0] a, b, c, d, e, f, g, h, i, j;
+    reg [7:0] a, b, c, d, e, f, g, h, i, j; 
     wire [17:0] s;
 
     csa csa_instance(

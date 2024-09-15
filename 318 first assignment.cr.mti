@@ -1,16 +1,4 @@
-{C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Q1/multiplexe_1bitr.v} {0 {vlog -work work -stats=none {C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Q1/multiplexe_1bitr.v}
-** Warning: (vlog-14) Failed to open "C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/318 first assignment.mpf" specified by the MODELSIM environment variable.
-No such file or directory. (errno = ENOENT)
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-** Error: (vlog-66) Execution of vlib.exe failed. Please check the error log for more details.
-
-} {5.0 6.0} {}} {C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Q1/red.v} {0 {vlog -work work -stats=none {C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Q1/red.v}
-** Warning: (vlog-14) Failed to open "C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/318 first assignment.mpf" specified by the MODELSIM environment variable.
-No such file or directory. (errno = ENOENT)
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-** Error: (vlog-66) Execution of vlib.exe failed. Please check the error log for more details.
-
-} {5.0 6.0} {}} {C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Q1/multiplexer_1bit_testbench.v} {0 {vlog -work work -stats=none {C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Q1/multiplexer_1bit_testbench.v}
+{C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Q4/testing sandbox/testing.v} {0 {vlog -work work -stats=none {C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Q4/testing sandbox/testing.v}
 ** Warning: (vlog-14) Failed to open "C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/318 first assignment.mpf" specified by the MODELSIM environment variable.
 No such file or directory. (errno = ENOENT)
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020

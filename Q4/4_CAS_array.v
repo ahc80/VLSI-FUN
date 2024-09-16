@@ -11,7 +11,7 @@ module 4_CAS_array (
     
     wire[3:0] C_out_wire    // MSB determines Q value
 
-    // Rightmust CAS on diagram
+    // Rightmost CAS on diagram
     controlled_adder_substractor cas0 (                     // IS IT BAD TO INSTANTIATE HERE OUT OF GEN BLOCK?
         .A(A[0]),
         .B(B),
@@ -22,6 +22,9 @@ module 4_CAS_array (
         .S(S[0])
     );         
 
+
+    wire[3:0] C_out_wire[3:0]
+
     // Generating other CAS, from right to left on diagram
     genvar i;
     generate
@@ -30,9 +33,9 @@ module 4_CAS_array (
                 .A(A[i]),
                 .B(B),
                 .Diagonal(M[i]),
-                .C_in(B),
+                .C_in(C_out_wire[i-1]),
                 
-                .C_out(C_out_wire[i-1]),
+                .C_out(C_out_wire[i]),
                 .S(S[i])
             );                
         end

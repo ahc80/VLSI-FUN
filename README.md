@@ -1,6 +1,8 @@
 Delays are every 10 nanoseconds
 
-## Immediate objectives
+### Do this before turning in
+
+- Erase all ALL CAPS comments
 
 # Questions for Saab
 - What exactly is structural vs behavioural? Is this a verbose way of saying we shouldnt use verilog libraries blindly?

@@ -5,11 +5,12 @@ Delays are every 10 nanoseconds
 - Erase all ALL CAPS comments
 
 # Questions for Saab
+- Ask saab what those weird values are for the long divider (Q4)
+- What is * in always block; Should we include a clock in Q5 behavioural (in always)?
+
 - What exactly is structural vs behavioural? Is this a verbose way of saying we shouldnt use verilog libraries blindly?
 -- "Stack overflow says: behavioural refers to always blocks, and structural refers to modules instances"
 - Q1 multiplexers: how should we connect the multiplexers? If select bit is 1, which input do we choose? Does it matter?
-- Do we put the instance name outside the logic gates or do we keep it inside?
-- What is the difference between using the "assign" method for coding rather than using the logic gates. Online sources say that the assign is a higher level of structural. Which one is better?
 - What are we submitting? A lab report? Just the files?
 
 # Todo List

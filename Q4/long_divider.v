@@ -4,11 +4,11 @@ module long_divider (
     parameter 4_RC_array_and_in = 4'b0101,
     parameter 4_RC_array_c_in   = 1'b0,
 
-    input[3:0] M,   // Divisor
-    input[6:0] D,   // Dividend
+    input  [3:0] M,  // Divisor
+    input  [6:0] D,  // Dividend
 
-    output[3:0] Q,  // Quotient
-    output[3:0] R,  // Remainder
+    output [3:0] Q,  // Quotient
+    output [3:0] R,  // Remainder
 );
     wire [4:0] cas_array_sum [3:0];
     wire       Q_wire        [3:0]; // Q[0] is Q0, Q[1] is Q1, so forth
@@ -52,19 +52,4 @@ module long_divider (
 
         .R      (R[3:0])
     )
-
-
-
-    // copy paste but youll adapt it oc
-    4_RC_array (
-        input[3:0]  A       // Corresponds to A input of full adder 
-        input[3:0]  And_in   
-        input       C_in
-
-        output[3:0] R,      // Remainder
-    );
-
-
-
-    
 endmodule

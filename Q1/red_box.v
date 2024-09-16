@@ -64,7 +64,7 @@ module red_box (
     );
 
     // Instantiate MUX1 (controlled by FA1 Cout)
-    mux MUX1 (
+    multiplexer_1bit MUX1 (
         .A(sum3),  // Input from FA3 Sum
         .B(sum4),  // Input from FA4 Sum
         .Select(cout1),  // Cout from FA1
@@ -72,7 +72,7 @@ module red_box (
     );
 
     // Instantiate MUX2 (controlled by FA1 Cout)
-    mux MUX2 (
+    multiplexer_1bit MUX2 (
         .A(cout3),  // Input from FA3 Cout
         .B(cout4),  // Input from FA4 Cout
         .Select(cout1),  // Cout from FA1
@@ -80,7 +80,7 @@ module red_box (
     );
 
     // Instantiate MUX3 (controlled by FA2 Cout)
-    mux MUX3 (
+    multiplexer_1bit MUX3 (
         .A(sum3),  // Input from FA3 Sum
         .B(sum4),  // Input from FA4 Sum
         .Select(cout2),  // Cout from FA2
@@ -88,7 +88,7 @@ module red_box (
     );
 
     // Instantiate MUX4 (controlled by FA2 Cout)
-    mux MUX4 (
+    multiplexer_1bit MUX4 (
         .A(cout3),  // Input from FA3 Cout
         .B(cout4),  // Input from FA4 Cout
         .Select(cout2),  // Cout from FA2

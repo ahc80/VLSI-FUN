@@ -42,3 +42,4 @@ module multiplexer_test_bench;
         // End the simulation
         $finish;
     end
+endmodule

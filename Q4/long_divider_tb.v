@@ -20,7 +20,7 @@ reg [3:0] expected_R    [4];
 // 2) 9/4
 // 3) 12/5
 
-assign dividend_list [0] = 7'b0000111;
+assign dividend_list [0] = 7'd7;
 assign dividend_list [1] = 7'b0000110;
 assign dividend_list [2] = 7'b0001001;
 assign dividend_list [3] = 7'b0001100;

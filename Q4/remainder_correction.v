@@ -1,15 +1,16 @@
 module remainder_correction (
-    input       A,      // Connects to output sum from CAS
-    input[1:0]  And_in, // IM UNSURE WHAT THIS INPUT IS SUPPOSED TO CONNECT TO
+    input       A,              // Connects to output sum from CAS
+    input       Q_bit,          // Input for respective bit from divisor
+    input       Anded_with_Q,    // Input anded with Q bit. Will be a "Line input"
     input       C_in,
 
     output      C_out,   
-    output      R       // Remainder bit
+    output      R               // Remainder bit
 ); 
     
     wire and_output;
 
-    and (and_output, And_in[1], And_in[0]);
+    and (and_output, Q_bit, Anded_with_Q);
 
     full_adder FA (
         .A(A),

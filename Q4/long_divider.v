@@ -1,18 +1,14 @@
 module long_divider (
-
-    parameter first_c_in_value  = 1'b1,
-    parameter 4_RC_array_and_in = 4'b0101,
-    parameter 4_RC_array_c_in   = 1'b0,
-
     input  [3:0] M,  // Divisor
     input  [6:0] D,  // Dividend
 
     output [3:0] Q,  // Quotient
-    output [3:0] R,  // Remainder
+    output [3:0] R  // Remainder
 );
     wire [4:0] cas_array_sum [3:0];
     wire       Q_wire        [3:0]; // Q[0] is Q0, Q[1] is Q1, so forth
     
+    // Trick to concat D with previous sum outputs for next 4_CAS_array input
     assign cas_array_sum[0] = D[2];
     assign cas_array_sum[1] = D[1];
     assign cas_array_sum[2] = D[0];
@@ -45,11 +41,10 @@ module long_divider (
         end
     endgenerate
 
-    4_RC_array (
-        .A      (cas_array_sum[3][4:1]),
-        .And_in (4_RC_array_and_in),
-        .C_in   (4_RC_array_c_in),
+    4_RC_array 4rc0 (
+        .A  (cas_array_sum[3][4:1]),
+        .M  (M[3:0]),
 
-        .R      (R[3:0])
+        .R  (R[3:0])
     )
 endmodule

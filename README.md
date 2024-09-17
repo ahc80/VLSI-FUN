@@ -7,6 +7,8 @@ Delays are every 10 nanoseconds
 # Questions for Saab
 - Ask saab what those weird values are for the long divider (Q4)
 - What is * in always block; Should we include a clock in Q5 behavioural (in always)?
+- Ask how to assign faster in long divider tb
+- Q1 what is first FA's c_in value?
 
 - What exactly is structural vs behavioural? Is this a verbose way of saying we shouldnt use verilog libraries blindly?
 -- "Stack overflow says: behavioural refers to always blocks, and structural refers to modules instances"

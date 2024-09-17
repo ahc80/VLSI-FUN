@@ -97,30 +97,82 @@ module conditional_sum_adder (
 
     ///////////////////////////////////////////
     //Red Box2
-
     red_box box2 (
         .x2(x[4]),
         .y2(y[4]),
         .x3(x[5]),
         .y3(x[5]),
-        .concat_mux1(mux_in3_1), //
-        .mux2(mux4_1),
-        .concat_mux3(mux_in3_2), //
-        .mux4(mux4_2),
+        .concat_mux1(mux_concat_4bit_1),
+        .mux2(mux5_select_5_6),
+        .concat_mux3(mux_concat_4bit_2),
+        .mux4(mux5_select_7_8),
     );    
 
     //Red Box3
-
     red_box box3 (
         .x2(x[6]),
         .y2(y[6]),
         .x3(x[7]),
         .y3(x[7]),
-        .concat_mux1(mux_in3_1), //
-        .mux2(mux4_1),
-        .concat_mux3(mux_in3_2), //
-        .mux4(mux4_2),
+        .concat_mux1(), //
+        .mux2(),
+        .concat_mux3(), //
+        .mux4(),
     );
+
+    ///////////////////////////////////////////
+    multiplexer_2bit MUX5 (
+        .A(),  // Input from Mux Concat 1
+        .B(),  // Input from Mux Concat 2
+        .Select(),  // Cout from MUX2
+        .Y()
+    );
+
+    multiplexer_2bit MUX6 (
+        .A(),  // Input from Mux Concat 1
+        .B(),  // Input from Mux Concat 2
+        .Select(),  // Cout from MUX2
+        .Y()
+    );
+
+    multiplexer_2bit MUX7 (
+        .A(),  // Input from Mux Concat 1
+        .B(),  // Input from Mux Concat 2
+        .Select(),  // Cout from MUX2
+        .Y()
+    );
+
+    multiplexer_2bit MUX8 (
+        .A(),  // Input from Mux Concat 1
+        .B(),  // Input from Mux Concat 2
+        .Select(),  // Cout from MUX2
+        .Y()
+    );
+    
+    ///////////////////////////////////////////
+
+    assign concat_mux5 = {, };
+    assign concat_mux7 = {, };
+
+    ///////////////////////////////////////////
+
+    multiplexer_4bit MUX9 (
+        .A(),  // Input from Mux Concat 1
+        .B(),  // Input from Mux Concat 2
+        .Select(),  // Cout from MUX2
+        .Y()
+    );
+
+    multiplexer_4bit MUX10 (
+        .A(),  // Input from Mux Concat 1
+        .B(),  // Input from Mux Concat 2
+        .Select(),  // Cout from MUX2
+        .Y()
+    );
+
+    ///////////////////////////////////////////
+
+    assign concat_mux9 = {, };
     
 
     

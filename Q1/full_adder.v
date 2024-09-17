@@ -18,10 +18,12 @@ module full_adder (
     wire AxorBandC;        // Intermediate wire for (A XOR B) AND Cin
 
     // Structural logic using gates
-    xor (AxorB, A, B);              // XOR gate for A and B
-    xor (Sum, AxorB, Cin);          // XOR gate for (A XOR B) and Cin
-    and (AandB, A, B);              // AND gate for A and B
-    and (AxorBandC, AxorB, Cin);          // AND gate for (A XOR B) and Cin
-    or  (Cout, AandB, AxorBandC);         // OR gate for carry-out
+    xor u_xor1(AxorB, A, B);              // XOR gate for A and B
+    xor u_xor2(Sum, AxorB, Cin);          // XOR gate for (A XOR B) and Cin
+    
+    and u_and1(AandB, A, B);              // AND gate for A and B
+    and u_and2(AxorBandC, AxorB, Cin);          // AND gate for (A XOR B) and Cin
+    
+    or  u_or(Cout, AandB, AxorBandC);         // OR gate for carry-out
 
 endmodule

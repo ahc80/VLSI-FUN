@@ -103,9 +103,9 @@ module conditional_sum_adder (
         .y2(y[4]),
         .x3(x[5]),
         .y3(x[5]),
-        .concat_mux1(mux_in3_1),
+        .concat_mux1(mux_in3_1), //
         .mux2(mux4_1),
-        .concat_mux3(mux_in3_2),
+        .concat_mux3(mux_in3_2), //
         .mux4(mux4_2),
     );    
 
@@ -116,9 +116,9 @@ module conditional_sum_adder (
         .y2(y[6]),
         .x3(x[7]),
         .y3(x[7]),
-        .concat_mux1(mux_in3_1),
+        .concat_mux1(mux_in3_1), //
         .mux2(mux4_1),
-        .concat_mux3(mux_in3_2),
+        .concat_mux3(mux_in3_2), //
         .mux4(mux4_2),
     );
     

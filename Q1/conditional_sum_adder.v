@@ -3,7 +3,8 @@
 
 module conditional_sum_adder (
     input x[8], //0-7 Inputs X
-    input y[8], //0-7 Inputs Y
+    input y[8], //0-7 Inputs 
+    input c0,
 
     output c8,
     output Sum,
@@ -22,7 +23,7 @@ module conditional_sum_adder (
     full_adder FA1 (
         .A(x[0]),
         .B(y[0]),  
-        .Cin(?),  // Cin = 1 for FA1
+        .Cin(c0),  //C0 input 
         .Sum(sum1),  
         .Cout(cout1)
     );

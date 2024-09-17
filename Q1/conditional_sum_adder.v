@@ -5,8 +5,8 @@ module conditional_sum_adder (
     input x[8], //0-7 Inputs X
     input y[8], //0-7 Inputs Y
 
-    output S1,
-    output S2,
+    output c8,
+    output Sum,
 );
 
     wire sum1, cout1; //FA1 outputs
@@ -51,7 +51,7 @@ module conditional_sum_adder (
         .Y(mux_out1) 
     );
 
-    assign concat_mux1 = {sum1, mux_out1};
+    assign concat_mux_1 = {sum1, mux_out1};
 
     // Instantiate MUX2 (controlled by FA1 Cout)
     multiplexer_1bit MUX2 (
@@ -85,7 +85,7 @@ module conditional_sum_adder (
         .Y(mux_out3)
     );
 
-    assign concat_mux2 = {mux_out3, concat_mux1};
+    assign concat_mux_3 = {mux_out3, concat_mux_1};
 
     // Instantiate MUX4 (controlled by MUX2 out)
     multiplexer_1bit MUX4 (
@@ -114,65 +114,65 @@ module conditional_sum_adder (
         .y2(y[6]),
         .x3(x[7]),
         .y3(x[7]),
-        .concat_mux1(), //
-        .mux2(),
-        .concat_mux3(), //
-        .mux4(),
+        .concat_mux1(mux_concat_mux5_7_1), //The output Mux1 Concat to MUX5 and MUX7, connection 1
+        .mux2(mux_out6_8_1), //mux to MUX6 and MUX8, Connection 1
+        .concat_mux3(mux_concat_mux5_7_2), //The output Mux1 Concat to MUX5 and MUX7, connection 1
+        .mux4(mux_out6_8_2), //mux to MUX6 and MUX8, Connection 2
     );
 
     ///////////////////////////////////////////
     multiplexer_2bit MUX5 (
-        .A(),  // Input from Mux Concat 1
-        .B(),  // Input from Mux Concat 2
-        .Select(),  // Cout from MUX2
-        .Y()
+        .A(mux_concat_mux5_7_1),  // 
+        .B(mux_concat_mux5_7_2),  // 
+        .Select(mux5_select_5_6),  // 
+        .Y(mux5_concat_4bit) //mux to concat 4 bit output
     );
 
     multiplexer_2bit MUX6 (
-        .A(),  // Input from Mux Concat 1
-        .B(),  // Input from Mux Concat 2
-        .Select(),  // Cout from MUX2
-        .Y()
+        .A(mux_out6_8_1),  // 
+        .B(mux_out6_8_2),  // 
+        .Select(mux5_select_5_6),  // 
+        .Y(mux6_mux10) //MUX6 to MUX10
     );
 
     multiplexer_2bit MUX7 (
-        .A(),  // Input from Mux Concat 1
-        .B(),  // Input from Mux Concat 2
-        .Select(),  // Cout from MUX2
-        .Y()
+        .A(mux_concat_mux5_7_1),  // 
+        .B(mux_concat_mux5_7_2),  // 
+        .Select(mux5_select_7_8),  //
+        .Y(mux7_concat_4bit) //mux to concat 4bit output
     );
 
     multiplexer_2bit MUX8 (
-        .A(),  // Input from Mux Concat 1
-        .B(),  // Input from Mux Concat 2
-        .Select(),  // Cout from MUX2
-        .Y()
+        .A(mux_out6_8_1),  
+        .B(mux_out6_8_2),  
+        .Select(mux5_select_7_8),  //
+        .Y(mux8_mux10)
     );
     
     ///////////////////////////////////////////
 
-    assign concat_mux5 = {, };
-    assign concat_mux7 = {, };
+    assign concat_mux_5 = {mux_concat_4bit_1, mux5_concat_4bit}; //redbox 2 to mux5 concat
+    assign concat_mux_7 = {mux_concat_4bit_2, mux7_concat_4bit}; //redbox 2 to mux 7 concat
 
     ///////////////////////////////////////////
 
     multiplexer_4bit MUX9 (
-        .A(),  // Input from Mux Concat 1
-        .B(),  // Input from Mux Concat 2
-        .Select(),  // Cout from MUX2
-        .Y()
+        .A(concat_mux_5),  
+        .B(concat_mux_7),  
+        .Select(mux_out4),  //
+        .Y(mux_concat_8bit)
     );
 
     multiplexer_4bit MUX10 (
-        .A(),  // Input from Mux Concat 1
-        .B(),  // Input from Mux Concat 2
-        .Select(),  // Cout from MUX2
-        .Y()
+        .A(mux6_mux10),  
+        .B(mux8_mux10),  
+        .Select(mux_out4),  //
+        .Y(c8)
     );
 
     ///////////////////////////////////////////
 
-    assign concat_mux9 = {, };
+    assign S = {concat_mux_3, mux_concat_8bit};
     
 
     

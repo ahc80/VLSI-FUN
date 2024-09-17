@@ -1,16 +1,8 @@
 Delays are every 10 nanoseconds
 
-### Do this before turning in
-
-- Erase all ALL CAPS comments
+## Immediate objectives
 
 # Questions for Saab
-- Ask saab what those weird values are for the long divider (Q4)
-- What is * in always block; Should we include a clock in Q5 behavioural (in always)?
-- Ask how to assign faster in long divider tb
-- Q1 what is first FA's c_in value?
-- Q1 what exactly is going on with the ""output pairs"" in the diagram
-
 - What exactly is structural vs behavioural? Is this a verbose way of saying we shouldnt use verilog libraries blindly?
 -- "Stack overflow says: behavioural refers to always blocks, and structural refers to modules instances"
 - Q1 multiplexers: how should we connect the multiplexers? If select bit is 1, which input do we choose? Does it matter?
@@ -51,7 +43,7 @@ Delays are every 10 nanoseconds
     -- Andrew, 9/8 EOD
 
 
-# Long term tasks
+# Long term tasks/ Notes
 
 ## Question 1
 - Implement, test, and name mid-layer module (boxed in red)
@@ -59,7 +51,14 @@ Delays are every 10 nanoseconds
 - Confirm with saab that we only have to implement the conditional sum adder
 
 ## Question 2
-- Understand what a CLA is
+- Understand what a CLA is:
+    - CLA is "Carry-Lookahead Adder" 
+    - Similar to the drawing, the CLA needs to be broken down into 4 different modules for each of the bits
+        - Will make CLA# where # = 1,2,3,4
+- CLA formula goes as Co = gi + (pi * Ci) where i = 1,2,3,4
+    - gi = the generate signal representing when a carry is generated at the bit (this occurs when both inputs are 1: ai * bi)
+    - pi = propagate the signal representing when a carry will propagate through a bit
+    - Ci = carry-in for the prev bit
 
 ## Question 3
 - Implement and test a Carry Save Adder

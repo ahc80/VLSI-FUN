@@ -9,6 +9,7 @@ Delays are every 10 nanoseconds
 - What is * in always block; Should we include a clock in Q5 behavioural (in always)?
 - Ask how to assign faster in long divider tb
 - Q1 what is first FA's c_in value?
+- Q1 what exactly is going on with the ""output pairs"" in the diagram
 
 - What exactly is structural vs behavioural? Is this a verbose way of saying we shouldnt use verilog libraries blindly?
 -- "Stack overflow says: behavioural refers to always blocks, and structural refers to modules instances"

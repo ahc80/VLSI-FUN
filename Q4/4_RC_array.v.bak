@@ -1,8 +1,7 @@
 module four_RC_array (
     input[3:0]  A,       // Direct sum from 4_CAS_array -- MSB becomes "and_with_q LINE"
     input[3:0]  M,       // divisor
-
-    output[3:0] R      // Remainder
+    output[3:0] R,      // Remainder
 );
 
     wire[3:0] C_out_wire;

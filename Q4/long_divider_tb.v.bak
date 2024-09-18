@@ -20,25 +20,25 @@ reg [3:0] expected_R    [3:0];
 // 2) 9/4
 // 3) 12/5
 
-dividend_list [0] = 7'd7;
-dividend_list [1] = 7'b0000110;
-dividend_list [2] = 7'b0001001;
-dividend_list [3] = 7'b0001100;
+assign dividend_list [0] = 7'd7;
+assign dividend_list [1] = 7'b0000110;
+assign dividend_list [2] = 7'b0001001;
+assign dividend_list [3] = 7'b0001100;
 
-divisor_list  [0] = 4'b0010;
-divisor_list  [1] = 4'b0010;
-divisor_list  [2] = 4'b0100;
-divisor_list  [3] = 4'b0101;
+assign divisor_list  [0] = 4'b0010;
+assign divisor_list  [1] = 4'b0010;
+assign divisor_list  [2] = 4'b0100;
+assign divisor_list  [3] = 4'b0101;
 
-expected_Q    [0] = 4'b0011;
-expected_Q    [1] = 4'b0110;
-expected_Q    [2] = 4'b0010;
-expected_Q    [3] = 4'b0010;
+assign expected_Q    [0] = 4'b0011;
+assign expected_Q    [1] = 4'b0110;
+assign expected_Q    [2] = 4'b0010;
+assign expected_Q    [3] = 4'b0010;
 
-expected_R    [0] = 4'b0001;
-expected_R    [1] = 4'b0000;
-expected_R    [2] = 4'b0001;
-expected_R    [3] = 4'b0010;
+assign expected_R    [0] = 4'b0001;
+assign expected_R    [1] = 4'b0000;
+assign expected_R    [2] = 4'b0001;
+assign expected_R    [3] = 4'b0010;
 
 
 initial begin : Testing
@@ -50,8 +50,8 @@ initial begin : Testing
     // 2) 9/4
     // 3) 12/5
 
-    M[3:0] = divisor_list [i];
-    D[6:0] = dividend_list[i];
+    M = divisor_list [i];
+    D = dividend_list[i];
 
     $display(
         "Begin test case %d: quotient: %b, remainder: %b, \n expected: %b | %b ",

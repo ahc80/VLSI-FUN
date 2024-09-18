@@ -1,5 +1,3 @@
-`timescale 1ns/1ns
-
 module tb_of_divider ();
     
     wire [3:0] Q; // Quotient                   // IS WIRE GOOD ?
@@ -63,7 +61,7 @@ module tb_of_divider ();
 
     $display(
         "Begin test case 12/5: quotient: %d, remainder: %d, \n expected: %d | %d ",
-        Q, R, expected_Q[3:0], expected_R[3:0]
+        i, Q, R, expected_Q[3:0], expected_R[3:0]
     );
     #50;
 

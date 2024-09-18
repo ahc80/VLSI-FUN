@@ -125,3 +125,101 @@ dataset reload -f
 # Compile of long_divider_tb.v failed with 1 errors.
 # Compile of long_divider_tb.v failed with 2 errors.
 # Compile of long_divider_tb.v failed with 2 errors.
+# Compile of long_divider_tb.v failed with 2 errors.
+# Compile of long_divider_tb.v was successful.
+# Load canceled
+# Load canceled
+vsim -gui work.tb_of_divider
+# vsim -gui work.tb_of_divider 
+# Start time: 17:25:00 on Sep 18,2024
+# Loading work.tb_of_divider
+# Loading work.long_divider
+# Loading work.four_RC_array
+# Loading work.remainder_correction
+# ** Error: (vsim-3033) Instantiation of 'full_adder' failed. The design unit was not found.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_of_divider/ld/rc0/RC0 File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Q4/remainder_correction.v Line: 15
+#         Searched libraries:
+#             C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/work
+# Error loading design
+# End time: 17:25:02 on Sep 18,2024, Elapsed time: 0:00:02
+# Errors: 1, Warnings: 42
+# Compile of 4_CAS_array.v was successful.
+# Compile of 4_CAS_array_tb.v was successful.
+# Compile of 4_RC_array.v was successful.
+# Compile of controlled_adder_subtractor.v was successful.
+# Compile of long_divider.v was successful.
+# Compile of long_divider_tb.v was successful.
+# Compile of remainder_correction.v was successful.
+# Compile of tb_controlled_adder_subtractor.v was successful.
+# Compile of full_adder.v was successful.
+# 9 compiles, 0 failed with no errors.
+vsim -gui work.tb_of_divider
+# vsim -gui work.tb_of_divider 
+# Start time: 17:37:19 on Sep 18,2024
+# Loading work.tb_of_divider
+# Loading work.long_divider
+# Loading work.four_RC_array
+# Loading work.remainder_correction
+# Loading work.full_adder
+# ** Error (suppressible): (vsim-3009) [TSCALE] - Module 'tb_of_divider' does not have a timeunit/timeprecision specification in effect, but other modules do.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_of_divider/ld/rc0/RC0/FA File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Q4/full_adder.v
+# Error loading design
+# End time: 17:37:20 on Sep 18,2024, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 3
+# Compile of 4_CAS_array.v was successful.
+# Compile of 4_CAS_array_tb.v was successful.
+# Compile of 4_RC_array.v was successful.
+# Compile of controlled_adder_subtractor.v was successful.
+# Compile of long_divider.v was successful.
+# Compile of long_divider_tb.v was successful.
+# Compile of remainder_correction.v was successful.
+# Compile of tb_controlled_adder_subtractor.v was successful.
+# Compile of full_adder.v was successful.
+# 9 compiles, 0 failed with no errors.
+vsim -gui work.tb_of_divider
+# vsim -gui work.tb_of_divider 
+# Start time: 17:39:43 on Sep 18,2024
+# Loading work.tb_of_divider
+# Loading work.long_divider
+# Loading work.four_RC_array
+# Loading work.remainder_correction
+# Loading work.full_adder
+# Loading work.four_CAS_array
+# Loading work.controlled_adder_substractor
+# ** Error: (vsim-3043) Unresolved reference to 'i'.
+#    Time: 0 ns  Iteration: 0  Instance: /tb_of_divider File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Q4/long_divider_tb.v Line: 66
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'A'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Q4/4_CAS_array.v(5).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_of_divider/ld/genblk1[1]/genblk1/cas123 File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Q4/long_divider.v Line: 32
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'A'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Q4/4_CAS_array.v(5).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_of_divider/ld/genblk1[2]/genblk1/cas123 File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Q4/long_divider.v Line: 32
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'A'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Q4/4_CAS_array.v(5).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_of_divider/ld/genblk1[3]/genblk1/cas123 File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Q4/long_divider.v Line: 32
+# Error loading design
+# End time: 17:39:44 on Sep 18,2024, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 5
+# Compile of 4_CAS_array.v was successful.
+# Compile of 4_CAS_array_tb.v was successful.
+# Compile of 4_RC_array.v was successful.
+# Compile of controlled_adder_subtractor.v was successful.
+# Compile of long_divider.v was successful.
+# Compile of long_divider_tb.v was successful.
+# Compile of remainder_correction.v was successful.
+# Compile of tb_controlled_adder_subtractor.v was successful.
+# Compile of full_adder.v was successful.
+# 9 compiles, 0 failed with no errors.
+vsim -gui work.tb_of_divider
+# vsim -gui work.tb_of_divider 
+# Start time: 17:40:37 on Sep 18,2024
+# Loading work.tb_of_divider
+# Loading work.long_divider
+# Loading work.four_RC_array
+# Loading work.remainder_correction
+# Loading work.full_adder
+# Loading work.four_CAS_array
+# Loading work.controlled_adder_substractor
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'A'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Q4/4_CAS_array.v(5).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_of_divider/ld/genblk1[1]/genblk1/cas123 File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Q4/long_divider.v Line: 32
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'A'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Q4/4_CAS_array.v(5).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_of_divider/ld/genblk1[2]/genblk1/cas123 File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Q4/long_divider.v Line: 32
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'A'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Q4/4_CAS_array.v(5).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_of_divider/ld/genblk1[3]/genblk1/cas123 File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Q4/long_divider.v Line: 32

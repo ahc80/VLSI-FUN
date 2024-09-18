@@ -2,12 +2,12 @@
 // Andrew Chen and Audrey Michel
 
 module conditional_sum_adder (
-    input x[8], //0-7 Inputs X
-    input y[8], //0-7 Inputs 
+    input [7:0] x, // 8 bit input x
+    input [7:0] y, // 8 bit input y
     input c0,
 
-    output c8,
-    output Sum,
+    output c8, //Cout
+    output [15:0] Sum //Sum output
 );
 
     wire sum1, cout1; //FA1 outputs

@@ -17,7 +17,7 @@ module tb_conditional_sum_adder;
         .y(y),
         .c0(c0),
         .c8(c8),
-        .Sum(S)
+        .S(S)
     );
 
     initial begin

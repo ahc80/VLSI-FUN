@@ -8,12 +8,12 @@
 module multiplexer_2bit (
     input wire [1:0] A,           // 2-bit Input A
     input wire [1:0] B,           // 2-bit Input B
-    input wire Select_bit,        // Select signal
-    output wire [1:0] S           // 2-bit Output
+    input wire Select,        // Select signal
+    output wire [1:0] Y           // 2-bit Output
 );
 
     // Multiplexer logic: If Select_bit is 1, S = B; If Select_bit is 0, S = A
-    assign S = (Select_bit) ? B : A;
+    assign Y = (Select) ? B : A;
 
 endmodule
 

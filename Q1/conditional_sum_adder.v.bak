@@ -7,7 +7,7 @@ module conditional_sum_adder (
     input c0,
 
     output c8, //Cout
-    output [15:0] Sum //Sum output
+    output [7:0] Sum //Sum output
 );
 
     wire sum1, cout1; //FA1 outputs
@@ -15,7 +15,32 @@ module conditional_sum_adder (
     wire sum3, cout3; //FA3 outputs
 
     wire mux_out1, mux_out2;  // MUX1, MUX2 outputs
-    wire mux_out3, mux_out4;  // MUX3, MUX4 outputs
+    wire mux_out4;  // MUX3, MUX4 outputs
+
+    // For MUX3 inputs
+    wire [1:0] mux_in3_1, mux_in3_2;        // Inputs to MUX3
+
+    // For Red Box 2 and 3 outputs
+    wire [1:0] mux_concat_4bit_1, mux_concat_4bit_2;  // Concatenated outputs from Red Box 2 and 3
+
+    // For final MUX9 output (8-bit concatenated sum)
+    wire [3:0] mux_concat_8bit;             // Final 8-bit concatenated sum from MUX9
+
+    wire [1:0] concat_mux_1, concat_mux_3;  // Outputs 
+
+    wire [3:0] concat_mux_5, concat_mux_7;  // Outputs 
+
+    wire [1:0] mux_concat_mux5_7_1, mux_concat_mux5_7_2;
+
+    // For intermediate MUX outputs
+    wire [1:0] mux_out3;                    // 2-bit output from MUX3
+    wire mux_out6_8_1, mux_out6_8_2;  // 1-bit outputs from MUX6 and MUX8
+    wire [1:0] mux5_concat_4bit;            // 2-bit output from MUX5
+    wire [1:0] mux7_concat_4bit;            // 2-bit output from MUX7
+
+    // For final MUX outputs (carry)
+    wire [3:0] mux10_out;                   // 4-bit output from MUX10
+
 
     //Instantiate
 
@@ -69,12 +94,13 @@ module conditional_sum_adder (
         .x2(x[2]),
         .y2(y[2]),
         .x3(x[3]),
-        .y3(x[3]),
-        .concat_mux1(mux_in3_1),
+        .y3(y[3]),
+        .concat_mux1(mux_in3_1),  // 2-bit connection
         .mux2(mux4_1),
-        .concat_mux3(mux_in3_2),
-        .mux4(mux4_2),
+        .concat_mux3(mux_in3_2),  // 2-bit connection
+        .mux4(mux4_2)
     );
+
 
     ///////////////////////////////////////////
 
@@ -106,7 +132,7 @@ module conditional_sum_adder (
         .concat_mux1(mux_concat_4bit_1),
         .mux2(mux5_select_5_6),
         .concat_mux3(mux_concat_4bit_2),
-        .mux4(mux5_select_7_8),
+        .mux4(mux5_select_7_8)
     );    
 
     //Red Box3
@@ -118,7 +144,7 @@ module conditional_sum_adder (
         .concat_mux1(mux_concat_mux5_7_1), //The output Mux1 Concat to MUX5 and MUX7, connection 1
         .mux2(mux_out6_8_1), //mux to MUX6 and MUX8, Connection 1
         .concat_mux3(mux_concat_mux5_7_2), //The output Mux1 Concat to MUX5 and MUX7, connection 1
-        .mux4(mux_out6_8_2), //mux to MUX6 and MUX8, Connection 2
+        .mux4(mux_out6_8_2) //mux to MUX6 and MUX8, Connection 2
     );
 
     ///////////////////////////////////////////
@@ -129,7 +155,7 @@ module conditional_sum_adder (
         .Y(mux5_concat_4bit) //mux to concat 4 bit output
     );
 
-    multiplexer_2bit MUX6 (
+    multiplexer_1bit MUX6 (
         .A(mux_out6_8_1),  // 
         .B(mux_out6_8_2),  // 
         .Select(mux5_select_5_6),  // 
@@ -143,7 +169,7 @@ module conditional_sum_adder (
         .Y(mux7_concat_4bit) //mux to concat 4bit output
     );
 
-    multiplexer_2bit MUX8 (
+    multiplexer_1bit MUX8 (
         .A(mux_out6_8_1),  
         .B(mux_out6_8_2),  
         .Select(mux5_select_7_8),  //
@@ -173,7 +199,7 @@ module conditional_sum_adder (
 
     ///////////////////////////////////////////
 
-    assign S = {concat_mux_3, mux_concat_8bit};
+    assign Sum = {concat_mux_3, mux_concat_8bit};
     
 
     

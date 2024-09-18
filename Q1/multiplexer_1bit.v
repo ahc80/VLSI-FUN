@@ -8,11 +8,11 @@
 module multiplexer_1bit (
     input wire A,            // Input A
     input wire B,            // Input B
-    input wire Select_bit,   // Select signal
-    output wire S            // Output
+    input wire Select,   // Select signal
+    output wire Y            // Output
 );
 
     // Multiplexer logic: If Select_bit is 1, S = B; If Select_bit is 0, S = A
-    assign S = (Select_bit) ? B : A;
+    assign Y = (Select) ? B : A;
 
 endmodule

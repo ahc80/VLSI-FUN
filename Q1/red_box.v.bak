@@ -13,7 +13,7 @@ module red_box (
     output [1:0] concat_mux1,
     output mux2,
     output [1:0] concat_mux3,
-    output mux4
+    output mux4,
 );
 
     wire sum1, cout1;  // FA1 outputs

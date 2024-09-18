@@ -73,7 +73,7 @@ module conditional_sum_adder (
         .concat_mux1(mux_in3_1),
         .mux2(mux4_1),
         .concat_mux3(mux_in3_2),
-        .mux4(mux4_2)
+        .mux4(mux4_2),
     );
 
     ///////////////////////////////////////////
@@ -106,7 +106,7 @@ module conditional_sum_adder (
         .concat_mux1(mux_concat_4bit_1),
         .mux2(mux5_select_5_6),
         .concat_mux3(mux_concat_4bit_2),
-        .mux4(mux5_select_7_8)
+        .mux4(mux5_select_7_8),
     );    
 
     //Red Box3
@@ -118,7 +118,7 @@ module conditional_sum_adder (
         .concat_mux1(mux_concat_mux5_7_1), //The output Mux1 Concat to MUX5 and MUX7, connection 1
         .mux2(mux_out6_8_1), //mux to MUX6 and MUX8, Connection 1
         .concat_mux3(mux_concat_mux5_7_2), //The output Mux1 Concat to MUX5 and MUX7, connection 1
-        .mux4(mux_out6_8_2) //mux to MUX6 and MUX8, Connection 2
+        .mux4(mux_out6_8_2), //mux to MUX6 and MUX8, Connection 2
     );
 
     ///////////////////////////////////////////

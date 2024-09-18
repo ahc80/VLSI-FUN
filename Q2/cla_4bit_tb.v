@@ -12,11 +12,11 @@ module carry_lookahead_adder_tb;
     wire Cout;            // Carry-out output
     
     carry_lookahead_adder cla_instance (
-        .a(A),
-        .b(B),
-        .c_in(Cin),
-        .s(S),
-        .c_out(Cout)
+        .A(A),
+        .B(B),
+        .carry_in(Cin),
+        .sum(S),
+        .carry_out(Cout)
     );
    
     initial begin
@@ -32,7 +32,7 @@ module carry_lookahead_adder_tb;
         $display;
         
         //Verifies the basic addition of two 4-bit numbers without a carry-in, ensuring the sum and carry-out are correct.
-        $display("Testing Addition Functionality:");
+        $display("Testing Addition:");
         A = 4'b0110; // 6 Binary
         B = 4'b0101; // 5 Binary
         Cin = 1'b0; // 0 Binary
@@ -42,7 +42,7 @@ module carry_lookahead_adder_tb;
         $display;
         
         //Tests the addition of smaller values with a carry-in, verifying correct handling of the carry.
-        $display("Testing Addition Functionality:");
+        $display("Testing Addition:");
         A = 'd4; // 4 decimal -> This is ok because it will assign to 4 bit register 'd4 == 4'b0100
         B = 'd3; // 3 decimal
         Cin = 1'b1; //1 Binary
@@ -52,7 +52,7 @@ module carry_lookahead_adder_tb;
         $display;
         
         //Verifies the correct addition of larger values with a carry-in, ensuring the sum and carry-out behave as expected near the 4-bit maximum limit.
-        $display("Testing Addition Functionality:");
+        $display("Testing Addition:");
         A = 'd9; // 9 decimal
         B = 'd5; // 5 decimal
         Cin = 1'b1; // 1 Binary

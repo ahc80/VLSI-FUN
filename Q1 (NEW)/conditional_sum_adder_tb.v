@@ -1,7 +1,7 @@
 // ECSE 318 
 // Andrew Chen and Audrey Michel
 
-`timescale 1ns/1ps
+`timescale 1ns/1ns
 
 module tb_conditional_sum_adder;
     reg [7:0] x;      // 8-bit input x
@@ -30,6 +30,7 @@ module tb_conditional_sum_adder;
         $display("Expected: 12 + 5 (Cin=0) = 17, Cout=0");
         $display("Binary  : A: %b +  B:%b   (Cin=%b) =  Sum:%b   (Cout=%b)", x, y, c0, S, c8);  // Binary format
         $display("Actual  : A: %d +  B:%d   (Cin=%d) =  Sum:%d   (Cout=%d)", x, y, c0, S, c8);
+        $display("--");
 
         // Test Case 2: Addition with carry-in
         // Expected: 12 + 5 + 1 = 18, Carry-out = 0
@@ -40,6 +41,7 @@ module tb_conditional_sum_adder;
         $display("Expected: 12 + 5 + 1 (Cin=1) = 18, Cout=0");
         $display("Binary  : A: %b +  B:%b   (Cin=%b) =  Sum:%b   (Cout=%b)", x, y, c0, S, c8);  // Binary format
         $display("Actual  : A: %d +  B:%d   (Cin=%d) =  Sum:%d   (Cout=%d)", x, y, c0, S, c8);
+        $display("--");
 
         // Test Case 3: Overflow case
         // Expected: 255 + 1 = 256, Sum = 0, Carry-out = 1
@@ -50,6 +52,7 @@ module tb_conditional_sum_adder;
         $display("Expected: 255 + 1 (Cin=0) = 0, Cout=1 (Overflow)");
         $display("Binary  : A: %b +  B:%b   (Cin=%b) =  Sum:%b   (Cout=%b)", x, y, c0, S, c8);  // Binary format
         $display("Actual  : A: %d +  B:%d   (Cin=%d) =  Sum:%d   (Cout=%d)", x, y, c0, S, c8);
+        $display("--");
 
         // Test Case 4: Addition of 110 and 85
         // Expected: 110 + 85 = 195, Carry-out = 0
@@ -60,6 +63,7 @@ module tb_conditional_sum_adder;
         $display("Expected: 110 + 85 (Cin=0) = 195, Cout=0");
         $display("Binary  : A: %b +  B:%b   (Cin=%b) =  Sum:%b   (Cout=%b)", x, y, c0, S, c8);  // Binary format
         $display("Actual  : A: %d +  B:%d   (Cin=%d) =  Sum:%d   (Cout=%d)", x, y, c0, S, c8);
+        $display("--");
 
         // Test Case 5: Both operands zero
         // Expected: 0 + 0 = 0, Carry-out = 0

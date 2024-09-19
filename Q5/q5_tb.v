@@ -10,7 +10,7 @@ module tb_of_q_five ();
 
     verilog_Behavioral bhv (
         .X1(X1),
-        .X2(X1),
+        .X2(X2),
         .Z1(Zbehav[1]),
         .Z2(Zbehav[2])
     );

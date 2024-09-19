@@ -14,7 +14,7 @@ reg A1, A2, A3, A4, A5, A6;
 reg S1, S2;
 
 // Always block for intermediate AND and OR logic
-always @(posedge clk) begin
+always @(*) begin
     // AND logic
     A1 = ~X1 & S1;
     A2 = S1 & S2;
@@ -29,7 +29,7 @@ always @(posedge clk) begin
 end
 
 // Always block for output assignments
-always @(posedge clk) begin
+always @(*) begin
     Z1 = S1;
     Z2 = A4 | A6;
 end

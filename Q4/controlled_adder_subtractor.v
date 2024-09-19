@@ -1,3 +1,4 @@
+`timescale 1ns/1ns
 
 module controlled_adder_substractor (
     input A,

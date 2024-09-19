@@ -1,4 +1,5 @@
 
+`timescale 1ns/1ns
 
 module four_CAS_array (
     input[3:0] M,     // Same as Diagonal from CAS. MSB is leftmost on diagram

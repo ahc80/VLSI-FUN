@@ -1,3 +1,5 @@
+`timescale 1ns/1ns
+
 module long_divider (
     input  [3:0] M,  // Divisor
     input  [6:0] D,  // Dividend
@@ -9,9 +11,9 @@ module long_divider (
     wire       Q_wire        [3:0]; // Q[0] is Q0, Q[1] is Q1, so forth
     
     // Trick to concat D with previous sum outputs for next four_CAS_array input
-    assign cas_array_sum[0] = D[2];
-    assign cas_array_sum[1] = D[1];
-    assign cas_array_sum[2] = D[0];
+    assign cas_array_sum[0][0] = D[2];
+    assign cas_array_sum[1][0] = D[1];
+    assign cas_array_sum[2][0] = D[0];
 
     genvar i;
     generate
@@ -31,7 +33,7 @@ module long_divider (
             // Create next 3 four_CAS_arrays        
                 four_CAS_array cas123 (
                     .M  (M[3:0]),
-                    .A  (cas_array_sum[i-1]),
+                    .A  (cas_array_sum[i-1][3:0]),
                     .B  (Q_wire[4-i]),
 
                     .Q  (Q_wire[3-i]),

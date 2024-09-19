@@ -1,3 +1,5 @@
+`timescale 1ns/1ns
+
 module four_RC_array (
     input[3:0]  A,       // Direct sum from 4_CAS_array -- MSB becomes "and_with_q LINE"
     input[3:0]  M,       // divisor

@@ -23,78 +23,57 @@ module tb_of_q_five ();
     );
 
     initial begin
-        //
         // Testing procedure key:
-        // X1 X2 | S1 S2 | Z1 Z2
-        // 
-        //  0  0 |  0  0 |  0  0
-        //  0  1 |  0  0 |  0  0
-        //  1  1 |  1  0 |  1  1
-        //  0  1 |  1  1 |  1  0
-        //  0  0 |  1  1 |  1  0
-        //  1  0 |  0  1 |  0  1
-        //  1  1 |  0  1 |  0  0
-        //  0  1 |  0  0 |  0  0
-        //
+        // X1 X2 | Behav: Z1 Z2 | Struct: Z1 Z2 | [Expected Z1 Z2]
 
         $display("Begin testing. Key: X1 X2 | Behav: Z1 Z2 | Struct: Z1 Z2 | [Expected Z1 Z2]");
 
-        // Begin 00 | 00 | 00
+        // Test case 00 | 00 | 00
         X1 = 1'b0;
         X2 = 1'b0;
-
+        #20;  // Add delay to allow outputs to stabilize
         $display("00 | Behav: %b%b | Struct: %b%b | 00", Zbehav[1], Zbehav[2], Zstruc[1], Zstruc[2]);
-        #50;
 
-        // Begin 01 | 00 | 00
+        // Test case 01 | 00 | 00
         X1 = 1'b0;
-        X2 = 1'b0;
-
+        X2 = 1'b1;
+        #20;  // Add delay to allow outputs to stabilize
         $display("01 | Behav: %b%b | Struct: %b%b | 00", Zbehav[1], Zbehav[2], Zstruc[1], Zstruc[2]);
-        #50;
 
-        // Begin 11 | 10 | 11
-        X1 = 1'b0;
-        X2 = 1'b0;
-
+        // Test case 11 | 10 | 11
+        X1 = 1'b1;
+        X2 = 1'b1;
+        #20;  // Add delay to allow outputs to stabilize
         $display("11 | Behav: %b%b | Struct: %b%b | 11", Zbehav[1], Zbehav[2], Zstruc[1], Zstruc[2]);
-        #50;
 
-        // Begin 01 | 11 | 10
+        // Test case 01 | 11 | 10
         X1 = 1'b0;
-        X2 = 1'b0;
-
+        X2 = 1'b1;
+        #20;  // Add delay to allow outputs to stabilize
         $display("01 | Behav: %b%b | Struct: %b%b | 10", Zbehav[1], Zbehav[2], Zstruc[1], Zstruc[2]);
-        #50;
 
-        // Begin 00 | 11 | 10
+        // Test case 00 | 11 | 10
         X1 = 1'b0;
         X2 = 1'b0;
-
+        #20;  // Add delay to allow outputs to stabilize
         $display("00 | Behav: %b%b | Struct: %b%b | 10", Zbehav[1], Zbehav[2], Zstruc[1], Zstruc[2]);
-        #50;
 
-        // Begin 10 | 01 | 01
-        X1 = 1'b0;
+        // Test case 10 | 01 | 01
+        X1 = 1'b1;
         X2 = 1'b0;
-
+        #20;  // Add delay to allow outputs to stabilize
         $display("10 | Behav: %b%b | Struct: %b%b | 01", Zbehav[1], Zbehav[2], Zstruc[1], Zstruc[2]);
-        #50;
 
-        // Begin 11 | 01 | 00
-        X1 = 1'b0;
-        X2 = 1'b0;
-
+        // Test case 11 | 01 | 00
+        X1 = 1'b1;
+        X2 = 1'b1;
+        #20;  // Add delay to allow outputs to stabilize
         $display("11 | Behav: %b%b | Struct: %b%b | 00", Zbehav[1], Zbehav[2], Zstruc[1], Zstruc[2]);
-        #50;
 
-        // Begin 01 | 00 | 00
+        // Test case 01 | 00 | 00
         X1 = 1'b0;
-        X2 = 1'b0;
-
+        X2 = 1'b1;
+        #20;  // Add delay to allow outputs to stabilize
         $display("01 | Behav: %b%b | Struct: %b%b | 00", Zbehav[1], Zbehav[2], Zstruc[1], Zstruc[2]);
-        #50;
     end
-
-
 endmodule

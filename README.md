@@ -61,16 +61,6 @@ Delays are every 10 nanoseconds
     - Ci = carry-in for the prev bit
 
 ## Question 3
-- Implement and test a Carry Save Adder
-- The problem states: Need to add 10 numbers and each of the numbers are 8 bits
-    - The CSA reduces multiple numbers into two numbers: one for the sum and one for the carry
-    - The addition of the 10 numbers are broken down into stages and we need to find those stages.
-        - To add 10 numbers using CSA (since three inputs) there should be a total of 4 stages
-            - After stage 1: Reduce 10 inputs to 7. 
-            - After stage 2: Reduce 7 inputs to 5. 
-            - After stage 3: Reduce 5 inputs to 3. 
-            - After stage 4: Reduce 3 inputs to 2 
-            - Then a final full adder needed here.
 - 
 
 ## Question 4

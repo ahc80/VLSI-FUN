@@ -1,7 +1,7 @@
 // ECSE 318 
 // Andrew Chen and Audrey Michel
 
-`timescale 1ps/1fs // Set timescale to 1 nanosecond with 1 picosecond precision
+`timescale 1ns/1ns // Set timescale to 1 nanosecond with 1 picosecond precision
 
 module csa_tb(
 
@@ -67,7 +67,7 @@ module csa_tb(
         #100    $display("A: %b +  B:%b + C:%b + D:%b + E:%b + F:%b + G:%b + H:%b + I:%b + J:%b = Sum:%b", a, b, c, d, e, f, g, h, i, j, s);
         $display("A: %d +  B:%d + C:%d + D:%d + E:%d + F:%d + G:%d + H:%d + I:%d + J:%d = Sum:%d", a, b, c, d, e, f, g, h, i, j, s);
         $display;
-        $display("Test additional example:");
+        $display("Test Max additional example:");
         a = 'd255;
         b = 'd255;
         c = 'd255;

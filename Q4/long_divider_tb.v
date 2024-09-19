@@ -10,13 +10,12 @@ module tb_of_divider ();
     reg [3:0] expected_Q;
     reg [3:0] expected_R;
 
-    long_divider ld (
+    long_divider UUT (
         .M(M),
         .D(D),
         .Q(Q),
         .R(R)
     );
-
 
     initial begin : Testing
     // Begin case 7/2
@@ -24,9 +23,9 @@ module tb_of_divider ();
     M           [3:0] = 4'b0010;
     expected_Q  [3:0] = 4'b0011;
     expected_R  [3:0] = 4'b0001;
-
+    #50;
     $display(
-        "Begin test case 7/2: quotient: %d, remainder: %d, \n expected: %d | %d ",
+        "Begin test case 7/2: quotient: %b, remainder: %b, \n expected: %b | %b ",
         Q, R, expected_Q[3:0], expected_R[3:0]
     );
     #50;
@@ -34,35 +33,35 @@ module tb_of_divider ();
     // Begin case 6/2
     D           [6:0] = 7'b0000110;
     M           [3:0] = 4'b0010;
-    expected_Q  [3:0] = 4'b0110;
+    expected_Q  [3:0] = 4'b0011;
     expected_R  [3:0] = 4'b0000;
-
+    #100;
     $display(
-        "Begin test case 6/2: quotient: %d, remainder: %d, \n expected: %d | %d ",
+        "Begin test case 6/2: quotient: %b, remainder: %b, \n expected: %b | %b ",
         Q, R, expected_Q[3:0], expected_R[3:0]
     );
     #50;
     
     // Begin case 9/4
     D           [6:0] = 7'b0001001;
-    M           [3:0] = 4'b0010;
+    M           [3:0] = 4'b0100;
     expected_Q  [3:0] = 4'b0010;
     expected_R  [3:0] = 4'b0001;
-
+    #50;
     $display(
-        "Begin test case 9/4: quotient: %d, remainder: %d, \n expected: %d | %d ",
+        "Begin test case 9/4: quotient: %b, remainder: %b, \n expected: %b | %b ",
         Q, R, expected_Q[3:0], expected_R[3:0]
     );
     #50;
 
-    // Begin case 12/5
+    // %Begin case 12/5
     D           [6:0] = 7'b0001100;
-    M           [3:0] = 4'b0010;
+    M           [3:0] = 4'b0101;
     expected_Q  [3:0] = 4'b0010;
     expected_R  [3:0] = 4'b0010;
-
+    #50;
     $display(
-        "Begin test case 12/5: quotient: %d, remainder: %d, \n expected: %d | %d ",
+        "Begin test case 12/5: quotient: %b, remainder: %b, \n expected: %b | %b ",
         Q, R, expected_Q[3:0], expected_R[3:0]
     );
     #50;

@@ -15,21 +15,19 @@ module long_divider (
     assign cas_array_sum[1][0] = D[1];
     assign cas_array_sum[2][0] = D[0];
 
-    genvar i;
-    generate
-        for(i=0; i<4; i=i+1) begin
-            if(i==0) begin
-            // Create uppermost four_CAS_array
-                four_CAS_array cas0 (
-                    .M  (M),
+
+    four_CAS_array cas0 (
+                    .M  (M[3:0]),
                     .A  (D[6:3]),
-                    .B  (first_c_in_value),
+                    .B  (1'b1),
 
                     .Q  (Q_wire[3]),
                     .S  (cas_array_sum[0][4:1])
                 );
-            end
-            else if(i>0) begin
+
+    genvar i;
+    generate
+        for(i=1; i<4; i=i+1) begin
             // Create next 3 four_CAS_arrays        
                 four_CAS_array cas123 (
                     .M  (M[3:0]),
@@ -39,7 +37,6 @@ module long_divider (
                     .Q  (Q_wire[3-i]),
                     .S  (cas_array_sum[i][4:1])
                 );
-            end
         end
     endgenerate
 
@@ -49,4 +46,9 @@ module long_divider (
 
         .R  (R[3:0])
     );
+
+    assign Q[0] = Q_wire[0];
+    assign Q[1] = Q_wire[1];
+    assign Q[2] = Q_wire[2];
+    assign Q[3] = Q_wire[3];
 endmodule

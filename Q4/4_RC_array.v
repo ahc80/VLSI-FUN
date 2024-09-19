@@ -21,7 +21,7 @@ module four_RC_array (
 
     genvar i;
     generate
-        for(i=1; i<=3; i=i+1) begin
+        for(i=1; i<4; i=i+1) begin
         // Instantiate RC's. begins with RC1 (second last to right). Starts left goes right
             remainder_correction RC (
                 .A              (A[i]),

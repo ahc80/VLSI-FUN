@@ -1,39 +1,27 @@
-`timescale 1ns / 1ns  // Time unit / time precision
+`timescale 1ns / 1ns
 
-//In descending order for AND Gates
-
-module verilog_Structural (
-    input X1,
-    input X2,
-    output Z1,
-    output Z2
+module structural_logic1 (
+    input [1:0] X,  // 2-bit input X: X[1] = X1, X[0] = X2
+    output Z1, Z2   // Outputs Z1, Z2
 );
 
-wire A1;
-wire A2;
-wire A3;
-wire A4;
-wire A5;
-wire A6;
+    // Intermediate signals
+    wire S1, S2;
+    wire not_X1, not_X2, not_S2;
 
-//In descending order for OR Gates
-wire S1;
-wire S2;
+    // NOT gates
+    assign not_X1 = ~X[1];  // X1
+    assign not_X2 = ~X[0];  // X2
+    assign not_S2 = ~S2;
 
-//AND Logic
-assign A1 = ~X1 & S1;
-assign A2 = S1 & S2;
-assign A3 = X1 & S2;
-assign A4 = X1 & X2 & ~S2;
-assign A5 = X2 & S1;
-assign A6 = X1 & ~X2 & S2;
+    // Correct combinational logic for S1 and S2
+    assign S1 = (~X[1] & ~X[0]) | (X[1] & X[0]);  // Based on input
+    assign S2 = (~X[1] & X[0]) | (X[1] & ~X[0]);  // Based on input
 
-//OR Logic
-assign S1 = A1 | A4 | A5;
-assign S2 = A1 | A2 | A3;
+    // Z1 = S1
+    assign Z1 = S1;
 
-//Outputs
-assign Z1 = S1;
-assign Z2 = A4 | A6;
+    // Z2 = X1 * X2 * ~S2 + X1 * ~X2 * S2
+    assign Z2 = (X[1] & X[0] & not_S2) | (X[1] & not_X2 & S2);
 
 endmodule

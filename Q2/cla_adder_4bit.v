@@ -22,6 +22,7 @@ assign #10 propagate = A ^ B;    // Propagate signal: A XOR B
 
 // Look at the Generic CLA provided in the HW1 Sheet
 // Carry logic for each bit
+//#20 delay bc 2 gates for assign statment, each w #10 delay
 assign #20 carry[0] = (carry_in & propagate[0]) | gen[0];        // Carry for bit 0
 assign #20 carry[1] = (carry[0] & propagate[1]) | gen[1];        // Carry for bit 1
 assign #20 carry[2] = (carry[1] & propagate[2]) | gen[2];        // Carry for bit 2

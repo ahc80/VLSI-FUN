@@ -35,7 +35,7 @@ module tb_of_divider ();
     M           [3:0] = 4'b0010;
     expected_Q  [3:0] = 4'b0011;
     expected_R  [3:0] = 4'b0000;
-    #100;
+    #50;
     $display(
         "Begin test case 6/2: quotient: %b, remainder: %b, \n expected: %b | %b ",
         Q, R, expected_Q[3:0], expected_R[3:0]

@@ -21,6 +21,7 @@ module adder(
     reg [15:0] Ain, Bin; 
     wire coutwire; // Wire to capture carry-out from the CLA (Carry Look-Ahead Adder)
 
+    //Instance
     cla16bit cla16bit_instance(
         .A(Ain),
         .B(Bin),

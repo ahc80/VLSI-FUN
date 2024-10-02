@@ -30,64 +30,70 @@ module adder(
         .C_OUT(coutwire)
     );
 
-
-    always @ (*) begin //A,B,Carryout,control, coutwire, cin synthesis
-        case(control)
+    // Always block that selects the operation based on the control signal
+    always @ (*) begin
+        case (control)
+            // Signed addition: A + B => C
             add: begin
-                cin = 1'b0;
-                Ain = A;
-                Bin = B ^ {16{cin}};
-                coutFlag = (~Carryout) ? coutwire : 1'b0;
-                overFlag = (Ain[15] == Bin[15]) && (C[15] != Ain[15]);
+                cin = 1'b0;                // Carry-in is 0 for addition
+                Ain = A;                   // A remains unchanged
+                Bin = B ^ {16{cin}};       // B remains unchanged (XOR with 0 does nothing)
+                coutFlag = (~Carryout) ? coutwire : 1'b0; // Carry-out enabled if Carryout is low
+                overFlag = (Ain[15] == Bin[15]) && (C[15] != Ain[15]); // Overflow detection for signed addition
             end
 
+            // Unsigned addition: A + B => C
             addu: begin
-                cin = 1'b0;
-                Ain = A;
-                Bin = B ^ {16{cin}};
-                coutFlag = (~Carryout) ? coutwire : 1'b0;
-                overFlag = 1'b0;
+                cin = 1'b0;                // Carry-in is 0 for addition
+                Ain = A;                   // A remains unchanged
+                Bin = B ^ {16{cin}};       // B remains unchanged
+                coutFlag = (~Carryout) ? coutwire : 1'b0; // Carry-out enabled if Carryout is low
+                overFlag = 1'b0;           // No overflow detection for unsigned addition
             end
 
-            sub: begin // Assuming A and B input in two's complement form
-                cin = 1'b1;
-                Ain = A;
-                Bin = B ^ {16{cin}};
-                coutFlag = (~Carryout) ? coutwire : 1'b0;
-                overFlag = (Ain[15] == Bin[15]) && (C[15] != Ain[15]);
+            // Signed subtraction: A - B => C
+            sub: begin
+                cin = 1'b1;                // Carry-in is 1 for subtraction (two's complement)
+                Ain = A;                   // A remains unchanged
+                Bin = B ^ {16{cin}};       // Invert B for subtraction (XOR with 1 gives two's complement)
+                coutFlag = (~Carryout) ? coutwire : 1'b0; // Carry-out enabled if Carryout is low
+                overFlag = (Ain[15] == Bin[15]) && (C[15] != Ain[15]); // Overflow detection for signed subtraction
             end
 
+            // Unsigned subtraction: A - B => C
             subu: begin
-                cin = 1'b1;
-                Ain = A;
-                Bin = B ^ {16{cin}};
-                coutFlag = (~Carryout) ? coutwire : 1'b0;
-                overFlag = 1'b0;
+                cin = 1'b1;                // Carry-in is 1 for subtraction
+                Ain = A;                   // A remains unchanged
+                Bin = B ^ {16{cin}};       // Invert B for subtraction (two's complement)
+                coutFlag = (~Carryout) ? coutwire : 1'b0; // Carry-out enabled if Carryout is low
+                overFlag = 1'b0;           // No overflow detection for unsigned subtraction
             end
 
+            // Signed increment: A + 1 => C
             inc: begin
-                cin = 1'b0;
-                Ain = A;
-                Bin = 16'h0001 ^ {16{cin}};
-                coutFlag = (~Carryout) ? coutwire : 1'b0;
-                overFlag = (Ain[15] == Bin[15]) && (C[15] != Ain[15]);
+                cin = 1'b0;                // No carry-in for increment
+                Ain = A;                   // A remains unchanged
+                Bin = 16'h0001 ^ {16{cin}}; // Increment by 1 (Bin = 1)
+                coutFlag = (~Carryout) ? coutwire : 1'b0; // Carry-out enabled if Carryout is low
+                overFlag = (Ain[15] == Bin[15]) && (C[15] != Ain[15]); // Overflow detection for increment
             end
 
+            // Signed decrement: A - 1 => C
             dec: begin
-                cin = 1'b1;
-                Ain = A;
-                Bin = 16'h0001 ^ {16{cin}};
-                coutFlag = (~Carryout) ? coutwire : 1'b0;
-                overFlag = (Ain[15] == Bin[15]) && (C[15] != Ain[15]);
+                cin = 1'b1;                // Carry-in is 1 for decrement
+                Ain = A;                   // A remains unchanged
+                Bin = 16'h0001 ^ {16{cin}}; // Decrement by 1 (Bin = 1 in two's complement)
+                coutFlag = (~Carryout) ? coutwire : 1'b0; // Carry-out enabled if Carryout is low
+                overFlag = (Ain[15] == Bin[15]) && (C[15] != Ain[15]); // Overflow detection for decrement
             end
 
+            // Default case: set everything to 0 if no valid control signal is provided
             default: begin
-                cin = 1'b0;
-                Ain = 16'h0000;
+                cin = 1'b0;                // No carry-in
+                Ain = 16'h0000;            // Set A and B to 0
                 Bin = 16'h0000;
-                overFlag = 1'b0;
-                coutFlag = 1'b0;
-                
+                overFlag = 1'b0;           // No overflow
+                coutFlag = 1'b0;           // No carry-out
             end
         endcase
     end

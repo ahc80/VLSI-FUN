@@ -1,0 +1,35 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire
+vprotoTableau
+!s110 1727718643
+!i10b 1
+!s100 F@kXWTjdUabO06=5@I]9X0
+!s11b Dg1SIo80bB@j0V0VzS_@n1
+IIj5NTI39a[=o9?0>zzVdZ2
+VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1727718638
+8C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/prototableau.v
+FC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/prototableau.v
+!i122 0
+L0 4 45
+OV;L;2020.1;71
+r1
+!s85 0
+31
+!s108 1727718643.000000
+!s107 C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/prototableau.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/prototableau.v|
+!i113 1
+o-work work
+tCvgOpt 0
+nproto@tableau

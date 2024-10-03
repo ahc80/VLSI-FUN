@@ -42,11 +42,11 @@ module ALU(
     adder adder_instance(
         .A(A),                          // First operand
         .B(B),                          // Second operand
-        .CODE(alu_code[2:0]),          // ALU operation code for the adder
-        .coe(coe),                     // Carry-out enable signal (Active Low)
+        .control(alu_code[2:0]),          // ALU operation code for the adder
+        .Carryout(coe),                     // Carry-out enable signal (Active Low)
         .C(c),                          // Result of the addition/subtraction
-        .vout(vout_wire),              // Overflow signal from the adder
-        .cout(cout_wire)               // Carry-out signal from the adder
+        .overFlag(vout_wire),              // Overflow signal from the adder
+        .coutFlag(cout_wire)               // Carry-out signal from the adder
     );
 
     // ALU operation selection based on alu_code
@@ -61,22 +61,22 @@ module ALU(
             end
 
             // Logic operations
-            and_opp: begin
+            and_op: begin
                 C = A & B;             // Bitwise AND
                 vout = 1'b0;          // No overflow for logical operations
                 cout = 1'b0;          // No carry-out for logical operations
             end
-            or_opp: begin
+            or_op: begin
                 C = A | B;             // Bitwise OR
                 vout = 1'b0;
                 cout = 1'b0;
             end
-            xor_opp: begin
+            xor_op: begin
                 C = A ^ B;             // Bitwise XOR
                 vout = 1'b0;
                 cout = 1'b0;
             end
-            not_opp: begin
+            not_op: begin
                 C = ~A;                // Bitwise NOT
                 vout = 1'b0;
                 cout = 1'b0;
@@ -105,32 +105,32 @@ module ALU(
             end
 
             // Set condition operations
-            sle: begin
+            sle: begin //000
                 C = (A <= B) ? 16'h0001 : 16'h0000; // Set if less than or equal
                 vout = 1'b0;
                 cout = 1'b0;
             end
-            slt: begin
+            slt: begin // 001
                 C = (A < B) ? 16'h0001 : 16'h0000;  // Set if less than
                 vout = 1'b0;
                 cout = 1'b0;
             end
-            sge: begin
+            sge: begin //010
                 C = (A >= B) ? 16'h0001 : 16'h0000; // Set if greater than or equal
                 vout = 1'b0;
                 cout = 1'b0;
             end
-            sgt: begin
+            sgt: begin //011
                 C = (A > B) ? 16'h0001 : 16'h0000;  // Set if greater than
                 vout = 1'b0;
                 cout = 1'b0;
             end
-            seq: begin
+            seq: begin //100
                 C = (A == B) ? 16'h0001 : 16'h0000; // Set if equal
                 vout = 1'b0;
                 cout = 1'b0;
             end
-            sne: begin
+            sne: begin //101
                 C = (A != B) ? 16'h0001 : 16'h0000; // Set if not equal
                 vout = 1'b0;
                 cout = 1'b0;

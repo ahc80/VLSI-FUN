@@ -1,3 +1,5 @@
+`timescale 1ps/1fs
+
 module adder_tb;
     reg [15:0] A, B;
     wire [15:0] C;
@@ -10,11 +12,10 @@ module adder_tb;
         .A(A),
         .B(B),
         .control(control),
-        .cin(cin),
-        .coe(coe),
+        .Carryout(coe),
         .C(C),
-        .vout(vout),
-        .cout(cout)
+        .overFlag(vout),
+        .coutFlag(cout)
     );
 
     initial begin

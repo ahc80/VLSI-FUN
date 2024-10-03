@@ -1,4 +1,6 @@
-module alu_tb;
+`timescale 1ps/1fs
+
+module alu_test_tb;
     reg [15:0] A, B;
     reg [4:0] CODE;
     reg coe;
@@ -33,7 +35,7 @@ module alu_tb;
     localparam seq= 5'b11_100;
     localparam sne= 5'b11_101;
 
-    alu alu_instance(
+    ALU alu_instance(
         .A(A),
         .B(B),
         .alu_code(CODE),

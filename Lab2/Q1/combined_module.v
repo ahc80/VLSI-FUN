@@ -1,28 +1,37 @@
+// Adder Module (1995 compliant)
 module adder(
-    input [15:0] A, B, //16 bit inputs
-    input [2:0] control, //3 bit control 
-    input Carryout, // Carry out enable
-    output [15:0] C, //16 bit output C
-    output reg overFlag, coutFlag // Overflow flag and Cout Flag
+    A, B,         // 16-bit inputs
+    control,      // 3-bit control input
+    Carryout,     // Carry out enable
+    C,            // 16-bit output
+    overFlag,     // Overflow flag
+    coutFlag      // Cout Flag
 );
 
+    // Declare inputs and outputs
+    input [15:0] A, B;    // 16-bit inputs
+    input [2:0] control;  // 3-bit control
+    input Carryout;       // Carry out enable
+    output [15:0] C;      // 16-bit output
+    output overFlag, coutFlag; // Overflow flag, Cout flag
+
+    reg [15:0] C;
+    reg overFlag, coutFlag;
     reg cin; // Carry-in signal, controlled based on the operation (e.g., subtraction)
     
-    // Local parameters for different operations, each assigned a 3-bit opcode
+    // Local parameters for different operations
+    parameter add  = 3'b000; // A + B => C (signed addition)
+    parameter addu = 3'b001; // A + B => C (unsigned addition)
+    parameter sub  = 3'b010; // A - B => C (signed subtraction)
+    parameter subu = 3'b011; // A - B => C (unsigned subtraction)
+    parameter inc  = 3'b100; // A + 1 => C (signed increment)
+    parameter dec  = 3'b101; // A - 1 => C (signed decrement)
 
-    localparam add  = 3'b000; //A+B=>C    signed addition
-    localparam addu = 3'b001; //A+B=>C    unsigned addition
-    localparam sub  = 3'b010; //A-B=>C    signed subtraction
-    localparam subu = 3'b011; //A-B=>C    unsigned subtraction
-    localparam inc  = 3'b100; //A+1=>C    signed increment
-    localparam dec  = 3'b101; //A-1=>C    signed decrement
+    reg [15:0] Ain, Bin; // Registers for operands
+    wire coutwire; // Carry-out from the CLA
 
-    // Registers to store modified versions of A and B for operations like subtraction
-    reg [15:0] Ain, Bin; 
-    wire coutwire; // Wire to capture carry-out from the CLA (Carry Look-Ahead Adder)
-
-    //Instance
-    cla16bit cla16bit_instance(
+    // CLA instance
+    cla16bit cla16bit_instance (
         .A(Ain),
         .B(Bin),
         .cin(cin),
@@ -30,219 +39,315 @@ module adder(
         .C_OUT(coutwire)
     );
 
-    // Always block that selects the operation based on the control signal
-    always @ (*) begin
+    // Always block for selecting the operation
+    always @ (A or B or control or Carryout) begin
         case (control)
-            // Signed addition: A + B => C
             add: begin
-                cin = 1'b0;                // Carry-in is 0 for addition
-                Ain = A;                   // A remains unchanged
-                Bin = B ^ {16{cin}};       // B remains unchanged (XOR with 0 does nothing)
-                coutFlag = (~Carryout) ? coutwire : 1'b0; // Carry-out enabled if Carryout is low
-                overFlag = (Ain[15] == Bin[15]) && (C[15] != Ain[15]); // Overflow detection for signed addition
+                cin = 1'b0;
+                Ain = A;
+                Bin = B;
+                coutFlag = (~Carryout) ? coutwire : 1'b0;
+                overFlag = (Ain[15] == Bin[15]) && (C[15] != Ain[15]);
             end
 
-            // Unsigned addition: A + B => C
             addu: begin
-                cin = 1'b0;                // Carry-in is 0 for addition
-                Ain = A;                   // A remains unchanged
-                Bin = B ^ {16{cin}};       // B remains unchanged
-                coutFlag = (~Carryout) ? coutwire : 1'b0; // Carry-out enabled if Carryout is low
-                overFlag = 1'b0;           // No overflow detection for unsigned addition
+                cin = 1'b0;
+                Ain = A;
+                Bin = B;
+                coutFlag = (~Carryout) ? coutwire : 1'b0;
+                overFlag = 1'b0;
             end
 
-            // Signed subtraction: A - B => C
             sub: begin
-                cin = 1'b1;                // Carry-in is 1 for subtraction (two's complement)
-                Ain = A;                   // A remains unchanged
-                Bin = B ^ {16{cin}};       // Invert B for subtraction (XOR with 1 gives two's complement)
-                coutFlag = (~Carryout) ? coutwire : 1'b0; // Carry-out enabled if Carryout is low
-                overFlag = (Ain[15] == Bin[15]) && (C[15] != Ain[15]); // Overflow detection for signed subtraction
+                cin = 1'b1;
+                Ain = A;
+                Bin = B ^ 16'hFFFF;
+                coutFlag = (~Carryout) ? coutwire : 1'b0;
+                overFlag = (Ain[15] == Bin[15]) && (C[15] != Ain[15]);
             end
 
-            // Unsigned subtraction: A - B => C
             subu: begin
-                cin = 1'b1;                // Carry-in is 1 for subtraction
-                Ain = A;                   // A remains unchanged
-                Bin = B ^ {16{cin}};       // Invert B for subtraction (two's complement)
-                coutFlag = (~Carryout) ? coutwire : 1'b0; // Carry-out enabled if Carryout is low
-                overFlag = 1'b0;           // No overflow detection for unsigned subtraction
+                cin = 1'b1;
+                Ain = A;
+                Bin = B ^ 16'hFFFF;
+                coutFlag = (~Carryout) ? coutwire : 1'b0;
+                overFlag = 1'b0;
             end
 
-            // Signed increment: A + 1 => C
             inc: begin
-                cin = 1'b0;                // No carry-in for increment
-                Ain = A;                   // A remains unchanged
-                Bin = 16'h0001 ^ {16{cin}}; // Increment by 1 (Bin = 1)
-                coutFlag = (~Carryout) ? coutwire : 1'b0; // Carry-out enabled if Carryout is low
-                overFlag = (Ain[15] == Bin[15]) && (C[15] != Ain[15]); // Overflow detection for increment
+                cin = 1'b0;
+                Ain = A;
+                Bin = 16'h0001;
+                coutFlag = (~Carryout) ? coutwire : 1'b0;
+                overFlag = (Ain[15] == Bin[15]) && (C[15] != Ain[15]);
             end
 
-            // Signed decrement: A - 1 => C
             dec: begin
-                cin = 1'b1;                // Carry-in is 1 for decrement
-                Ain = A;                   // A remains unchanged
-                Bin = 16'h0001 ^ {16{cin}}; // Decrement by 1 (Bin = 1 in two's complement)
-                coutFlag = (~Carryout) ? coutwire : 1'b0; // Carry-out enabled if Carryout is low
-                overFlag = (Ain[15] == Bin[15]) && (C[15] != Ain[15]); // Overflow detection for decrement
+                cin = 1'b1;
+                Ain = A;
+                Bin = 16'h0001 ^ 16'hFFFF;
+                coutFlag = (~Carryout) ? coutwire : 1'b0;
+                overFlag = (Ain[15] == Bin[15]) && (C[15] != Ain[15]);
             end
 
-            // Default case: set everything to 0 if no valid control signal is provided
             default: begin
-                cin = 1'b0;                // No carry-in
-                Ain = 16'h0000;            // Set A and B to 0
+                cin = 1'b0;
+                Ain = 16'h0000;
                 Bin = 16'h0000;
-                overFlag = 1'b0;           // No overflow
-                coutFlag = 1'b0;           // No carry-out
+                overFlag = 1'b0;
+                coutFlag = 1'b0;
             end
         endcase
     end
 
 endmodule
 
-// The basic idea was taken from the previous homework assignment
-
-module cla16bit (
-    input [15:0] A,      // 16-bit input A
-    input [15:0] B,      // 16-bit input B
-    input cin,           // Carry-in signal
-    output [15:0] SUM,   // 16-bit sum output
-    output C_OUT         // Carry-out signal
-);
-
-    // Internal wires for the generate (G) and propagate (P) signals
-    wire [15:0] G;       // Generate signal: G[i] = A[i] & B[i]
-    wire [15:0] P;       // Propagate signal: P[i] = A[i] | B[i]
-
-    // Internal wire for the carry-in signals at each bit position
-    wire [16:0] C;       // Carry signals: C[i] is the carry-in for bit i, C[0] is the initial carry-in (cin)
-
-    // Generate and propagate logic for each bit (i)
-    generate
-        genvar i;        // Genvar is used to generate multiple instances of the loop for each bit
-        for (i = 0; i < 16; i = i + 1) begin
-            assign G[i] = A[i] & B[i];   // Generate: a carry is generated if both A and B are 1 at the same bit position
-            assign P[i] = A[i] | B[i];   // Propagate: a carry is propagated if either A or B is 1 at the same bit position
-        end
-    endgenerate
-
-    // Carry-in signals calculation for each bit
-    // The carry-in for bit i+1 depends on the generate/propagate of the current bit and the carry-in of the previous bit
-    assign C[0] = cin;   // The initial carry-in for the 0th bit is the input carry-in (cin)
-    
-    generate
-        for (i = 0; i < 16; i = i + 1) begin
-            // Carry-in for the next bit: C[i+1] is generated if G[i] is 1 or if P[i] is 1 and the current carry-in (C[i]) is 1
-            assign C[i+1] = G[i] | (P[i] & C[i]);
-        end
-    endgenerate
-
-    // Sum calculation for each bit
-    // SUM[i] = A[i] XOR B[i] XOR carry-in (C[i])
-    assign SUM[0] = A[0] ^ B[0] ^ C[0];   // Special case for the 0th bit
-    generate
-        for (i = 0; i < 15; i = i + 1) begin
-            assign SUM[i+1] = A[i+1] ^ B[i+1] ^ C[i+1];   // Sum for the remaining bits
-        end
-    endgenerate
-
-    // The final carry-out (C[16]) is the carry-out from the last bit addition
-    assign C_OUT = C[16];   // The carry-out from the 16th bit is the final carry-out (C_OUT)
-
-endmodule
-
+// ALU_test Module (1995 compliant)
 module ALU_test(
-    input signed [15:0] A,             // First operand (signed 16-bit)
-    input signed [15:0] B,             // Second operand (signed 16-bit)
-    input [4:0] alu_code,              // ALU operation code
-    input coe,                         // Carry-Out Enable (Active Low)
-    output reg signed [15:0] C,        // Result of the ALU operation (signed 16-bit)
-    output reg vout, cout              // Overflow and Carry Out flags
+    A, B, alu_code, coe, C, vout, cout
 );
-    wire [15:0] c;                     // Output of the 16-bit Adder Module
-    wire vout_wire;                    // Intermediate wire for overflow
-    wire cout_wire;                    // Intermediate wire for carry out
 
-    // Arithmetic Operations
-    localparam add = 5'b00_000;         // A + B => C (signed addition)
-    localparam addu = 5'b00_001;        // A + B => C (unsigned addition)
-    localparam sub = 5'b00_010;         // A - B => C (signed subtraction)
-    localparam subu = 5'b00_011;        // A - B => C (unsigned subtraction)
-    localparam inc = 5'b00_100;         // A + 1 => C (signed increment)
-    localparam dec = 5'b00_101;         // A - 1 => C (signed decrement)
+    // Declare inputs and outputs
+    input [15:0] A;   // 16-bit input A (handle signed internally)
+    input [15:0] B;   // 16-bit input B (handle signed internally)
+    input [4:0] alu_code;    // ALU operation code
+    input coe;               // Carry-Out Enable (Active Low)
+    output [15:0] C;  // 16-bit output C (handle signed internally)
+    output vout, cout;       // Overflow and Carry Out flags
 
-    // Logic Operations
-    localparam and_op = 5'b01_000;     // A AND B
-    localparam or_op =  5'b01_001;     // A OR B
-    localparam xor_op = 5'b01_010;     // A XOR B
-    localparam not_op = 5'b01_100;     // NOT A
+    reg [15:0] C;  // Internal signed result (manually handled)
+    reg vout, cout;
 
-    // Shift Operations
-    localparam sll = 5'b10_000;         // Logical left shift A by the amount of B[3:0]
-    localparam srl = 5'b10_001;         // Logical right shift A by the amount of B[3:0]
-    localparam sla = 5'b10_010;         // Arithmetic left shift A by the amount of B[3:0]
-    localparam sra = 5'b10_011;         // Arithmetic right shift A by the amount of B[3:0]
+    wire [15:0] c;
+    wire vout_wire, cout_wire;
 
-    // Set Condition Operations
-    localparam sle = 5'b11_000;         // If A <= B then C = <0...0001>
-    localparam slt = 5'b11_001;         // If A < B then C = <0...0001>
-    localparam sge = 5'b11_010;         // If A >= B then C = <0...0001>
-    localparam sgt = 5'b11_011;         // If A > B then C = <0...0001>
-    localparam seq = 5'b11_100;         // If A = B then C = <0...0001>
-    localparam sne = 5'b11_101;         // If A != B then C = <0...0001>
+    // Local parameter declarations for operations
+    parameter add = 5'b00000;
+    parameter addu = 5'b00001;
+    parameter sub = 5'b00010;
+    parameter subu = 5'b00011;
+    parameter inc = 5'b00100;
+    parameter dec = 5'b00101;
+    parameter and_op = 5'b01000;
+    parameter or_op = 5'b01001;
+    parameter xor_op = 5'b01010;
+    parameter not_op = 5'b01100;
+    parameter sll = 5'b10000;
+    parameter srl = 5'b10001;
+    parameter sla = 5'b10010;
+    parameter sra = 5'b10011;
+    parameter sle = 5'b11000;
+    parameter slt = 5'b11001;
+    parameter sge = 5'b11010;
+    parameter sgt = 5'b11011;
+    parameter seq = 5'b11100;
+    parameter sne = 5'b11101;
 
     // Instantiate the adder module
     adder adder_instance(
-        .A(A),                          // First operand
-        .B(B),                          // Second operand
-        .control(alu_code[2:0]),       // ALU operation code for the adder
-        .Carryout(coe),                 // Carry-out enable signal (Active Low)
-        .C(c),                          // Result of the addition/subtraction
-        .overFlag(vout_wire),           // Overflow signal from the adder
-        .coutFlag(cout_wire)            // Carry-out signal from the adder
+        .A(A),
+        .B(B),
+        .control(alu_code[2:0]),
+        .Carryout(coe),
+        .C(c),
+        .overFlag(vout_wire),
+        .coutFlag(cout_wire)
     );
 
-    // ALU operation selection based on alu_code
-    always @(*) // ALU operation block triggered by changes in alu_code, A, or B
-    begin: ALU_test
-        // Initialize outputs
-        vout = 1'b0;              
-        cout = 1'b0;              
+    // ALU operation selection
+    always @(A or B or alu_code or coe) begin
+        vout = 1'b0;
+        cout = 1'b0;
         
-        case (alu_code)
-            // Arithmetic operations
-            add, addu, sub, subu, inc, dec: begin
-                C = c;                 // Output from the adder
+        case (1'b1)  // Explicit OR conditions inside the case block
+            (alu_code == add) | (alu_code == addu) | (alu_code == sub) | (alu_code == subu) | (alu_code == inc) | (alu_code == dec): begin
+                C = c;  // Use the output from the adder for all arithmetic operations
             end
 
-            // Logic operations
-            and_op: C = A & B;         // Bitwise AND
-            or_op:  C = A | B;         // Bitwise OR
-            xor_op: C = A ^ B;         // Bitwise XOR
-            not_op: C = ~A;            // Bitwise NOT
+            (alu_code == and_op): begin
+                C = A & B;  // Bitwise AND
+            end
 
-            // Shift operations
-            sll: C = A << B[3:0];      // Logical left shift
-            srl: C = A >> B[3:0];      // Logical right shift
-            sla: C = A <<< B[3:0];     // Arithmetic left shift
-            sra: C = A >>> B[3:0];     // Arithmetic right shift
+            (alu_code == or_op): begin
+                C = A | B;  // Bitwise OR
+            end
 
-            // Set condition operations
-            sle: C = (A <= B) ? 16'h0001 : 16'h0000; // Set if less than or equal
-            slt: C = (A < B) ? 16'h0001 : 16'h0000;  // Set if less than
-            sge: C = (A >= B) ? 16'h0001 : 16'h0000; // Set if greater than or equal
-            sgt: C = (A > B) ? 16'h0001 : 16'h0000;  // Set if greater than
-            seq: C = (A == B) ? 16'h0001 : 16'h0000; // Set if equal
-            sne: C = (A != B) ? 16'h0001 : 16'h0000; // Set if not equal
+            (alu_code == xor_op): begin
+                C = A ^ B;  // Bitwise XOR
+            end
 
-            // Default case
-            default: C = 16'h0000;            // Default output
+            (alu_code == not_op): begin
+                C = ~A;  // Bitwise NOT
+            end
+
+            (alu_code == sll): begin
+                C = A << B[3:0];  // Logical left shift
+            end
+
+            (alu_code == srl): begin
+                C = A >> B[3:0];  // Logical right shift
+            end
+
+            (alu_code == sla): begin
+                case (B[3:0])
+                    4'b0001: C = {A[15], A[14:0], 1'b0};  // Arithmetic left shift by 1
+                    4'b0010: C = {A[15], A[13:0], 2'b00}; // Arithmetic left shift by 2
+                    4'b0011: C = {A[15], A[12:0], 3'b000}; // Arithmetic left shift by 3
+                    4'b0100: C = {A[15], A[11:0], 4'b0000}; // Arithmetic left shift by 4
+                    default: C = {A[15], A[14:0], 1'b0};  // Default case (shift by 1)
+                endcase
+            end
+
+            (alu_code == sra): begin
+                case (B[3:0])
+                    4'b0001: C = {A[15], A[15], A[14:1]};  // Arithmetic right shift by 1
+                    4'b0010: C = {A[15], A[15], A[15], A[13:2]}; // Arithmetic right shift by 2
+                    4'b0011: C = {A[15], A[15], A[15], A[15], A[12:3]}; // Arithmetic right shift by 3
+                    4'b0100: C = {A[15], A[15], A[15], A[15], A[15], A[11:4]}; // Arithmetic right shift by 4
+                    default: C = {A[15], A[15], A[14:1]};  // Default case (shift by 1)
+                endcase
+            end
+
+            (alu_code == sle): begin
+                C = (A <= B) ? 16'h0001 : 16'h0000;  // Set if less than or equal
+            end
+
+            (alu_code == slt): begin
+                C = (A < B) ? 16'h0001 : 16'h0000;  // Set if less than
+            end
+
+            (alu_code == sge): begin
+                C = (A >= B) ? 16'h0001 : 16'h0000;  // Set if greater than or equal
+            end
+
+            (alu_code == sgt): begin
+                C = (A > B) ? 16'h0001 : 16'h0000;  // Set if greater than
+            end
+
+            (alu_code == seq): begin
+                C = (A == B) ? 16'h0001 : 16'h0000;  // Set if equal
+            end
+
+            (alu_code == sne): begin
+                C = (A != B) ? 16'h0001 : 16'h0000;  // Set if not equal
+            end
+
+            default: begin
+                C = 16'h0000;  // Default output
+            end
         endcase
 
         // Update overflow and carry-out flags if using the adder operations
         if (alu_code[4:3] == 2'b00) begin
-            vout = vout_wire;     // Overflow signal
-            cout = cout_wire;     // Carry-out signal
+            vout = vout_wire;  // Overflow signal
+            cout = cout_wire;  // Carry-out signal
         end
     end
+endmodule
+
+module cla16bit (
+    A, B, cin, SUM, C_OUT
+);
+
+    // Declare inputs and outputs
+    input [15:0] A;      // 16-bit input A
+    input [15:0] B;      // 16-bit input B
+    input cin;           // Carry-in signal
+    output [15:0] SUM;   // 16-bit sum output
+    output C_OUT;        // Carry-out signal
+
+    wire [15:0] SUM;
+    wire C_OUT;
+
+    wire [15:0] G, P;    // Generate and propagate signals
+    wire [16:0] C;       // Carry signals
+
+    assign C[0] = cin;   // Initial carry-in
+
+    // Generate and propagate logic for each bit
+    assign G[0] = A[0] & B[0];
+    assign P[0] = A[0] | B[0];
+    assign C[1] = G[0] | (P[0] & C[0]);
+
+    assign G[1] = A[1] & B[1];
+    assign P[1] = A[1] | B[1];
+    assign C[2] = G[1] | (P[1] & C[1]);
+
+    assign G[2] = A[2] & B[2];
+    assign P[2] = A[2] | B[2];
+    assign C[3] = G[2] | (P[2] & C[2]);
+
+    assign G[3] = A[3] & B[3];
+    assign P[3] = A[3] | B[3];
+    assign C[4] = G[3] | (P[3] & C[3]);
+
+    assign G[4] = A[4] & B[4];
+    assign P[4] = A[4] | B[4];
+    assign C[5] = G[4] | (P[4] & C[4]);
+
+    assign G[5] = A[5] & B[5];
+    assign P[5] = A[5] | B[5];
+    assign C[6] = G[5] | (P[5] & C[5]);
+
+    assign G[6] = A[6] & B[6];
+    assign P[6] = A[6] | B[6];
+    assign C[7] = G[6] | (P[6] & C[6]);
+
+    assign G[7] = A[7] & B[7];
+    assign P[7] = A[7] | B[7];
+    assign C[8] = G[7] | (P[7] & C[7]);
+
+    assign G[8] = A[8] & B[8];
+    assign P[8] = A[8] | B[8];
+    assign C[9] = G[8] | (P[8] & C[8]);
+
+    assign G[9] = A[9] & B[9];
+    assign P[9] = A[9] | B[9];
+    assign C[10] = G[9] | (P[9] & C[9]);
+
+    assign G[10] = A[10] & B[10];
+    assign P[10] = A[10] | B[10];
+    assign C[11] = G[10] | (P[10] & C[10]);
+
+    assign G[11] = A[11] & B[11];
+    assign P[11] = A[11] | B[11];
+    assign C[12] = G[11] | (P[11] & C[11]);
+
+    assign G[12] = A[12] & B[12];
+    assign P[12] = A[12] | B[12];
+    assign C[13] = G[12] | (P[12] & C[12]);
+
+    assign G[13] = A[13] & B[13];
+    assign P[13] = A[13] | B[13];
+    assign C[14] = G[13] | (P[13] & C[13]);
+
+    assign G[14] = A[14] & B[14];
+    assign P[14] = A[14] | B[14];
+    assign C[15] = G[14] | (P[14] & C[14]);
+
+    assign G[15] = A[15] & B[15];
+    assign P[15] = A[15] | B[15];
+    assign C[16] = G[15] | (P[15] & C[15]);
+
+    // Sum calculation for each bit
+    assign SUM[0] = A[0] ^ B[0] ^ C[0];
+    assign SUM[1] = A[1] ^ B[1] ^ C[1];
+    assign SUM[2] = A[2] ^ B[2] ^ C[2];
+    assign SUM[3] = A[3] ^ B[3] ^ C[3];
+    assign SUM[4] = A[4] ^ B[4] ^ C[4];
+    assign SUM[5] = A[5] ^ B[5] ^ C[5];
+    assign SUM[6] = A[6] ^ B[6] ^ C[6];
+    assign SUM[7] = A[7] ^ B[7] ^ C[7];
+    assign SUM[8] = A[8] ^ B[8] ^ C[8];
+    assign SUM[9] = A[9] ^ B[9] ^ C[9];
+    assign SUM[10] = A[10] ^ B[10] ^ C[10];
+    assign SUM[11] = A[11] ^ B[11] ^ C[11];
+    assign SUM[12] = A[12] ^ B[12] ^ C[12];
+    assign SUM[13] = A[13] ^ B[13] ^ C[13];
+    assign SUM[14] = A[14] ^ B[14] ^ C[14];
+    assign SUM[15] = A[15] ^ B[15] ^ C[15];
+
+    // Final carry-out
+    assign C_OUT = C[16];
+
 endmodule

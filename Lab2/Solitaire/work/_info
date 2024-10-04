@@ -13,16 +13,16 @@ vprotoTableau
 !s110 1727718643
 !i10b 1
 !s100 F@kXWTjdUabO06=5@I]9X0
-!s11b Dg1SIo80bB@j0V0VzS_@n1
+Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
 IIj5NTI39a[=o9?0>zzVdZ2
-VDg1SIo80bB@j0V0VzS_@n1
+Z2 VDg1SIo80bB@j0V0VzS_@n1
 R0
 w1727718638
 8C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/prototableau.v
 FC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/prototableau.v
 !i122 0
 L0 4 45
-OV;L;2020.1;71
+Z3 OV;L;2020.1;71
 r1
 !s85 0
 31
@@ -30,6 +30,29 @@ r1
 !s107 C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/prototableau.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/prototableau.v|
 !i113 1
-o-work work
-tCvgOpt 0
+Z4 o-work work
+Z5 tCvgOpt 0
 nproto@tableau
+vtask_tester
+!s110 1728001314
+!i10b 1
+!s100 YZd7Fzhk3iW8gn3kNdm<V2
+R1
+Iz@C2DX<H`P=jEVWADZ[J[0
+R2
+R0
+w1728001306
+8C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/task_tsts.v
+FC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/task_tsts.v
+!i122 5
+L0 1 97
+R3
+r1
+!s85 0
+31
+!s108 1728001314.000000
+!s107 C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/task_tsts.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/task_tsts.v|
+!i113 1
+R4
+R5

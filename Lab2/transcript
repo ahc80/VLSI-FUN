@@ -23,3 +23,185 @@
 # Compile of prototableau.v was successful.
 # Compile of tb_proto_tab.v failed with 1 errors.
 # 2 compiles, 1 failed with 1 error.
+# Compile of task_tsts.v failed with 2 errors.
+# Compile of task_tsts.v failed with 2 errors.
+# Compile of task_tsts.v failed with 2 errors.
+# Compile of task_tsts.v failed with 2 errors.
+# Compile of task_tsts.v failed with 1 errors.
+# Compile of task_tsts.v failed with 16 errors.
+# Compile of task_tsts.v failed with 16 errors.
+# Compile of task_tsts.v failed with 16 errors.
+# Compile of task_tsts.v failed with 16 errors.
+# Compile of task_tsts.v failed with 3 errors.
+# Compile of task_tsts.v failed with 1 errors.
+# Compile of task_tsts.v failed with 1 errors.
+# Compile of task_tsts.v failed with 1 errors.
+# Compile of task_tsts.v failed with 1 errors.
+# Compile of task_tsts.v failed with 1 errors.
+# Compile of task_tsts.v was successful.
+# Break key hit
+vsim -gui work.task_tester
+# vsim -gui work.task_tester 
+# Start time: 19:30:48 on Oct 03,2024
+# Loading work.task_tester
+run -all
+# Checking index           0 : 0
+# Checking index           1 : 1
+# Checking index           2 : 0
+# Checking index           3 : 1
+# Checking index           0 : 1
+# Checking index           1 : 0
+# Checking index           2 : 1
+# Checking index           3 : 0
+# Set index 2 to 4 --> 2 :  4
+# Set index 3 to 5 --> 2 :  5
+# Checking index           0 : 1
+# Checking index           1 : 0
+# Checking index           2 : 0
+# Checking index           3 : 0
+quit -sim
+# End time: 19:35:31 on Oct 03,2024, Elapsed time: 0:04:43
+# Errors: 0, Warnings: 35
+vsim -gui work.task_tester
+# vsim -gui work.task_tester 
+# Start time: 19:35:37 on Oct 03,2024
+# Loading work.task_tester
+run -all
+# Checking index           0 : 0
+# Checking index           1 : 1
+# Checking index           2 : 0
+# Checking index           3 : 1
+# Checking index           0 : 1
+# Checking index           1 : 0
+# Checking index           2 : 1
+# Checking index           3 : 0
+# Set index 2 to 4 --> 2 :  4
+# Set index 3 to 5 --> 2 :  5
+# Checking index           0 : 1
+# Checking index           1 : 0
+# Checking index           2 : 0
+# Checking index           3 : 0
+exit
+quit -sim
+# End time: 19:36:01 on Oct 03,2024, Elapsed time: 0:00:24
+# Errors: 0, Warnings: 2
+# Compile of task_tsts.v failed with 13 errors.
+# Compile of task_tsts.v failed with 13 errors.
+# Compile of task_tsts.v failed with 12 errors.
+# Compile of task_tsts.v failed with 14 errors.
+# Compile of task_tsts.v failed with 2 errors.
+# Compile of task_tsts.v failed with 2 errors.
+# Compile of task_tsts.v failed with 13 errors.
+# Compile of task_tsts.v failed with 13 errors.
+# Compile of task_tsts.v failed with 13 errors.
+# Compile of task_tsts.v failed with 12 errors.
+# Compile of task_tsts.v failed with 12 errors.
+# Compile of task_tsts.v failed with 12 errors.
+# Compile of task_tsts.v failed with 12 errors.
+# Compile of task_tsts.v was successful.
+# Compile of task_tsts.v failed with 2 errors.
+# Compile of task_tsts.v failed with 1 errors.
+# Compile of task_tsts.v failed with 1 errors.
+# Compile of task_tsts.v was successful.
+vsim -gui work.task_tester
+# vsim -gui work.task_tester 
+# Start time: 19:45:12 on Oct 03,2024
+# Loading work.task_tester
+run -all
+# Sum (14) is          14
+# The if was successful
+# Checking index           0 : 0
+# Checking index           1 : 1
+# Checking index           2 : 0
+# Checking index           3 : 1
+# Inverting list
+# Checking index           0 : 1
+# Checking index           1 : 0
+# Checking index           2 : 1
+# Checking index           3 : 0
+# Set index 2 to 4 --> 2 :  4
+# Set index 3 to 5 --> 2 :  5
+# Checking index           0 : 1
+# Checking index           1 : 0
+# Checking index           2 : 0
+# Checking index           3 : 0
+quit -sim
+# End time: 19:46:11 on Oct 03,2024, Elapsed time: 0:00:59
+# Errors: 0, Warnings: 19
+vsim -gui work.task_tester
+# vsim -gui work.task_tester 
+# Start time: 19:46:40 on Oct 03,2024
+# Loading work.task_tester
+run -all
+# Sum (14) is          14
+# The if was successful
+# Checking index           0 : 0
+# Checking index           1 : 1
+# Checking index           2 : 0
+# Checking index           3 : 1
+# Inverting list
+# Checking index           0 : 1
+# Checking index           1 : 0
+# Checking index           2 : 1
+# Checking index           3 : 0
+# Set index 2 to 4 --> 2 :  4
+# Set index 3 to 5 --> 2 :  5
+# Checking index           0 : 1
+# Checking index           1 : 0
+# Checking index           2 : 0
+# Checking index           3 : 0
+quit -sim
+# End time: 19:48:03 on Oct 03,2024, Elapsed time: 0:01:23
+# Errors: 0, Warnings: 1
+# Compile of task_tsts.v was successful.
+vsim -gui work.task_tester
+# vsim -gui work.task_tester 
+# Start time: 19:48:16 on Oct 03,2024
+# Loading work.task_tester
+run -all
+# Sum (14) is          14
+# The if + was successful
+# The if - was successful
+# Checking index           0 : 0
+# Checking index           1 : 1
+# Checking index           2 : 0
+# Checking index           3 : 1
+# Inverting list
+# Checking index           0 : 1
+# Checking index           1 : 0
+# Checking index           2 : 1
+# Checking index           3 : 0
+# Set index 2 to 4 --> 2 :  4
+# Set index 3 to 5 --> 2 :  5
+# Checking index           0 : 1
+# Checking index           1 : 0
+# Checking index           2 : 0
+# Checking index           3 : 0
+quit -sim
+# End time: 20:21:52 on Oct 03,2024, Elapsed time: 0:33:36
+# Errors: 0, Warnings: 2
+# Compile of task_tsts.v was successful.
+vsim -gui work.task_tester
+# vsim -gui work.task_tester 
+# Start time: 20:22:00 on Oct 03,2024
+# Loading work.task_tester
+run -all
+# isAdj works in if input
+# Sum (14) is          14
+# The if + was successful
+# The if - was successful
+# Checking index           0 : 0
+# Checking index           1 : 1
+# Checking index           2 : 0
+# Checking index           3 : 1
+# Inverting list
+# Checking index           0 : 1
+# Checking index           1 : 0
+# Checking index           2 : 1
+# Checking index           3 : 0
+# Set index 2 to 4 --> 2 :  4
+# Set index 3 to 5 --> 2 :  5
+# Checking index           0 : 1
+# Checking index           1 : 0
+# Checking index           2 : 0
+# Checking index           3 : 0

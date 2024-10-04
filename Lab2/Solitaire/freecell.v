@@ -215,20 +215,19 @@ module freecellPlayer(
     end
 
 
-    // ----- ----- User defined tasks ----- ----- \\
-
+    // ----- ----- Functions & Tasks ----- ----- \\
+    
     // Make read_type, check_type_empty, erase_type
     
     // -- Free_cells Tasks -- \\\
     // Read free cell card in slot
-    task automatic free_read(
+    function automatic free_read(
         input  integer free_cell_col,
-        output reg     card
-    )
-    card = free_cells[free_cell_col];
-    endtask
+    );
+    free_read = free_cells[free_cell_col];
+    endfunction
 
-    // Place card in free cell. Automatically checks if empty
+    // Place card in free cell. Automatically checks legality
     task automatic free_add(
         input  integer  free_cell_col,
         input  [5:0]    card,
@@ -249,7 +248,46 @@ module freecellPlayer(
 
 
     // -- Home_cells Tasks -- \\\
+    // Ace goes first; Ace goes in 0 slot
 
+    function automatic home_read(
+        input [1:0] suit
+    );
+    if(home_cells[suit][0][3:0] == 4'd0) begin
+        home_read = 6'd0;
+    end else begin
+        //  reg [5:0] home_cells [3:0][12:0];
+        for(i=12; i>0; i=i-1) begin
+            if(home_cells[suit][i][3:0] != 4'd0) begin
+                home_read = home_cells[suit][i];
+            end
+        end
+    end
+    endfunction
+
+    // automatically checks legality
+    task automatic home_add(
+        input [1:0] suit,
+        input [5:0] card,
+        integer     isLegal // 0 means illegal, 1 means legal
+    );
+    isLegal = 1;
+    if(suit == card[5:4]) begin
+        for(i=11; i>=0; i=i-1) begin
+            if(home_cells[suit][i][3:0] != 4'd0 
+            && card[3:0] == home_cells[suit][i][3:0] + 1'b1) begin
+                isLegal = 0;
+                home_cells[suit][i+1] = card;
+            end
+        end
+    end
+    if(isEmpty) begin
+        $display("Illegal move detected! Skipping turn...");
+    end
+    
+
+    
+    endtask
 
 
     // -- Tableau Tasks -- \\\

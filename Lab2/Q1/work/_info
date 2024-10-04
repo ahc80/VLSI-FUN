@@ -1,0 +1,201 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA/18.1
+vadder
+Z0 !s110 1728004505
+!i10b 1
+!s100 QKPniOZSFb_C^jHZ6IWc>2
+IW`JH5Zg?^b^Ge8@K^obHd2
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+Z2 dC:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1
+w1727909134
+8C:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/adder.v
+FC:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/adder.v
+L0 1
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z4 !s108 1728004505.000000
+!s107 C:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/adder.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/adder.v|
+!i113 1
+Z5 o-work work
+Z6 tCvgOpt 0
+vadder_tb
+Z7 !s110 1728004506
+!i10b 1
+!s100 @M8X?3oGJhgE>1Ja07DnR1
+IlG1TWefd]V^6>mS[?Cm7=2
+R1
+R2
+w1727919001
+8C:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/tb_adder.v
+FC:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/tb_adder.v
+L0 3
+R3
+r1
+!s85 0
+31
+Z8 !s108 1728004506.000000
+!s107 C:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/tb_adder.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/tb_adder.v|
+!i113 1
+R5
+R6
+vALU
+!s110 1728003159
+!i10b 1
+!s100 =lKC20V8bj9H[dV^@9;7O0
+I99cQK^PG`TI@5mf?;P8NO0
+R1
+R2
+w1728003142
+8C:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/ALU.v
+FC:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/ALU.v
+L0 1
+R3
+r1
+!s85 0
+31
+!s108 1728003159.000000
+!s107 C:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/ALU.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/ALU.v|
+!i113 1
+R5
+R6
+n@a@l@u
+valu_tb
+R7
+!i10b 1
+!s100 TI]08h6PH4c?O9nWkIo6g2
+I]<;Q4BMhAaVFbl[miLK992
+R1
+R2
+w1728002835
+8C:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/tb_ALU.v
+FC:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/tb_ALU.v
+L0 3
+R3
+r1
+!s85 0
+31
+R8
+!s107 C:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/tb_ALU.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/tb_ALU.v|
+!i113 1
+R5
+R6
+vALU_test
+R7
+!i10b 1
+!s100 nGV;B0JP0PT^96X:a;3DV3
+I?hG``G:Lld4Z?6=Ezk_o`0
+R1
+R2
+w1727999665
+8C:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/ALU_test.v
+FC:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/ALU_test.v
+L0 1
+R3
+r1
+!s85 0
+31
+R8
+!s107 C:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/ALU_test.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/ALU_test.v|
+!i113 1
+R5
+R6
+n@a@l@u_test
+valu_test_tb
+!s110 1728002904
+!i10b 1
+!s100 K[Xd]z>Sl<^bBLz1LLFjF2
+ILzm6[cDlT43VGWIl8U^Uh3
+R1
+R2
+w1727919035
+Z9 8C:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/tb_test_ALU.v
+Z10 FC:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/tb_test_ALU.v
+L0 3
+R3
+r1
+!s85 0
+31
+!s108 1728002904.000000
+Z11 !s107 C:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/tb_test_ALU.v|
+Z12 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/tb_test_ALU.v|
+!i113 1
+R5
+R6
+valu_testbench
+R0
+!i10b 1
+!s100 eG6E^eUU>OSETGWL<;3Hb2
+InFYB3:eM@N4X^PU``J90Y3
+R1
+R2
+w1728003082
+R9
+R10
+L0 3
+R3
+r1
+!s85 0
+31
+R4
+R11
+R12
+!i113 1
+R5
+R6
+vcla16bit
+R7
+!i10b 1
+!s100 1YkSaG7mhJR@kkBNYc=5B0
+ILADL1];P>DL10PNhOX_?K1
+R1
+R2
+w1727668927
+8C:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/CLA.v
+FC:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/CLA.v
+L0 3
+R3
+r1
+!s85 0
+31
+R8
+!s107 C:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/CLA.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/CLA.v|
+!i113 1
+R5
+R6
+vcla16bit_tb
+R7
+!i10b 1
+!s100 ilJ]FJA6L=MT:aBWhX=co1
+IUYF9<RM;Xc;ZP2d2lC4oS3
+R1
+R2
+w1727919440
+8C:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/tb_CLA.v
+FC:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/tb_CLA.v
+L0 2
+R3
+r1
+!s85 0
+31
+R8
+!s107 C:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/tb_CLA.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/ahche/OneDrive/Documents/GitHub/VLSI-FUN/Lab2/Q1/tb_CLA.v|
+!i113 1
+R5
+R6

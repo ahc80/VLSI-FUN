@@ -19,10 +19,10 @@ module ALU(
     localparam dec= 5'b00_101;         // A - 1 => C (signed decrement)
 
     // Logic Operations
-    localparam and_opp= 5'b01_000;     // A AND B
-    localparam or_opp=  5'b01_001;     // A OR B
-    localparam xor_opp= 5'b01_010;     // A XOR B
-    localparam not_opp= 5'b01_100;     // NOT A
+    localparam and_op= 5'b01_000;     // A AND B
+    localparam or_op=  5'b01_001;     // A OR B
+    localparam xor_op= 5'b01_010;     // A XOR B
+    localparam not_op= 5'b01_100;     // NOT A
 
     // Shift Operations
     localparam sll= 5'b10_000;         // Logical left shift A by the amount of B[3:0]

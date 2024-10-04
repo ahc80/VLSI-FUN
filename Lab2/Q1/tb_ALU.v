@@ -35,7 +35,7 @@ module alu_tb;
     localparam seq= 5'b11_100;
     localparam sne= 5'b11_101;
 
-    ALU alu_instance(
+    ALU_test alu_instance(
         .A(A),
         .B(B),
         .alu_code(CODE),

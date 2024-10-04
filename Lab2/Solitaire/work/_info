@@ -34,23 +34,23 @@ Z4 o-work work
 Z5 tCvgOpt 0
 nproto@tableau
 vtask_tester
-!s110 1728001314
+!s110 1728064990
 !i10b 1
-!s100 YZd7Fzhk3iW8gn3kNdm<V2
+!s100 L@TnA_OEIk2f3H<`h:^KR0
 R1
-Iz@C2DX<H`P=jEVWADZ[J[0
+IDX16LciPE0[>3hk4=LW:V3
 R2
 R0
-w1728001306
+w1728064982
 8C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/task_tsts.v
 FC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/task_tsts.v
-!i122 5
-L0 1 97
+!i122 11
+L0 1 138
 R3
 r1
 !s85 0
 31
-!s108 1728001314.000000
+!s108 1728064990.000000
 !s107 C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/task_tsts.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/task_tsts.v|
 !i113 1

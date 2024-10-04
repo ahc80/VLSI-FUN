@@ -24,11 +24,13 @@ module freecellPlayer(
     localparam king     = 4'd13;
 
     // Declaring suits
-    localparam hearts   = 2'd0;
-    localparam spades   = 2'd1;
-    localparam clubs    = 2'd2;
-    localparam diamonds = 2'd3;
+    localparam hearts   = 2'b00; // redsuit
+    localparam spades   = 2'b01; // blacksuit
+    localparam clubs    = 2'b10; // blacksuit
+    localparam diamonds = 2'b11; // redsuit
 
+    // XOR = 1 means blacksuit
+    // XOR = 0 means redsuit
 
     // ----- ----- Arranging storage ----- ----- \\
 
@@ -126,111 +128,63 @@ module freecellPlayer(
 
 
     // ----- ----- Turn execution system ----- ----- \\
+    reg [5:0] temp_card;
 
     // Play a turn
     always @(posedge clock) begin
-        casez({source, dest})
-        // Key
-        // 0XYZ --> XYZ = col tableau
-        // 10XY --> XY  = free cell
-        // 11XY --> XY  = Home cell
-        
-        // Free --> Free
-        ({4'b10??, 4'b10??}):
-        begin
-            if()
-            // Make sure free cell is empty
-            begin
-                
+        temp_card = read_source(source);
+        // If source movable (not moving from home && if source not empty)
+        if(source[3:2] != 3'b11 && temp_card[3:0] != 4'd0) begin
+            // If destination is legal (automatically writes card if legal)
+            if(write_dest(dest, temp_card)) begin
+
             end
+        end else begin
+            $display("Illegal move detected! Skipping turn...");
         end
-
-        // Free --> Home
-        ({4'b10??, 4'b11??}):
-        begin
-            if()
-            // If follows home rules
-            begin
-                
-            end
-        end
-
-        // Free --> Tableau
-        ({4'b10??, 4'b10??}):
-        begin
-            if()
-            // Complicated case
-            begin
-                
-            end
-        end
-
-
-        // -----
-
-
-        // Tableau --> Free
-        ({4'b0???, 4'b10??}):
-        begin
-            if()
-            // Make sure free cell is empty
-            begin
-                
-            end
-        end
-
-        // Tableau --> Home
-        ({4'b0???, 4'b11??}):
-        begin
-            if()
-            // Home rules
-            begin
-                
-            end
-        end
-
-        // Tableau --> Tableau
-        ({4'b0???, 4'b0???}):
-        begin
-            if()
-            // Complex rules
-            begin
-                
-            end
-        end
-
-
-
-        // Home --> anything
-        ({4'b11??, 4'b????}):
-        begin
-            // ILLEGAL !! 
-        end
-        
-        default:
-        begin
-            // ILLEGAL
-        end
-        endcase
     end
 
 
     // ----- ----- Functions & Tasks ----- ----- \\
-    
+
+    function automatic read_source(
+        input [3:0] src
+    );
+        casez (src)
+            (4'b0???): begin
+            // Col of tableau
+                read_source = tableau_read(src[2:0]);
+            end
+            (4'b10??): begin
+            // Free cell
+                read_source = free_read(src[1:0]);
+            end
+        endcase
+    endfunction
+
+    function automatic write_dest(
+        input [3:0] dest,
+        input [5:0] card
+    )
+
+    endfunction
+
     // Make read_type, check_type_empty, erase_type
+
+    // Check if isEmptys are properly handled
     
     // -- Free_cells Tasks -- \\\
     // Read free cell card in slot
     function automatic free_read(
-        input  integer free_cell_col,
+        input [1:0] free_cell_col,
     );
     free_read = free_cells[free_cell_col];
     endfunction
 
     // Place card in free cell. Automatically checks legality
-    task automatic free_add(
+    task automatic free_write(
         input  integer  free_cell_col,
-        input  [5:0]    card,
+        input  [5:0]    card
     );
         if(free_cells[free_cell_col] == 6'd0 ) begin
             free_cells[free_cell_col] = card;
@@ -253,6 +207,8 @@ module freecellPlayer(
     function automatic home_read(
         input [1:0] suit
     );
+    integer i;
+
     if(home_cells[suit][0][3:0] == 4'd0) begin
         home_read = 6'd0;
     end else begin
@@ -266,30 +222,77 @@ module freecellPlayer(
     endfunction
 
     // automatically checks legality
-    task automatic home_add(
+    task automatic home_write(
         input [1:0] suit,
-        input [5:0] card,
-        integer     isLegal // 0 means illegal, 1 means legal
+        input [5:0] card
     );
-    isLegal = 1;
+    integer isIllegal; // 0 means legal, 1 means illegal
+    integer i;
+    
+    isIllegal = 1;
     if(suit == card[5:4]) begin
         for(i=11; i>=0; i=i-1) begin
             if(home_cells[suit][i][3:0] != 4'd0 
             && card[3:0] == home_cells[suit][i][3:0] + 1'b1) begin
-                isLegal = 0;
+                isIllegal = 0;
                 home_cells[suit][i+1] = card;
             end
         end
     end
-    if(isEmpty) begin
+    if(isIllegal) begin
         $display("Illegal move detected! Skipping turn...");
     end
-    
-
-    
     endtask
 
 
     // -- Tableau Tasks -- \\\
+
+    // reg [5:0] tableau[7:0][29:0];
+
+    function automatic tableau_read (
+        input [2:0] col
+    );
+        integer isEmpty;
+        integer i;
+        isEmpty = 1;
+        for(i=29; i>=0; i=i-1) begin
+            if(tableau[col][i][3:0] != 4'd0) begin
+                isEmpty = 0;
+                tableau_read = tableau[col][i];
+                break;
+            end
+        end
+        if(isEmpty) begin
+            tableau_read = 6'd0;
+        end
+    endfunction
+
+
+    function automatic tableau_write(
+        input [2:0] col,
+        input [5:0] card
+    );
+        integer         isIllegal;
+        integer         i;
+        reg     [5:0]   temp_card;
+        begin
+            isIllegal = 0;
+            for(i=28;i>=0;i=i-1) begin
+                if(tableau[col][i][3:0] != 4'd0) begin
+                    
+                end
+            end
+        end
+    endfunction
+
+
+    task automatic tableau_remove(
+        input [2:0] col
+    );
+        integer i;
+        
+
+        
+    endtask
 
 endmodule

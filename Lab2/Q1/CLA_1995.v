@@ -9,8 +9,8 @@ module cla16bit (
     output [15:0] SUM;   // 16-bit sum output
     output C_OUT;        // Carry-out signal
 
-    wire [15:0] SUM;
-    wire C_OUT;
+    //wire [15:0] SUM;
+    //wire C_OUT;
 
     wire [15:0] G, P;    // Generate and propagate signals
     wire [16:0] C;       // Carry signals

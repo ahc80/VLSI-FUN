@@ -15,7 +15,7 @@ module adder(
     output [15:0] C;      // 16-bit output
     output overFlag, coutFlag; // Overflow flag, Cout flag
 
-    reg [15:0] C;
+    wire [15:0] C;
     reg overFlag, coutFlag;
     reg cin; // Carry-in signal, controlled based on the operation (e.g., subtraction)
     

@@ -11,7 +11,7 @@ module task_tester ();
  
     integer sum;  
     integer isAdj;  
-
+    integer count;
 
     // TEST TO SEE IF you can have the output of a function be directly stored into a reg just fine
     //                0 is false in if statement
@@ -37,6 +37,7 @@ module task_tester ();
 
     integer i;
     initial begin
+        count = 0;
         x[3:0] = 4'd13;
         y[3:0] = 4'd14;
         z[3:0] = 4'd12;
@@ -91,15 +92,30 @@ module task_tester ();
         for(i=0; i<4; i=i+1) begin
             $display("Checking index %d : %b", i, hasOne(i));
         end
+
+        if( (1'b0 ^ 1'b1) ^ (1'b0 ^ 1'b0) ) begin
+            $display("The 2 layer XOR works!");
+        end
+
+        add();
+        add();
+        add();
+        add();
+        add();
+
+        for(i=0; i<4; i=i+1) begin
+            $display("Im NOT gonna break this loop!");
+            $display("Checking index %d : %b", i, hasOne(i));
+        end
     end
 
     function automatic hasOne (
         input integer index 
     );
         if(storage[index] == 1'b1) begin
-            hasOne = 1'b1;
+            hasOne = 1'b1 == 1'b1;
         end else begin
-            hasOne = 1'b0;
+            hasOne = 1'b0 == 1'b1;
         end
     endfunction
 
@@ -114,7 +130,7 @@ module task_tester ();
     task automatic addOne (
         input integer index
     );
-        if(storage[index] == 1'b0) begin
+        if(storage[index + 1 - 1] == 1'b0) begin
             storage[index] = 1;
         end
     endtask
@@ -132,6 +148,13 @@ module task_tester ();
         valuehere = i;
         imafunguy = valuehere;
         storage[imafunguy] = number;
+        end
+    endtask
+
+    task add();
+        begin
+            count = count + 1;
+            $display("Count is now %d", count);
         end
     endtask
 

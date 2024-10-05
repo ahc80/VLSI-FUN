@@ -1,1 +1,40 @@
+{C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/freecell_tester.v} {1 {vlog -work work -stats=none {C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/freecell_tester.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module freecellPlayer
+-- Compiling module testFreeCell
 
+Top level modules:
+	freecellPlayer
+	testFreeCell
+
+} {} {}} {C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/theirtest.v} {1 {vlog -work work -stats=none {C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/theirtest.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module freecellPlayer
+-- Compiling module theirTest
+
+Top level modules:
+	freecellPlayer
+	theirTest
+
+} {} {}} {C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/theircell.v} {1 {vlog -work work -stats=none {C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/theircell.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module theirCell
+
+Top level modules:
+	theirCell
+
+} {} {}} {C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/task_tsts.v} {1 {vlog -work work -stats=none {C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/task_tsts.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module task_tester
+
+Top level modules:
+	task_tester
+
+} {} {}} {C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/speaker.v} {1 {vlog -work work -stats=none {C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/speaker.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module speaker
+
+Top level modules:
+	speaker
+
+} {} {}}

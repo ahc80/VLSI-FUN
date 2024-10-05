@@ -1,14 +1,4 @@
-module freecellPlayer (clock,source,dest,win);
-input	[3:0] source, dest;
-input	clock;
-output	win;
-
-always	@(posedge clock or source or dest)
-	$display($time,"  %d %d", source,dest);
-
-endmodule
-
-module theirTest;
+module altTest;
     reg [3:0] source;
     reg [3:0] dest;
     reg	      clock;
@@ -181,6 +171,6 @@ module theirTest;
 	#5 clock = ~clock;
     end
 
-    theirCell fc(clock,source,dest,win);
+    myfreecell fc(clock,source,dest,win);
 
 endmodule // testFreeCell

@@ -175,6 +175,7 @@ module myfreecell(
                 $display($time," Home wrote nonace!");
                 home_pointer[suit] = home_pointer[suit] + 1;
                 home_cells[suit][home_pointer[suit]][5:0] = card;
+                home_write = 1;
             end else begin
                 home_write = 0;
                 $display($time," Illegal move detected by home_write! Skipping turn...");
@@ -213,10 +214,10 @@ module myfreecell(
                 $display($time," Tableau wrote to empty tab!");
                 tableau_write = 1;
             end else begin
-                $display($time, " Tab first else, suits %b|%b", tab_card[5:4], card[5:4]);
-                $display($time, "Card math %b=%b", tab_card[3:0], (card[3:0] + 1'b1) );
+                $display($time, " tabptr+1=%b", tableau[col][tableau_pointer[col]]);
+                $display($time, " Card math %b=%b", (card[3:0] + 1'b1), tab_card[3:0]);
                 // If cards are diff suits AND descending order, write
-                if( isDiffSuit(tab_card[5:4], card[5:4])
+                if(isDiffSuit(tab_card[5:4], card[5:4])
                 && tab_card[3:0] == (card[3:0] + 1'b1) ) begin             // WHAT IF ITS AN ACE
                     tableau_pointer[col] = tableau_pointer[col] + 1;
                     tableau[col][tableau_pointer[col]][5:0] = card;
@@ -252,26 +253,18 @@ module myfreecell(
     endfunction
 
 
-    task automatic tableau_remove(
+    task tableau_remove(
         input [3:0] source
     );
         reg [2:0] col;
         begin
             col = source[2:0];
             tableau[col][tableau_pointer[col]] = 6'd0;
-            // If ptr = 0 AND tab is empty
-            if(tableau_pointer[col] == 0 
-            && tableau[col][tableau_pointer[col]][3:0] == 4'd0) begin
-                $display($time, " Tab tried to remove empty tab!");
-            end
-            // If ptr = 0 AND tab is NOT empty
-            if(tableau_pointer[col] == 0 
-            && tableau[col][tableau_pointer[col]][3:0] != 4'd0) begin
-                tableau[col][tableau_pointer[col]] = 6'd0;
-            end else begin
-                // Now ptr != 0 and there should be an entry at ptr
-                tableau[col][tableau_pointer[col]] = 6'd0;
+            if(tableau_pointer[col] != 0) begin
                 tableau_pointer[col] = tableau_pointer[col] - 1;
+                $display($time, " removed nonzeroth tab entry");
+            end else begin
+                $display($time, " removed tab; now empty");
             end
         end
     endtask

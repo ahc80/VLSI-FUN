@@ -183,6 +183,4 @@ module testFreeCell;
 
     freecellPlayer fc(clock,source,dest,win);
 
-    speaker spk();
-
 endmodule // testFreeCell

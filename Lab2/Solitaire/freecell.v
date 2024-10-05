@@ -1,5 +1,5 @@
 module freecellPlayer(
-    input   wire    clock, 
+    input           clock, 
     input   [3:0]   source,
     input   [3:0]   dest,
     output  reg     win
@@ -38,6 +38,7 @@ module freecellPlayer(
     reg [5:0] home_cells [3:0][12:0]; // 0: Hearts  1: Spades  2: Clubs  3: Diamonds
     reg [5:0] tableau    [7:0][29:0];
     reg [3:0] home_full_list; // 1 if full. MSB -> LSB: Diamonds, Clubs, Spades, Hearts
+    reg [5:0] temp_card;
 
     // initialize values
     integer i, j;
@@ -133,7 +134,7 @@ module freecellPlayer(
 
 
     // ----- ----- Turn execution system ----- ----- \\
-    reg [5:0] temp_card;
+    
 
     // Play a turn
     always @(posedge clock) begin
@@ -154,7 +155,6 @@ module freecellPlayer(
         end
         checkWin();
     end
-
 
     // ----- ----- Functions & Tasks ----- ----- \\
 
@@ -181,7 +181,7 @@ module freecellPlayer(
         input [3:0] dest,
         input [5:0] card
     );
-        casez(source)
+        casez(dest)
             (4'b0???): begin // case tableau
                 write_dest = tableau_write(dest, card);
             end
@@ -271,6 +271,7 @@ module freecellPlayer(
             for(i=12; i>0; i=i-1) begin
                 if(home_cells[suit][i][3:0] != 4'd0) begin
                     home_read = home_cells[suit][i];
+                    break;
                 end
             end
         end

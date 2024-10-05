@@ -4,6 +4,7 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 
 -- Compiling module testFreeCell
 
 Top level modules:
+	freecellPlayer
 	testFreeCell
 
 } {} {}} {C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/theirtest.v} {1 {vlog -work work -stats=none {C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/theirtest.v}

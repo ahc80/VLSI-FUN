@@ -178,7 +178,7 @@ module testFreeCell;
 
     // Clock generator.
     always begin
-	#5 clock = ~clock;
+	#200 clock = ~clock;
     end
 
     freecellPlayer fc(clock,source,dest,win);

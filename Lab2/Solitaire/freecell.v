@@ -32,7 +32,7 @@ module freecellPlayer(
     // XOR = 1 means blacksuit
     // XOR = 0 means redsuit
 
-    // ----- ----- Arranging storage ----- ----- \\
+    // ----- ----- Storage (arranged after tasks) ----- ----- \\
 
     reg [5:0] free_cells [3:0];
     reg [5:0] home_cells [3:0][12:0]; // 0: Hearts  1: Spades  2: Clubs  3: Diamonds
@@ -40,11 +40,258 @@ module freecellPlayer(
     reg [3:0] home_full_list; // 1 if full. MSB -> LSB: Diamonds, Clubs, Spades, Hearts
     reg [5:0] temp_card;
 
+
+    // ----- ----- Functions & Tasks ----- ----- \\
+
+    function automatic [5:0] read_source(
+        input [3:0] src
+    );
+        casez (src[3:0])
+            (4'b0???): begin
+            // Col of tableau
+                read_source[5:0] = tableau_read(src[2:0]);
+            end
+            (4'b10??): begin
+            // Free cell
+                read_source[5:0] = free_read(src[1:0]);
+            end
+            default: begin
+                read_source[5:0] = 5'd0;
+                $display("Something wrong with read_source");
+            end
+        endcase
+    endfunction
+
+    function automatic bit write_dest(
+        input [3:0] dest,
+        input [5:0] card
+    );
+        casez(dest[3:0])
+            (4'b0???): begin // case tableau
+                write_dest  = tableau_write(dest[3:0], card[5:0]);
+            end
+            (4'b10??): begin // case free
+                write_dest  = free_write(dest[3:0], card[5:0]);
+            end
+            (4'b11??): begin // case home
+                write_dest = home_write(dest[3:0], card[5:0]);
+            end
+            default: begin
+                $display("Error occured; defaulted write_dest");
+            end 
+        endcase
+    endfunction
+
+    task automatic remove_source(  
+        input [3:0] source
+    );
+        casez(source[3:0])
+            (4'b0???): begin
+                tableau_remove(source[3:0]);
+            end
+            (4'b10??):begin
+                free_remove(source[3:0]);
+            end
+            (4'b11??): begin
+                $display("Error, remove_source got 4'b11??");
+            end
+            default: begin
+                $display("Error occured; defaulted remove_source");
+            end 
+        endcase
+    endtask
+    
+    // -- Free_cells Tasks -- \\\
+    // Read free cell card in slot
+    function automatic [5:0] free_read(
+        input [1:0] free_cell_col
+    );
+    free_read[5:0] = free_cells[free_cell_col[1:0]];
+    endfunction
+
+    // Place card in free cell. Automatically checks legality
+    function automatic [0] free_write(
+        input  [3:0]    dest,
+        input  [5:0]    card
+    );
+        reg [1:0] free_cell_col;
+        begin
+            free_cell_col = dest[1:0];
+            if(free_cells[free_cell_col] == 6'd0 ) begin
+                free_cells[free_cell_col] = card[5:0];
+                free_write[0] = 1; 
+            end else begin
+                free_write[0] = 0;
+                $display("Illegal move detected! Skipping turn...");
+            end
+        end
+    endfunction
+
+    // Make given free cell slot empty
+    task automatic free_remove(
+        input [3:0] source
+    );
+        free_cells[source[1:0]] = 6'd0;
+    endtask
+
+
+    // -- Home_cells Tasks -- \\\
+    // Ace goes first; Ace goes in 0 slot
+
+    function automatic [5:0] home_read(
+        input [1:0] suit
+    );
+    integer i;
+    begin
+        if(home_cells[suit][0][3:0] == 4'd0) begin
+            home_read = 6'd0;
+        end else begin
+            //  reg [5:0] home_cells [3:0][12:0];
+            for(i=12; i>0; i=i-1) begin
+                if(home_cells[suit][i][3:0] != 4'd0) begin
+                    home_read = home_cells[suit][i];
+                    break;
+                end
+            end
+        end
+    end
+    endfunction
+
+    // automatically checks legality
+    function automatic [0] home_write(
+        input [3:0] dest,
+        input [5:0] card
+    );
+    integer       isIllegal; // 0 means legal, 1 means illegal
+    integer       i;
+    reg     [1:0] suit;
+    begin
+        suit = dest[1:0];
+        isIllegal = 1;
+        if(suit == card[5:4]) begin
+            for(i=11; i>=0; i=i-1) begin
+                if(home_cells[suit][i][3:0] != 4'd0 
+                && card[3:0] == home_cells[suit][i][3:0] + 1'b1) begin
+                    isIllegal = 0;
+                    home_cells[suit][i+1] = card;
+                    home_write = 1;
+                    break;
+                end
+            end
+        end
+        if(isIllegal) begin
+            $display("Illegal move detected! Skipping turn...");
+            home_write = 0;
+        end
+    end
+    endfunction
+
+
+    // -- Tableau Tasks -- \\\
+
+    // reg [5:0] tableau[7:0][29:0];
+
+    function automatic [5:0] tableau_read (
+        input [2:0] col
+    );
+        integer isEmpty;
+        integer i;
+        begin
+            isEmpty = 1;
+            for(i=29; i>=0; i=i-1) begin
+                if(tableau[col][i][3:0] != 4'd0) begin
+                    isEmpty = 0;
+                    tableau_read = tableau[col][i];
+                    break;
+                end
+            end
+            if(isEmpty) begin
+                tableau_read = 6'd0;
+            end
+        end
+    endfunction
+
+
+    function automatic [0] tableau_write(
+        input [3:0] dest,
+        input [5:0] card
+    );
+        integer         isIllegal;
+        integer         i;
+        reg     [5:0]   temp_card;
+        reg     [2:0]   col;
+        begin
+            col = dest[2:0];
+            isIllegal = 1;
+            for(i=28;i>=0;i=i-1) begin
+                // Find first not empty slot
+                if(tableau[col][i][3:0] != 4'd0) begin
+                    temp_card = tableau[col][i][5:0];
+                    // If cards are different suits && descending order
+                    if((temp_card[1] ^ temp_card[0]) ^ (card[5] ^ card[4])
+                    && temp_card[3:0] == card[3:0] + 1'b1) begin
+                        tableau[col][i+1][5:0] = card[5:0];
+                        isIllegal = 0;
+                        tableau_write = 1;
+                        break;
+                    end
+                end
+            end
+            if(isIllegal) begin
+                $display("Illegal move detected! Skipping turn...");
+                tableau_write = 0;
+            end
+        end
+    endfunction
+
+
+    task automatic tableau_remove(
+        input [3:0] source
+    );
+        integer i;
+        reg [2:0] col;
+        integer didNotRemove;
+        begin
+            didNotRemove = 1;
+            col = source[2:0];
+            for(i=29; i>=0; i=i-1) begin
+                if(tableau[col][i][3:0] != 4'd0) begin
+                    didNotRemove = 0;
+                    tableau[col][i][3:0] = 6'd0;
+                    break;
+                end
+            end
+            if(didNotRemove) begin
+                $display("Error removing col card!");
+            end
+        end
+    endtask
+
+    // Automatically sets win to 1 if applicable
+    task checkWin();
+        // HOME FULL LIST MOVED TO NORMAL STORAGE !
+        // reg [3:0] home_full_list;
+        // 1 if full. MSB -> LSB: Diamonds, Clubs, Spades, Hearts
+        integer l;
+        begin
+            for(l=0; l<4; l=l+1) begin
+                home_full_list[l] = home_read(l) == 4'd13;
+            end
+            if(home_full_list == 4'b1111) begin
+                win = 1;
+                $display("Game has been won!");
+            end
+        end
+    endtask
+
+
+    // ----- ----- Arranging storage ----- ----- \\
+
     // initialize values
     integer i, j;
     initial begin
         
-        $display("We made it to initial");
+        $display("Ladies and Gentlemen, we made it to initial");
 
         // Fill all tableau values with blank cards
         for (i=0; i<8; i=i+1) begin
@@ -129,13 +376,10 @@ module freecellPlayer(
         tableau[7][3] = {clubs    , eight };
         tableau[7][4] = {hearts   , seven };
         tableau[7][5] = {diamonds , eight };
-
     end
 
 
     // ----- ----- Turn execution system ----- ----- \\
-    
-
     // Play a turn
     always @(posedge clock) begin
         if(~ win) begin
@@ -156,255 +400,4 @@ module freecellPlayer(
         checkWin();
     end
 
-    // ----- ----- Functions & Tasks ----- ----- \\
-
-    function automatic read_source(
-        input [3:0] src
-    );
-        casez (src)
-            (4'b0???): begin
-            // Col of tableau
-                read_source = tableau_read(src[2:0]);
-            end
-            (4'b10??): begin
-            // Free cell
-                read_source = free_read(src[1:0]);
-            end
-            default: begin
-                read_source = 0;
-                $display("Something wrong with read_source");
-            end
-        endcase
-    endfunction
-
-    function automatic write_dest(
-        input [3:0] dest,
-        input [5:0] card
-    );
-        casez(dest)
-            (4'b0???): begin // case tableau
-                write_dest = tableau_write(dest, card);
-            end
-            (4'b10??): begin // case free
-                write_dest = free_write(dest, card);
-            end
-            (4'b11??): begin // case home
-                write_dest = home_write(dest, card);
-            end
-            default: begin
-                $display("Error occured; defaulted write_dest");
-            end 
-        endcase
-    endfunction
-
-
-    task automatic remove_source(  
-        input [3:0] source
-    );
-        casez(source)
-            (4'b0???): begin
-                tableau_remove(source);
-            end
-            (4'b10??):begin
-                free_remove(source);
-            end
-            (4'b11??): begin
-                $display("Error, remove_source got 4'b11??");
-            end
-            default: begin
-                $display("Error occured; defaulted remove_source");
-            end 
-        endcase
-    endtask
-
-
-    // Make read_type, check_type_empty, erase_type
-
-    // Check if isEmptys are properly handled
-    
-    // -- Free_cells Tasks -- \\\
-    // Read free cell card in slot
-    function automatic free_read(
-        input [1:0] free_cell_col
-    );
-    free_read = free_cells[free_cell_col];
-    endfunction
-
-    // Place card in free cell. Automatically checks legality
-    function automatic free_write(
-        input  [3:0]    dest,
-        input  [5:0]    card
-    );
-        reg [1:0] free_cell_col;
-        begin
-            free_cell_col = dest[1:0];
-            if(free_cells[free_cell_col] == 6'd0 ) begin
-                free_cells[free_cell_col] = card;
-                free_write = 1; 
-            end else begin
-                free_write = 0;
-                $display("Illegal move detected! Skipping turn...");
-            end
-        end
-    endfunction
-
-    // Make given free cell slot empty
-    task automatic free_remove(
-        input [3:0] source
-    );
-        free_cells[source[1:0]] = 6'd0;
-    endtask
-
-
-    // -- Home_cells Tasks -- \\\
-    // Ace goes first; Ace goes in 0 slot
-
-    function automatic home_read(
-        input [1:0] suit
-    );
-    integer i;
-    begin
-        if(home_cells[suit][0][3:0] == 4'd0) begin
-            home_read = 6'd0;
-        end else begin
-            //  reg [5:0] home_cells [3:0][12:0];
-            for(i=12; i>0; i=i-1) begin
-                if(home_cells[suit][i][3:0] != 4'd0) begin
-                    home_read = home_cells[suit][i];
-                    break;
-                end
-            end
-        end
-    end
-    endfunction
-
-    // automatically checks legality
-    function automatic home_write(
-        input [3:0] dest,
-        input [5:0] card
-    );
-    integer       isIllegal; // 0 means legal, 1 means illegal
-    integer       i;
-    reg     [1:0] suit;
-    begin
-        suit = dest[1:0];
-        isIllegal = 1;
-        if(suit == card[5:4]) begin
-            for(i=11; i>=0; i=i-1) begin
-                if(home_cells[suit][i][3:0] != 4'd0 
-                && card[3:0] == home_cells[suit][i][3:0] + 1'b1) begin
-                    isIllegal = 0;
-                    home_cells[suit][i+1] = card;
-                    home_write = 1;
-                    break;
-                end
-            end
-        end
-        if(isIllegal) begin
-            $display("Illegal move detected! Skipping turn...");
-            home_write = 0;
-        end
-    end
-    endfunction
-
-
-    // -- Tableau Tasks -- \\\
-
-    // reg [5:0] tableau[7:0][29:0];
-
-    function automatic tableau_read (
-        input [2:0] col
-    );
-        integer isEmpty;
-        integer i;
-        begin
-            isEmpty = 1;
-            for(i=29; i>=0; i=i-1) begin
-                if(tableau[col][i][3:0] != 4'd0) begin
-                    isEmpty = 0;
-                    tableau_read = tableau[col][i];
-                    break;
-                end
-            end
-            if(isEmpty) begin
-                tableau_read = 6'd0;
-            end
-        end
-    endfunction
-
-
-    function automatic tableau_write(
-        input [3:0] dest,
-        input [5:0] card
-    );
-        integer         isIllegal;
-        integer         i;
-        reg     [5:0]   temp_card;
-        reg     [2:0]   col;
-        begin
-            col = dest[2:0];
-            isIllegal = 1;
-            for(i=28;i>=0;i=i-1) begin
-                // Find first not empty slot
-                if(tableau[col][i][3:0] != 4'd0) begin
-                    temp_card = tableau[col][i][5:0];
-                    // If cards are different suits && descending order
-                    if((temp_card[1] ^ temp_card[0]) ^ (card[5] ^ card[4])
-                    && temp_card[3:0] == card[3:0] + 1'b1) begin
-                        tableau[col][i+1][5:0] = card[5:0];
-                        isIllegal = 0;
-                        tableau_write = 1;
-                        break;
-                    end
-                end
-            end
-            if(isIllegal) begin
-                $display("Illegal move detected! Skipping turn...");
-                tableau_write = 0;
-            end
-        end
-    endfunction
-
-
-    task automatic tableau_remove(
-        input [3:0] source
-    );
-        integer i;
-        reg [2:0] col;
-        integer didNotRemove;
-        begin
-            didNotRemove = 1;
-            col = source[2:0];
-            for(i=29; i>=0; i=i-1) begin
-                if(tableau[col][i][3:0] != 4'd0) begin
-                    didNotRemove = 0;
-                    tableau[col][i][3:0] = 6'd0;
-                    break;
-                end
-            end
-            if(didNotRemove) begin
-                $display("Error removing col card!");
-            end
-        end
-    endtask
-
-    // Automatically sets win to 1 if applicable
-    task checkWin();
-        // HOME FULL LIST MOVED TO NORMAL STORAGE !
-        // reg [3:0] home_full_list;
-        // 1 if full. MSB -> LSB: Diamonds, Clubs, Spades, Hearts
-        integer l;
-        begin
-            for(l=0; l<4; l=l+1) begin
-                home_full_list[l] = home_read(l) == 4'd13;
-            end
-            if(home_full_list == 4'b1111) begin
-                win = 1;
-                $display("Game has been won!");
-            end
-        end
-    endtask
-
-
-    // add breaks to the end of all access loops !!!!
 endmodule

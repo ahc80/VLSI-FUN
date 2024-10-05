@@ -1,12 +1,16 @@
-{C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/freecell.v} {0 {vlog -work work -stats=none {C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/freecell.v}
+{C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/task_tsts.v} {1 {vlog -work work -stats=none {C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/task_tsts.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module task_tester
+
+Top level modules:
+	task_tester
+
+} {} {}} {C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/freecell_tester.v} {1 {vlog -work work -stats=none {C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/freecell_tester.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
 -- Compiling module freecellPlayer
-** Error: (vlog-13069) C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/freecell.v(65): near "write_dest": syntax error, unexpected IDENTIFIER, expecting ';' or '('.
-** Error: C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/freecell.v(113): 'bit' already exists; must not be redefined as a function.
-** Error: (vlog-13069) C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/freecell.v(113): near "free_write": syntax error, unexpected IDENTIFIER, expecting ';' or '('.
-** Error: C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/freecell.v(161): 'bit' already exists; must not be redefined as a function.
-** Error: (vlog-13069) C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/freecell.v(161): near "home_write": syntax error, unexpected IDENTIFIER, expecting ';' or '('.
-** Error: C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/freecell.v(215): 'bit' already exists; must not be redefined as a function.
-** Error: (vlog-13069) C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/freecell.v(215): near "tableau_write": syntax error, unexpected IDENTIFIER, expecting ';' or '('.
+-- Compiling module testFreeCell
 
-} {4.0 11.0} {}}
+Top level modules:
+	testFreeCell
+
+} {} {}}

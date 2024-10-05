@@ -102,6 +102,11 @@ module task_tester ();
         add();
         add();
         add();
+
+        for(i=0; i<4; i=i+1) begin
+            $display("Im NOT gonna break this loop!");
+            $display("Checking index %d : %b", i, hasOne(i));
+        end
     end
 
     function automatic hasOne (

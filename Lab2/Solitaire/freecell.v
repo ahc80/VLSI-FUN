@@ -1,4 +1,4 @@
-module freecellPlayer(
+module myfreecell(
     input           clock, 
     input   [3:0]   source,
     input   [3:0]   dest,
@@ -46,20 +46,29 @@ module freecellPlayer(
     function automatic [5:0] read_source(
         input [3:0] src
     );
-        casez (src[3:0])
-            (4'b0???): begin
-            // Col of tableau
-                read_source[5:0] = tableau_read(src[2:0]);
-            end
-            (4'b10??): begin
-            // Free cell
-                read_source[5:0] = free_read(src[1:0]);
-            end
-            default: begin
-                read_source[5:0] = 5'd0;
-                $display("Something wrong with read_source");
-            end
-        endcase
+        reg [5:0] temp;
+        begin
+            casez (src[3:0])
+                (4'b0???): begin
+                // Col of tableau
+                    temp = tableau_read(src[2:0]);
+                    read_source[5:0] = temp;
+                    $display($time, "readsrc card = %b", temp);
+                end
+                (4'b10??): begin
+                // Free cell
+                    temp[5:0] = free_read(src[1:0]);
+                    read_source[5:0] = temp;
+                    $display($time, "readsrc card = %b", temp);
+                end
+                default: begin
+                    temp[5:0] = 5'd0;
+                    $display($time," Something wrong with read_source");
+                    read_source[5:0] = temp;
+                    $display($time, "readsrc card = %b", temp);
+                end
+            endcase
+        end
     endfunction
 
     function automatic write_dest(
@@ -77,7 +86,7 @@ module freecellPlayer(
                 write_dest = home_write(dest[3:0], card[5:0]);
             end
             default: begin
-                $display("Error occured; defaulted write_dest");
+                $display($time," Error occured; defaulted write_dest");
             end 
         endcase
     endfunction
@@ -93,10 +102,10 @@ module freecellPlayer(
                 free_remove(source[3:0]);
             end
             (4'b11??): begin
-                $display("Error, remove_source got 4'b11??");
+                $display($time," Error, remove_source got 4'b11??");
             end
             default: begin
-                $display("Error occured; defaulted remove_source");
+                $display($time," Error occured; defaulted remove_source");
             end 
         endcase
     endtask
@@ -120,9 +129,10 @@ module freecellPlayer(
             if(free_cells[free_cell_col] == 6'd0 ) begin
                 free_cells[free_cell_col] = card[5:0];
                 free_write = 1; 
+                $display($time," Free wrote!");
             end else begin
                 free_write = 0;
-                $display("Illegal move detected! Skipping turn...");
+                $display($time," Illegal move detected by free_write! Skipping turn...");
             end
         end
     endfunction
@@ -142,18 +152,18 @@ module freecellPlayer(
         input [1:0] suit
     );
     integer i;
-    integer notFound;
+    integer keepSearching;
     begin
-        notFound = 1;
+        keepSearching = 1;
         if(home_cells[suit][0][3:0] == 4'd0) begin
             home_read = 6'd0;
         end else begin
             //  reg [5:0] home_cells [3:0][12:0];
             for(i=12; i>0; i=i-1) begin
                 if(home_cells[suit][i][3:0] != 4'd0
-                && notFound) begin
+                && keepSearching) begin
                     home_read = home_cells[suit][i];
-                    notFound = 0;
+                    keepSearching = 0;
                 end
             end
         end
@@ -165,28 +175,40 @@ module freecellPlayer(
         input [3:0] dest,
         input [5:0] card
     );
-    integer       isIllegal; // 0 means legal, 1 means illegal
-    integer       i;
-    reg     [1:0] suit;
+    reg         keepSearching; // 0 means legal, 1 means illegal
+    integer     i;
+    reg [1:0]   suit;
     begin
-        suit = dest[1:0];
-
-        isIllegal = 1;
-        if(suit == card[5:4]) begin
-            for(i=11; i>=0; i=i-1) begin
-                if(home_cells[suit][i][3:0] != 4'd0 
-                && card[3:0] == home_cells[suit][i][3:0] + 1'b1
-                && isIllegal) begin
-                    isIllegal = 0;
-                    home_cells[suit][i+1] = card;
-                    home_write = 1;
-                end
+        suit = card[5:4];
+        $display($time, " hmwr suit|card %b|%b", suit, card);
+        keepSearching = 1'b1;
+        for(i=11; i>=0; i=i-1) begin
+            $display($time, " %b hmwrLOOP i|keep|card|incel| %d|%b|%b|%b", suit, i, keepSearching, card, home_cells[suit][i][3:0]);
+            if(i==0 
+            && keepSearching 
+            && home_cells[suit][i][3:0] == 4'd0 ) begin
+                $display($time," Home wrote ace!");
+                $display($time, " keep searching was %b", keepSearching);
+                keepSearching = 1'b0;
+                $display($time, " keep searching now %b", keepSearching);
+                home_cells[suit][i] = card;
+                home_write = 1;
+            end 
+            if(home_cells[suit][i][3:0] != 4'd0 
+            && card[3:0] == home_cells[suit][i][3:0] + 1'b1 // - or + ?
+            && keepSearching) begin
+                $display($time," Home wrote nonace!");
+                keepSearching = 1'b0;
+                home_cells[suit][i+1] = card;
+                home_write = 1;
             end
         end
-        if(isIllegal) begin
-            $display("Illegal move detected! Skipping turn...");
+        $display($time, " hmwr read %b", home_read(suit));
+        if(keepSearching) begin
+            $display($time," Illegal move detected by home_write! Skipping turn...");
             home_write = 0;
         end
+        $display($time, " hmwr read %b", home_read(suit));
     end
     endfunction
 
@@ -238,11 +260,12 @@ module freecellPlayer(
                         tableau[col][i+1][5:0] = card[5:0];
                         isIllegal = 0;
                         tableau_write = 1;
+                        $display($time," Tableau wrote!");
                     end
                 end
             end
             if(isIllegal) begin
-                $display("Illegal move detected! Skipping turn...");
+                $display($time," Illegal move detected by tab_write! Skipping turn...");
                 tableau_write = 0;
             end
         end
@@ -266,7 +289,7 @@ module freecellPlayer(
                 end
             end
             if(didNotRemove) begin
-                $display("Error removing col card!");
+                $display($time," Error removing col card!");
             end
         end
     endtask
@@ -283,7 +306,7 @@ module freecellPlayer(
             end
             if(home_full_list == 4'b1111) begin
                 win = 1;
-                $display("Game has been won!");
+                $display($time," Game has been won!");
             end
         end
     endtask
@@ -295,7 +318,7 @@ module freecellPlayer(
     integer i, j;
     initial begin
         
-        $display("Ladies and Gentlemen, we made it to initial");
+        $display($time," Ladies and Gentlemen, we made it to initial");
 
         // Fill all tableau values with blank cards
         for (i=0; i<8; i=i+1) begin
@@ -387,7 +410,6 @@ module freecellPlayer(
     // Play a turn
     always @(posedge clock) begin
         if(~ win) begin
-            $display("We made it this far thankfully");
             temp_card = read_source(source);
             // If source movable (not moving from home && if source not empty)
             if(source[3:2] != 3'b11 && temp_card[3:0] != 4'd0) begin
@@ -396,10 +418,10 @@ module freecellPlayer(
                     remove_source(source);
                 end
             end else begin
-                $display("Illegal move detected! Skipping turn...");
+                $display($time," Illegal move detected by home src checker! Skipping turn...");
             end
         end else begin
-            $display("Game has been won!");
+            $display($time," Game has been won!");
         end
         checkWin();
     end

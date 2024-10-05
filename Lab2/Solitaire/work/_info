@@ -8,115 +8,67 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 dC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire
+dC:/intelFPGA/20.1
 vfreecellPlayer
-Z1 !s110 1728091459
+Z0 !s110 1728149796
 !i10b 1
-!s100 :e4I<OMSgRc?Eo:Od`a843
-Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
-Il@j?[keZ5_m0b9ZA?Go<f2
-Z3 VDg1SIo80bB@j0V0VzS_@n1
-R0
-Z4 w1728088323
+!s100 k>GS6KBzR4aMN^;dPVnDj3
+Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
+ION225ME1BhVzoNWW=SBIL0
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 dC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire
+Z4 w1728144721
 Z5 8C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/freecell_tester.v
 Z6 FC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/freecell_tester.v
-!i122 159
-L0 1 9
+!i122 93
+L0 1 8
 Z7 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z8 !s108 1728091459.000000
+Z8 !s108 1728149796.000000
 Z9 !s107 C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/freecell_tester.v|
 Z10 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/freecell_tester.v|
 !i113 1
 Z11 o-work work
 Z12 tCvgOpt 0
 nfreecell@player
-vfreecellPlayerWooo
-!s110 1728085909
-!i10b 1
-!s100 5dQ=;3BR17Dk[K_7d`RJ02
-R2
-IhBC3JS:8]b>dcoFO]?k]40
-R3
+vmyfreecell
 R0
-w1728085803
+!i10b 1
+!s100 DBV`7;?8?OHo4D1hz80e;2
+R1
+IBji]4a]><JiiFbPHeD0;21
+R2
+R3
+w1728148142
 8C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/freecell.v
 FC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/freecell.v
-!i122 116
-L0 1 410
+!i122 92
+L0 1 429
 R7
 r1
 !s85 0
 31
-!s108 1728085909.000000
+R8
 !s107 C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/freecell.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/freecell.v|
 !i113 1
 R11
 R12
-nfreecell@player@wooo
-vprotoTableau
-!s110 1727718643
-!i10b 1
-!s100 F@kXWTjdUabO06=5@I]9X0
-R2
-IIj5NTI39a[=o9?0>zzVdZ2
-R3
-R0
-w1727718638
-8C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/prototableau.v
-FC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/prototableau.v
-!i122 0
-L0 4 45
-R7
-r1
-!s85 0
-31
-!s108 1727718643.000000
-!s107 C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/prototableau.v|
-!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/prototableau.v|
-!i113 1
-R11
-R12
-nproto@tableau
-vspeaker
-Z13 !s110 1728085531
-!i10b 1
-!s100 Mb75RjnDYKVan>n`VNe9;3
-R2
-ILhGa]41VIR7cYlIek;]dN3
-R3
-R0
-w1728084542
-8C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/speaker.v
-FC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/speaker.v
-!i122 109
-L0 1 5
-R7
-r1
-!s85 0
-31
-Z14 !s108 1728085531.000000
-!s107 C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/speaker.v|
-!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/speaker.v|
-!i113 1
-R11
-R12
 vtask_tester
-R1
-!i10b 1
-!s100 c6aKcFZRM:VVaiC=e=RjW2
-R2
-IgoX`f;^N8SlY=0IOCaAod0
-R3
 R0
-w1728090884
+!i10b 1
+!s100 X1^ig58B^dVaOzCFmdaKa3
+R1
+IEA10nK@9nSmWABIFgO:kB0
+R2
+R3
+w1728149793
 8C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/task_tsts.v
 FC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/task_tsts.v
-!i122 160
-L0 1 161
+!i122 94
+L0 1 185
 R7
 r1
 !s85 0
@@ -128,18 +80,18 @@ R8
 R11
 R12
 vtestFreeCell
-R1
-!i10b 1
-!s100 OEo2iNK:QZm927d2dUJg@2
-R2
-IiWAmh=Se<4aeF8IL6==>70
-R3
 R0
+!i10b 1
+!s100 B9iFffne4oblJKLnjCm3E3
+R1
+Im30D@<KzKId5XoaGLURS[0
+R2
+R3
 R4
 R5
 R6
-!i122 159
-Z15 L0 11 176
+!i122 93
+L0 10 184
 R7
 r1
 !s85 0
@@ -151,51 +103,3 @@ R10
 R11
 R12
 ntest@free@cell
-vtheirCell
-R13
-!i10b 1
-!s100 U_E[?ac=;NJ=Fe4_OUhcb3
-R2
-I[zJ>C0e2m6aTm;]m^5>J^0
-R3
-R0
-w1728084246
-8C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/theircell.v
-FC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/theircell.v
-!i122 107
-L0 1 336
-R7
-r1
-!s85 0
-31
-!s108 1728085530.000000
-!s107 C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/theircell.v|
-!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/theircell.v|
-!i113 1
-R11
-R12
-ntheir@cell
-vtheirTest
-R13
-!i10b 1
-!s100 Z`=zccBhda?zXWBYjdTbl3
-R2
-Im`ZGKV9R]Q49dzHKNofS]2
-R3
-R0
-w1728084239
-8C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/theirtest.v
-FC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/theirtest.v
-!i122 108
-R15
-R7
-r1
-!s85 0
-31
-R14
-!s107 C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/theirtest.v|
-!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/theirtest.v|
-!i113 1
-R11
-R12
-ntheir@test

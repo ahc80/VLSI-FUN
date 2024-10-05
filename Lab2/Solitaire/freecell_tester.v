@@ -4,8 +4,7 @@ input	clock;
 output	win;
 
 always	@(posedge clock or source or dest)
-	$display($time,"  %d %d", source,dest);
-
+	$display($time,"  %b %b", source,dest);
 endmodule
 
 module testFreeCell;
@@ -86,6 +85,7 @@ module testFreeCell;
 	doMove("b8");	// 32
 	doMove("a8");	// 33
 	doMove("18");	// 34
+    $display($time, " ILLEGAL HAPPENING!");
 	doMove("12");	// illegal
 	doMove("2a");	// 35
 	doMove("28");	// 36
@@ -97,6 +97,7 @@ module testFreeCell;
 	doMove("3h");	// 42
 	doMove("37");	// 43
 	doMove("a1");	// 44
+    $display($time," ILLEGAL HAPPENING!");
 	doMove("h4");	// illegal
 	doMove("31");	// 45
 	doMove("3a");	// 46
@@ -104,12 +105,14 @@ module testFreeCell;
 	doMove("13");	// 48
 	doMove("c3");	// 49
 	doMove("2c");	// 50
+    $display($time," ILLEGAL HAPPENING!");
 	doMove("8c");	// illegal
 	doMove("2d");	// 51
 	doMove("23");	// 52
 	doMove("24");	// 53
 	doMove("a3");	// 54
 	doMove("c3");	// 55
+    $display($time, "ILLEGAL HAPPENING!");
 	doMove("c2");	// illegal
 	doMove("2h");	// 56
 	doMove("6a");	// 57
@@ -118,6 +121,7 @@ module testFreeCell;
 	doMove("a4");	// 60
 	doMove("dh");	// 61
 	doMove("5h");	// 62
+    $display($time, "ILLEGAL HAPPENING!");
 	doMove("ah");	// illegal
 	doMove("62");	// 63
 	doMove("52");	// 64
@@ -166,6 +170,7 @@ module testFreeCell;
 	doMove("8h");	// 107
 	doMove("2h");	// 108
 	doMove("4h");	// 109
+    $display($time, "ILLEGAL HAPPENING!");
 	doMove("8h");	// illegal
 	doMove("5h");	// 110
 	doMove("6h");	// 111
@@ -178,9 +183,11 @@ module testFreeCell;
 
     // Clock generator.
     always begin
-	#200 clock = ~clock;
+	#5 clock = ~clock;
     end
 
     freecellPlayer fc(clock,source,dest,win);
+
+    myfreecell mfc(clock,source,dest,win);
 
 endmodule // testFreeCell

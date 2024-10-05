@@ -107,7 +107,31 @@ module task_tester ();
             $display("Im NOT gonna break this loop!");
             $display("Checking index %d : %b", i, hasOne(i));
         end
+
+        testWhile(5);
+        testWhile(10);
+        testWhile(15);
+        testWhile(20);
+
     end
+
+    task automatic testWhile (
+        input integer stopPoint
+        );
+        integer i;
+        integer go;
+        begin
+            $display("testWhile: stopPoint = %d", stopPoint);
+            i = 0;
+            go = 1;
+            while (i < 10 && go) begin
+                $display("i=%d | go=%d", i, go);
+                if(i == stopPoint) begin
+                    go = 0;
+                end
+            end
+        end
+    endtask
 
     function automatic hasOne (
         input integer index 

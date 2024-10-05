@@ -1,3 +1,5 @@
+//ECSE 318 Andrew Chen and Audrey Michel
+//Lab 2
 // ALU_test Module (1995 compliant)
 module ALU_test(
     A, B, alu_code, coe, C, vout, cout

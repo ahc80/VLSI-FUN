@@ -1,3 +1,5 @@
+//ECSE 318 Andrew Chen and Audrey Michel
+//Lab 2
 `timescale 1ps/1fs
 
 module alu_tb;

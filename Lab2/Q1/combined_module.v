@@ -1,3 +1,7 @@
+//ECSE 318 Andrew Chen and Audrey Michel
+//Lab 2
+//This verilog file is the combination of all of the files so that it can run in synthesis
+
 // Adder Module (1995 compliant)
 module adder(
     A, B,         // 16-bit inputs

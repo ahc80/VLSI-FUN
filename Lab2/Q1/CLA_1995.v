@@ -1,3 +1,6 @@
+//ECSE 318 Andrew Chen and Audrey Michel
+//Lab 2
+
 module cla16bit (
     A, B, cin, SUM, C_OUT
 );

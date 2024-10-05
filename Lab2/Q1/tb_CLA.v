@@ -1,3 +1,5 @@
+//ECSE 318 Andrew Chen and Audrey Michel
+//Lab 2
 `timescale 1ps/1fs // Set timescale to 1 picosecond with 1 femtosecond precision
 module cla16bit_tb;
 

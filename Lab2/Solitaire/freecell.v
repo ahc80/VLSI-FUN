@@ -62,7 +62,7 @@ module freecellPlayer(
         endcase
     endfunction
 
-    function automatic bit write_dest(
+    function automatic write_dest(
         input [3:0] dest,
         input [5:0] card
     );
@@ -110,7 +110,7 @@ module freecellPlayer(
     endfunction
 
     // Place card in free cell. Automatically checks legality
-    function automatic [0] free_write(
+    function automatic free_write(
         input  [3:0]    dest,
         input  [5:0]    card
     );
@@ -119,9 +119,9 @@ module freecellPlayer(
             free_cell_col = dest[1:0];
             if(free_cells[free_cell_col] == 6'd0 ) begin
                 free_cells[free_cell_col] = card[5:0];
-                free_write[0] = 1; 
+                free_write = 1; 
             end else begin
-                free_write[0] = 0;
+                free_write = 0;
                 $display("Illegal move detected! Skipping turn...");
             end
         end
@@ -142,15 +142,18 @@ module freecellPlayer(
         input [1:0] suit
     );
     integer i;
+    integer notFound;
     begin
+        notFound = 1;
         if(home_cells[suit][0][3:0] == 4'd0) begin
             home_read = 6'd0;
         end else begin
             //  reg [5:0] home_cells [3:0][12:0];
             for(i=12; i>0; i=i-1) begin
-                if(home_cells[suit][i][3:0] != 4'd0) begin
+                if(home_cells[suit][i][3:0] != 4'd0
+                && notFound) begin
                     home_read = home_cells[suit][i];
-                    break;
+                    notFound = 0;
                 end
             end
         end
@@ -158,7 +161,7 @@ module freecellPlayer(
     endfunction
 
     // automatically checks legality
-    function automatic [0] home_write(
+    function automatic home_write(
         input [3:0] dest,
         input [5:0] card
     );
@@ -167,15 +170,16 @@ module freecellPlayer(
     reg     [1:0] suit;
     begin
         suit = dest[1:0];
+
         isIllegal = 1;
         if(suit == card[5:4]) begin
             for(i=11; i>=0; i=i-1) begin
                 if(home_cells[suit][i][3:0] != 4'd0 
-                && card[3:0] == home_cells[suit][i][3:0] + 1'b1) begin
+                && card[3:0] == home_cells[suit][i][3:0] + 1'b1
+                && isIllegal) begin
                     isIllegal = 0;
                     home_cells[suit][i+1] = card;
                     home_write = 1;
-                    break;
                 end
             end
         end
@@ -199,10 +203,10 @@ module freecellPlayer(
         begin
             isEmpty = 1;
             for(i=29; i>=0; i=i-1) begin
-                if(tableau[col][i][3:0] != 4'd0) begin
+                if(tableau[col][i][3:0] != 4'd0
+                && isEmpty) begin
                     isEmpty = 0;
                     tableau_read = tableau[col][i];
-                    break;
                 end
             end
             if(isEmpty) begin
@@ -212,7 +216,7 @@ module freecellPlayer(
     endfunction
 
 
-    function automatic [0] tableau_write(
+    function automatic tableau_write(
         input [3:0] dest,
         input [5:0] card
     );
@@ -229,11 +233,11 @@ module freecellPlayer(
                     temp_card = tableau[col][i][5:0];
                     // If cards are different suits && descending order
                     if((temp_card[1] ^ temp_card[0]) ^ (card[5] ^ card[4])
-                    && temp_card[3:0] == card[3:0] + 1'b1) begin
+                    && temp_card[3:0] == card[3:0] + 1'b1
+                    && isIllegal) begin
                         tableau[col][i+1][5:0] = card[5:0];
                         isIllegal = 0;
                         tableau_write = 1;
-                        break;
                     end
                 end
             end
@@ -255,10 +259,10 @@ module freecellPlayer(
             didNotRemove = 1;
             col = source[2:0];
             for(i=29; i>=0; i=i-1) begin
-                if(tableau[col][i][3:0] != 4'd0) begin
+                if(tableau[col][i][3:0] != 4'd0
+                && didNotRemove) begin
                     didNotRemove = 0;
                     tableau[col][i][3:0] = 6'd0;
-                    break;
                 end
             end
             if(didNotRemove) begin
@@ -303,7 +307,7 @@ module freecellPlayer(
         // Fill home cell values with blank cards
         for(i=0; i<4; i=i+1) begin
             for(j=0; j<13; j=j+1) begin
-                home_cells[i][j] = {i[1:0], 4'b0000};
+                home_cells[i][j] = {i, 4'b0000};
             end
         end
 

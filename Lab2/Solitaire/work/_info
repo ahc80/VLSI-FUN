@@ -10,7 +10,7 @@ z2
 cModel Technology
 dC:/intelFPGA/20.1
 vfreecellPlayer
-Z0 !s110 1728149796
+Z0 !s110 1728160115
 !i10b 1
 !s100 k>GS6KBzR4aMN^;dPVnDj3
 Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
@@ -20,13 +20,13 @@ Z3 dC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire
 Z4 w1728144721
 Z5 8C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/freecell_tester.v
 Z6 FC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/freecell_tester.v
-!i122 93
+!i122 147
 L0 1 8
 Z7 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z8 !s108 1728149796.000000
+Z8 !s108 1728160115.000000
 Z9 !s107 C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/freecell_tester.v|
 Z10 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/freecell_tester.v|
 !i113 1
@@ -36,16 +36,16 @@ nfreecell@player
 vmyfreecell
 R0
 !i10b 1
-!s100 DBV`7;?8?OHo4D1hz80e;2
+!s100 <Ti@CP=Ihl[923[>:`zBa0
 R1
-IBji]4a]><JiiFbPHeD0;21
+I6Bam@WU6dN^7HlMOKez]^1
 R2
 R3
-w1728148142
+w1728160110
 8C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/freecell.v
 FC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/freecell.v
-!i122 92
-L0 1 429
+!i122 146
+L0 1 417
 R7
 r1
 !s85 0
@@ -59,16 +59,16 @@ R12
 vtask_tester
 R0
 !i10b 1
-!s100 X1^ig58B^dVaOzCFmdaKa3
+!s100 ?b;68bJciQ0lYm>U2?88?3
 R1
-IEA10nK@9nSmWABIFgO:kB0
+ImOPC0ZEkhh64OzBEjgSOK1
 R2
 R3
-w1728149793
+w1728152291
 8C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/task_tsts.v
 FC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab2/Solitaire/task_tsts.v
-!i122 94
-L0 1 185
+!i122 148
+L0 1 174
 R7
 r1
 !s85 0
@@ -90,7 +90,7 @@ R3
 R4
 R5
 R6
-!i122 93
+!i122 147
 L0 10 184
 R7
 r1

@@ -8,6 +8,7 @@ module task_tester ();
     reg [3:0] y;
     reg [3:0] z;
     reg [1:0] stor_index;
+    reg [5:0] numReg;
  
     integer sum;  
     integer isAdj;  
@@ -108,30 +109,18 @@ module task_tester ();
             $display("Checking index %d : %b", i, hasOne(i));
         end
 
-        testWhile(5);
-        testWhile(10);
-        testWhile(15);
-        testWhile(20);
+        numReg = 0;
+        $display("numReg (0): %d", numReg);
 
+        numReg = numReg + 1;
+        $display("numReg (1): %d", numReg);
+
+        numReg = numReg + 1;
+        $display("numReg (2): %d", numReg);
+
+        numReg = numReg - 1;
+        $display("numReg (1): %d", numReg);
     end
-
-    task automatic testWhile (
-        input integer stopPoint
-        );
-        integer i;
-        integer go;
-        begin
-            $display("testWhile: stopPoint = %d", stopPoint);
-            i = 0;
-            go = 1;
-            while (i < 10 && go) begin
-                $display("i=%d | go=%d", i, go);
-                if(i == stopPoint) begin
-                    go = 0;
-                end
-            end
-        end
-    endtask
 
     function automatic hasOne (
         input integer index 

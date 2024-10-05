@@ -37,8 +37,10 @@ module myfreecell(
     reg [5:0] free_cells [3:0];
     reg [5:0] home_cells [3:0][12:0]; // 0: Hearts  1: Spades  2: Clubs  3: Diamonds
     reg [5:0] tableau    [7:0][29:0];
-    reg [3:0] home_full_list; // 1 if full. MSB -> LSB: Diamonds, Clubs, Spades, Hearts
     reg [5:0] temp_card;
+
+    reg [3:0] home_pointer   [3:0];
+    reg [4:0] tableau_pointer[7:0];
 
 
     // ----- ----- Functions & Tasks ----- ----- \\
@@ -53,19 +55,16 @@ module myfreecell(
                 // Col of tableau
                     temp = tableau_read(src[2:0]);
                     read_source[5:0] = temp;
-                    $display($time, "readsrc card = %b", temp);
                 end
                 (4'b10??): begin
                 // Free cell
                     temp[5:0] = free_read(src[1:0]);
                     read_source[5:0] = temp;
-                    $display($time, "readsrc card = %b", temp);
                 end
                 default: begin
                     temp[5:0] = 5'd0;
                     $display($time," Something wrong with read_source");
                     read_source[5:0] = temp;
-                    $display($time, "readsrc card = %b", temp);
                 end
             endcase
         end
@@ -151,23 +150,7 @@ module myfreecell(
     function automatic [5:0] home_read(
         input [1:0] suit
     );
-    integer i;
-    integer keepSearching;
-    begin
-        keepSearching = 1;
-        if(home_cells[suit][0][3:0] == 4'd0) begin
-            home_read = 6'd0;
-        end else begin
-            //  reg [5:0] home_cells [3:0][12:0];
-            for(i=12; i>0; i=i-1) begin
-                if(home_cells[suit][i][3:0] != 4'd0
-                && keepSearching) begin
-                    home_read = home_cells[suit][i];
-                    keepSearching = 0;
-                end
-            end
-        end
-    end
+    home_read = home_pointer[suit];
     endfunction
 
     // automatically checks legality
@@ -175,40 +158,28 @@ module myfreecell(
         input [3:0] dest,
         input [5:0] card
     );
-    reg         keepSearching; // 0 means legal, 1 means illegal
-    integer     i;
-    reg [1:0]   suit;
+    reg [1:0] suit;
     begin
         suit = card[5:4];
-        $display($time, " hmwr suit|card %b|%b", suit, card);
-        keepSearching = 1'b1;
-        for(i=11; i>=0; i=i-1) begin
-            $display($time, " %b hmwrLOOP i|keep|card|incel| %d|%b|%b|%b", suit, i, keepSearching, card, home_cells[suit][i][3:0]);
-            if(i==0 
-            && keepSearching 
-            && home_cells[suit][i][3:0] == 4'd0 ) begin
-                $display($time," Home wrote ace!");
-                $display($time, " keep searching was %b", keepSearching);
-                keepSearching = 1'b0;
-                $display($time, " keep searching now %b", keepSearching);
-                home_cells[suit][i] = card;
-                home_write = 1;
-            end 
-            if(home_cells[suit][i][3:0] != 4'd0 
-            && card[3:0] == home_cells[suit][i][3:0] + 1'b1 // - or + ?
-            && keepSearching) begin
+
+        // If empty home and card is ace, write
+        if(home_pointer[suit]==0 
+        && home_cells[suit][home_pointer[suit]][3:0] == 4'd0 ) begin
+            $display($time," Home wrote ace!");
+            home_cells[suit][home_pointer[suit]] = card;
+            home_write = 1;
+        end else begin
+            // If there is non-ace and card follows order, write
+            if(home_cells[suit][home_pointer[suit]][3:0] != 4'd0 
+            && card[3:0] == home_cells[suit][home_pointer[suit]][3:0] + 1'b1) begin
                 $display($time," Home wrote nonace!");
-                keepSearching = 1'b0;
-                home_cells[suit][i+1] = card;
-                home_write = 1;
+                home_pointer[suit] = home_pointer[suit] + 1;
+                home_cells[suit][home_pointer[suit]][5:0] = card;
+            end else begin
+                home_write = 0;
+                $display($time," Illegal move detected by home_write! Skipping turn...");
             end
         end
-        $display($time, " hmwr read %b", home_read(suit));
-        if(keepSearching) begin
-            $display($time," Illegal move detected by home_write! Skipping turn...");
-            home_write = 0;
-        end
-        $display($time, " hmwr read %b", home_read(suit));
     end
     endfunction
 
@@ -220,21 +191,7 @@ module myfreecell(
     function automatic [5:0] tableau_read (
         input [2:0] col
     );
-        integer isEmpty;
-        integer i;
-        begin
-            isEmpty = 1;
-            for(i=29; i>=0; i=i-1) begin
-                if(tableau[col][i][3:0] != 4'd0
-                && isEmpty) begin
-                    isEmpty = 0;
-                    tableau_read = tableau[col][i];
-                end
-            end
-            if(isEmpty) begin
-                tableau_read = 6'd0;
-            end
-        end
+        tableau_read = tableau[col][tableau_pointer[col]];
     endfunction
 
 
@@ -242,32 +199,55 @@ module myfreecell(
         input [3:0] dest,
         input [5:0] card
     );
-        integer         isIllegal;
-        integer         i;
-        reg     [5:0]   temp_card;
-        reg     [2:0]   col;
+        reg [2:0] col;
+        reg [5:0] tab_card;
         begin
             col = dest[2:0];
-            isIllegal = 1;
-            for(i=28;i>=0;i=i-1) begin
-                // Find first not empty slot
-                if(tableau[col][i][3:0] != 4'd0) begin
-                    temp_card = tableau[col][i][5:0];
-                    // If cards are different suits && descending order
-                    if((temp_card[1] ^ temp_card[0]) ^ (card[5] ^ card[4])
-                    && temp_card[3:0] == card[3:0] + 1'b1
-                    && isIllegal) begin
-                        tableau[col][i+1][5:0] = card[5:0];
-                        isIllegal = 0;
-                        tableau_write = 1;
-                        $display($time," Tableau wrote!");
-                    end
-                end
+            tab_card = tableau[col][tableau_pointer[col]][5:0];
+
+            //If tableau empty (ptr is 0 and points to no value)
+            if(tableau_pointer[col] == 0
+            && tableau[col][tableau_pointer[col]][3:0] == 4'd0) begin
+                tableau[col][tableau_pointer[col]][5:0] = card;
+                tableau_pointer[col] = tableau_pointer[col] + 1;
+                $display($time," Tableau wrote to empty tab!");
+                tableau_write = 1;
+            end else begin
+                $display($time, " Tab first else, suits %b|%b", tab_card[5:4], card[5:4]);
+                $display($time, "Card math %b=%b", tab_card[3:0], (card[3:0] + 1'b1) );
+                // If cards are diff suits AND descending order, write
+                if( isDiffSuit(tab_card[5:4], card[5:4])
+                && tab_card[3:0] == (card[3:0] + 1'b1) ) begin             // WHAT IF ITS AN ACE
+                    tableau_pointer[col] = tableau_pointer[col] + 1;
+                    tableau[col][tableau_pointer[col]][5:0] = card;
+                    $display($time," Tableau wrote to nonempty tab!");
+                    tableau_write = 1;
+                end else begin
+                    $display($time," Illegal move detected by tab_write! Skipping turn...");
+                    tableau_write = 0;
+                end 
+            end          
+        end
+    endfunction
+
+    function automatic isDiffSuit(
+        input [1:0] A,
+        input [1:0] B
+    );
+        integer AisBlack;
+        integer BisBlack;
+        begin
+            if(A == 2'b00 || A == 2'b11) begin
+                AisBlack = 0;
+            end else begin
+                AisBlack = 1;
             end
-            if(isIllegal) begin
-                $display($time," Illegal move detected by tab_write! Skipping turn...");
-                tableau_write = 0;
+            if(B == 2'b00 || B == 2'b11) begin
+                BisBlack = 0;
+            end else begin
+                BisBlack = 1;
             end
+            isDiffSuit = AisBlack != BisBlack;
         end
     endfunction
 
@@ -275,21 +255,23 @@ module myfreecell(
     task automatic tableau_remove(
         input [3:0] source
     );
-        integer i;
         reg [2:0] col;
-        integer didNotRemove;
         begin
-            didNotRemove = 1;
             col = source[2:0];
-            for(i=29; i>=0; i=i-1) begin
-                if(tableau[col][i][3:0] != 4'd0
-                && didNotRemove) begin
-                    didNotRemove = 0;
-                    tableau[col][i][3:0] = 6'd0;
-                end
+            tableau[col][tableau_pointer[col]] = 6'd0;
+            // If ptr = 0 AND tab is empty
+            if(tableau_pointer[col] == 0 
+            && tableau[col][tableau_pointer[col]][3:0] == 4'd0) begin
+                $display($time, " Tab tried to remove empty tab!");
             end
-            if(didNotRemove) begin
-                $display($time," Error removing col card!");
+            // If ptr = 0 AND tab is NOT empty
+            if(tableau_pointer[col] == 0 
+            && tableau[col][tableau_pointer[col]][3:0] != 4'd0) begin
+                tableau[col][tableau_pointer[col]] = 6'd0;
+            end else begin
+                // Now ptr != 0 and there should be an entry at ptr
+                tableau[col][tableau_pointer[col]] = 6'd0;
+                tableau_pointer[col] = tableau_pointer[col] - 1;
             end
         end
     endtask
@@ -297,17 +279,12 @@ module myfreecell(
     // Automatically sets win to 1 if applicable
     task checkWin();
         // HOME FULL LIST MOVED TO NORMAL STORAGE !
-        // reg [3:0] home_full_list;
         // 1 if full. MSB -> LSB: Diamonds, Clubs, Spades, Hearts
-        integer l;
-        begin
-            for(l=0; l<4; l=l+1) begin
-                home_full_list[l] = home_read(l) == 4'd13;
-            end
-            if(home_full_list == 4'b1111) begin
-                win = 1;
-                $display($time," Game has been won!");
-            end
+        if(home_pointer[0] == 13
+        && home_pointer[1] == 13
+        && home_pointer[2] == 13
+        && home_pointer[3] == 13) begin
+            win = 1;
         end
     endtask
 
@@ -332,7 +309,9 @@ module myfreecell(
             for(j=0; j<13; j=j+1) begin
                 home_cells[i][j] = {i, 4'b0000};
             end
+            home_pointer[i] = 0;
         end
+        
 
         // Fill all free cells with blank cards
         for (i=0; i<4; i=i+1) begin
@@ -351,6 +330,7 @@ module myfreecell(
         tableau[0][4] = {spades   , three };
         tableau[0][5] = {diamonds , ace   };
         tableau[0][6] = {hearts   , ace   };
+        tableau_pointer[0] = 6;
 
         tableau[1][0] = {spades   , five  };
         tableau[1][1] = {spades   , ten   };
@@ -359,6 +339,7 @@ module myfreecell(
         tableau[1][4] = {hearts   , six   };
         tableau[1][5] = {hearts   , king  };
         tableau[1][6] = {hearts   , two   };
+        tableau_pointer[1] = 6;
 
         tableau[2][0] = {spades   , joker };
         tableau[2][1] = {clubs    , seven };
@@ -367,6 +348,7 @@ module myfreecell(
         tableau[2][4] = {clubs    , two   };
         tableau[2][5] = {spades   , king  };
         tableau[2][6] = {clubs    , ace   };
+        tableau_pointer[2] = 6;
 
         tableau[3][0] = {hearts   , four  };
         tableau[3][1] = {spades   , ace   };
@@ -375,6 +357,7 @@ module myfreecell(
         tableau[3][4] = {spades   , seven };
         tableau[3][5] = {hearts   , nine  };
         tableau[3][6] = {spades   , eight };
+        tableau_pointer[3] = 6;
 
         tableau[4][0] = {diamonds , queen };
         tableau[4][1] = {hearts   , joker };
@@ -382,6 +365,7 @@ module myfreecell(
         tableau[4][3] = {spades   , six   };
         tableau[4][4] = {diamonds , two   };
         tableau[4][5] = {spades   , nine  };
+        tableau_pointer[4] = 5;
 
         tableau[5][0] = {diamonds , five  };
         tableau[5][1] = {diamonds , king  };
@@ -389,6 +373,7 @@ module myfreecell(
         tableau[5][3] = {diamonds , nine  };
         tableau[5][4] = {hearts   , three };
         tableau[5][5] = {spades   , two   };
+        tableau_pointer[5] = 5;
 
         tableau[6][0] = {hearts   , five  };
         tableau[6][1] = {diamonds , three };
@@ -396,6 +381,7 @@ module myfreecell(
         tableau[6][3] = {diamonds , seven };
         tableau[6][4] = {clubs    , king  };
         tableau[6][5] = {clubs    , ten   };
+        tableau_pointer[6] = 5;
 
         tableau[7][0] = {clubs    , joker };
         tableau[7][1] = {diamonds , four  };
@@ -403,6 +389,7 @@ module myfreecell(
         tableau[7][3] = {clubs    , eight };
         tableau[7][4] = {hearts   , seven };
         tableau[7][5] = {diamonds , eight };
+        tableau_pointer[7] = 5;
     end
 
 
@@ -411,6 +398,7 @@ module myfreecell(
     always @(posedge clock) begin
         if(~ win) begin
             temp_card = read_source(source);
+            $display($time, " src|dst card %b|%b", temp_card, read_source(dest));
             // If source movable (not moving from home && if source not empty)
             if(source[3:2] != 3'b11 && temp_card[3:0] != 4'd0) begin
                 // If destination is legal (automatically writes card if legal)

@@ -214,7 +214,7 @@ module myfreecell(
                 $display($time," Tableau wrote to empty tab!");
                 tableau_write = 1;
             end else begin
-                $display($time, " tabptr+1=%b", tableau[col][tableau_pointer[col]]);
+                $display($time, " tabptr+1=%b", tableau[col][tableau_pointer[col] + 1]);
                 $display($time, " Card math %b=%b", (card[3:0] + 1'b1), tab_card[3:0]);
                 // If cards are diff suits AND descending order, write
                 if(isDiffSuit(tab_card[5:4], card[5:4])
@@ -261,7 +261,7 @@ module myfreecell(
             col = source[2:0];
             tableau[col][tableau_pointer[col]] = 6'd0;
             if(tableau_pointer[col] != 0) begin
-                tableau_pointer[col] = tableau_pointer[col] - 1;
+                tableau_pointer[col] = tableau_pointer[col] - 1'b1;
                 $display($time, " removed nonzeroth tab entry");
             end else begin
                 $display($time, " removed tab; now empty");
@@ -287,8 +287,6 @@ module myfreecell(
     // initialize values
     integer i, j;
     initial begin
-        
-        $display($time," Ladies and Gentlemen, we made it to initial");
 
         // Fill all tableau values with blank cards
         for (i=0; i<8; i=i+1) begin
@@ -391,7 +389,6 @@ module myfreecell(
     always @(posedge clock) begin
         if(~ win) begin
             temp_card = read_source(source);
-            $display($time, " src|dst card %b|%b", temp_card, read_source(dest));
             // If source movable (not moving from home && if source not empty)
             if(source[3:2] != 3'b11 && temp_card[3:0] != 4'd0) begin
                 // If destination is legal (automatically writes card if legal)

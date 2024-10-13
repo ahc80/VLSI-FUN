@@ -10,5 +10,8 @@ entity fullAdder is
     end fullAdder;
 
     architecture basicFA of fullAdder is
-        begin
-            
+        process (A, B, Cin)
+        begin 
+                Sum <= A XOR B XOR Cin;
+                Cout <= (A AND B) OR (Cin AND A) OR (Cin AND B);
+    end basicFA;

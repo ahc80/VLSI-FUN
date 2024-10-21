@@ -18,7 +18,6 @@ module csa(
     wire [14:0] s15, c14;
     wire [15:0]      c15;
 
-
     NBitCSA #(
     .N(8)
     ) BitCSA_instance8(

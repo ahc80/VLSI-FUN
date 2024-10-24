@@ -18,7 +18,7 @@ architecture Behavioral of four_CAS_array is
     signal C_out_wire : std_logic_vector(3 downto 0);
 begin
     -- Instantiate the first controlled_adder_substractor
-    cas0: entity work.controlled_adder_substractor
+    cas0: entity work.controlled_adder_subtractor
         port map (
             A => A(0),
             B => B,
@@ -30,7 +30,7 @@ begin
 
     -- Generate the remaining controlled_adder_substractors
     gen_cas: for i in 1 to 3 generate
-        cas_inst: entity work.controlled_adder_substractor
+        cas_inst: entity work.controlled_adder_subtractor
             port map (
                 A => A(i),
                 B => B,

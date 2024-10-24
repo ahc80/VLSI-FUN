@@ -10,24 +10,25 @@ module processor (
     // ----- ----- Internal registers ----- ----- \\
 
     // Program Counter - stores next instruction mem address
-    reg [11:0] PC;
+    reg [11:0] program_counter;
     // Instruction Counter - FETCH, DECODE, EXEC, etc
-    reg [ 3:0] IC;
+    reg [ 3:0] instruction_counter;
     // Instruction Register  - [31:28 - OPcode][27:24 - CC][27:26 - src,dest reg&mem/imm][23:12 - srcsAddrs/shiftOrRotate][11:0 - dest]
     reg [31:0] IR;
     // Processor Status Register - [4 - Zero][3 - Negative][2 - Even][1 - Parity][0 - Carry]
     reg [ 4:0] PSR; 
     // Operands - the working registers
-    reg [31:0] operand1;
-    reg [31:0] operand2;
+    reg [31:0] dest_data;
+    reg [31:0] src_data;
     // Boolean to make halt work
     reg        isHalted;
+    // Boolean to handle branching
+    reg        isBranching;
 
     // Register file = memory
     reg [31:0] register_file [15:0];
 
     // ----- ----- Local Parameters ----- ----- \\
-
     // Conidition Code
     localparam  A_cc = 3'd0;
     localparam  P_cc = 3'd1;
@@ -56,91 +57,120 @@ module processor (
     localparam EXECUTE      = 3'd2;
     localparam MEM_ACCESS   = 3'd3;
     localparam WRITEBACK    = 3'd4;
+
+    // Shorthand
+    localparam SET_PSR      = 5'b11111
  
     // ----- ----- Processor Tasks ----- ----- \\
 
-    // Helper tasks
-    task read_address(
-        input [11:0] address_in
-    );
-        reading <= 1'b1;
-        address <= address_in;
+    task set_psr_task();
+        // Blindspot: I think carry from add should always be 0?
+        PSR[0] <= 32'b0;
+        PSR[1] <= ^ dest_data[3];
+        PSR[2] <= ~ (dest_data[31] ^ dest_data[0]);  // get ready to change if bug
+        PSR[3] <= dest_data[31];
+        PSR[4] <= ~ (| dest_data);
     endtask
 
+    always @(negedge clk ) begin
+        // increment PC
 
-always @(posedge clk ) begin
-    if(~ isHalted) begin
-        case (IC)
-
-            (FETCH): begin
-            // Retrive instructions
-                reading <= 1'b1;
-                address <= address_in;
-                IR <= data_in;
-            end
-
-            (DECODE): begin
-            // retrieve register values
-                operand1 <= 
-                operand2 <=
-            end
-
-            (EXECUTE): begin
-                case (IR[31:28)
-                    (NOP_op): begin
-                        // idle
-                    end
-
-                    (LD_op): begin
-                        
-                    end 
-
-                    (STR_op): begin
-                        
-                    end 
-
-                    (BRA_op): begin
-                        
-                    end 
-
-                    (XOR_op): begin
-                        
-                    end
-
-                    (ADD_op): begin
-                        
-                    end 
-
-                    (ROT_op): begin
-                        
-                    end 
-
-                    (SHF_op): begin
-                        
-                    end 
-
-                    (HLT_op): begin
-                        
-                    end 
-
-                    (CMP_op): begin
-                        
-                    end
-
-                    default: begin
-                        $display($time, " ERROR! Invalid OpCode");
-                    end
-                endcase
-            end
-
-            (MEM_ACCESS): begin
-                
-            end
-
-            (WRITEBACK): begin
-                
-            end
+        // OR IS THIS PART OF DECODE?
     end
-end
-    
+
+    always @(posedge clk ) begin
+        if(~ isHalted) begin
+            case (instruction_counter)
+
+                (FETCH): begin
+                // Retrive instructions
+
+                // Read from ram
+                // Update IR
+                //
+                    reading <= 1'b1;
+                    address <= program_counter;
+                    IR      <= data_in;
+                end
+
+                (DECODE): begin
+                // retrieve register values
+                    dest_data <= (IR[26])? IR[11:0] : register_file[IR[3:0]];
+                    src_data  <= (IR[27])? IR[23:12]: register_file[IR[15:12]];
+                end
+
+                (EXECUTE): begin
+                    case (IR[31:28)
+                        (NOP_op): begin
+                            // idle
+                        end
+
+                        (LD_op): begin //set PSR, 0is0
+                            
+                        end 
+
+                        (STR_op): begin // CLEAR PSR
+                            
+                        end 
+
+                        (BRA_op): begin 
+                            
+                        end 
+
+                        (XOR_op): begin //set PSR, 0is0
+                            
+                        end
+
+                        (ADD_op): begin //set PSR, 0is0
+                            
+                        end 
+
+                        (ROT_op): begin //set PSR, poss carry?
+                            
+                        end 
+
+                        (SHF_op): begin //set PSR, 0should0?
+                            
+                        end 
+
+                        (HLT_op): begin
+                            
+                        end 
+
+                        (CMP_op): begin //set PSR, 0is0
+                            
+                        end
+
+                        default: begin
+                            $display($time, " ERROR! Invalid OpCode");
+                        end
+                    endcase
+                end
+
+                (MEM_ACCESS): begin
+                    program_counter <= (isBranching)? IR[11:0] : program_counter + 1'b1;
+                end
+
+                (WRITEBACK): begin
+                    // Write value to spot
+                    case (IR[31:28])
+                        (STR_op): begin
+                            
+                        end
+                        (BRA_op): begin
+                            
+                        end
+                        (NOP_op): begin
+                            
+                        end
+                        default: begin
+                            if(~IR[26]) begin
+                                register_file[IR[11:0]] <= dest_data;
+                            end
+                        end
+                    endcase
+                end
+        end
+    end
+        
 endmodule

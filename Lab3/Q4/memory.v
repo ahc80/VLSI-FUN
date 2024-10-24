@@ -6,12 +6,12 @@ module memory (
     output reg [31:0] data_out
 );
     
-    reg [31:0] registers [15:0];
+    reg [31:0] registers [4095:0];
 
     integer i;
     initial begin
-        for(i=0; i<16; i=i+1) begin
-            registers[i] = i;
+        for(i=0; i<4096; i=i+1) begin
+            registers[i] = 0;
         end
         data_out = 32'd0;
     end

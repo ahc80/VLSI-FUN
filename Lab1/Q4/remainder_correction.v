@@ -6,7 +6,7 @@ module remainder_correction (
 
     output      C_out,   
     output      R               // Remainder bit
-); 
+);
     
     wire and_output;
 

@@ -1,20 +1,30 @@
 module processor (
     input         clk,
-    input  [31:0] instructions,
 
     input  [31:0] data_in,
-
+    output    reg reading, // 1 = read from mem, 0 write to mem
     output [11:0] address,
     output [31:0] data_out
 );
 
     // ----- ----- Internal registers ----- ----- \\
 
-    // IR  - [31:28 - OPcode][27:24 - CC][27:26 - src,dest src reg&mem/imm][23:12 - srcsAddrs/shiftOrRotate][11:0 - dest]
-    reg [31:0]  IR;
-    
-    // PSR - [4 - Zero][3 - Negative][2 - Even][1 - Parity][0 - Carry]
-    reg [ 4:0]  PSR; 
+    // Program Counter - stores next instruction mem address
+    reg [11:0] PC;
+    // Instruction Counter - FETCH, DECODE, EXEC, etc
+    reg [ 3:0] IC;
+    // Instruction Register  - [31:28 - OPcode][27:24 - CC][27:26 - src,dest reg&mem/imm][23:12 - srcsAddrs/shiftOrRotate][11:0 - dest]
+    reg [31:0] IR;
+    // Processor Status Register - [4 - Zero][3 - Negative][2 - Even][1 - Parity][0 - Carry]
+    reg [ 4:0] PSR; 
+    // Operands - the working registers
+    reg [31:0] operand1;
+    reg [31:0] operand2;
+    // Boolean to make halt work
+    reg        isHalted;
+
+    // Register file = memory
+    reg [31:0] register_file [15:0];
 
     // ----- ----- Local Parameters ----- ----- \\
 
@@ -40,62 +50,97 @@ module processor (
     localparam HLT_op = 4'd8;
     localparam CMP_op = 4'd9;
 
+    // Program counter
+    localparam FETCH        = 3'd0;
+    localparam DECODE       = 3'd1;
+    localparam EXECUTE      = 3'd2;
+    localparam MEM_ACCESS   = 3'd3;
+    localparam WRITEBACK    = 3'd4;
+ 
     // ----- ----- Processor Tasks ----- ----- \\
 
     // Helper tasks
-
-    task write_reg (
-        input [11:0] source, // this is part of the IR
-        input [31:0] data    // fair enough but this is one line of code
+    task read_address(
+        input [11:0] address_in
     );
-
+        reading <= 1'b1;
+        address <= address_in;
     endtask
 
-    task read;
 
-    endtask
+always @(posedge clk ) begin
+    if(~ isHalted) begin
+        case (IC)
 
-    // Operations
+            (FETCH): begin
+            // Retrive instructions
+                reading <= 1'b1;
+                address <= address_in;
+                IR <= data_in;
+            end
 
-    task nooperation;
+            (DECODE): begin
+            // retrieve register values
+                operand1 <= 
+                operand2 <=
+            end
 
-    endtask
+            (EXECUTE): begin
+                case (IR[31:28)
+                    (NOP_op): begin
+                        // idle
+                    end
 
-    task load;
+                    (LD_op): begin
+                        
+                    end 
 
-    endtask
+                    (STR_op): begin
+                        
+                    end 
 
-    task store;
+                    (BRA_op): begin
+                        
+                    end 
 
-    endtask
+                    (XOR_op): begin
+                        
+                    end
 
-    task branch;
+                    (ADD_op): begin
+                        
+                    end 
 
-    endtask
+                    (ROT_op): begin
+                        
+                    end 
 
-    task xortask;
+                    (SHF_op): begin
+                        
+                    end 
 
-    endtask
+                    (HLT_op): begin
+                        
+                    end 
 
-    task add;
+                    (CMP_op): begin
+                        
+                    end
 
-    endtask
+                    default: begin
+                        $display($time, " ERROR! Invalid OpCode");
+                    end
+                endcase
+            end
 
-    task rotate;
+            (MEM_ACCESS): begin
+                
+            end
 
-    endtask
-
-    task shift;
-
-    endtask
-
-    task halt;
-
-    endtask
-
-    task complement;
-
-    endtask
-
+            (WRITEBACK): begin
+                
+            end
+    end
+end
     
 endmodule

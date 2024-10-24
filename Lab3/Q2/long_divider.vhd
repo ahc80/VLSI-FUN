@@ -1,6 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.std_logic_arth.all;
+use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
 
 entity long_divider is
@@ -25,7 +25,7 @@ begin
     cas0: entity work.four_CAS_array
         port map (
             M => M,
-            A => D(6 downto 3),
+            A => D(6 downto 3),  -- This is a 4-bit slice
             B => '1',
             Q => Q_wire(3),
             S => cas_array_sum(4 downto 1)
@@ -36,17 +36,17 @@ begin
         cas123: entity work.four_CAS_array
             port map (
                 M => M,
-                A => cas_array_sum(i-1 downto 0),
+                A => cas_array_sum(i+3 downto i), -- Adjusted to provide exactly 4 bits
                 B => Q_wire(4-i),
                 Q => Q_wire(3-i),
-                S => cas_array_sum(i downto 1)
+                S => cas_array_sum(i+3 downto i+1)
             );
     end generate;
 
     -- Instantiate the remainder correction
     rc0: entity work.four_RC_array
         port map (
-            A => cas_array_sum(3 downto 1),
+            A => cas_array_sum(3 downto 0), -- Ensured to provide 4 bits
             M => M,
             R => R
         );

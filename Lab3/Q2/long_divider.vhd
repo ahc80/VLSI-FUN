@@ -35,18 +35,19 @@ begin
     gen_cas: for i in 1 to 3 generate
         cas123: entity work.four_CAS_array
             port map (
-                M => M,
-                A => cas_array_sum(i+3 downto i), -- Adjusted to provide exactly 4 bits
+                M => M,  -- Pass the entire 4-bit vector M
+                A => cas_array_sum(i-1)(3 downto 0),  
                 B => Q_wire(4-i),
                 Q => Q_wire(3-i),
-                S => cas_array_sum(i+3 downto i+1)
+                S => cas_array_sum(i)(4 downto 1) 
             );
-    end generate;
+        end generate;
+
 
     -- Instantiate the remainder correction
     rc0: entity work.four_RC_array
         port map (
-            A => cas_array_sum(3 downto 0), -- Ensured to provide 4 bits
+            A => cas_array_sum(3 downto 0), 
             M => M,
             R => R
         );

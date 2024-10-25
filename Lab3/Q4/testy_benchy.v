@@ -20,7 +20,7 @@ module testy_benchy ();
         end
     endtask
 
-
+    /*
     memory mem(
         reading,
         clk,
@@ -28,15 +28,28 @@ module testy_benchy ();
         data_to_mem,
         data_to_cpu
     );
+    */
+
+    reg one;
+    reg two;
 
     initial begin
         clk = 1'b0;
         reading = 1'b1;
         address = 12'b0;
+    
+        one = 1'b0;
+        two = 1'b1;
 
+        $display($time, " one|two %d|%d", one, two);
+        one <= (two)? 1: 0;
+        two <= 0;
+        $display($time, " one|two %d|%d", one, two);
+        #1 $display($time, " ne|two %d|%d", one, two);
+        #1 $display($time, " ne|two %d|%d", one, two);
         #300 $finish;
     end
-
+    /*
     always begin
         #10 clk = ~clk;
     end
@@ -48,6 +61,9 @@ module testy_benchy ();
             $display($time, " Address|Val %d|%d", address, accumulator);
         end
     end
+    */
+
+
     
 
 

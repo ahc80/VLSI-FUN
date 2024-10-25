@@ -1,29 +1,28 @@
 module processor (
-    input         clk,
-
-    input  [31:0] data_in,
-    output    reg reading, // 1 = read from mem, 0 write to mem
-    output [11:0] address,
-    output [31:0] data_out
+    input  wire         clk,
+    input  reg  [31:0]  data_in,
+    output reg          reading, // 1 = read from mem, 0 write to mem
+    output reg  [11:0]  program_counter, // stores next instruction mem address
+    output reg  [31:0]  accumulator
 );
 
-    // ----- ----- Internal registers ----- ----- \\
+    // Make data in a wire?
 
-    // Program Counter - stores next instruction mem address
-    reg [11:0] program_counter;
+    // ----- ----- Internal registers ----- ----- \\
     // Instruction Counter - FETCH, DECODE, EXEC, etc
     reg [ 3:0] instruction_counter;
     // Instruction Register  - [31:28 - OPcode][27:24 - CC][27:26 - src,dest reg&mem/imm][23:12 - srcsAddrs/shiftOrRotate][11:0 - dest]
     reg [31:0] IR;
     // Processor Status Register - [4 - Zero][3 - Negative][2 - Even][1 - Parity][0 - Carry]
     reg [ 4:0] PSR; 
-    // Operands - the working registers
-    reg [31:0] dest_data;
+    // Spare operand
     reg [31:0] src_data;
     // Boolean to make halt work
     reg        isHalted;
     // Boolean to handle branching
     reg        isBranching;
+    // Looping variable
+    integer     i;
 
     // Register file = memory
     reg [31:0] register_file [15:0];
@@ -37,7 +36,7 @@ module processor (
     localparam  N_cc = 3'd4;
     localparam  Z_cc = 3'd5;
     localparam NC_cc = 3'd6;
-    localparam NO_cc = 3'd7;
+    localparam PO_cc = 3'd7;
 
     // Op Code
     localparam NOP_op = 4'd0;
@@ -59,86 +58,113 @@ module processor (
     localparam WRITEBACK    = 3'd4;
 
     // Shorthand
-    localparam SET_PSR      = 5'b11111
+    localparam SET_PSR      = 5'b11111;
  
     // ----- ----- Processor Tasks ----- ----- \\
 
-    task set_psr_task();
-        // Blindspot: I think carry from add should always be 0?
-        PSR[0] <= 32'b0;
-        PSR[1] <= ^ dest_data[3];
-        PSR[2] <= ~ (dest_data[31] ^ dest_data[0]);  // get ready to change if bug
-        PSR[3] <= dest_data[31];
-        PSR[4] <= ~ (| dest_data);
-    endtask
-
     always @(negedge clk ) begin
-        // increment PC
-
-        // OR IS THIS PART OF DECODE?
+        instruction_counter <= instruction_counter + 1;
     end
 
     always @(posedge clk ) begin
         if(~ isHalted) begin
             case (instruction_counter)
-
                 (FETCH): begin
                 // Retrive instructions
-
-                // Read from ram
-                // Update IR
-                //
-                    reading <= 1'b1;
-                    address <= program_counter;
-                    IR      <= data_in;
+                    if(~reading) begin
+                        reading <= 1'b1;
+                        program_counter = src_data;          
+                    end
+                    #3 IR <= data_in;           // THIS VALUE MAY NEED EXTRA DELAY
                 end
 
                 (DECODE): begin
                 // retrieve register values
-                    dest_data <= (IR[26])? IR[11:0] : register_file[IR[3:0]];
-                    src_data  <= (IR[27])? IR[23:12]: register_file[IR[15:12]];
+                    accumulator <= (IR[26])? IR[11:0] : register_file[IR[3:0]];
+                    src_data    <= (IR[27])? IR[23:12]: register_file[IR[15:12]];
                 end
 
                 (EXECUTE): begin
-                    case (IR[31:28)
+                    case (IR[31:28])
                         (NOP_op): begin
                             // idle
                         end
 
                         (LD_op): begin //set PSR, 0is0
-                            
+                            accumulator <= src_data;
                         end 
 
                         (STR_op): begin // CLEAR PSR
-                            
+                            accumulator <= src_data;
+                            PSR <= 5'b0;
                         end 
 
                         (BRA_op): begin 
-                            
+                            case (IR[14:12])    // My CC is the 3 LSBs of src
+                                (A_cc): begin
+                                    isBranching <= 1;
+                                end
+                                (P_cc): begin
+                                    isBranching <= PSR[1];
+                                end 
+                                (E_cc): begin
+                                    isBranching <= PSR[2];
+                                end 
+                                (C_cc): begin
+                                    isBranching <= PSR[0];
+                                end 
+                                (N_cc): begin
+                                    isBranching <= PSR[3];
+                                end 
+                                (Z_cc): begin
+                                    isBranching <= PSR[4];
+                                end 
+                                (NC_cc): begin
+                                    isBranching <= ~PSR[0];
+                                end 
+                                (PO_cc): begin
+                                    isBranching <= ~PSR[3];
+                                end 
+                                default: begin
+                                    $display($time, " Invalid CC");
+                                end
+                            endcase
                         end 
 
                         (XOR_op): begin //set PSR, 0is0
-                            
+                            accumulator <= accumulator ^ src_data;
                         end
 
                         (ADD_op): begin //set PSR, 0is0
-                            
+                            accumulator <= accumulator + src_data + PSR[0];
                         end 
 
                         (ROT_op): begin //set PSR, poss carry?
-                            
+                            if(src_data[31]) begin
+                                accumulator <= accumulator >>> src_data;
+                            end else begin
+                                accumulator <= accumulator <<< src_data;
+                            end
                         end 
 
                         (SHF_op): begin //set PSR, 0should0?
-                            
+                            if(src_data[31]) begin
+                                accumulator <= accumulator >> src_data;
+                            end else begin
+                                accumulator <= accumulator << src_data;
+                            end
                         end 
 
                         (HLT_op): begin
-                            
+                            isHalted <= 1;
+                            $display($time, " Program Halted.");
+                            for(i=0;i<16; i=i+1 begin
+                                $display($time, " Register %d value: %d", i, register_file[i]);
+                            end)
                         end 
 
                         (CMP_op): begin //set PSR, 0is0
-                            
+                            accumulator <= (~src_data) + 1;
                         end
 
                         default: begin
@@ -149,27 +175,41 @@ module processor (
 
                 (MEM_ACCESS): begin
                     program_counter <= (isBranching)? IR[11:0] : program_counter + 1'b1;
+                    isBranching <= 0;
+                    if(~STR_op && ~NOP_op && ~BRA_op && ~HLT_op) begin
+                        PSR[0] <= 0;
+                        PSR[1] <= ^ accumulator[3];
+                        PSR[2] <= ~ (accumulator[31] ^ accumulator[0]);  // get ready to change if bug
+                        PSR[3] <= accumulator[31];
+                        PSR[4] <= ~ (| accumulator);
+                    end
+                    // Maybe we set PSR here
                 end
 
                 (WRITEBACK): begin
                     // Write value to spot
                     case (IR[31:28])
                         (STR_op): begin
-                            
+                            // Write to RAM
+                            reading <= 0;
+                            program_counter <= accumulator;
+                            src_data <= program_counter; 
+                            // Special case: src_data saves the next program counter value
                         end
                         (BRA_op): begin
-                            
+                            // No operation
                         end
                         (NOP_op): begin
-                            
+                            // No operation
                         end
                         default: begin
                             if(~IR[26]) begin
-                                register_file[IR[11:0]] <= dest_data;
+                                register_file[IR[11:0]] <= accumulator;
                             end
                         end
                     endcase
                 end
+            endcase
         end
     end
         

@@ -10,48 +10,71 @@ z2
 cModel Technology
 dC:/intelFPGA/20.1
 vmemory
-Z0 !s110 1729733894
+Z0 !s110 1729817381
 !i10b 1
-!s100 ;l:kX@ofNE5aBK:>iRNjG3
+!s100 aDJ`hg<V[422lGg^:@>aC0
 Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
-IOB67ATN?BTT^ha`gN<bdA1
+I6coCVO;bDlGog>X>VHZJJ3
 Z2 VDg1SIo80bB@j0V0VzS_@n1
-Z3 dC:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab3
-w1729730751
-8C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab3/Q4/memory.v
-FC:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab3/Q4/memory.v
-!i122 42
+Z3 dC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3
+w1729811059
+8C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/memory.v
+FC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/memory.v
+!i122 85
 L0 1 26
 Z4 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z5 !s108 1729733894.000000
-!s107 C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab3/Q4/memory.v|
-!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab3/Q4/memory.v|
+Z5 !s108 1729817381.000000
+!s107 C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/memory.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/memory.v|
 !i113 1
 Z6 o-work work
 Z7 tCvgOpt 0
-vtesty_benchy
+vprocessor
 R0
 !i10b 1
-!s100 e?9JBI5lTX5hHbNDh>KIz2
+!s100 NioA`aDj9XHCg^F15^Rbn3
 R1
-IJonY?hPm<I=BT:LIDJgzD2
+IEJj=g?nYnRdjUE]`SGCBE2
 R2
 R3
-w1729733886
-8C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab3/Q4/testy_benchy.v
-FC:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab3/Q4/testy_benchy.v
-!i122 43
-L0 1 54
+w1729816885
+8C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/processor.v
+FC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/processor.v
+!i122 86
+L0 1 210
 R4
 r1
 !s85 0
 31
 R5
-!s107 C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab3/Q4/testy_benchy.v|
-!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab3/Q4/testy_benchy.v|
+!s107 C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/processor.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/processor.v|
+!i113 1
+R6
+R7
+vtesty_benchy
+R0
+!i10b 1
+!s100 A[3K977lfE@d5jzF0AK:Z3
+R1
+I68EW[<A>b?fjEm3h85;h91
+R2
+R3
+w1729813220
+8C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/testy_benchy.v
+FC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/testy_benchy.v
+!i122 84
+L0 1 70
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/testy_benchy.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/testy_benchy.v|
 !i113 1
 R6
 R7

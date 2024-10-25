@@ -1,0 +1,15 @@
+{C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/memory.v} {1 {vlog -work work -stats=none {C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/memory.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module memory
+
+Top level modules:
+	memory
+
+} {} {}} {C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/testy_benchy.v} {1 {vlog -work work -stats=none {C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/testy_benchy.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module testy_benchy
+
+Top level modules:
+	testy_benchy
+
+} {} {}}

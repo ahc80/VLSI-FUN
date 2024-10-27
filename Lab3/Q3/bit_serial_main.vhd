@@ -1,6 +1,5 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.NUMERIC_STD.ALL;
 
 entity BitSerialAdder is
     Port (
@@ -17,70 +16,55 @@ end BitSerialAdder;
 architecture Behavioral of BitSerialAdder is
     -- Internal signals
     signal carry_reg       : STD_LOGIC := '0'; -- Carry register
-    signal addend_data_out : STD_LOGIC_VECTOR(7 downto 0) := (others => '0'); -- Addend data output
-    signal augend_data_out : STD_LOGIC_VECTOR(7 downto 0) := (others => '0'); -- Augend data output
-    signal result_internal : STD_LOGIC_VECTOR(8 downto 0) := (others => '0'); -- Internal result signal
+    signal addend_data_out : STD_LOGIC; -- Serial output from addend shift register
+    signal augend_data_out : STD_LOGIC; -- Serial output from augend shift register
+    signal result_internal : STD_LOGIC_VECTOR(8 downto 0) := (others => '0'); -- Internal result signal with defined width
     signal full_adder_sum  : STD_LOGIC;
     signal full_adder_cout : STD_LOGIC;
 
 begin
     -- Instantiate the Shift Register for Addend
-    AddendShiftRegister: entity work.ShiftRegister8Bit
+    AddendShiftRegister: entity work.shift_register
         Port map (
-            clk        => clk,
-            clr        => not clr_n, -- Active-low clear signal
-            shift_in   => A,
-            enable     => set_n, -- Enable shifting when set_n is high
-            data_out   => addend_data_out
+            clk      => clk,
+            rst_n    => clr_n,
+            enable   => set_n,
+            data_in  => A,
+            data_out => addend_data_out
         );
 
     -- Instantiate the Shift Register for Augend
-    AugendShiftRegister: entity work.ShiftRegister8Bit
+    AugendShiftRegister: entity work.shift_register
         Port map (
-            clk        => clk,
-            clr        => not clr_n, -- Active-low clear signal
-            shift_in   => B,
-            enable     => set_n, -- Enable shifting when set_n is high
-            data_out   => augend_data_out
+            clk      => clk,
+            rst_n    => clr_n,
+            enable   => set_n,
+            data_in  => B,
+            data_out => augend_data_out
         );
 
     -- Instantiate the Full Adder
     FullAdderInst: entity work.FullAdder
         Port map (
-            A    => addend_data_out(0),
-            B    => augend_data_out(0),
+            A    => addend_data_out,
+            B    => augend_data_out,
             Cin  => carry_reg,
             Sum  => full_adder_sum,
             Cout => full_adder_cout
         );
 
-    -- Assign the internal result to the output ports
     result <= result_internal;
     serial_result <= result_internal(8);
 
     process(clk, clr_n)
     begin
         if clr_n = '0' then
-            -- Clear phase: reset registers and counters
             carry_reg <= '0';
-            result_internal <= (others => '0');
-
-            -- Assertion to check that the carry and result registers are cleared correctly
-            assert carry_reg = '0' and result_internal = (others => '0')
-            report "BitSerialAdder did not clear carry or result properly" severity error;
-
+            result_internal <= (others => '0'); -- Clear result_internal with defined width
         elsif rising_edge(clk) then
             if set_n = '0' then
-                -- Operating phase: update the result and carry registers
-                result_internal <= full_adder_sum & result_internal(8 downto 1); -- Update the result
-                carry_reg <= full_adder_cout; -- Update the carry
-
-                -- Assertions to check if the full adder's output is being used correctly
-                assert carry_reg = full_adder_cout
-                report "Carry register did not update correctly" severity error;
-
-                assert result_internal(8) = full_adder_sum
-                report "Result register did not shift in the sum bit correctly" severity error;
+                result_internal <= full_adder_sum & result_internal(8 downto 1); -- Shift in the sum
+                carry_reg <= full_adder_cout;
             end if;
         end if;
     end process;

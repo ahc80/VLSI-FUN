@@ -1,6 +1,6 @@
 module processor (
     input  wire         clk,
-    input  reg  [31:0]  data_in,
+    input  reg     [31:0]  data_in,
     output reg          reading, // 1 = read from mem, 0 write to mem
     output reg  [11:0]  program_counter, // stores next instruction mem address
     output reg  [31:0]  accumulator
@@ -10,7 +10,7 @@ module processor (
 
     // ----- ----- Internal registers ----- ----- \\
     // Instruction Counter - FETCH, DECODE, EXEC, etc
-    reg [ 3:0] instruction_counter;
+    reg [ 2:0] instruction_counter;
     // Instruction Register  - [31:28 - OPcode][27:24 - CC][27:26 - src,dest reg&mem/imm][23:12 - srcsAddrs/shiftOrRotate][11:0 - dest]
     reg [31:0] IR;
     // Processor Status Register - [4 - Zero][3 - Negative][2 - Even][1 - Parity][0 - Carry]
@@ -60,31 +60,56 @@ module processor (
     // Shorthand
     localparam SET_PSR      = 5'b11111;
  
-    // ----- ----- Processor Tasks ----- ----- \\
+    // ----- ----- Always and Initial blocks ----- ----- \\
 
+    initial begin
+        reading             =  1'b1;
+        program_counter     = 12'b0;
+        accumulator         = 32'b0;
+        instruction_counter =  4'b0;
+        IR                  = 32'b0;
+        PSR                 =  5'b0;
+        src_data            = 32'b0;
+        isHalted            =  1'b0;
+        isBranching         =  1'b0;
+
+        for(i=0; i<16; i=i+1) begin
+            register_file[i] = 32'b0;
+        end
+    end
+    /*
     always @(negedge clk ) begin
+        if(instruction_counter == 4) begin
+            instruction_counter <= FETCH;
+        end
         instruction_counter <= instruction_counter + 1;
     end
+    */
 
     always @(posedge clk ) begin
         if(~ isHalted) begin
             case (instruction_counter)
                 (FETCH): begin
                 // Retrive instructions
+                instruction_counter <= instruction_counter + 1;
                     if(~reading) begin
-                        reading <= 1'b1;
-                        program_counter = src_data;          
+                        reading = 1'b1;
+                        program_counter <= src_data;    // This step must happen after above      
                     end
-                    #3 IR <= data_in;           // THIS VALUE MAY NEED EXTRA DELAY
+                    #3
+                    IR <= data_in;           // THIS VALUE MAY NEED EXTRA DELAY
                 end
 
                 (DECODE): begin
+                instruction_counter <= instruction_counter + 1;
                 // retrieve register values
                     accumulator <= (IR[26])? IR[11:0] : register_file[IR[3:0]];
                     src_data    <= (IR[27])? IR[23:12]: register_file[IR[15:12]];
+                    
                 end
 
                 (EXECUTE): begin
+                    instruction_counter <= instruction_counter + 1;
                     case (IR[31:28])
                         (NOP_op): begin
                             // idle
@@ -136,7 +161,7 @@ module processor (
                         end
 
                         (ADD_op): begin //set PSR, 0is0
-                            accumulator <= accumulator + src_data + PSR[0];
+                            accumulator[11:0] <= accumulator + src_data + PSR[0];
                         end 
 
                         (ROT_op): begin //set PSR, poss carry?
@@ -158,9 +183,9 @@ module processor (
                         (HLT_op): begin
                             isHalted <= 1;
                             $display($time, " Program Halted.");
-                            for(i=0;i<16; i=i+1 begin
+                            for(i=0;i<16; i=i+1) begin
                                 $display($time, " Register %d value: %d", i, register_file[i]);
-                            end)
+                            end
                         end 
 
                         (CMP_op): begin //set PSR, 0is0
@@ -174,19 +199,21 @@ module processor (
                 end
 
                 (MEM_ACCESS): begin
+                    instruction_counter <= instruction_counter + 1;
                     program_counter <= (isBranching)? IR[11:0] : program_counter + 1'b1;
                     isBranching <= 0;
                     if(~STR_op && ~NOP_op && ~BRA_op && ~HLT_op) begin
                         PSR[0] <= 0;
-                        PSR[1] <= ^ accumulator[3];
+                        PSR[1] <= ^ accumulator[30:0];
                         PSR[2] <= ~ (accumulator[31] ^ accumulator[0]);  // get ready to change if bug
-                        PSR[3] <= accumulator[31];
-                        PSR[4] <= ~ (| accumulator);
+                        PSR[3] <= accumulator[11];  // fitted for 12 bit 2's comp
+                        PSR[4] <= ~|accumulator;
                     end
                     // Maybe we set PSR here
                 end
 
                 (WRITEBACK): begin
+                    instruction_counter <= 0;
                     // Write value to spot
                     case (IR[31:28])
                         (STR_op): begin
@@ -210,6 +237,8 @@ module processor (
                     endcase
                 end
             endcase
+        end else begin
+            $finish;
         end
     end
         

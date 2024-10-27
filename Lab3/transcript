@@ -1,165 +1,77 @@
-# Compile of testy_benchy.v was successful.
-vsim -gui work.testy_benchy
-# vsim -gui work.testy_benchy 
-# Start time: 19:35:25 on Oct 24,2024
-# Loading work.testy_benchy
-run -all
-# ** Note: $finish    : C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/testy_benchy.v(46)
-#    Time: 300 ps  Iteration: 0  Instance: /testy_benchy
-# 1
-# Break in Module testy_benchy at C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/testy_benchy.v line 46
-quit -sim
-# End time: 19:37:05 on Oct 24,2024, Elapsed time: 0:01:40
-# Errors: 0, Warnings: 5
-# Compile of testy_benchy.v failed with 3 errors.
-# Compile of testy_benchy.v was successful.
-vsim -gui work.testy_benchy
-# vsim -gui work.testy_benchy 
-# Start time: 19:37:32 on Oct 24,2024
-# Loading work.testy_benchy
-run -all
-#                    0 one|two 0|1
-#                    0 one|two 0|1
-#                    5 ne|two 0|1
-# ** Note: $finish    : C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/testy_benchy.v(49)
-#    Time: 305 ps  Iteration: 0  Instance: /testy_benchy
-# 1
-# Break in Module testy_benchy at C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/testy_benchy.v line 49
-# Compile of testy_benchy.v was successful.
-quit -sim
-# End time: 19:38:06 on Oct 24,2024, Elapsed time: 0:00:34
-# Errors: 0, Warnings: 4
-# Compile of testy_benchy.v was successful.
-vsim -gui work.testy_benchy
-# vsim -gui work.testy_benchy 
-# Start time: 19:38:09 on Oct 24,2024
-# Loading work.testy_benchy
-run -all
-#                    0 one|two 0|1
-#                    0 one|two 0|1
-#                    5 ne|two 0|1
-#                   11 ne|two 1|0
-# ** Note: $finish    : C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/testy_benchy.v(50)
-#    Time: 311 ps  Iteration: 0  Instance: /testy_benchy
-# 1
-# Break in Module testy_benchy at C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/testy_benchy.v line 50
-quit -sim
-# End time: 19:38:47 on Oct 24,2024, Elapsed time: 0:00:38
-# Errors: 0, Warnings: 2
-# Compile of testy_benchy.v was successful.
-vsim -gui work.testy_benchy
-# vsim -gui work.testy_benchy 
-# Start time: 19:39:05 on Oct 24,2024
-# Loading work.testy_benchy
-run -all
-#                    0 one|two 0|1
-#                    0 one|two 0|1
-#                    6 ne|two 1|0
-# ** Note: $finish    : C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/testy_benchy.v(49)
-#    Time: 306 ps  Iteration: 0  Instance: /testy_benchy
-# 1
-# Break in Module testy_benchy at C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/testy_benchy.v line 49
-quit -sim
-# End time: 19:39:16 on Oct 24,2024, Elapsed time: 0:00:11
-# Errors: 0, Warnings: 2
-# Compile of testy_benchy.v was successful.
-vsim -gui work.testy_benchy
-# vsim -gui work.testy_benchy 
-# Start time: 19:39:53 on Oct 24,2024
-# Loading work.testy_benchy
-run -all
-#                    0 one|two 0|1
-#                    0 one|two 0|1
-#                    6 ne|two 1|0
-# ** Note: $finish    : C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/testy_benchy.v(49)
-#    Time: 306 ps  Iteration: 0  Instance: /testy_benchy
-# 1
-# Break in Module testy_benchy at C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/testy_benchy.v line 49
-quit -sim
-# End time: 19:40:07 on Oct 24,2024, Elapsed time: 0:00:14
-# Errors: 0, Warnings: 2
-# Compile of testy_benchy.v was successful.
-vsim -gui work.testy_benchy
-# vsim -gui work.testy_benchy 
-# Start time: 19:40:27 on Oct 24,2024
-# Loading work.testy_benchy
-run -all
-#                    0 one|two 0|1
-#                    0 one|two 0|1
-#                    1 ne|two 1|0
-#                    2 ne|two 1|0
-# ** Note: $finish    : C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/testy_benchy.v(50)
-#    Time: 302 ps  Iteration: 0  Instance: /testy_benchy
-# 1
-# Break in Module testy_benchy at C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/testy_benchy.v line 50
-quit -sim
-# End time: 19:40:40 on Oct 24,2024, Elapsed time: 0:00:13
-# Errors: 0, Warnings: 2
-# Compile of testy_benchy.v was successful.
-# Compile of memory.v was successful.
-# Compile of processor.v failed with 2 errors.
-# 3 compiles, 1 failed with 2 errors.
-# Compile of testy_benchy.v was successful.
-# Compile of memory.v was successful.
-# Compile of processor.v failed with 2 errors.
-# 3 compiles, 1 failed with 2 errors.
-# Compile of testy_benchy.v was successful.
-# Compile of memory.v was successful.
-# Compile of processor.v failed with 2 errors.
-# 3 compiles, 1 failed with 2 errors.
-# Compile of testy_benchy.v was successful.
-# Compile of memory.v was successful.
-# Compile of processor.v failed with 3 errors.
-# 3 compiles, 1 failed with 3 errors.
-# Compile of testy_benchy.v was successful.
-# Compile of memory.v was successful.
-# Compile of processor.v failed with 3 errors.
-# 3 compiles, 1 failed with 3 errors.
-# Compile of testy_benchy.v was successful.
-# Compile of memory.v was successful.
-# Compile of processor.v failed with 3 errors.
-# 3 compiles, 1 failed with 3 errors.
-# Compile of testy_benchy.v was successful.
-# Compile of memory.v was successful.
-# Compile of processor.v failed with 2 errors.
-# 3 compiles, 1 failed with 2 errors.
-# Compile of testy_benchy.v was successful.
-# Compile of memory.v was successful.
-# Compile of processor.v failed with 11 errors.
-# 3 compiles, 1 failed with 11 errors.
-# Compile of testy_benchy.v was successful.
-# Compile of memory.v was successful.
-# Compile of processor.v failed with 10 errors.
-# 3 compiles, 1 failed with 10 errors.
-# Compile of testy_benchy.v was successful.
-# Compile of memory.v was successful.
-# Compile of processor.v failed with 10 errors.
-# 3 compiles, 1 failed with 10 errors.
-# Compile of testy_benchy.v was successful.
-# Compile of memory.v was successful.
-# Compile of processor.v failed with 9 errors.
-# 3 compiles, 1 failed with 9 errors.
-# Compile of testy_benchy.v was successful.
-# Compile of memory.v was successful.
-# Compile of processor.v failed with 5 errors.
-# 3 compiles, 1 failed with 5 errors.
-# Compile of testy_benchy.v was successful.
-# Compile of memory.v was successful.
-# Compile of processor.v failed with 7 errors.
-# 3 compiles, 1 failed with 7 errors.
-# Compile of testy_benchy.v was successful.
-# Compile of memory.v was successful.
-# Compile of processor.v failed with 4 errors.
-# 3 compiles, 1 failed with 4 errors.
-# Compile of testy_benchy.v was successful.
-# Compile of memory.v was successful.
-# Compile of processor.v failed with 10 errors.
-# 3 compiles, 1 failed with 10 errors.
+vsim -gui work.tb work.processor work.memory
+# vsim -gui work.tb work.processor work.memory 
+# Start time: 16:40:29 on Oct 26,2024
+# Loading work.tb
+# Loading work.processor
+# Loading work.memory
 # Compile of testy_benchy.v was successful.
 # Compile of memory.v was successful.
 # Compile of processor.v was successful.
-# 3 compiles, 0 failed with no errors.
+# Compile of tb.v was successful.
+# 4 compiles, 0 failed with no errors.
+re
+# ambiguous command name "re": read readEvcdFile readers readmapfile really_quit really_restart regexp region_image registry regsub rename resetGlobalEvcd resetTime resolveBusMember restart restartCmd restartDone restartError restartParse restore results_image resultsdir_image resultsdirne_image resultsfile_image resume return
+restart 
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb
+# Loading work.processor
+# Loading work.memory
+run -all
+#                    0 Reading 1
+#                    0 Reading 1
+#                 2850 Program Halted.
+#                 2850 Register           0 value:          4
+#                 2850 Register           1 value:          3
+#                 2850 Register           2 value:         20
+#                 2850 Register           3 value:          0
+#                 2850 Register           4 value:          0
+#                 2850 Register           5 value:          0
+#                 2850 Register           6 value:          0
+#                 2850 Register           7 value:          0
+#                 2850 Register           8 value:          0
+#                 2850 Register           9 value:          0
+#                 2850 Register          10 value:          0
+#                 2850 Register          11 value:          0
+#                 2850 Register          12 value:          0
+#                 2850 Register          13 value:          0
+#                 2850 Register          14 value:          0
+#                 2850 Register          15 value:          0
+# ** Note: $finish    : C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/processor.v(243)
+#    Time: 2870 ps  Iteration: 1  Instance: /tb/cpu
+# 1
+# Break in Module processor at C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/processor.v line 243
 # Compile of testy_benchy.v was successful.
 # Compile of memory.v was successful.
 # Compile of processor.v was successful.
-# 3 compiles, 0 failed with no errors.
+# Compile of tb.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb
+# Loading work.processor
+# Loading work.memory
+run -all
+# GetModuleFileName: The specified module could not be found.
+# 
+# 
+#                 2850 Program Halted.
+#                 2850 Register           0 value:          4
+#                 2850 Register           1 value:          3
+#                 2850 Register           2 value:         20
+#                 2850 Register           3 value:          0
+#                 2850 Register           4 value:          0
+#                 2850 Register           5 value:          0
+#                 2850 Register           6 value:          0
+#                 2850 Register           7 value:          0
+#                 2850 Register           8 value:          0
+#                 2850 Register           9 value:          0
+#                 2850 Register          10 value:          0
+#                 2850 Register          11 value:          0
+#                 2850 Register          12 value:          0
+#                 2850 Register          13 value:          0
+#                 2850 Register          14 value:          0
+#                 2850 Register          15 value:          0
+# ** Note: $finish    : C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/processor.v(241)
+#    Time: 2870 ps  Iteration: 1  Instance: /tb/cpu
+# 1
+# Break in Module processor at C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab3/Q4/processor.v line 241

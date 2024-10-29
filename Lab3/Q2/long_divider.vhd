@@ -26,8 +26,8 @@ begin
 
     -- Assign initial values to the first row of cas_array_sum
     cas_array_sum(0)(0) <= D(2);
-    cas_array_sum(0)(1) <= D(1);
-    cas_array_sum(0)(2) <= D(0);
+    cas_array_sum(1)(0) <= D(1);
+    cas_array_sum(2)(0) <= D(0);
 
     -- Instantiate the first four_CAS_array
     cas0: entity work.four_CAS_array

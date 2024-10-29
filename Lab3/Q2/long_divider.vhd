@@ -44,10 +44,9 @@ begin
         end generate;
 
 
-    -- Instantiate the remainder correction
-    rc0: entity work.four_RC_array
+        rc0: entity work.four_RC_array
         port map (
-            A => cas_array_sum(3 downto 0), 
+            A => cas_array_sum(3)(4 downto 1),  -- Matches Verilog's [4:1] slice
             M => M,
             R => R
         );

@@ -1,10 +1,9 @@
+-- four_CAS_array.vhd
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.std_logic_arith.all;
-use ieee.std_logic_unsigned.all;
 
 entity four_CAS_array is
-    Port (
+    port (
         M : in std_logic_vector(3 downto 0);
         A : in std_logic_vector(3 downto 0);
         B : in std_logic;
@@ -14,10 +13,10 @@ entity four_CAS_array is
     );
 end four_CAS_array;
 
-architecture Behavioral of four_CAS_array is
+architecture Structural of four_CAS_array is
     signal C_out_wire : std_logic_vector(3 downto 0);
 begin
-    -- Instantiate the first controlled_adder_substractor
+    -- First controlled adder/subtractor instance (not in generate)
     cas0: entity work.controlled_adder_subtractor
         port map (
             A => A(0),
@@ -28,7 +27,7 @@ begin
             S => S(0)
         );
 
-    -- Generate the remaining controlled_adder_substractors
+    -- Generate remaining instances
     gen_cas: for i in 1 to 3 generate
         cas_inst: entity work.controlled_adder_subtractor
             port map (
@@ -41,6 +40,6 @@ begin
             );
     end generate;
 
-    -- Assign Q as the MSB of C_out_wire
+    -- Q is assigned as the MSB of C_out_wire
     Q <= C_out_wire(3);
-end Behavioral;
+end Structural;

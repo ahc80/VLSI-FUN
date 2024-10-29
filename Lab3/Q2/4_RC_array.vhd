@@ -33,6 +33,7 @@ begin
                 Q_bit => M(i),
                 Anded_with_Q => A(3),
                 C_in => C_out_wire(i-1),
+                
                 C_out => C_out_wire(i),
                 R => R(i)
             );

@@ -12,11 +12,11 @@ module tb_conditional_sum_adder;
     wire [7:0] S;     // 8-bit sum output
 
     // Instantiate the Conditional Sum Adder (CSA)
-    conditional_sum_adder uut (
+    conditionalSumAdder uut (
         .x(x),
         .y(y),
         .c0(c0),
-        .c8(c8),
+        .cOut(cOut),
         .S(S)
     );
 

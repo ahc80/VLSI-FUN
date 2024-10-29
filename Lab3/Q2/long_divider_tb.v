@@ -24,10 +24,12 @@ module tb_of_divider ();
     expected_Q  [3:0] = 4'b0011;
     expected_R  [3:0] = 4'b0001;
     #50;
+    $display("************************************************");
     $display(
         "Begin test case 7/2: quotient: %b, remainder: %b, \n expected: %b | %b ",
         Q, R, expected_Q[3:0], expected_R[3:0]
     );
+    $display("************************************************");
     #50;
 
     // Begin case 6/2
@@ -36,10 +38,13 @@ module tb_of_divider ();
     expected_Q  [3:0] = 4'b0011;
     expected_R  [3:0] = 4'b0000;
     #50;
+    $display("************************************************");
     $display(
         "Begin test case 6/2: quotient: %b, remainder: %b, \n expected: %b | %b ",
         Q, R, expected_Q[3:0], expected_R[3:0]
     );
+    $display("************************************************");
+    
     #50;
     
     // Begin case 9/4
@@ -48,10 +53,12 @@ module tb_of_divider ();
     expected_Q  [3:0] = 4'b0010;
     expected_R  [3:0] = 4'b0001;
     #50;
+    $display("************************************************");
     $display(
         "Begin test case 9/4: quotient: %b, remainder: %b, \n expected: %b | %b ",
         Q, R, expected_Q[3:0], expected_R[3:0]
     );
+    $display("************************************************");
     #50;
 
     // %Begin case 12/5
@@ -60,11 +67,13 @@ module tb_of_divider ();
     expected_Q  [3:0] = 4'b0010;
     expected_R  [3:0] = 4'b0010;
     #50;
+    $display("************************************************");
     $display(
         "Begin test case 12/5: quotient: %b, remainder: %b, \n expected: %b | %b ",
         Q, R, expected_Q[3:0], expected_R[3:0]
     );
     #50;
+    $display("************************************************");
 
 end
 

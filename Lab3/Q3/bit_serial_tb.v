@@ -1,73 +1,55 @@
-`timescale 1ns / 1ps
-
 module bit_ser_add_tb();
-    reg A, B, clk, clr_n, set_n;
-    wire [7:0] result;
-    wire serial_result;
+    reg clk, reset, load;
+    reg [7:0] A, B;
+    wire [7:0] result;    
+    wire carry_out;        
 
-    // Instantiate the bit_serial_adder module
-    bit_ser_add bit_ser_add_instance(
+    // Instantiate the Unit Under Test (UUT)
+    serial_bit_adder uut (
         .clk(clk),
+        .reset(reset),
+        .load(load),
         .A(A),
         .B(B),
-        .clr_n(clr_n),
-        .set_n(set_n),
-        .result(result),
-        .serial_result(serial_result)
+        .result(result),       
+        .carry_out(carry_out)  
     );
-    
-    // Clock generation
-    always
-        #5 clk = ~clk;
 
     initial begin
-        // Initialize clock
-        clk = 1'b0;
+        clk = 0;
+
+        reset = 1;
+        load = 0;
+        #10 reset = 0;
+        A = 8'b00000111; 
+        B = 8'b00000011;
+        load = 1; 
+        #10 load = 0;
         
-        // Test case 1: A = 7 and B = 3
-        // A = 00000111, B = 00000011 (LSB first)
-        clr_n = 1'b0;
-        set_n = 1'b1;
-        #15 clr_n = 1'b1;  // Release clear
-
-        A = 1'b1; B = 1'b1; #10;
-        A = 1'b1; B = 1'b1; #10;
-        A = 1'b1; B = 1'b0; #10;
-        A = 1'b0; B = 1'b0; #10;
-        A = 1'b0; B = 1'b0; #10;
-        A = 1'b0; B = 1'b0; #10;
-        A = 1'b0; B = 1'b0; #10;
-        A = 1'b0; B = 1'b0; #10;
-
-        set_n = 1'b0;  // Start addition
-        #90;  // Wait for addition to complete
+        #100;
         $display("************************************************");
         $display("Testing 7 + 3:");
         $display("Binary Result: %b", result);
         $display("Decimal Result: %d", result);
+        $display("Expected Result: 10");
         $display("************************************************");
 
-        // Test case 2: A = 6 and B = 4
-        // A = 00000110, B = 00000100 (LSB first)
-        clr_n = 1'b0;
-        set_n = 1'b1;
-        #15 clr_n = 1'b1;
-
-        A = 1'b0; B = 1'b0; #10;
-        A = 1'b1; B = 1'b0; #10;
-        A = 1'b1; B = 1'b1; #10;
-        A = 1'b0; B = 1'b0; #10;
-        A = 1'b0; B = 1'b0; #10;
-        A = 1'b0; B = 1'b0; #10;
-        A = 1'b0; B = 1'b0; #10;
-        A = 1'b0; B = 1'b0; #10;
-
-        set_n = 1'b0;
-        #90;
+        reset = 1;
+        #10 reset = 0;
+        A = 8'b00000110;
+        B = 8'b00000100;
+        load = 1;
+        #10 load = 0;
+        
+        #100;
         $display("************************************************");
         $display("Testing 6 + 4:");
         $display("Binary Result: %b", result);
         $display("Decimal Result: %d", result);
+        $display("Expected Result: 10");
         $display("************************************************");
     end
+
+    always #5 clk = ~clk;
+
 endmodule

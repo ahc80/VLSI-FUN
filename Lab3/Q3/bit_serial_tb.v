@@ -2,7 +2,7 @@
 
 module bit_ser_add_tb();
     reg A, B, clk, clr_n, set_n;
-    wire [8:0] result;
+    wire [7:0] result;
     wire serial_result;
 
     // Instantiate the bit_serial_adder module

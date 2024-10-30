@@ -1,17 +1,20 @@
-library ieee;
-use ieee.std._logic_1164.all;
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
 
-entity fullAdder is
+-- Full Adder Module
+entity full_adder is
     port (
-    A, B, Cin: in std_logic; --inputs
-    Sum, Cout: out std_logic; --outputs
+        A    : in  STD_LOGIC;
+        B    : in  STD_LOGIC;
+        Cin  : in  STD_LOGIC;
+        Sum  : out STD_LOGIC;
+        Cout : out STD_LOGIC
     );
+end full_adder;
 
-    end fullAdder;
-
-    architecture basicFA of fullAdder is
-        process (A, B, Cin)
-        begin 
-                Sum <= A XOR B XOR Cin;
-                Cout <= (A AND B) OR (Cin AND A) OR (Cin AND B);
-    end basicFA;
+architecture Behavioral_full_adder of full_adder is
+begin
+    -- Full adder logic for Sum and Cout
+    Sum <= A xor B xor Cin;
+    Cout <= (A and B) or (Cin and (A xor B));
+end Behavioral_full_adder;

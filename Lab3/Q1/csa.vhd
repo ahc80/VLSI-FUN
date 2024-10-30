@@ -3,8 +3,6 @@
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.STD_LOGIC_ARITH.ALL;
-use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity conditionalSumAdder is
     port (
@@ -18,38 +16,50 @@ end conditionalSumAdder;
 
 architecture Behavioral of conditionalSumAdder is
     -- Intermediate signals for sums and carries for carry-in 0 and 1
-    signal sum0, sum1 : STD_LOGIC_VECTOR(7 downto 0);
-    signal carry0, carry1 : STD_LOGIC_VECTOR(8 downto 0);  -- Carry arrays
-    signal carry_mux : STD_LOGIC_VECTOR(8 downto 0);       -- Carry selection signal
+    signal sum0, sum1 : STD_LOGIC_VECTOR(7 downto 0) := (others => '0');
+    signal carry0, carry1 : STD_LOGIC_VECTOR(8 downto 0) := (others => '0');
+    signal carry_mux : STD_LOGIC_VECTOR(8 downto 0) := (others => '0');
+
+    -- Monitor outputs of the first full adders
+    signal FA0_first_sum, FA1_first_sum : STD_LOGIC := '0';
+    signal FA0_first_carry, FA1_first_carry : STD_LOGIC := '0';
 
 begin
-    -- Initialize carry-in for both cases
-    carry0(0) <= '0';
-    carry1(0) <= '1'; 
+    -- Explicitly initialize signals at the start of the simulation
+    process
+    begin
+        carry0(0) <= c0;
+        carry1(0) <= '1';  -- Assume carry-in = 1 for the sum1 case
+        carry_mux(0) <= c0;
+        wait for 10 ns;  -- Wait to ensure proper initialization
+    end process;
 
-    -- Explicitly initialize the first carry_mux value to the initial carry-in (c0)
-    carry_mux(0) <= c0;
-
-    -- Full adder for the first bit (special case for initialization)
+    -- Full adder for the first bit
     FA0_first: entity work.full_adder
         port map (
             A    => x(0),
             B    => y(0),
-            Cin  => carry0(0),   -- Carry-in for sum0
-            Sum  => sum0(0),
-            Cout => carry0(1)
+            Cin  => carry0(0),
+            Sum  => FA0_first_sum,
+            Cout => FA0_first_carry
         );
 
     FA1_first: entity work.full_adder
         port map (
             A    => x(0),
             B    => y(0),
-            Cin  => carry1(0),   -- Carry-in for sum1
-            Sum  => sum1(0),
-            Cout => carry1(1)
+            Cin  => carry1(0),
+            Sum  => FA1_first_sum,
+            Cout => FA1_first_carry
         );
 
-    -- Carry and sum selection for the first bit
+    -- Assign the values to sum0 and sum1 for bit 0
+    sum0(0) <= FA0_first_sum;
+    sum1(0) <= FA1_first_sum;
+    carry0(1) <= FA0_first_carry;
+    carry1(1) <= FA1_first_carry;
+
+    -- Process to determine sum and carry_mux for the first bit
     process(c0, sum0, sum1, carry0, carry1)
     begin
         if c0 = '1' then
@@ -61,7 +71,7 @@ begin
         end if;
     end process;
 
-    -- Generate full adders for the remaining bit positions
+    -- Generate full adders for the remaining bits
     gen_adders: for i in 1 to 7 generate
         -- Full adder for carry-in = 0
         FA0: entity work.full_adder
@@ -83,7 +93,7 @@ begin
                 Cout => carry1(i+1)
             );
 
-        -- Select the sum based on the carry from the previous stage
+        -- Determine the sum and carry_mux for bit i
         process(carry_mux, sum0, sum1, carry0, carry1)
         begin
             if carry_mux(i) = '1' then
@@ -96,7 +106,7 @@ begin
         end process;
     end generate;
 
-    -- Final carry-out is determined by the last value of carry_mux
+    -- Assign the final carry-out based on the last carry_mux value
     cOut <= carry_mux(8);
 
 end Behavioral;

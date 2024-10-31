@@ -21,7 +21,7 @@ begin
     and_output <= Q_bit and Anded_with_Q;
 
     -- Instantiate full_adder
-    FA: entity work.fullAdder
+    FA: entity work.FullAdder
         port map (
             A => A,
             B => and_output,

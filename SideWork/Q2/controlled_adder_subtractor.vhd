@@ -15,24 +15,13 @@ entity controlled_adder_subtractor is
 end controlled_adder_subtractor;
 
 architecture Behavioral of controlled_adder_subtractor is
-    -- Component declaration for full_adder
-    component full_adder
-        Port (
-            A : in std_logic;
-            B : in std_logic;
-            Cin : in std_logic;
-            Sum : out std_logic;
-            Cout : out std_logic
-        );
-    end component;
-
     signal xor_output : std_logic;
 begin
     -- XOR operation
     xor_output <= B xor Diagonal;
 
-    -- Instantiate the full_adder component
-    FA: full_adder
+    -- Instantiate full_adder
+    FA: entity work.full_adder
         port map (
             A => A,
             B => xor_output,

@@ -12,22 +12,10 @@ entity four_RC_array is
 end four_RC_array;
 
 architecture Behavioral of four_RC_array is
-    -- Component declaration for remainder_correction
-    component remainder_correction
-        Port (
-            A : in std_logic;
-            Q_bit : in std_logic;
-            Anded_with_Q : in std_logic;
-            C_in : in std_logic;
-            C_out : out std_logic;
-            R : out std_logic
-        );
-    end component;
-
     signal C_out_wire : std_logic_vector(3 downto 0);
 begin
     -- Instantiate the first remainder_correction
-    RC0: remainder_correction
+    RC0: entity work.remainder_correction
         port map (
             A => A(0),
             Q_bit => M(0),
@@ -39,7 +27,7 @@ begin
 
     -- Generate the remaining remainder_corrections
     gen_rc: for i in 1 to 3 generate
-        RC_inst: remainder_correction
+        RC_inst: entity work.remainder_correction
             port map (
                 A => A(i),
                 Q_bit => M(i),

@@ -7,28 +7,17 @@ entity four_CAS_array is
         M : in std_logic_vector(3 downto 0);
         A : in std_logic_vector(3 downto 0);
         B : in std_logic;
+
         Q : out std_logic;
         S : out std_logic_vector(3 downto 0)
     );
 end four_CAS_array;
 
 architecture Structural of four_CAS_array is
-    -- Component declaration for controlled_adder_subtractor
-    component controlled_adder_subtractor
-        port (
-            A : in std_logic;
-            B : in std_logic;
-            Diagonal : in std_logic;
-            C_in : in std_logic;
-            C_out : out std_logic;
-            S : out std_logic
-        );
-    end component;
-
     signal C_out_wire : std_logic_vector(3 downto 0);
 begin
     -- First controlled adder/subtractor instance (not in generate)
-    cas0: controlled_adder_subtractor
+    cas0: entity work.controlled_adder_subtractor
         port map (
             A => A(0),
             B => B,
@@ -40,7 +29,7 @@ begin
 
     -- Generate remaining instances
     gen_cas: for i in 1 to 3 generate
-        cas_inst: controlled_adder_subtractor
+        cas_inst: entity work.controlled_adder_subtractor
             port map (
                 A => A(i),
                 B => B,

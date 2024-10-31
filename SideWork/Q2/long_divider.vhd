@@ -19,27 +19,6 @@ architecture Behavioral of long_divider is
     type array_2d is array (0 to 3) of std_logic_vector(4 downto 0);
     signal cas_array_sum : array_2d := (others => (others => '0'));
     signal Q_wire        : std_logic_vector(3 downto 0) := (others => '0');
-
-    -- Component declaration for four_CAS_array
-    component four_CAS_array
-        port (
-            M : in std_logic_vector(3 downto 0);
-            A : in std_logic_vector(3 downto 0);
-            B : in std_logic;
-            Q : out std_logic;
-            S : out std_logic_vector(3 downto 0)
-        );
-    end component;
-
-    -- Component declaration for four_RC_array
-    component four_RC_array
-        port (
-            A : in std_logic_vector(3 downto 0);
-            M : in std_logic_vector(3 downto 0);
-            R : out std_logic_vector(3 downto 0)
-        );
-    end component;
-
 begin
     -- Assign debug outputs
     debug_cas_array_sum <= cas_array_sum(0); -- Expose only the first row for debugging; adjust as needed
@@ -51,7 +30,7 @@ begin
     cas_array_sum(2)(0) <= D(0);
 
     -- Instantiate the first four_CAS_array
-    cas0: four_CAS_array
+    cas0: entity work.four_CAS_array
         port map (
             M => M,
             A => D(6 downto 3),  -- This is a 4-bit slice
@@ -62,7 +41,7 @@ begin
 
     -- Generate remaining four_CAS_arrays
     gen_cas: for i in 1 to 3 generate
-        cas123: four_CAS_array
+        cas123: entity work.four_CAS_array
             port map (
                 M => M,  -- Pass the entire 4-bit vector M
                 A => cas_array_sum(i-1)(3 downto 0),  -- Connect to the previous row
@@ -73,7 +52,7 @@ begin
     end generate;
 
     -- Instantiate remainder correction block
-    rc0: four_RC_array
+    rc0: entity work.four_RC_array
         port map (
             A => cas_array_sum(3)(4 downto 1),  -- Connect to the last row of cas_array_sum
             M => M,

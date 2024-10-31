@@ -15,24 +15,13 @@ entity remainder_correction is
 end remainder_correction;
 
 architecture Behavioral of remainder_correction is
-    -- Component declaration for full_adder
-    component full_adder
-        Port (
-            A : in std_logic;
-            B : in std_logic;
-            Cin : in std_logic;
-            Sum : out std_logic;
-            Cout : out std_logic
-        );
-    end component;
-
-    signal and_output : std_logic;
+    signal and_output : STD_LOGIC;
 begin
     -- AND operation
     and_output <= Q_bit and Anded_with_Q;
 
-    -- Instantiate the full_adder component
-    FA: full_adder
+    -- Instantiate full_adder
+    FA: entity work.full_adder
         port map (
             A => A,
             B => and_output,

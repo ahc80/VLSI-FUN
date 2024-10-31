@@ -15,6 +15,17 @@ entity conditionalSumAdder is
 end conditionalSumAdder;
 
 architecture Behavioral of conditionalSumAdder is
+    -- Component declaration for full_adder
+    component full_adder
+        port (
+            A    : in  STD_LOGIC;
+            B    : in  STD_LOGIC;
+            Cin  : in  STD_LOGIC;
+            Sum  : out STD_LOGIC;
+            Cout : out STD_LOGIC
+        );
+    end component;
+
     -- Intermediate signals for sums and carries for carry-in 0 and 1
     signal sum0, sum1 : STD_LOGIC_VECTOR(7 downto 0) := (others => '0');
     signal carry0, carry1 : STD_LOGIC_VECTOR(8 downto 0) := (others => '0');
@@ -35,7 +46,7 @@ begin
     end process;
 
     -- Full adder for the first bit
-    FA0_first: entity work.full_adder
+    FA0_first: full_adder
         port map (
             A    => x(0),
             B    => y(0),
@@ -44,7 +55,7 @@ begin
             Cout => FA0_first_carry
         );
 
-    FA1_first: entity work.full_adder
+    FA1_first: full_adder
         port map (
             A    => x(0),
             B    => y(0),
@@ -74,7 +85,7 @@ begin
     -- Generate full adders for the remaining bits
     gen_adders: for i in 1 to 7 generate
         -- Full adder for carry-in = 0
-        FA0: entity work.full_adder
+        FA0: full_adder
             port map (
                 A    => x(i),
                 B    => y(i),
@@ -84,7 +95,7 @@ begin
             );
 
         -- Full adder for carry-in = 1
-        FA1: entity work.full_adder
+        FA1: full_adder
             port map (
                 A    => x(i),
                 B    => y(i),

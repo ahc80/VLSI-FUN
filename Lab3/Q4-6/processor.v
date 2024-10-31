@@ -1,6 +1,6 @@
 module processor (
     input  wire         clk,
-    input  reg     [31:0]  data_in,
+    input  reg  [31:0]  data_in,
     output reg          reading, // 1 = read from mem, 0 write to mem
     output reg  [11:0]  program_counter, // stores next instruction mem address
     output reg  [31:0]  accumulator
@@ -77,14 +77,6 @@ module processor (
             register_file[i] = 32'b0;
         end
     end
-    /*
-    always @(negedge clk ) begin
-        if(instruction_counter == 4) begin
-            instruction_counter <= FETCH;
-        end
-        instruction_counter <= instruction_counter + 1;
-    end
-    */
 
     always @(posedge clk ) begin
         if(~ isHalted) begin
@@ -94,10 +86,10 @@ module processor (
                 instruction_counter <= instruction_counter + 1;
                     if(~reading) begin
                         reading = 1'b1;
-                        program_counter <= src_data;    // This step must happen after above      
+                        program_counter <= src_data;  
                     end
                     #3
-                    IR <= data_in;           // THIS VALUE MAY NEED EXTRA DELAY
+                    IR <= data_in;
                 end
 
                 (DECODE): begin
@@ -156,15 +148,15 @@ module processor (
                             endcase
                         end 
 
-                        (XOR_op): begin //set PSR, 0is0
+                        (XOR_op): begin
                             accumulator <= accumulator ^ src_data;
                         end
 
-                        (ADD_op): begin //set PSR, 0is0
+                        (ADD_op): begin
                             accumulator[11:0] <= accumulator + src_data + PSR[0];
                         end 
 
-                        (ROT_op): begin //set PSR, poss carry?
+                        (ROT_op): begin
                             if(src_data[31]) begin
                                 accumulator <= accumulator >>> src_data;
                             end else begin
@@ -172,7 +164,7 @@ module processor (
                             end
                         end 
 
-                        (SHF_op): begin //set PSR, 0should0?
+                        (SHF_op): begin
                             if(src_data[31]) begin
                                 accumulator <= accumulator >> src_data;
                             end else begin
@@ -188,7 +180,7 @@ module processor (
                             end
                         end 
 
-                        (CMP_op): begin //set PSR, 0is0
+                        (CMP_op): begin
                             accumulator <= (~src_data) + 1;
                         end
 
@@ -205,11 +197,10 @@ module processor (
                     if(~STR_op && ~NOP_op && ~BRA_op && ~HLT_op) begin
                         PSR[0] <= 0;
                         PSR[1] <= ^ accumulator[30:0];
-                        PSR[2] <= ~ (accumulator[31] ^ accumulator[0]);  // get ready to change if bug
+                        PSR[2] <= ~ (accumulator[31] ^ accumulator[0]);
                         PSR[3] <= accumulator[11];  // fitted for 12 bit 2's comp
                         PSR[4] <= ~|accumulator;
                     end
-                    // Maybe we set PSR here
                 end
 
                 (WRITEBACK): begin
@@ -217,11 +208,10 @@ module processor (
                     // Write value to spot
                     case (IR[31:28])
                         (STR_op): begin
-                            // Write to RAM
+                            // Special case: src_data saves the next program counter value
                             reading <= 0;
                             program_counter <= accumulator;
                             src_data <= program_counter; 
-                            // Special case: src_data saves the next program counter value
                         end
                         (BRA_op): begin
                             // No operation

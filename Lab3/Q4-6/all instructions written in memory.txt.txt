@@ -1,0 +1,1 @@
+all instructions are written in memory.v

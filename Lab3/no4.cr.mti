@@ -1,8 +1,0 @@
-{C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab3/Q4/processor.v} {0 {vlog -work work -stats=none {C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab3/Q4/processor.v}
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module processor
-** Error: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab3/Q4/processor.v(65): BEGIN - END required around task/function statements
-** Error: (vlog-13069) C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab3/Q4/processor.v(81): near ")": syntax error, unexpected ')'.
-** Error: (vlog-13014) C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab3/Q4/processor.v(123): near " ERROR! Invalid OpCode": syntax error, unexpected string in foreach loop variable list.
-
-} {4.0 7.0} {}}

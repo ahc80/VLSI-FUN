@@ -14,19 +14,66 @@ entity serial_bit_adder is
 end entity serial_bit_adder;
 
 architecture Behavioral of serial_bit_adder is
-    signal addend, augend         : STD_LOGIC_VECTOR (7 downto 0); -- Shift registers for A and B
-    signal result_internal        : STD_LOGIC_VECTOR (7 downto 0) := (others => '0'); -- Intermediate sum storage
-    signal carry                  : STD_LOGIC := '0'; -- Carry bit
-    signal counter                : INTEGER range 0 to 8 := 0; -- Bit position counter
-    signal sum_bit, carry_bit     : STD_LOGIC; -- Signals for full adder output
+
+    -- Declare components
+    component FullAdder
+        Port (
+            A    : in  STD_LOGIC;
+            B    : in  STD_LOGIC;
+            Cin  : in  STD_LOGIC;
+            Sum  : out STD_LOGIC;
+            Cout : out STD_LOGIC
+        );
+    end component;
+
+    component ShiftRegister
+        Port (
+            clk        : in  STD_LOGIC;
+            reset      : in  STD_LOGIC;
+            load       : in  STD_LOGIC;
+            data_in    : in  STD_LOGIC_VECTOR (7 downto 0);
+            shift_out  : out STD_LOGIC;
+            shift_reg  : out STD_LOGIC_VECTOR (7 downto 0)
+        );
+    end component;
+
+    -- Internal signals
+    signal addend, augend         : STD_LOGIC_VECTOR (7 downto 0);
+    signal result_internal        : STD_LOGIC_VECTOR (7 downto 0) := (others => '0');
+    signal carry                  : STD_LOGIC := '0';
+    signal counter                : INTEGER range 0 to 8 := 0;
+    signal sum_bit, carry_bit     : STD_LOGIC;
+    signal addend_bit, augend_bit : STD_LOGIC;
 
 begin
 
-    -- Instantiate full adder
-    full_adder_inst: entity work.FullAdder
+    -- Instantiate the Shift Register for Addend
+    AddendShiftRegister: ShiftRegister
         Port map (
-            A    => addend(0),
-            B    => augend(0),
+            clk      => clk,
+            reset    => reset,
+            load     => load,
+            data_in  => A,
+            shift_out => addend_bit,
+            shift_reg => addend
+        );
+
+    -- Instantiate the Shift Register for Augend
+    AugendShiftRegister: ShiftRegister
+        Port map (
+            clk      => clk,
+            reset    => reset,
+            load     => load,
+            data_in  => B,
+            shift_out => augend_bit,
+            shift_reg => augend
+        );
+
+    -- Instantiate the Full Adder
+    FullAdderInst: FullAdder
+        Port map (
+            A    => addend_bit,
+            B    => augend_bit,
             Cin  => carry,
             Sum  => sum_bit,
             Cout => carry_bit
@@ -39,13 +86,9 @@ begin
             result_internal <= (others => '0');
             carry <= '0';
             counter <= 0;
-            addend <= (others => '0');
-            augend <= (others => '0');
         elsif rising_edge(clk) then
             if load = '1' then
-                -- Load the inputs A and B into shift registers addend and augend
-                addend <= A;
-                augend <= B;
+                -- Load the inputs and reset carry and counter
                 carry <= '0';
                 counter <= 0;
                 result_internal <= (others => '0');
@@ -53,10 +96,6 @@ begin
                 -- Use full adder output for each bit's sum and carry
                 result_internal(counter) <= sum_bit;
                 carry <= carry_bit;
-
-                -- Shift right for the next bit operation
-                addend <= '0' & addend(7 downto 1);
-                augend <= '0' & augend(7 downto 1);
                 counter <= counter + 1;
             end if;
         end if;

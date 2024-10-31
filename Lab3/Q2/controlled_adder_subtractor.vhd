@@ -21,7 +21,7 @@ begin
     xor_output <= B xor Diagonal;
 
     -- Instantiate full_adder
-    FA: entity work.FullAdder
+    FA: entity work.full_adder
         port map (
             A => A,
             B => xor_output,

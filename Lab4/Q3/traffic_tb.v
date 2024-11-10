@@ -5,7 +5,7 @@ module TrafficLightTB;
     wire ga, gb, ya, yb, ra, rb;
 
     // Instantiate the traffic light FSM module
-    TrafficLight traffic_light_instance(
+    TrafficLightController traffic_light_instance(
         .clk(clk),
         .reset(reset),
         .Sa(sa),

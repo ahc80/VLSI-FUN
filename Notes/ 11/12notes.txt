@@ -1,5 +1,21 @@
 //This is the internal processing for the gate that saab showed in class.
 
+Linked list of a linked list -> NO LINKED LIST
+Only the gates get the number in integer
+Array of tracker
+
+Microcontroller becomes a simulator
+
+In his example nameing the gate
+-> Gate A and Gate B = 0
+-> Buffer1 and Buffer2 = 1
+
+# of Gates
+Type level fanin fanout time.delay string
+== Way to simulate the circuit
+
+Build a Optimization using this.
+
 //Saab's first attempt?
 
 l = ckt;
@@ -29,3 +45,22 @@ for (L = ckt; l; l =l.net){
     if l = tail
         return
 }
+
+readck 
+    -> fanin 
+        -> processfanin 
+            -> fanout 
+                -> processfanout 
+                    -> circuit with buffer 
+                        -> order it with the gates that (maximum number on input +1)
+                        -> naming convention?
+                        -> use to track the order for the gates
+                            -> 
+
+How many gates
+How many fanin and fanout
+
+How many allocations needed
+So you dont need to do anything anymore
+
+

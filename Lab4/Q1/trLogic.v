@@ -30,7 +30,7 @@ module trlogic (
     end
 
     always begin
-        #1 SSPCLKOUT = ~SSPCLKOUT;
+        #1 SSPCLKOUT = ~SSPCLKOUT;  // Just make synced to PCLK?
     end
 
     // ------ ------ Receiving Logic ------ ------ \\
@@ -75,6 +75,7 @@ module trlogic (
     // |||||||||||
     // VVVVVVVVVVV
 
+    // is it smarty to just posedge tx_ready?
     always @(posedge SSPCLKOUT) begin // Both in one wouldnt cause an issue right?
         // Catch ready signal to start transmission
         if(tx_ready) begin
@@ -93,7 +94,7 @@ module trlogic (
     end
 
     always @(negedge SSPCLKOUT) begin
-        if(transmitting) begin
+        if(transmitting) begin              // this would increment one BEFORE first writing step... I think?
             if(txdata_ptr > 0) begin
                 txdata_ptr = txdata_ptr - 1;
             end else begin
@@ -104,8 +105,13 @@ module trlogic (
         end
     end
 
-    always @(posedge transmit_complete ) begin
+    /*
+    always @(posedge transmit_complete ) begin      // this code is problematic
         #1 transmit_complete <= ~transmit_complete;
     end
+
+    ||||||||
+    VVVVVVVV
+    */
 
 endmodule

@@ -39,3 +39,15 @@ module cache_tb;
         $display("Address 0x0076 Read: Data=%h", pdata_out);
 
         #10 paddress = 16'h0059; #10;
+        $display("Address 0x0059 Read: Data=%h", pdata_out);
+
+        #10 paddress = 16'h0045; #10;
+        $display("Address 0x0045 Read: Data=%h", pdata_out);
+
+        #10 paddress = 16'h0012; #10;
+        $display("Address 0x0012 Read: Data=%h", pdata_out);
+
+        $stop;
+    end
+
+endmodule

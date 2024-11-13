@@ -1,5 +1,10 @@
 //This is the internal processing for the gate that saab showed in class.
 
+Preprocessor -> Similator
+The thing we did in class was a Preprocessor
+
+Buffer are for every fan in and fan out?
+
 Linked list of a linked list -> NO LINKED LIST
 Only the gates get the number in integer
 Array of tracker

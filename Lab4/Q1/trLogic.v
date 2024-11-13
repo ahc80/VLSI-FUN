@@ -15,8 +15,8 @@ module trlogic (
 
     reg receiving;
     reg transmitting;
-    reg rxdata_ptr;
-    reg txdata_ptr;
+    reg [2:0] rxdata_ptr;
+    reg [2:0] txdata_ptr;
 
     initial begin
         rxdata_ptr = 3'd7;

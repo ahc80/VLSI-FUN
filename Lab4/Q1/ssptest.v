@@ -32,7 +32,7 @@ module ssp_test1;
     	#40 	data_in = 8'b10001111; //8'h8F
     	#40 	data_in = 8'b10110001; //8'bB1
 		#40 	data_in = 8'b01010101; //8'b55
-	
+		#100 	$finish;
 	end
 	
 	always 
@@ -77,6 +77,7 @@ module ssp_test2;
     	#40 	psel = 1'b0;
     	#3600 	pwrite = 1'b0;
     			psel = 1'b1;
+		#80 $finish;
 	end
 	
 	always 

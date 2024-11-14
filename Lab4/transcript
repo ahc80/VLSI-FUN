@@ -1,0 +1,237 @@
+# Compile of RxFIFO.v failed with 1 errors.
+# Compile of ssp.v failed with 1 errors.
+# Compile of ssptest.v was successful.
+# Compile of trLogic.v failed with 3 errors.
+# Compile of TxFIFO.v failed with 9 errors.
+# 5 compiles, 4 failed with 14 errors.
+# Compile of RxFIFO.v failed with 1 errors.
+# Compile of ssp.v failed with 1 errors.
+# Compile of ssptest.v was successful.
+# Compile of trLogic.v failed with 3 errors.
+# Compile of TxFIFO.v failed with 9 errors.
+# 5 compiles, 4 failed with 14 errors.
+# Compile of RxFIFO.v failed with 1 errors.
+# Compile of ssp.v was successful.
+# Compile of ssptest.v was successful.
+# Compile of trLogic.v failed with 3 errors.
+# Compile of TxFIFO.v failed with 9 errors.
+# 5 compiles, 3 failed with 13 errors.
+# Compile of RxFIFO.v failed with 1 errors.
+# Compile of ssp.v was successful.
+# Compile of ssptest.v was successful.
+# Compile of trLogic.v failed with 3 errors.
+# Compile of TxFIFO.v failed with 9 errors.
+# 5 compiles, 3 failed with 13 errors.
+# Compile of RxFIFO.v failed with 1 errors.
+# Compile of ssp.v was successful.
+# Compile of ssptest.v was successful.
+# Compile of trLogic.v failed with 3 errors.
+# Compile of TxFIFO.v failed with 9 errors.
+# 5 compiles, 3 failed with 13 errors.
+# Compile of RxFIFO.v failed with 5 errors.
+# Compile of ssp.v was successful.
+# Compile of ssptest.v was successful.
+# Compile of trLogic.v failed with 3 errors.
+# Compile of TxFIFO.v failed with 9 errors.
+# 5 compiles, 3 failed with 17 errors.
+# Compile of RxFIFO.v failed with 5 errors.
+# Compile of ssp.v was successful.
+# Compile of ssptest.v was successful.
+# Compile of trLogic.v failed with 3 errors.
+# Compile of TxFIFO.v failed with 9 errors.
+# 5 compiles, 3 failed with 17 errors.
+# Compile of RxFIFO.v was successful.
+# Compile of ssp.v was successful.
+# Compile of ssptest.v was successful.
+# Compile of trLogic.v failed with 3 errors.
+# Compile of TxFIFO.v failed with 9 errors.
+# 5 compiles, 2 failed with 12 errors.
+# Compile of RxFIFO.v was successful.
+# Compile of ssp.v was successful.
+# Compile of ssptest.v was successful.
+# Compile of trLogic.v was successful.
+# Compile of TxFIFO.v was successful.
+# 5 compiles, 0 failed with no errors.
+vsim -gui work.rxfifo work.ssp work.ssp_test1 work.trlogic work.txfifo
+# vsim -gui work.rxfifo work.ssp work.ssp_test1 work.trlogic work.txfifo 
+# Start time: 21:00:48 on Nov 13,2024
+# Loading work.rxfifo
+# Loading work.ssp
+# Loading work.txfifo
+# Loading work.trlogic
+# Loading work.ssp_test1
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'TxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/TxFIFO.v(9).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp/txf File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 25
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'RxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp/rxf File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 37
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'TxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v(7).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp/trl File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 48
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'RxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v(8).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp/trl File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 48
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'TxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/TxFIFO.v(9).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp_test1/ssp1/txf File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 25
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'RxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp_test1/ssp1/rxf File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 37
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'TxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v(7).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp_test1/ssp1/trl File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 48
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'RxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v(8).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp_test1/ssp1/trl File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 48
+add wave -position insertpoint  \
+sim:/ssp/PRDATA \
+sim:/ssp/SSPTXD \
+sim:/ssp/SSPCLKOUT \
+sim:/ssp/SSPFSSOUT
+run -all
+# Break key hit
+# Simulation stop requested.
+
+
+
+
+
+
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'TxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/TxFIFO.v(9).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp/txf File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 25
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'RxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp/rxf File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 37
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'TxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v(7).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp/trl File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 48
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'RxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v(8).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp/trl File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 48
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'TxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/TxFIFO.v(9).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp_test1/ssp1/txf File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 25
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'RxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp_test1/ssp1/rxf File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 37
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'TxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v(7).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp_test1/ssp1/trl File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 48
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'RxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v(8).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp_test1/ssp1/trl File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 48
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'TxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/TxFIFO.v(9).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp/txf File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 25
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'RxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp/rxf File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 37
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'TxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v(7).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp/trl File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 48
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'RxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v(8).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp/trl File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 48
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'TxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/TxFIFO.v(9).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp_test1/ssp1/txf File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 25
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'RxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp_test1/ssp1/rxf File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 37
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'TxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v(7).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp_test1/ssp1/trl File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 48
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'RxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v(8).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp_test1/ssp1/trl File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 48
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'TxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/TxFIFO.v(9).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp/txf File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 25
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'RxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp/rxf File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 37
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'TxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v(7).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp/trl File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 48
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'RxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v(8).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp/trl File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 48
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'TxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/TxFIFO.v(9).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp_test1/ssp1/txf File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 25
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'RxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp_test1/ssp1/rxf File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 37
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'TxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v(7).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp_test1/ssp1/trl File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 48
+
+run -all
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'RxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v(8).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp_test1/ssp1/trl File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 48
+# Compile of RxFIFO.v was successful.
+# Compile of ssp.v was successful.
+# Compile of ssptest.v was successful.
+# Compile of trLogic.v was successful.
+# Compile of TxFIFO.v was successful.
+# 5 compiles, 0 failed with no errors.
+# Break key hit
+# Simulation stop requested.
+quit -sim
+restart
+# End time: 21:04:34 on Nov 13,2024, Elapsed time: 0:03:46
+# Errors: 0, Warnings: 10
+# No Design Loaded!
+vsim -gui work.rxfifo work.ssp work.ssp_test1 work.trlogic work.txfifo
+# vsim -gui work.rxfifo work.ssp work.ssp_test1 work.trlogic work.txfifo 
+# Start time: 21:04:41 on Nov 13,2024
+# Loading work.rxfifo
+# Loading work.ssp
+# Loading work.txfifo
+# Loading work.trlogic
+# Loading work.ssp_test1
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'TxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/TxFIFO.v(9).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp/txf File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 25
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'RxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp/rxf File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 37
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'TxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v(7).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp/trl File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 48
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'RxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v(8).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp/trl File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 48
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'TxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/TxFIFO.v(9).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp_test1/ssp1/txf File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 25
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'RxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp_test1/ssp1/rxf File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 37
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'TxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v(7).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp_test1/ssp1/trl File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 48
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'RxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v(8).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp_test1/ssp1/trl File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 48
+add wave -position insertpoint  \
+sim:/ssp/PRDATA \
+sim:/ssp/SSPTXD \
+sim:/ssp/SSPCLKOUT \
+sim:/ssp/SSPFSSOUT
+run -all
+# ** Note: $finish    : C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssptest.v(35)
+#    Time: 731 ps  Iteration: 0  Instance: /ssp_test1
+# 1
+# Break in Module ssp_test1 at C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssptest.v line 35
+vsim -gui work.rxfifo work.ssp work.ssp_test2 work.trlogic work.txfifo
+# End time: 21:08:30 on Nov 13,2024, Elapsed time: 0:03:49
+# Errors: 0, Warnings: 9
+# vsim -gui work.rxfifo work.ssp work.ssp_test2 work.trlogic work.txfifo 
+# Start time: 21:08:30 on Nov 13,2024
+# Loading work.rxfifo
+# Loading work.ssp
+# Loading work.txfifo
+# Loading work.trlogic
+# Loading work.ssp_test2
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'TxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/TxFIFO.v(9).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp/txf File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 25
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'RxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp/rxf File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 37
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'TxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v(7).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp/trl File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 48
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'RxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v(8).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp/trl File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 48
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'TxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/TxFIFO.v(9).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp_test2/ssp2/txf File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 25
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'RxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp_test2/ssp2/rxf File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 37
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'TxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v(7).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp_test2/ssp2/trl File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 48
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'RxData'. The port definition is at: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v(8).
+#    Time: 0 ps  Iteration: 0  Instance: /ssp_test2/ssp2/trl File: C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v Line: 48
+add wave -position insertpoint sim:/ssp_test2/*
+run -all
+# ** Note: $finish    : C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssptest.v(80)
+#    Time: 5056 ps  Iteration: 0  Instance: /ssp_test2
+# 1
+# Break in Module ssp_test2 at C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssptest.v line 80
+add wave -position insertpoint  \
+sim:/ssp_test2/ssp2/PSEL
+add wave -position insertpoint  \
+sim:/ssp_test2/ssp2/PWDATA
+add wave -position insertpoint  \
+sim:/ssp_test2/ssp2/PRDATA
+add wave -position insertpoint  \
+sim:/ssp_test2/ssp2/PRDATA
+# WARNING: No extended dataflow license exists
+add wave -position insertpoint sim:/ssp_test2/*

@@ -3,7 +3,7 @@ module ssp (
     input        CLEAR_B,
     input        PSEL,
     input        PWRITE,
-    input [7:0]  PWDATA
+    input [7:0]  PWDATA,
     input        SSPCLKIN,
     input        SSPFSSIN,
     input        SSPRXD,
@@ -32,7 +32,7 @@ module ssp (
         .tx_ready(tx_ready),
         .TxData(TxData),
         .SSPTXINTR(SSPTXINTR)
-    )
+    );
 
     rxfifo rxf (
         .PSEL(PSEL),
@@ -40,10 +40,10 @@ module ssp (
         .CLEAR_B(CLEAR_B),
         .PCLK(PCLK),
         .RxData(RxData),
-        .rx_readable(rx_ready),
+        .rx_ready(rx_ready),
         .SSPRXINTR(SSPRXINTR),
         .PRDATA(PRDATA)
-    )
+    );
 
     trlogic trl (
         .PCLK(PCLK),
@@ -59,5 +59,5 @@ module ssp (
         .SSPTXD(SSPTXD),
         .SSPFSSOUT(SSPFSSOUT),
         .SSPCLKOUT(SSPCLKOUT)
-    )
+    );
 endmodule

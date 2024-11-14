@@ -1,0 +1,149 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4
+vrxfifo
+Z1 !s110 1731549863
+!i10b 1
+!s100 z]f1Z2SNiBHKC[93N@2Wn2
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+II4kP@HNg3C17EiL6=GfOh0
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1731549548
+8C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/RxFIFO.v
+FC:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/RxFIFO.v
+!i122 20
+L0 1 55
+Z4 OV;L;2020.1;71
+r1
+!s85 0
+31
+!s108 1731549862.000000
+!s107 C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/RxFIFO.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/RxFIFO.v|
+!i113 1
+Z5 o-work work
+Z6 tCvgOpt 0
+vssp
+R1
+!i10b 1
+!s100 ;zo4Cle1_L4h1j?Fi^`Uf2
+R2
+I^ISgFmd1Y`oYMSSTf4blJ3
+R3
+R0
+w1731547146
+8C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v
+FC:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v
+!i122 21
+L0 1 63
+R4
+r1
+!s85 0
+31
+Z7 !s108 1731549863.000000
+!s107 C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v|
+!i113 1
+R5
+R6
+vssp_test1
+R1
+!i10b 1
+!s100 nnN1RojDdXNeWh91WdQ9@2
+R2
+Ij<jRWC`[>b85FDUo6?bgT0
+R3
+R0
+Z8 w1731549855
+Z9 8C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssptest.v
+Z10 FC:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssptest.v
+!i122 22
+L0 1 45
+R4
+r1
+!s85 0
+31
+R7
+Z11 !s107 C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssptest.v|
+Z12 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssptest.v|
+!i113 1
+R5
+R6
+vssp_test2
+R1
+!i10b 1
+!s100 R??W^eE;XBEj97Wn4QP_H2
+R2
+I`_J;fk@6PX=cmRBF;3l0U0
+R3
+R0
+R8
+R9
+R10
+!i122 22
+L0 47 44
+R4
+r1
+!s85 0
+31
+R7
+R11
+R12
+!i113 1
+R5
+R6
+vtrlogic
+R1
+!i10b 1
+!s100 Va_2;jl2Q=Vzi2GgkDH]h2
+R2
+IKic_d46Cn]NzF]K7D2Xni3
+R3
+R0
+w1731549622
+8C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v
+FC:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v
+!i122 23
+L0 1 74
+R4
+r1
+!s85 0
+31
+R7
+!s107 C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v|
+!i113 1
+R5
+R6
+vtxfifo
+R1
+!i10b 1
+!s100 bzF3nn@HzHzPe?SaGM]3h0
+R2
+IXCM>c3JIXl;lFm?4KK6Nc3
+R3
+R0
+w1731549595
+8C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/TxFIFO.v
+FC:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/TxFIFO.v
+!i122 24
+L0 1 59
+R4
+r1
+!s85 0
+31
+R7
+!s107 C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/TxFIFO.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/TxFIFO.v|
+!i113 1
+R5
+R6

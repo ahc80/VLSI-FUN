@@ -8,9 +8,9 @@ module trlogic (
     output reg [7:0] RxData,    // Need a outputting signal
     output reg       rx_ready,  // High when trL has finished preparing input
     output reg       transmit_complete, // Transmit complete gets TxF to show next word
-    output           SSPOE_B,
-    output           SSPTXD,
-    output           SSPFSSOUT,
+    output reg       SSPOE_B,
+    output reg       SSPTXD,
+    output reg       SSPFSSOUT,
     output wire      SSPCLKOUT
 );
 

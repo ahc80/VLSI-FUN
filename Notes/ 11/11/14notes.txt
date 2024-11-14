@@ -1,0 +1,62 @@
+Simulator for the Preprocessor
+
+Simulate (input)
+
+X = C AND A
+Y = C' AND B
+
+Z = X AND Y
+
+Z = _______|¯|_______
+or 
+Z = ¯¯¯¯¯¯¯|_|¯¯¯¯¯¯¯
+
+001
+011
+---
+0x1
+
+Basic Simulator
+
+all input + x
+simulate the ckt
+n set 1 
+
+L1:
+while (obj is possible) {
+    Primary Implicant <= trace fanin with x
+    assign (PI <= value)
+    simulatepush PI => Stack;
+}
+
+if (objective acieved) {
+    print the Stack();
+    pop all PI from the stack;
+    set PI < X
+    simulate
+}
+return
+
+If it doesnt work something is not good
+
+first decision:
+if (decision is = 1) {
+    reverse decision;
+    simulate ()
+    goto L1
+}
+
+L2
+while (decision top = 2) {
+    pop PI
+    assign PI = X
+    simulate
+}
+
+//Stakc is empty and no gate
+//That line is redundant
+if (stack empty){
+    return obj is redundant
+}
+//else if it not empty go check something else
+go to L2

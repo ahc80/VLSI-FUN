@@ -15,28 +15,25 @@ end memory;
 architecture Behavioral of memory is
     -- Define a memory array with 16K 32-bit words (4 bytes each)
     type mem_array is array (0 to 16383) of std_logic_vector(31 downto 0);
-    signal mem : mem_array;  -- Memory storage
+    signal mem : mem_array := (others => (others => '0'));  -- Initialize memory to zero
 
     -- Memory operation control signals
     signal wait_counter : integer := 0;
-    signal read_data : std_logic_vector(31 downto 0);
-
-    -- Initialize memory with predefined values for testing
-    constant INIT_VALUES : mem_array := (
-        16#10#: x"AABBCCDD",
-        16#20#: x"11223344",
-        16#31#: x"99881133",
-        16#80#: x"ABCDEF01",
-        16#51#: x"12345678",
-        16#57#: x"6789ABCD",
-        16#58#: x"A1B2C3D4",
-        16#59#: x"9A8B1C3D",
-        others => (others => '0')
-    );
 
 begin
-    -- Initialize memory with predefined values
-    mem <= INIT_VALUES;
+    -- Initialization process to preload specific addresses
+    process
+    begin
+        mem(16#10#) <= x"AABBCCDD";
+        mem(16#20#) <= x"11223344";
+        mem(16#31#) <= x"99881133";
+        mem(16#80#) <= x"ABCDEF01";
+        mem(16#51#) <= x"12345678";
+        mem(16#57#) <= x"6789ABCD";
+        mem(16#58#) <= x"A1B2C3D4";
+        mem(16#59#) <= x"9A8B1C3D";
+        wait;  -- This process runs only once at simulation start
+    end process;
 
     -- Process for handling memory operations with wait states
     process(sysStrobe, sysRW)
@@ -71,3 +68,4 @@ begin
     end process;
 
 end Behavioral;
+

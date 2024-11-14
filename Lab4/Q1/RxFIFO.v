@@ -19,23 +19,23 @@ module rxfifo (
         data_reg[1] = 8'b0;
         data_reg[2] = 8'b0;
         data_reg[3] = 8'b0;
-        SSPTXINTR = 0;
+        SSPRXINTR = 0;
         read_ptr = 0;
         write_ptr = 0;
     end
 
-    // handle writing to memory when input data is ready
+    // Handle inputting data into memory
     always @(posedge rx_ready) begin
         if(~SSPRXINTR) begin
             data_reg[write_ptr] <= RxData;
-            write_ptr = write_ptr + 1'b1;
-            SSPRXINTR = write_ptr == read_ptr;
+            write_ptr <= write_ptr + 1'b1;
+            SSPRXINTR <= write_ptr == read_ptr;
         end
     end
 
     // Handle reading out memory
     always @(posedge PCLK) begin
-        if(PSEL && ~PWRITE && read_ptr != write_ptr) begin
+        if(PSEL && ~PWRITE && (read_ptr != write_ptr || SSPRXINTR)) begin
             PRDATA <= data_reg[read_ptr];
             read_ptr <= read_ptr + 1'b1;
             SSPRXINTR = 1'b0;
@@ -48,7 +48,7 @@ module rxfifo (
         data_reg[1] = 8'b0;
         data_reg[2] = 8'b0;
         data_reg[3] = 8'b0;
-        SSPTXINTR = 0;
+        SSPRXINTR = 0;
         read_ptr = 0;
         write_ptr = 0;
     end

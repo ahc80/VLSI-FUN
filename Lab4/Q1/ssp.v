@@ -19,8 +19,8 @@ module ssp (
     wire transmit_complete;
     wire tx_ready;
     wire rx_ready;
-    wire TxData;
-    wire RxData;
+    wire [7:0] TxData;
+    wire [7:0] RxData;
 
     txfifo txf (
         .PSEL(PSEL),

@@ -10,74 +10,74 @@ z2
 cModel Technology
 Z0 dC:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4
 vrxfifo
-Z1 !s110 1731549863
+Z1 !s110 1731635240
 !i10b 1
-!s100 z]f1Z2SNiBHKC[93N@2Wn2
+!s100 ;PhF374J<iHHMFLW]iL9C2
 Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
-II4kP@HNg3C17EiL6=GfOh0
+IWl_@W@3ULM0@z=C;7d1gH0
 Z3 VDg1SIo80bB@j0V0VzS_@n1
 R0
-w1731549548
+w1731632939
 8C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/RxFIFO.v
 FC:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/RxFIFO.v
-!i122 20
-L0 1 55
+!i122 185
+L0 1 53
 Z4 OV;L;2020.1;71
 r1
 !s85 0
 31
-!s108 1731549862.000000
+Z5 !s108 1731635240.000000
 !s107 C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/RxFIFO.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/RxFIFO.v|
 !i113 1
-Z5 o-work work
-Z6 tCvgOpt 0
+Z6 o-work work
+Z7 tCvgOpt 0
 vssp
 R1
 !i10b 1
-!s100 ;zo4Cle1_L4h1j?Fi^`Uf2
+!s100 AcjJZ>z0RoX19Ez[0R7ZD0
 R2
-I^ISgFmd1Y`oYMSSTf4blJ3
+I4XLmYhcZ7_9[4dd>a?zml3
 R3
 R0
-w1731547146
+w1731633988
 8C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v
 FC:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v
-!i122 21
+!i122 186
 L0 1 63
 R4
 r1
 !s85 0
 31
-Z7 !s108 1731549863.000000
+R5
 !s107 C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssp.v|
 !i113 1
-R5
 R6
+R7
 vssp_test1
 R1
 !i10b 1
-!s100 nnN1RojDdXNeWh91WdQ9@2
+!s100 Q9bQe35J@7YkJ[cYBgGT:0
 R2
-Ij<jRWC`[>b85FDUo6?bgT0
+I^Aj5=>Y?W8Jm4Fk6B5?`j2
 R3
 R0
-Z8 w1731549855
+Z8 w1731634687
 Z9 8C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssptest.v
 Z10 FC:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssptest.v
-!i122 22
+!i122 187
 L0 1 45
 R4
 r1
 !s85 0
 31
-R7
+R5
 Z11 !s107 C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssptest.v|
 Z12 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssptest.v|
 !i113 1
-R5
 R6
+R7
 vssp_test2
 R1
 !i10b 1
@@ -89,61 +89,61 @@ R0
 R8
 R9
 R10
-!i122 22
+!i122 187
 L0 47 44
 R4
 r1
 !s85 0
 31
-R7
+R5
 R11
 R12
 !i113 1
-R5
 R6
+R7
 vtrlogic
-R1
+Z13 !s110 1731635241
 !i10b 1
-!s100 Va_2;jl2Q=Vzi2GgkDH]h2
+!s100 gQ:1d[Jg3:VP?;WL`]2@=1
 R2
-IKic_d46Cn]NzF]K7D2Xni3
+Inig6YfO9X9g6HXWoSmjPo1
 R3
 R0
-w1731549622
+w1731635231
 8C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v
 FC:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v
-!i122 23
-L0 1 74
+!i122 188
+L0 1 72
 R4
 r1
 !s85 0
 31
-R7
+Z14 !s108 1731635241.000000
 !s107 C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v|
 !i113 1
-R5
 R6
+R7
 vtxfifo
-R1
+R13
 !i10b 1
-!s100 bzF3nn@HzHzPe?SaGM]3h0
+!s100 RfeC<T1LH3ZUb@c6GeH]X3
 R2
-IXCM>c3JIXl;lFm?4KK6Nc3
+II29]5]EN`Z?_L_]S:UZ2M0
 R3
 R0
-w1731549595
+w1731633815
 8C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/TxFIFO.v
 FC:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/TxFIFO.v
-!i122 24
-L0 1 59
+!i122 189
+L0 1 70
 R4
 r1
 !s85 0
 31
-R7
+R14
 !s107 C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/TxFIFO.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/TxFIFO.v|
 !i113 1
-R5
 R6
+R7

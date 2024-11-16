@@ -23,50 +23,51 @@ module trlogic (
     initial begin
         rxdata_ptr = 3'd7;
         txdata_ptr = 3'd7;
-        receiving = 0;
-        rx_ready = 0;
-        transmit_complete = 1;      // Start as 1; Ready to start transmitting from the get go
+        receiving = 1'b0;
+        rx_ready = 1'b1;
+        transmit_complete = 1'b1;      // Start as 1; Ready to start transmitting from the get go
     end
 
-    // ------ ------ Receiving Logic ------ ------ \\
-
-    always @(posedge SSPFSSIN) begin
-        receiving <= 1'b1;
-        rx_ready  <= 0;
-    end
+    // ------ ------ Receiving data ------ ------ \\
 
     always @(posedge SSPCLKIN) begin
+        if(SSPFSSIN) begin
+            receiving <= 1'b1;
+            rx_ready  <= 1'b0;
+        end
         if(receiving) begin
             RxData[rxdata_ptr] <= SSPRXD;
             // Increment ptr
             if( rxdata_ptr > 0) begin
-                rxdata_ptr <= rxdata_ptr - 1;
+                rxdata_ptr <= rxdata_ptr - 1'b1;
             end else begin
-                rxdata_ptr <= rxdata_ptr - 1;
+                rxdata_ptr <= rxdata_ptr - 1'b1;
                 receiving  <= 1'b0;
-                rx_ready   <= 1;
+                rx_ready   <= 1'b1;
             end
         end
     end
 
     // ------ ------ Transmitting Logic ------ ------ \\
 
-    // is it smarty to just posedge tx_ready?
-    always @(posedge SSPCLKOUT) begin // Both in one wouldnt cause an issue right?
+    always @(posedge SSPCLKOUT) begin
         // Catch ready signal to start transmission
-        if(tx_ready) begin
-            transmit_complete <= 0;
-            SSPFSSOUT <= 1;
+        if(tx_ready && transmit_complete) begin
+            transmit_complete <= 1'b0;
+            SSPFSSOUT <= 1'b1;
         end
+
+        // display transcomplete and data
+
         // Transmit data once ready signal caught and lower SSPFSSOUT
         if(~transmit_complete) begin
             SSPTXD <= TxData[txdata_ptr];
-            SSPFSSOUT <= 0;
-            if(txdata_ptr > 0) begin
-                txdata_ptr <= txdata_ptr - 1;
+            SSPFSSOUT <= 1'b0;
+            if(txdata_ptr > 1'b0) begin
+                txdata_ptr <= txdata_ptr - 1'b1;
             end else begin
-                txdata_ptr <= txdata_ptr - 1;
-                transmit_complete <= 1;
+                txdata_ptr <= 1'd7;
+                transmit_complete <= 1'b1;
             end
         end
     end

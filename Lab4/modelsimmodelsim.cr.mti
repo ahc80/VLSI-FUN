@@ -1,11 +1,4 @@
-{C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v} {1 {vlog -work work -stats=none {C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/trLogic.v}
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module trlogic
-
-Top level modules:
-	trlogic
-
-} {} {}} {C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssptest.v} {1 {vlog -work work -stats=none {C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssptest.v}
+{C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssptest.v} {1 {vlog -work work -stats=none {C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/ssptest.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
 -- Compiling module ssp_test1
 -- Compiling module ssp_test2
@@ -20,5 +13,12 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 
 
 Top level modules:
 	ssp
+
+} {} {}} {C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/RxFIFO.v} {1 {vlog -work work -stats=none {C:/Users/the5t/Documents/ECSE 318/VLSI-FUN/Lab4/Q1/RxFIFO.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module rxfifo
+
+Top level modules:
+	rxfifo
 
 } {} {}}

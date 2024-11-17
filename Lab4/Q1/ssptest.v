@@ -32,7 +32,7 @@ module ssp_test1;
     	#40 	data_in = 8'b10001111; //8'h8F
     	#40 	data_in = 8'b10110001; //8'bB1
 		#40 	data_in = 8'b01010101; //8'b55
-		#500 	$finish;
+		#2000 	$finish;
 	end
 	
 	always 

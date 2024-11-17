@@ -38,7 +38,7 @@ module txfifo (
             out_ptr= 2'b0;
             tx_ready = 1'b0;
             SSPTXINTR = 1'b0;
-            $display("Hello hello!!");
+            finish_transmit = 1'b0;
         end else begin
             $display("PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr %b|%b|%h|%h|%d|%d", PSEL, PWRITE, SSPTXINTR, PWDATA, data_reg[in_ptr-1'b1], in_ptr);
             // Read PWDATA and input into memory
@@ -53,6 +53,8 @@ module txfifo (
                 TxData <= data_reg[out_ptr];
                 tx_ready <= 1'b1;
                 finish_transmit <= 1'b1;
+            end else begin
+                tx_ready = 1'b0;
             end
             if(finish_transmit) begin
                 out_ptr <= out_ptr + 1'b1;

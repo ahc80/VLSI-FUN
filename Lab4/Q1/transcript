@@ -1,0 +1,737 @@
+# Compile of RxFIFO.v was successful.
+# Compile of ssp.v was successful.
+# Compile of ssptest.v was successful.
+# Compile of trLogic.v was successful.
+# Compile of TxFIFO.v was successful.
+# 5 compiles, 0 failed with no errors.
+vsim -gui work.txfifo work.trlogic work.ssp_test1 work.ssp work.rxfifo
+# vsim -gui work.txfifo work.trlogic work.ssp_test1 work.ssp work.rxfifo 
+# Start time: 15:46:55 on Nov 16,2024
+# Loading work.txfifo
+# Loading work.trlogic
+# Loading work.ssp_test1
+# Loading work.ssp
+# Loading work.rxfifo
+add wave -position insertpoint  \
+sim:/ssp_test1/pwrite \
+sim:/ssp_test1/psel \
+sim:/ssp_test1/ssptxd \
+sim:/ssp_test1/sspfssout \
+sim:/ssp_test1/sspclkout
+add wave -position insertpoint  \
+sim:/ssp_test1/ssp1/PRDATA
+add wave -position insertpoint  \
+sim:/ssp_test1/ssp1/transmit_complete
+add wave -position insertpoint  \
+sim:/ssp_test1/ssp1/tx_ready
+add wave -position insertpoint  \
+sim:/ssp_test1/ssp1/TxData
+run -all
+# Hello hello!!
+# Hello hello!!
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|x|0|ff|  0|0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|35|  0|0
+#                  140 we made it to input data to txf phase
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|ae| 53|1
+#                  180 we made it to input data to txf phase
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|26|174|2
+#                  420 we made it to input data to txf phase
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|39| 38|3
+#                  460 we made it to input data to txf phase
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|9d| 57|0
+#                  500 we made it to input data to txf phase
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|74|157|1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|8f|157|1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|b1|157|1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55|157|1
+#                  660 we made it to input data to txf phase
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# ** Note: $finish    : C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v(35)
+#    Time: 1131 ps  Iteration: 0  Instance: /ssp_test1
+# 1
+# Break in Module ssp_test1 at C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v line 35
+# Compile of RxFIFO.v was successful.
+# Compile of ssp.v was successful.
+# Compile of ssptest.v was successful.
+# Compile of trLogic.v was successful.
+# Compile of TxFIFO.v was successful.
+# 5 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.txfifo
+# Loading work.trlogic
+# Loading work.ssp_test1
+# Loading work.ssp
+# Loading work.rxfifo
+run -all
+# Hello hello!!
+# Hello hello!!
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|x|0|ff|  0|0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|35|  0|0
+#                  140 we made it to input data to txf phase
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|ae| 53|1
+#                  180 we made it to input data to txf phase
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|26|174|2
+#                  420 we made it to input data to txf phase
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|39| 38|3
+#                  460 we made it to input data to txf phase
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|9d| 57|0
+#                  500 we made it to input data to txf phase
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|74|157|1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|8f|157|1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|b1|157|1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55|157|1
+#                  660 we made it to input data to txf phase
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# ** Note: $finish    : C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v(35)
+#    Time: 1131 ps  Iteration: 0  Instance: /ssp_test1
+# 1
+# Break in Module ssp_test1 at C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v line 35
+# Compile of RxFIFO.v was successful.
+# Compile of ssp.v was successful.
+# Compile of ssptest.v was successful.
+# Compile of trLogic.v was successful.
+# Compile of TxFIFO.v was successful.
+# 5 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.txfifo
+# Loading work.trlogic
+# Loading work.ssp_test1
+# Loading work.ssp
+# Loading work.rxfifo
+run -all
+# Hello hello!!
+# Hello hello!!
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|x|0|ff|  0|0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|35|  0|0
+#                  140 we made it to input data to txf phase
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|ae| 53|1
+#                  180 we made it to input data to txf phase
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  260txd ptr 7
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  300txd ptr 6
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  340txd ptr 5
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  380txd ptr 4
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  420txd ptr 3
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|26|174|2
+#                  420 we made it to input data to txf phase
+#                  460txd ptr 2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|39| 38|3
+#                  460 we made it to input data to txf phase
+#                  500txd ptr 1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|9d| 57|0
+#                  500 we made it to input data to txf phase
+#                  540txd ptr 0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|74|157|1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|8f|157|1
+#                  620txd ptr 1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|b1|157|1
+#                  660txd ptr 0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55|157|1
+#                  660 we made it to input data to txf phase
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  740txd ptr 1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  780txd ptr 0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                  860txd ptr 1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                  900txd ptr 0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                  980txd ptr 1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1020txd ptr 0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1100txd ptr 1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# ** Note: $finish    : C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v(35)
+#    Time: 1131 ps  Iteration: 0  Instance: /ssp_test1
+# 1
+# Break in Module ssp_test1 at C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v line 35
+# Compile of RxFIFO.v was successful.
+# Compile of ssp.v was successful.
+# Compile of ssptest.v was successful.
+# Compile of trLogic.v was successful.
+# Compile of TxFIFO.v was successful.
+# 5 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.txfifo
+# Loading work.trlogic
+# Loading work.ssp_test1
+# Loading work.ssp
+# Loading work.rxfifo
+run -all
+# Hello hello!!
+# Hello hello!!
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|x|0|ff|  0|0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|35|  0|0
+#                  140 we made it to input data to txf phase
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|ae| 53|1
+#                  180 we made it to input data to txf phase
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  260txd ptr 7
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  300txd ptr 6
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  340txd ptr 5
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  380txd ptr 4
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  420txd ptr 3
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|26|174|2
+#                  420 we made it to input data to txf phase
+#                  460txd ptr 2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|39| 38|3
+#                  460 we made it to input data to txf phase
+#                  500txd ptr 1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|9d| 57|0
+#                  500 we made it to input data to txf phase
+#                  540txd ptr 0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|74|157|1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|8f|157|1
+#                  620txd ptr 7
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|b1|157|1
+#                  660txd ptr 6
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55|157|1
+#                  660 we made it to input data to txf phase
+#                  700txd ptr 5
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  740txd ptr 4
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  780txd ptr 3
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  820txd ptr 2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  860txd ptr 1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  900txd ptr 0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  980txd ptr 7
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                 1020txd ptr 6
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1060txd ptr 5
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1100txd ptr 4
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# ** Note: $finish    : C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v(35)
+#    Time: 1131 ps  Iteration: 0  Instance: /ssp_test1
+# 1
+# Break in Module ssp_test1 at C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v line 35
+# Compile of RxFIFO.v was successful.
+# Compile of ssp.v was successful.
+# Compile of ssptest.v was successful.
+# Compile of trLogic.v was successful.
+# Compile of TxFIFO.v was successful.
+# 5 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.txfifo
+# Loading work.trlogic
+# Loading work.ssp_test1
+# Loading work.ssp
+# Loading work.rxfifo
+run -all
+# Hello hello!!
+# Hello hello!!
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|x|0|ff|  0|0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|35|  0|0
+#                  140 we made it to input data to txf phase
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|ae| 53|1
+#                  180 we made it to input data to txf phase
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  260txd ptr 7
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  300txd ptr 6
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  340txd ptr 5
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  380txd ptr 4
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  420txd ptr 3
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|26|174|2
+#                  420 we made it to input data to txf phase
+#                  460txd ptr 2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|39| 38|3
+#                  460 we made it to input data to txf phase
+#                  500txd ptr 1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|9d| 57|0
+#                  500 we made it to input data to txf phase
+#                  540txd ptr 0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|74|157|1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|8f|157|1
+#                  620txd ptr 7
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|b1|157|1
+#                  660txd ptr 6
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55|157|1
+#                  660 we made it to input data to txf phase
+#                  700txd ptr 5
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  740txd ptr 4
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  780txd ptr 3
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  820txd ptr 2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  860txd ptr 1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  900txd ptr 0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  980txd ptr 7
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                 1020txd ptr 6
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1060txd ptr 5
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1100txd ptr 4
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1140txd ptr 3
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1180txd ptr 2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1220txd ptr 1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1260txd ptr 0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1340txd ptr 7
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1380txd ptr 6
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1420txd ptr 5
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1460txd ptr 4
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1500txd ptr 3
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# ** Note: $finish    : C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v(35)
+#    Time: 1531 ps  Iteration: 0  Instance: /ssp_test1
+# 1
+# Break in Module ssp_test1 at C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v line 35
+# Compile of RxFIFO.v was successful.
+# Compile of ssp.v was successful.
+# Compile of ssptest.v was successful.
+# Compile of trLogic.v was successful.
+# Compile of TxFIFO.v was successful.
+# 5 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.txfifo
+# Loading work.trlogic
+# Loading work.ssp_test1
+# Loading work.ssp
+# Loading work.rxfifo
+run -all
+# Hello hello!!
+# Hello hello!!
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|x|0|ff|  0|0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|35|  0|0
+#                  140 we made it to input data to txf phase
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|ae| 53|1
+#                  180 we made it to input data to txf phase
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  260txd ptr 7
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  300txd ptr 6
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  340txd ptr 5
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  380txd ptr 4
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  420txd ptr 3
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|26|174|2
+#                  420 we made it to input data to txf phase
+#                  460txd ptr 2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|39| 38|3
+#                  460 we made it to input data to txf phase
+#                  500txd ptr 1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|9d| 57|0
+#                  500 we made it to input data to txf phase
+#                  540txd ptr 0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|74|157|1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|8f|157|1
+#                  620txd ptr 7
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|b1|157|1
+#                  660txd ptr 6
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55|157|1
+#                  660 we made it to input data to txf phase
+#                  700txd ptr 5
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  740txd ptr 4
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  780txd ptr 3
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  820txd ptr 2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  860txd ptr 1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  900txd ptr 0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  980txd ptr 7
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                 1020txd ptr 6
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1060txd ptr 5
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1100txd ptr 4
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1140txd ptr 3
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1180txd ptr 2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1220txd ptr 1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1260txd ptr 0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1340txd ptr 7
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1380txd ptr 6
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1420txd ptr 5
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1460txd ptr 4
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1500txd ptr 3
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1540txd ptr 2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1580txd ptr 1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1620txd ptr 0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1700txd ptr 7
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1740txd ptr 6
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1780txd ptr 5
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1820txd ptr 4
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# ** Note: $finish    : C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v(35)
+#    Time: 1831 ps  Iteration: 0  Instance: /ssp_test1
+# 1
+# Break in Module ssp_test1 at C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v line 35
+# Compile of RxFIFO.v was successful.
+# Compile of ssp.v was successful.
+# Compile of ssptest.v was successful.
+# Compile of trLogic.v was successful.
+# Compile of TxFIFO.v was successful.
+# 5 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.txfifo
+# Loading work.trlogic
+# Loading work.ssp_test1
+# Loading work.ssp
+# Loading work.rxfifo
+run -all
+# Hello hello!!
+# Hello hello!!
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|x|0|ff|  0|0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|35|  0|0
+#                  140 we made it to input data to txf phase
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|ae| 53|1
+#                  180 we made it to input data to txf phase
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  260txd ptr 7
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  300txd ptr 6
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  340txd ptr 5
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  380txd ptr 4
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  420txd ptr 3
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|26|174|2
+#                  420 we made it to input data to txf phase
+#                  460txd ptr 2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|39| 38|3
+#                  460 we made it to input data to txf phase
+#                  500txd ptr 1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|9d| 57|0
+#                  500 we made it to input data to txf phase
+#                  540txd ptr 0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|74|157|1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|8f|157|1
+#                  620txd ptr 7
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|b1|157|1
+#                  660txd ptr 6
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55|157|1
+#                  660 we made it to input data to txf phase
+#                  700txd ptr 5
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  740txd ptr 4
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  780txd ptr 3
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  820txd ptr 2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  860txd ptr 1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  900txd ptr 0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  980txd ptr 7
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                 1020txd ptr 6
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1060txd ptr 5
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1100txd ptr 4
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1140txd ptr 3
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1180txd ptr 2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1220txd ptr 1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1260txd ptr 0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1340txd ptr 7
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1380txd ptr 6
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1420txd ptr 5
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1460txd ptr 4
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1500txd ptr 3
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1540txd ptr 2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1580txd ptr 1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1620txd ptr 0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1700txd ptr 7
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1740txd ptr 6
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1780txd ptr 5
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1820txd ptr 4
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1860txd ptr 3
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1900txd ptr 2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1940txd ptr 1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1980txd ptr 0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 2060txd ptr 7
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 2100txd ptr 6
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 2140txd ptr 5
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 2180txd ptr 4
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 2220txd ptr 3
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 2260txd ptr 2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 2300txd ptr 1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 2340txd ptr 0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 2420txd ptr 7
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 2460txd ptr 6
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 2500txd ptr 5
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 2540txd ptr 4
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 2580txd ptr 3
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 2620txd ptr 2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# ** Note: $finish    : C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v(35)
+#    Time: 2631 ps  Iteration: 0  Instance: /ssp_test1
+# 1
+# Break in Module ssp_test1 at C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v line 35
+# Compile of RxFIFO.v was successful.
+# Compile of ssp.v was successful.
+# Compile of ssptest.v was successful.
+# Compile of trLogic.v was successful.
+# Compile of TxFIFO.v was successful.
+# 5 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.txfifo
+# Loading work.trlogic
+# Loading work.ssp_test1
+# Loading work.ssp
+# Loading work.rxfifo
+run -all
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|x|0|ff|  0|0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|35|  0|0
+#                  140 we made it to input data to txf phase
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|ae| 53|1
+#                  180 we made it to input data to txf phase
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  260txd ptr 7
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  300txd ptr 6
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  340txd ptr 5
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  380txd ptr 4
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
+#                  420txd ptr 3
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|26|174|2
+#                  420 we made it to input data to txf phase
+#                  460txd ptr 2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|39| 38|3
+#                  460 we made it to input data to txf phase
+#                  500txd ptr 1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|9d| 57|0
+#                  500 we made it to input data to txf phase
+#                  540txd ptr 0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|74|157|1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|8f|157|1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|b1|157|1
+#                  660txd ptr 7
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55|157|1
+#                  660 we made it to input data to txf phase
+#                  700txd ptr 6
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  740txd ptr 5
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  780txd ptr 4
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  820txd ptr 3
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  860txd ptr 2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  900txd ptr 1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                  940txd ptr 0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
+#                 1060txd ptr 7
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1100txd ptr 6
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1140txd ptr 5
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1180txd ptr 4
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1220txd ptr 3
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1260txd ptr 2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1300txd ptr 1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1340txd ptr 0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1460txd ptr 7
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1500txd ptr 6
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1540txd ptr 5
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1580txd ptr 4
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1620txd ptr 3
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1660txd ptr 2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1700txd ptr 1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1740txd ptr 0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1860txd ptr 7
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1900txd ptr 6
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1940txd ptr 5
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 1980txd ptr 4
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 2020txd ptr 3
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 2060txd ptr 2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 2100txd ptr 1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 2140txd ptr 0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 2260txd ptr 7
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 2300txd ptr 6
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 2340txd ptr 5
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 2380txd ptr 4
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 2420txd ptr 3
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 2460txd ptr 2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 2500txd ptr 1
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                 2540txd ptr 0
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# ** Note: $finish    : C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v(35)
+#    Time: 2631 ps  Iteration: 0  Instance: /ssp_test1
+# 1
+# Break in Module ssp_test1 at C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v line 35

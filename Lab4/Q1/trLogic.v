@@ -63,10 +63,11 @@ module trlogic (
         if(~transmit_complete) begin
             SSPTXD <= TxData[txdata_ptr];
             SSPFSSOUT <= 1'b0;
+            $display($time, "txd ptr %d", txdata_ptr);
             if(txdata_ptr > 1'b0) begin
-                txdata_ptr <= txdata_ptr - 1'b1;
+                txdata_ptr <= txdata_ptr - 3'b1;
             end else begin
-                txdata_ptr <= 1'd7;
+                txdata_ptr <= 3'd7;
                 transmit_complete <= 1'b1;
             end
         end

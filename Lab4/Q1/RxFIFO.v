@@ -19,9 +19,9 @@ module rxfifo (
         data_reg[1] = 8'b0;
         data_reg[2] = 8'b0;
         data_reg[3] = 8'b0;
-        SSPRXINTR = 0;
-        read_ptr = 0;
-        write_ptr = 0;
+        SSPRXINTR = 1'b0;
+        read_ptr  = 1'b0;
+        write_ptr = 1'b0;
     end
 
 
@@ -32,16 +32,17 @@ module rxfifo (
             data_reg[1] = 8'b0;
             data_reg[2] = 8'b0;
             data_reg[3] = 8'b0;
-            SSPRXINTR = 0;
-            read_ptr = 0;
-            write_ptr = 0;
-        end else if begin
-            // Is it okay not to elif here?
-            if(~SSPRXINTR && rx_ready) begin
+            SSPRXINTR = 1'b0;
+            read_ptr = 1'b0;
+            write_ptr = 1'b0;
+        end else begin
+            // Input data from logic into memory
+            if(~SSPRXINTR && rx_ready && RxData != data_reg[write_ptr-1'b1]) begin
                 data_reg[write_ptr] <= RxData;
                 write_ptr <= write_ptr + 1'b1;
                 SSPRXINTR <= (write_ptr == read_ptr);
             end
+            // Output data to PRDATA
             if(PSEL && ~PWRITE && (read_ptr != write_ptr || SSPRXINTR)) begin
                 PRDATA <= data_reg[read_ptr];
                 read_ptr <= read_ptr + 1'b1;

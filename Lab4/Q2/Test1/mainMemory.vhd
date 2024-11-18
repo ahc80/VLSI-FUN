@@ -12,21 +12,25 @@ entity mainMemory is
     );
 end entity mainMemory;
 
-architecture sim of mainMemory is
+architecture behavior of mainMemory is
+    -- Memory declaration
     type memType is array (16383 downto 0) of std_logic_vector(31 downto 0);
     signal mem : memType := (others => (others => '0'));
 
 begin
     process(sysStrobe)
+        variable tempDataOut : std_logic_vector(31 downto 0); -- Temporary data for output
     begin
         if rising_edge(sysStrobe) then
             if sysRW = '1' then
+                -- Write operation
                 mem(to_integer(unsigned(sysAddress(15 downto 2)))) <= sysDataIn;
-                sysDataOut <= sysDataIn;
+                tempDataOut := sysDataIn; -- Store input data for output
             else
-                sysDataOut <= mem(to_integer(unsigned(sysAddress(15 downto 2))));
+                -- Read operation
+                tempDataOut := mem(to_integer(unsigned(sysAddress(15 downto 2))));
             end if;
+            sysDataOut <= tempDataOut; -- Assign output after operation
         end if;
     end process;
-end architecture sim;
-
+end architecture behavior;

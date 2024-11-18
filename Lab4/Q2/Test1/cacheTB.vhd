@@ -38,9 +38,10 @@ begin
     test_process: process
         variable cache_hit : string(1 to 4);
     begin
-        -- Access sequence
+        -- Starting test
+        report "*****************Starting Cache Test*****************" severity note;
 
-        -- Access "12"
+        -- Access Address 0x0012
         pRW <= '0';  -- Read operation
         pAddress <= x"0012";
         pStrobe <= '1';
@@ -51,11 +52,11 @@ begin
         else
             cache_hit := "MISS";
         end if;
-        report "Accessing Address: 0x0012. Cache " & cache_hit;
+        report "Accessing Address: 0x0012. Cache " & cache_hit severity note;
 
         wait for 20 ns;
 
-        -- Access "45"
+        -- Access Address 0x0045
         pAddress <= x"0045";
         pStrobe <= '1';
         wait for 10 ns;
@@ -65,11 +66,11 @@ begin
         else
             cache_hit := "MISS";
         end if;
-        report "Accessing Address: 0x0045. Cache " & cache_hit;
+        report "Accessing Address: 0x0045. Cache " & cache_hit severity note;
 
         wait for 20 ns;
 
-        -- Access "76"
+        -- Access Address 0x0076
         pAddress <= x"0076";
         pStrobe <= '1';
         wait for 10 ns;
@@ -79,11 +80,11 @@ begin
         else
             cache_hit := "MISS";
         end if;
-        report "Accessing Address: 0x0076. Cache " & cache_hit;
+        report "Accessing Address: 0x0076. Cache " & cache_hit severity note;
 
         wait for 20 ns;
 
-        -- Access "66"
+        -- Access Address 0x0066
         pAddress <= x"0066";
         pStrobe <= '1';
         wait for 10 ns;
@@ -93,11 +94,11 @@ begin
         else
             cache_hit := "MISS";
         end if;
-        report "Accessing Address: 0x0066. Cache " & cache_hit;
+        report "Accessing Address: 0x0066. Cache " & cache_hit severity note;
 
         wait for 20 ns;
 
-        -- Access "76" (again)
+        -- Access Address 0x0076 (again)
         pAddress <= x"0076";
         pStrobe <= '1';
         wait for 10 ns;
@@ -107,11 +108,11 @@ begin
         else
             cache_hit := "MISS";
         end if;
-        report "Accessing Address: 0x0076. Cache " & cache_hit;
+        report "Accessing Address: 0x0076. Cache " & cache_hit severity note;
 
         wait for 20 ns;
 
-        -- Access "59"
+        -- Access Address 0x0059
         pAddress <= x"0059";
         pStrobe <= '1';
         wait for 10 ns;
@@ -121,11 +122,11 @@ begin
         else
             cache_hit := "MISS";
         end if;
-        report "Accessing Address: 0x0059. Cache " & cache_hit;
+        report "Accessing Address: 0x0059. Cache " & cache_hit severity note;
 
         wait for 20 ns;
 
-        -- Access "45" (again)
+        -- Access Address 0x0045 (again)
         pAddress <= x"0045";
         pStrobe <= '1';
         wait for 10 ns;
@@ -135,11 +136,11 @@ begin
         else
             cache_hit := "MISS";
         end if;
-        report "Accessing Address: 0x0045. Cache " & cache_hit;
+        report "Accessing Address: 0x0045. Cache " & cache_hit severity note;
 
         wait for 20 ns;
 
-        -- Access "12" (again)
+        -- Access Address 0x0012 (again)
         pAddress <= x"0012";
         pStrobe <= '1';
         wait for 10 ns;
@@ -149,9 +150,10 @@ begin
         else
             cache_hit := "MISS";
         end if;
-        report "Accessing Address: 0x0012. Cache " & cache_hit;
+        report "Accessing Address: 0x0012. Cache " & cache_hit severity note;
 
-        wait;  -- Stop simulation
+        -- Ending test
+        report "*****************Ending Cache Test*****************" severity note;
+	wait; 
     end process;
 end architecture sim;
-

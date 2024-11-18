@@ -10,23 +10,23 @@ z2
 cModel Technology
 dC:/intelFPGA/20.1
 vrxfifo
-Z0 !s110 1731956909
+Z0 !s110 1731963138
 !i10b 1
-!s100 PWzeDUZicV@ghmIENeV981
+!s100 E?DP@b98^jS44F7na5;5A2
 Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
-Ib@g<mL1ag>MT9KIhJ;ILL1
+Ih_6D]RACRlHeCONP?k`KN0
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 Z3 dC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1
-w1731956905
+w1731961780
 8C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/RxFIFO.v
 FC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/RxFIFO.v
-!i122 170
+!i122 185
 L0 1 56
 Z4 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z5 !s108 1731956909.000000
+Z5 !s108 1731963138.000000
 !s107 C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/RxFIFO.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/RxFIFO.v|
 !i113 1
@@ -43,7 +43,7 @@ R3
 w1731789850
 8C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssp.v
 FC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssp.v
-!i122 171
+!i122 186
 L0 1 63
 R4
 r1
@@ -63,10 +63,10 @@ R1
 IY47a:mH?7m]T9<cTa]=iz1
 R2
 R3
-Z8 w1731956482
+Z8 w1731963135
 Z9 8C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v
 Z10 FC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v
-!i122 172
+!i122 187
 L0 1 46
 R4
 r1
@@ -81,15 +81,15 @@ R7
 vssp_test2
 R0
 !i10b 1
-!s100 ldzo4]iemAB35aEVRlDK]0
+!s100 Y_SkjmlJd9:k1VePi4Ue]2
 R1
-IzkC28N3d:CDE`gA9[:il^1
+I6Y]IABfW:mjZncW;PHzgb0
 R2
 R3
 R8
 R9
 R10
-!i122 172
+!i122 187
 L0 48 44
 R4
 r1
@@ -104,15 +104,15 @@ R7
 vtrlogic
 R0
 !i10b 1
-!s100 dP2nKFB?O8BL`X=XZV;3;1
+!s100 =18^6CFdfB2ZmZGFO>jc;3
 R1
-IIK0b_ZN]a`^>me;K2[8G^1
+IP5BYR>031k:nzNOOCHFU]3
 R2
 R3
-w1731956417
+w1731962318
 8C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/trLogic.v
 FC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/trLogic.v
-!i122 173
+!i122 188
 L0 1 81
 R4
 r1
@@ -135,7 +135,7 @@ R3
 w1731902643
 8C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/TxFIFO.v
 FC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/TxFIFO.v
-!i122 174
+!i122 189
 L0 1 66
 R4
 r1

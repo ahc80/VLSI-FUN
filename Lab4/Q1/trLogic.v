@@ -72,7 +72,7 @@ module trlogic (
     end
 
     always @(negedge SSPCLKOUT) begin
-        if(transmit_complete) begin
+        if(~transmit_complete) begin
             SSPOE_B <= 1'b0;
         end else begin
             SSPOE_B <= 1'b1;

@@ -44,7 +44,7 @@ module rxfifo (
                 SSPRXINTR <= (write_ptr + 2'b1 == read_ptr);
             end
             $display($time, " DataReg1-3 %b|%b|%b|%b", data_reg[0], data_reg[1], data_reg[2], data_reg[3]);
-            $display($time, " PSEL|PWRITE|Rptr|Wptr|SSPRXINTR %b|%b|%d|%d|%b", PSEL, PWRITE, read_ptr, write_ptr, SSPRXINTR);
+            $display($time, " Rptr|Wptr|SSPRXINTR %d|%d|%b", read_ptr, write_ptr, SSPRXINTR);
             // Output data to PRDATA
             if(PSEL && ~PWRITE && (read_ptr != write_ptr || SSPRXINTR)) begin
                 PRDATA <= data_reg[read_ptr];

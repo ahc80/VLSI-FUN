@@ -68,15 +68,15 @@ module ssp_test2;
 		#40 	data_in = 8'b01010001; //8'h51
 		#40 	data_in = 8'b00100100; //8'h24
 		#40 	data_in = 8'b01100111; //8'h67
-		#40 	data_in = 8'b11110011; //8'hF3
-    	#40 	data_in = 8'b10110110; //8'hB6
+		#40 	data_in = 8'b11110011; //8'hF3 missed
+    	#40 	data_in = 8'b10110110; //8'hB6 missed
     	#40 	data_in = 8'b10000100; //8'b84
 		#30 	psel = 1'b0;
 		#870 	psel = 1'b1;
 				pwrite = 1'b0;
     	#80 	pwrite = 1'b1;
     	#40 	psel = 1'b0;
-    	#3600 	pwrite = 1'b0;
+    	#1100 	pwrite = 1'b0;
     			psel = 1'b1;
 		#400 $finish;
 	end

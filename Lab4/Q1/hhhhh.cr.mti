@@ -1,23 +1,9 @@
-{C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/trLogic.v} {1 {vlog -work work -stats=none {C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/trLogic.v}
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module trlogic
-
-Top level modules:
-	trlogic
-
-} {} {}} {C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/TxFIFO.v} {1 {vlog -work work -stats=none {C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/TxFIFO.v}
+{C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/TxFIFO.v} {1 {vlog -work work -stats=none {C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/TxFIFO.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
 -- Compiling module txfifo
 
 Top level modules:
 	txfifo
-
-} {} {}} {C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/RxFIFO.v} {1 {vlog -work work -stats=none {C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/RxFIFO.v}
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module rxfifo
-
-Top level modules:
-	rxfifo
 
 } {} {}} {C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssp.v} {1 {vlog -work work -stats=none {C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssp.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020

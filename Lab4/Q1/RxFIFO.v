@@ -37,14 +37,11 @@ module rxfifo (
             write_ptr = 1'b0;
         end else begin
             // Input data from logic into memory
-            // $display($time, " SSPXINTER|RX_RDY|RXDATA|LastREG %b|%b|%h|%h", SSPRXINTR, rx_ready, RxData, data_reg[write_ptr-2'b1]);
             if(~SSPRXINTR && rx_ready && RxData != data_reg[write_ptr-2'b1]) begin
                 data_reg[write_ptr] <= RxData;
                 write_ptr <= write_ptr + 2'b1;
                 SSPRXINTR <= (write_ptr + 2'b1 == read_ptr);
             end
-            $display($time, " DataReg1-3 %b|%b|%b|%b", data_reg[0], data_reg[1], data_reg[2], data_reg[3]);
-            $display($time, " Rptr|Wptr|SSPRXINTR %d|%d|%b", read_ptr, write_ptr, SSPRXINTR);
             // Output data to PRDATA
             if(PSEL && ~PWRITE && (read_ptr != write_ptr || SSPRXINTR)) begin
                 PRDATA <= data_reg[read_ptr];

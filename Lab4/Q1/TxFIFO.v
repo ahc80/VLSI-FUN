@@ -40,13 +40,11 @@ module txfifo (
             SSPTXINTR = 1'b0;
             finish_transmit = 1'b0;
         end else begin
-            $display("PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr %b|%b|%h|%h|%d|%d", PSEL, PWRITE, SSPTXINTR, PWDATA, data_reg[in_ptr-1'b1], in_ptr);
             // Read PWDATA and input into memory
-            if(PSEL && PWRITE && ~SSPTXINTR && PWDATA != data_reg[in_ptr-1'b1]) begin
-                $display($time, " we made it to input data to txf phase");
+            if(PSEL && PWRITE && ~SSPTXINTR && PWDATA != data_reg[in_ptr-2'b1]) begin
                 data_reg[in_ptr] <= PWDATA;
-                SSPTXINTR <= (in_ptr + 1'b1 == out_ptr);
-                in_ptr <= in_ptr + 1'b1;
+                SSPTXINTR <= (in_ptr + 2'b1 == out_ptr);
+                in_ptr <= in_ptr + 2'b1;
             end
             // Output data to logic
             if(transmit_complete && (in_ptr != out_ptr || SSPTXINTR)) begin    // ~tx_ready in statement should be redundant
@@ -57,7 +55,7 @@ module txfifo (
                 tx_ready = 1'b0;
             end
             if(finish_transmit) begin
-                out_ptr <= out_ptr + 1'b1;
+                out_ptr <= out_ptr + 2'b1;
                 SSPTXINTR <= 1'b0;
                 finish_transmit <= 1'b0;
             end

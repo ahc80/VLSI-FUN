@@ -24,7 +24,7 @@ module trlogic (
         rxdata_ptr = 3'd7;
         txdata_ptr = 3'd7;
         receiving = 1'b0;
-        rx_ready = 1'b1;
+        rx_ready = 1'b0;                // zero first right?
         transmit_complete = 1'b1;      // Start as 1; Ready to start transmitting from the get go
     end
 
@@ -39,9 +39,9 @@ module trlogic (
             RxData[rxdata_ptr] <= SSPRXD;
             // Increment ptr
             if( rxdata_ptr > 0) begin
-                rxdata_ptr <= rxdata_ptr - 1'b1;
+                rxdata_ptr <= rxdata_ptr - 3'b1;
             end else begin
-                rxdata_ptr <= rxdata_ptr - 1'b1;
+                rxdata_ptr <= rxdata_ptr - 3'b1;
                 receiving  <= 1'b0;
                 rx_ready   <= 1'b1;
             end
@@ -56,14 +56,11 @@ module trlogic (
             transmit_complete <= 1'b0;
             SSPFSSOUT <= 1'b1;
         end
-
-        // display transcomplete and data
-
         // Transmit data once ready signal caught and lower SSPFSSOUT
         if(~transmit_complete) begin
             SSPTXD <= TxData[txdata_ptr];
             SSPFSSOUT <= 1'b0;
-            $display($time, "txd ptr %d", txdata_ptr);
+            $display($time, " TxdPtr|txd %d|%b", txdata_ptr, SSPTXD);
             if(txdata_ptr > 1'b0) begin
                 txdata_ptr <= txdata_ptr - 3'b1;
             end else begin
@@ -73,4 +70,13 @@ module trlogic (
         end
     end
 
+    
+    always @(negedge SSPCLKOUT) begin
+        if(transmit_complete) begin
+            SSPOE_B <= 1'b0;
+        end else begin
+            SSPOE_B <= 1'b1;
+        end
+    end
+    
 endmodule

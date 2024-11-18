@@ -6,63 +6,642 @@
 # 5 compiles, 0 failed with no errors.
 vsim -gui work.txfifo work.trlogic work.ssp_test1 work.ssp work.rxfifo
 # vsim -gui work.txfifo work.trlogic work.ssp_test1 work.ssp work.rxfifo 
-# Start time: 15:46:55 on Nov 16,2024
+# Start time: 22:49:48 on Nov 17,2024
 # Loading work.txfifo
 # Loading work.trlogic
 # Loading work.ssp_test1
 # Loading work.ssp
 # Loading work.rxfifo
 add wave -position insertpoint  \
-sim:/ssp_test1/pwrite \
-sim:/ssp_test1/psel \
-sim:/ssp_test1/ssptxd \
-sim:/ssp_test1/sspfssout \
-sim:/ssp_test1/sspclkout
-add wave -position insertpoint  \
-sim:/ssp_test1/ssp1/PRDATA
-add wave -position insertpoint  \
-sim:/ssp_test1/ssp1/transmit_complete
-add wave -position insertpoint  \
-sim:/ssp_test1/ssp1/tx_ready
-add wave -position insertpoint  \
-sim:/ssp_test1/ssp1/TxData
+sim:/ssp_test1/sspclkin \
+sim:/ssp_test1/sspfssin \
+sim:/ssp_test1/ssprxd
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: Rein Reign  Hostname: DESKTOP-JF6NOU8  ProcessID: 31088
+#           Attempting to use alternate WLF file "./wlft1rca44".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlft1rca44
 run -all
-# Hello hello!!
-# Hello hello!!
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|x|0|ff|  0|0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|35|  0|0
-#                  140 we made it to input data to txf phase
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|ae| 53|1
-#                  180 we made it to input data to txf phase
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|26|174|2
-#                  420 we made it to input data to txf phase
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|39| 38|3
-#                  460 we made it to input data to txf phase
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|9d| 57|0
-#                  500 we made it to input data to txf phase
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|74|157|1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|8f|157|1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|b1|157|1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55|157|1
-#                  660 we made it to input data to txf phase
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+#                  100 Test 7
+#                  100 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  100 DataReg1-3 00000000|00000000|00000000|00000000
+#                  100 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|x|0|0|0
+#                  140 Test 7
+#                  140 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  140 DataReg1-3 00000000|00000000|00000000|00000000
+#                  140 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  180 Test 7
+#                  180 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  180 DataReg1-3 00000000|00000000|00000000|00000000
+#                  180 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  220 Test 7
+#                  220 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  220 DataReg1-3 00000000|00000000|00000000|00000000
+#                  220 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  260 TxdPtr|txd 7|x
+#                  260 Test 7
+#                  260 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  260 DataReg1-3 00000000|00000000|00000000|00000000
+#                  260 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  300 TxdPtr|txd 6|0
+#                  300 Test 7
+#                  300 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  300 DataReg1-3 00000000|00000000|00000000|00000000
+#                  300 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  340 TxdPtr|txd 5|0
+#                  340 Test 7
+#                  340 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  340 DataReg1-3 00000000|00000000|00000000|00000000
+#                  340 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  380 TxdPtr|txd 4|1
+#                  380 Test 7
+#                  380 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  380 DataReg1-3 00000000|00000000|00000000|00000000
+#                  380 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  420 TxdPtr|txd 3|1
+#                  420 Test 7
+#                  420 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  420 DataReg1-3 00000000|00000000|00000000|00000000
+#                  420 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  460 TxdPtr|txd 2|0
+#                  460 Test 7
+#                  460 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  460 DataReg1-3 00000000|00000000|00000000|00000000
+#                  460 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  500 TxdPtr|txd 1|1
+#                  500 Test 7
+#                  500 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  500 DataReg1-3 00000000|00000000|00000000|00000000
+#                  500 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  540 TxdPtr|txd 0|0
+#                  540 Test 7
+#                  540 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  540 DataReg1-3 00000000|00000000|00000000|00000000
+#                  540 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  580 Test 7
+#                  580 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  580 DataReg1-3 00000000|00000000|00000000|00000000
+#                  580 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  620 Test 7
+#                  620 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  620 DataReg1-3 00000000|00000000|00000000|00000000
+#                  620 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  660 TxdPtr|txd 7|1
+#                  660 Test 7
+#                  660 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  660 DataReg1-3 00000000|00000000|00000000|00000000
+#                  660 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  700 TxdPtr|txd 6|1
+#                  700 Test 7
+#                  700 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  700 DataReg1-3 00000000|00000000|00000000|00000000
+#                  700 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  740 TxdPtr|txd 5|0
+#                  740 Test 7
+#                  740 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  740 DataReg1-3 00000000|00000000|00000000|00000000
+#                  740 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  780 TxdPtr|txd 4|1
+#                  780 Test 7
+#                  780 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  780 DataReg1-3 00000000|00000000|00000000|00000000
+#                  780 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  820 TxdPtr|txd 3|0
+#                  820 Test 7
+#                  820 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  820 DataReg1-3 00000000|00000000|00000000|00000000
+#                  820 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  860 TxdPtr|txd 2|1
+#                  860 Test 7
+#                  860 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  860 DataReg1-3 00000000|00000000|00000000|00000000
+#                  860 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  900 TxdPtr|txd 1|1
+#                  900 Test 7
+#                  900 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  900 DataReg1-3 00000000|00000000|00000000|00000000
+#                  900 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  940 TxdPtr|txd 0|1
+#                  940 Test 7
+#                  940 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  940 DataReg1-3 00000000|00000000|00000000|00000000
+#                  940 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  980 Test 7
+#                  980 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  980 DataReg1-3 00000000|00000000|00000000|00000000
+#                  980 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1020 Test 7
+#                 1020 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1020 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1020 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1060 TxdPtr|txd 7|0
+#                 1060 Test 7
+#                 1060 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1060 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1060 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1100 TxdPtr|txd 6|0
+#                 1100 Test 7
+#                 1100 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1100 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1100 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1140 TxdPtr|txd 5|0
+#                 1140 Test 7
+#                 1140 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1140 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1140 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1180 TxdPtr|txd 4|1
+#                 1180 Test 7
+#                 1180 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1180 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1180 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1220 TxdPtr|txd 3|0
+#                 1220 Test 7
+#                 1220 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1220 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1220 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1260 TxdPtr|txd 2|0
+#                 1260 Test 7
+#                 1260 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1260 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1260 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1300 TxdPtr|txd 1|1
+#                 1300 Test 7
+#                 1300 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1300 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1300 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1340 TxdPtr|txd 0|1
+#                 1340 Test 7
+#                 1340 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1340 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1340 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1380 Test 7
+#                 1380 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1380 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1380 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1420 Test 7
+#                 1420 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1420 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1420 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1460 TxdPtr|txd 7|0
+#                 1460 Test 7
+#                 1460 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1460 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1460 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1500 TxdPtr|txd 6|0
+#                 1500 Test 7
+#                 1500 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1500 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1500 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1540 TxdPtr|txd 5|0
+#                 1540 Test 7
+#                 1540 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1540 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1540 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1580 TxdPtr|txd 4|1
+#                 1580 Test 7
+#                 1580 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1580 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1580 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1620 TxdPtr|txd 3|1
+#                 1620 Test 7
+#                 1620 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1620 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1620 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1660 TxdPtr|txd 2|1
+#                 1660 Test 7
+#                 1660 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1660 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1660 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1700 TxdPtr|txd 1|0
+#                 1700 Test 7
+#                 1700 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1700 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1700 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1740 TxdPtr|txd 0|0
+#                 1740 Test 7
+#                 1740 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1740 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1740 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1780 Test 7
+#                 1780 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1780 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1780 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1820 Test 7
+#                 1820 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1820 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1820 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1860 TxdPtr|txd 7|1
+#                 1860 Test 7
+#                 1860 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1860 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1860 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1900 TxdPtr|txd 6|1
+#                 1900 Test 7
+#                 1900 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1900 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1900 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1940 TxdPtr|txd 5|0
+#                 1940 Test 7
+#                 1940 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1940 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1940 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1980 TxdPtr|txd 4|0
+#                 1980 Test 7
+#                 1980 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1980 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1980 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2020 TxdPtr|txd 3|1
+#                 2020 Test 7
+#                 2020 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2020 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2020 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2060 TxdPtr|txd 2|1
+#                 2060 Test 7
+#                 2060 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2060 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2060 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2100 TxdPtr|txd 1|1
+#                 2100 Test 7
+#                 2100 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2100 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2100 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2140 TxdPtr|txd 0|0
+#                 2140 Test 7
+#                 2140 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2140 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2140 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2180 Test 7
+#                 2180 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2180 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2180 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2220 Test 7
+#                 2220 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2220 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2220 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2260 TxdPtr|txd 7|1
+#                 2260 Test 7
+#                 2260 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2260 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2260 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2300 TxdPtr|txd 6|0
+#                 2300 Test 7
+#                 2300 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2300 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2300 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2340 TxdPtr|txd 5|1
+#                 2340 Test 7
+#                 2340 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2340 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2340 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2380 TxdPtr|txd 4|0
+#                 2380 Test 7
+#                 2380 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2380 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2380 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2420 TxdPtr|txd 3|1
+#                 2420 Test 7
+#                 2420 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2420 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2420 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2460 TxdPtr|txd 2|0
+#                 2460 Test 7
+#                 2460 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2460 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2460 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2500 TxdPtr|txd 1|1
+#                 2500 Test 7
+#                 2500 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2500 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2500 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2540 TxdPtr|txd 0|0
+#                 2540 Test 7
+#                 2540 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2540 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2540 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2580 Test 7
+#                 2580 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2580 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2580 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2620 Test 7
+#                 2620 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2620 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2620 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
 # ** Note: $finish    : C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v(35)
-#    Time: 1131 ps  Iteration: 0  Instance: /ssp_test1
+#    Time: 2631 ps  Iteration: 0  Instance: /ssp_test1
+# 1
+# Break in Module ssp_test1 at C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v line 35
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+run -all
+# GetModuleFileName: The specified module could not be found.
+# 
+# 
+#                  100 Test 7
+#                  100 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  100 DataReg1-3 00000000|00000000|00000000|00000000
+#                  100 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|x|0|0|0
+#                  140 Test 7
+#                  140 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  140 DataReg1-3 00000000|00000000|00000000|00000000
+#                  140 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  180 Test 7
+#                  180 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  180 DataReg1-3 00000000|00000000|00000000|00000000
+#                  180 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  220 Test 7
+#                  220 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  220 DataReg1-3 00000000|00000000|00000000|00000000
+#                  220 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  260 TxdPtr|txd 7|x
+#                  260 Test 7
+#                  260 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  260 DataReg1-3 00000000|00000000|00000000|00000000
+#                  260 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  300 TxdPtr|txd 6|0
+#                  300 Test 7
+#                  300 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  300 DataReg1-3 00000000|00000000|00000000|00000000
+#                  300 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  340 TxdPtr|txd 5|0
+#                  340 Test 7
+#                  340 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  340 DataReg1-3 00000000|00000000|00000000|00000000
+#                  340 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  380 TxdPtr|txd 4|1
+#                  380 Test 7
+#                  380 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  380 DataReg1-3 00000000|00000000|00000000|00000000
+#                  380 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  420 TxdPtr|txd 3|1
+#                  420 Test 7
+#                  420 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  420 DataReg1-3 00000000|00000000|00000000|00000000
+#                  420 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  460 TxdPtr|txd 2|0
+#                  460 Test 7
+#                  460 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  460 DataReg1-3 00000000|00000000|00000000|00000000
+#                  460 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  500 TxdPtr|txd 1|1
+#                  500 Test 7
+#                  500 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  500 DataReg1-3 00000000|00000000|00000000|00000000
+#                  500 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  540 TxdPtr|txd 0|0
+#                  540 Test 7
+#                  540 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  540 DataReg1-3 00000000|00000000|00000000|00000000
+#                  540 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  580 Test 7
+#                  580 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  580 DataReg1-3 00000000|00000000|00000000|00000000
+#                  580 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  620 Test 7
+#                  620 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  620 DataReg1-3 00000000|00000000|00000000|00000000
+#                  620 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  660 TxdPtr|txd 7|1
+#                  660 Test 7
+#                  660 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  660 DataReg1-3 00000000|00000000|00000000|00000000
+#                  660 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  700 TxdPtr|txd 6|1
+#                  700 Test 7
+#                  700 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  700 DataReg1-3 00000000|00000000|00000000|00000000
+#                  700 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  740 TxdPtr|txd 5|0
+#                  740 Test 7
+#                  740 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  740 DataReg1-3 00000000|00000000|00000000|00000000
+#                  740 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  780 TxdPtr|txd 4|1
+#                  780 Test 7
+#                  780 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  780 DataReg1-3 00000000|00000000|00000000|00000000
+#                  780 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  820 TxdPtr|txd 3|0
+#                  820 Test 7
+#                  820 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  820 DataReg1-3 00000000|00000000|00000000|00000000
+#                  820 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  860 TxdPtr|txd 2|1
+#                  860 Test 7
+#                  860 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  860 DataReg1-3 00000000|00000000|00000000|00000000
+#                  860 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  900 TxdPtr|txd 1|1
+#                  900 Test 7
+#                  900 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  900 DataReg1-3 00000000|00000000|00000000|00000000
+#                  900 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  940 TxdPtr|txd 0|1
+#                  940 Test 7
+#                  940 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  940 DataReg1-3 00000000|00000000|00000000|00000000
+#                  940 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  980 Test 7
+#                  980 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  980 DataReg1-3 00000000|00000000|00000000|00000000
+#                  980 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1020 Test 7
+#                 1020 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1020 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1020 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1060 TxdPtr|txd 7|0
+#                 1060 Test 7
+#                 1060 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1060 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1060 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1100 TxdPtr|txd 6|0
+#                 1100 Test 7
+#                 1100 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1100 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1100 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1140 TxdPtr|txd 5|0
+#                 1140 Test 7
+#                 1140 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1140 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1140 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1180 TxdPtr|txd 4|1
+#                 1180 Test 7
+#                 1180 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1180 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1180 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1220 TxdPtr|txd 3|0
+#                 1220 Test 7
+#                 1220 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1220 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1220 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1260 TxdPtr|txd 2|0
+#                 1260 Test 7
+#                 1260 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1260 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1260 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1300 TxdPtr|txd 1|1
+#                 1300 Test 7
+#                 1300 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1300 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1300 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1340 TxdPtr|txd 0|1
+#                 1340 Test 7
+#                 1340 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1340 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1340 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1380 Test 7
+#                 1380 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1380 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1380 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1420 Test 7
+#                 1420 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1420 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1420 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1460 TxdPtr|txd 7|0
+#                 1460 Test 7
+#                 1460 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1460 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1460 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1500 TxdPtr|txd 6|0
+#                 1500 Test 7
+#                 1500 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1500 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1500 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1540 TxdPtr|txd 5|0
+#                 1540 Test 7
+#                 1540 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1540 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1540 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1580 TxdPtr|txd 4|1
+#                 1580 Test 7
+#                 1580 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1580 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1580 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1620 TxdPtr|txd 3|1
+#                 1620 Test 7
+#                 1620 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1620 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1620 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1660 TxdPtr|txd 2|1
+#                 1660 Test 7
+#                 1660 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1660 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1660 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1700 TxdPtr|txd 1|0
+#                 1700 Test 7
+#                 1700 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1700 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1700 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1740 TxdPtr|txd 0|0
+#                 1740 Test 7
+#                 1740 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1740 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1740 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1780 Test 7
+#                 1780 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1780 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1780 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1820 Test 7
+#                 1820 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1820 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1820 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1860 TxdPtr|txd 7|1
+#                 1860 Test 7
+#                 1860 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1860 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1860 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1900 TxdPtr|txd 6|1
+#                 1900 Test 7
+#                 1900 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1900 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1900 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1940 TxdPtr|txd 5|0
+#                 1940 Test 7
+#                 1940 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1940 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1940 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1980 TxdPtr|txd 4|0
+#                 1980 Test 7
+#                 1980 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1980 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1980 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2020 TxdPtr|txd 3|1
+#                 2020 Test 7
+#                 2020 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2020 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2020 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2060 TxdPtr|txd 2|1
+#                 2060 Test 7
+#                 2060 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2060 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2060 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2100 TxdPtr|txd 1|1
+#                 2100 Test 7
+#                 2100 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2100 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2100 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2140 TxdPtr|txd 0|0
+#                 2140 Test 7
+#                 2140 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2140 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2140 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2180 Test 7
+#                 2180 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2180 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2180 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2220 Test 7
+#                 2220 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2220 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2220 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2260 TxdPtr|txd 7|1
+#                 2260 Test 7
+#                 2260 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2260 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2260 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2300 TxdPtr|txd 6|0
+#                 2300 Test 7
+#                 2300 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2300 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2300 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2340 TxdPtr|txd 5|1
+#                 2340 Test 7
+#                 2340 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2340 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2340 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2380 TxdPtr|txd 4|0
+#                 2380 Test 7
+#                 2380 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2380 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2380 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2420 TxdPtr|txd 3|1
+#                 2420 Test 7
+#                 2420 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2420 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2420 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2460 TxdPtr|txd 2|0
+#                 2460 Test 7
+#                 2460 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2460 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2460 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2500 TxdPtr|txd 1|1
+#                 2500 Test 7
+#                 2500 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2500 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2500 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2540 TxdPtr|txd 0|0
+#                 2540 Test 7
+#                 2540 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2540 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2540 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2580 Test 7
+#                 2580 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2580 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2580 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2620 Test 7
+#                 2620 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2620 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2620 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+# ** Note: $finish    : C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v(35)
+#    Time: 2631 ps  Iteration: 0  Instance: /ssp_test1
 # 1
 # Break in Module ssp_test1 at C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v line 35
 # Compile of RxFIFO.v was successful.
@@ -78,523 +657,314 @@ restart
 # Loading work.ssp_test1
 # Loading work.ssp
 # Loading work.rxfifo
-run -all
-# Hello hello!!
-# Hello hello!!
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|x|0|ff|  0|0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|35|  0|0
-#                  140 we made it to input data to txf phase
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|ae| 53|1
-#                  180 we made it to input data to txf phase
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|26|174|2
-#                  420 we made it to input data to txf phase
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|39| 38|3
-#                  460 we made it to input data to txf phase
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|9d| 57|0
-#                  500 we made it to input data to txf phase
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|74|157|1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|8f|157|1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|b1|157|1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55|157|1
-#                  660 we made it to input data to txf phase
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# ** Note: $finish    : C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v(35)
-#    Time: 1131 ps  Iteration: 0  Instance: /ssp_test1
-# 1
-# Break in Module ssp_test1 at C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v line 35
-# Compile of RxFIFO.v was successful.
-# Compile of ssp.v was successful.
-# Compile of ssptest.v was successful.
-# Compile of trLogic.v was successful.
-# Compile of TxFIFO.v was successful.
-# 5 compiles, 0 failed with no errors.
-restart
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-# Loading work.txfifo
-# Loading work.trlogic
-# Loading work.ssp_test1
-# Loading work.ssp
-# Loading work.rxfifo
-run -all
-# Hello hello!!
-# Hello hello!!
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|x|0|ff|  0|0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|35|  0|0
-#                  140 we made it to input data to txf phase
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|ae| 53|1
-#                  180 we made it to input data to txf phase
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  260txd ptr 7
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  300txd ptr 6
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  340txd ptr 5
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  380txd ptr 4
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  420txd ptr 3
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|26|174|2
-#                  420 we made it to input data to txf phase
-#                  460txd ptr 2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|39| 38|3
-#                  460 we made it to input data to txf phase
-#                  500txd ptr 1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|9d| 57|0
-#                  500 we made it to input data to txf phase
-#                  540txd ptr 0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|74|157|1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|8f|157|1
-#                  620txd ptr 1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|b1|157|1
-#                  660txd ptr 0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55|157|1
-#                  660 we made it to input data to txf phase
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  740txd ptr 1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  780txd ptr 0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                  860txd ptr 1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                  900txd ptr 0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                  980txd ptr 1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1020txd ptr 0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1100txd ptr 1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# ** Note: $finish    : C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v(35)
-#    Time: 1131 ps  Iteration: 0  Instance: /ssp_test1
-# 1
-# Break in Module ssp_test1 at C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v line 35
-# Compile of RxFIFO.v was successful.
-# Compile of ssp.v was successful.
-# Compile of ssptest.v was successful.
-# Compile of trLogic.v was successful.
-# Compile of TxFIFO.v was successful.
-# 5 compiles, 0 failed with no errors.
-restart
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-# Loading work.txfifo
-# Loading work.trlogic
-# Loading work.ssp_test1
-# Loading work.ssp
-# Loading work.rxfifo
-run -all
-# Hello hello!!
-# Hello hello!!
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|x|0|ff|  0|0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|35|  0|0
-#                  140 we made it to input data to txf phase
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|ae| 53|1
-#                  180 we made it to input data to txf phase
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  260txd ptr 7
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  300txd ptr 6
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  340txd ptr 5
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  380txd ptr 4
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  420txd ptr 3
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|26|174|2
-#                  420 we made it to input data to txf phase
-#                  460txd ptr 2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|39| 38|3
-#                  460 we made it to input data to txf phase
-#                  500txd ptr 1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|9d| 57|0
-#                  500 we made it to input data to txf phase
-#                  540txd ptr 0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|74|157|1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|8f|157|1
-#                  620txd ptr 7
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|b1|157|1
-#                  660txd ptr 6
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55|157|1
-#                  660 we made it to input data to txf phase
-#                  700txd ptr 5
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  740txd ptr 4
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  780txd ptr 3
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  820txd ptr 2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  860txd ptr 1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  900txd ptr 0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  980txd ptr 7
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                 1020txd ptr 6
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1060txd ptr 5
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1100txd ptr 4
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# ** Note: $finish    : C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v(35)
-#    Time: 1131 ps  Iteration: 0  Instance: /ssp_test1
-# 1
-# Break in Module ssp_test1 at C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v line 35
-# Compile of RxFIFO.v was successful.
-# Compile of ssp.v was successful.
-# Compile of ssptest.v was successful.
-# Compile of trLogic.v was successful.
-# Compile of TxFIFO.v was successful.
-# 5 compiles, 0 failed with no errors.
-restart
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-# Loading work.txfifo
-# Loading work.trlogic
-# Loading work.ssp_test1
-# Loading work.ssp
-# Loading work.rxfifo
-run -all
-# Hello hello!!
-# Hello hello!!
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|x|0|ff|  0|0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|35|  0|0
-#                  140 we made it to input data to txf phase
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|ae| 53|1
-#                  180 we made it to input data to txf phase
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  260txd ptr 7
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  300txd ptr 6
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  340txd ptr 5
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  380txd ptr 4
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  420txd ptr 3
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|26|174|2
-#                  420 we made it to input data to txf phase
-#                  460txd ptr 2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|39| 38|3
-#                  460 we made it to input data to txf phase
-#                  500txd ptr 1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|9d| 57|0
-#                  500 we made it to input data to txf phase
-#                  540txd ptr 0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|74|157|1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|8f|157|1
-#                  620txd ptr 7
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|b1|157|1
-#                  660txd ptr 6
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55|157|1
-#                  660 we made it to input data to txf phase
-#                  700txd ptr 5
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  740txd ptr 4
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  780txd ptr 3
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  820txd ptr 2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  860txd ptr 1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  900txd ptr 0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  980txd ptr 7
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                 1020txd ptr 6
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1060txd ptr 5
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1100txd ptr 4
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1140txd ptr 3
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1180txd ptr 2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1220txd ptr 1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1260txd ptr 0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1340txd ptr 7
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1380txd ptr 6
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1420txd ptr 5
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1460txd ptr 4
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1500txd ptr 3
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# ** Note: $finish    : C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v(35)
-#    Time: 1531 ps  Iteration: 0  Instance: /ssp_test1
-# 1
-# Break in Module ssp_test1 at C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v line 35
-# Compile of RxFIFO.v was successful.
-# Compile of ssp.v was successful.
-# Compile of ssptest.v was successful.
-# Compile of trLogic.v was successful.
-# Compile of TxFIFO.v was successful.
-# 5 compiles, 0 failed with no errors.
-restart
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-# Loading work.txfifo
-# Loading work.trlogic
-# Loading work.ssp_test1
-# Loading work.ssp
-# Loading work.rxfifo
-run -all
-# Hello hello!!
-# Hello hello!!
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|x|0|ff|  0|0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|35|  0|0
-#                  140 we made it to input data to txf phase
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|ae| 53|1
-#                  180 we made it to input data to txf phase
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  260txd ptr 7
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  300txd ptr 6
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  340txd ptr 5
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  380txd ptr 4
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  420txd ptr 3
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|26|174|2
-#                  420 we made it to input data to txf phase
-#                  460txd ptr 2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|39| 38|3
-#                  460 we made it to input data to txf phase
-#                  500txd ptr 1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|9d| 57|0
-#                  500 we made it to input data to txf phase
-#                  540txd ptr 0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|74|157|1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|8f|157|1
-#                  620txd ptr 7
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|b1|157|1
-#                  660txd ptr 6
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55|157|1
-#                  660 we made it to input data to txf phase
-#                  700txd ptr 5
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  740txd ptr 4
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  780txd ptr 3
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  820txd ptr 2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  860txd ptr 1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  900txd ptr 0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  980txd ptr 7
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                 1020txd ptr 6
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1060txd ptr 5
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1100txd ptr 4
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1140txd ptr 3
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1180txd ptr 2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1220txd ptr 1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1260txd ptr 0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1340txd ptr 7
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1380txd ptr 6
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1420txd ptr 5
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1460txd ptr 4
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1500txd ptr 3
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1540txd ptr 2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1580txd ptr 1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1620txd ptr 0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1700txd ptr 7
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1740txd ptr 6
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1780txd ptr 5
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1820txd ptr 4
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# ** Note: $finish    : C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v(35)
-#    Time: 1831 ps  Iteration: 0  Instance: /ssp_test1
-# 1
-# Break in Module ssp_test1 at C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v line 35
-# Compile of RxFIFO.v was successful.
-# Compile of ssp.v was successful.
-# Compile of ssptest.v was successful.
-# Compile of trLogic.v was successful.
-# Compile of TxFIFO.v was successful.
-# 5 compiles, 0 failed with no errors.
-restart
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-# Loading work.txfifo
-# Loading work.trlogic
-# Loading work.ssp_test1
-# Loading work.ssp
-# Loading work.rxfifo
-run -all
-# Hello hello!!
-# Hello hello!!
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|x|0|ff|  0|0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|35|  0|0
-#                  140 we made it to input data to txf phase
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|ae| 53|1
-#                  180 we made it to input data to txf phase
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  260txd ptr 7
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  300txd ptr 6
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  340txd ptr 5
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  380txd ptr 4
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  420txd ptr 3
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|26|174|2
-#                  420 we made it to input data to txf phase
-#                  460txd ptr 2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|39| 38|3
-#                  460 we made it to input data to txf phase
-#                  500txd ptr 1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|9d| 57|0
-#                  500 we made it to input data to txf phase
-#                  540txd ptr 0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|74|157|1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|8f|157|1
-#                  620txd ptr 7
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|b1|157|1
-#                  660txd ptr 6
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55|157|1
-#                  660 we made it to input data to txf phase
-#                  700txd ptr 5
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  740txd ptr 4
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  780txd ptr 3
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  820txd ptr 2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  860txd ptr 1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  900txd ptr 0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  980txd ptr 7
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                 1020txd ptr 6
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1060txd ptr 5
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1100txd ptr 4
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1140txd ptr 3
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1180txd ptr 2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1220txd ptr 1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1260txd ptr 0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1340txd ptr 7
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1380txd ptr 6
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1420txd ptr 5
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1460txd ptr 4
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1500txd ptr 3
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1540txd ptr 2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1580txd ptr 1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1620txd ptr 0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1700txd ptr 7
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1740txd ptr 6
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1780txd ptr 5
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1820txd ptr 4
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1860txd ptr 3
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1900txd ptr 2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1940txd ptr 1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1980txd ptr 0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 2060txd ptr 7
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 2100txd ptr 6
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 2140txd ptr 5
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 2180txd ptr 4
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 2220txd ptr 3
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 2260txd ptr 2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 2300txd ptr 1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 2340txd ptr 0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 2420txd ptr 7
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 2460txd ptr 6
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 2500txd ptr 5
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 2540txd ptr 4
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 2580txd ptr 3
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 2620txd ptr 2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+run -ALL
+# GetModuleFileName: The specified module could not be found.
+# 
+# 
+#                  100 Test 3
+#                  100 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  100 DataReg1-3 00000000|00000000|00000000|00000000
+#                  100 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|x|0|0|0
+#                  140 Test 3
+#                  140 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  140 DataReg1-3 00000000|00000000|00000000|00000000
+#                  140 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  180 Test 3
+#                  180 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  180 DataReg1-3 00000000|00000000|00000000|00000000
+#                  180 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  220 Test 3
+#                  220 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  220 DataReg1-3 00000000|00000000|00000000|00000000
+#                  220 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  260 TxdPtr|txd 7|x
+#                  260 Test 3
+#                  260 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  260 DataReg1-3 00000000|00000000|00000000|00000000
+#                  260 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  300 TxdPtr|txd 6|0
+#                  300 Test 3
+#                  300 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  300 DataReg1-3 00000000|00000000|00000000|00000000
+#                  300 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  340 TxdPtr|txd 5|0
+#                  340 Test 3
+#                  340 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  340 DataReg1-3 00000000|00000000|00000000|00000000
+#                  340 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  380 TxdPtr|txd 4|1
+#                  380 Test 3
+#                  380 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  380 DataReg1-3 00000000|00000000|00000000|00000000
+#                  380 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  420 TxdPtr|txd 3|1
+#                  420 Test 3
+#                  420 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  420 DataReg1-3 00000000|00000000|00000000|00000000
+#                  420 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  460 TxdPtr|txd 2|0
+#                  460 Test 3
+#                  460 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  460 DataReg1-3 00000000|00000000|00000000|00000000
+#                  460 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  500 TxdPtr|txd 1|1
+#                  500 Test 3
+#                  500 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  500 DataReg1-3 00000000|00000000|00000000|00000000
+#                  500 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  540 TxdPtr|txd 0|0
+#                  540 Test 3
+#                  540 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  540 DataReg1-3 00000000|00000000|00000000|00000000
+#                  540 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  580 Test 3
+#                  580 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  580 DataReg1-3 00000000|00000000|00000000|00000000
+#                  580 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  620 Test 3
+#                  620 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  620 DataReg1-3 00000000|00000000|00000000|00000000
+#                  620 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  660 TxdPtr|txd 7|1
+#                  660 Test 3
+#                  660 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  660 DataReg1-3 00000000|00000000|00000000|00000000
+#                  660 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  700 TxdPtr|txd 6|1
+#                  700 Test 3
+#                  700 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  700 DataReg1-3 00000000|00000000|00000000|00000000
+#                  700 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  740 TxdPtr|txd 5|0
+#                  740 Test 3
+#                  740 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  740 DataReg1-3 00000000|00000000|00000000|00000000
+#                  740 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  780 TxdPtr|txd 4|1
+#                  780 Test 3
+#                  780 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  780 DataReg1-3 00000000|00000000|00000000|00000000
+#                  780 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  820 TxdPtr|txd 3|0
+#                  820 Test 3
+#                  820 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  820 DataReg1-3 00000000|00000000|00000000|00000000
+#                  820 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  860 TxdPtr|txd 2|1
+#                  860 Test 3
+#                  860 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  860 DataReg1-3 00000000|00000000|00000000|00000000
+#                  860 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  900 TxdPtr|txd 1|1
+#                  900 Test 3
+#                  900 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  900 DataReg1-3 00000000|00000000|00000000|00000000
+#                  900 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  940 TxdPtr|txd 0|1
+#                  940 Test 3
+#                  940 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  940 DataReg1-3 00000000|00000000|00000000|00000000
+#                  940 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  980 Test 3
+#                  980 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  980 DataReg1-3 00000000|00000000|00000000|00000000
+#                  980 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1020 Test 3
+#                 1020 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1020 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1020 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1060 TxdPtr|txd 7|0
+#                 1060 Test 3
+#                 1060 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1060 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1060 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1100 TxdPtr|txd 6|0
+#                 1100 Test 3
+#                 1100 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1100 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1100 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1140 TxdPtr|txd 5|0
+#                 1140 Test 3
+#                 1140 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1140 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1140 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1180 TxdPtr|txd 4|1
+#                 1180 Test 3
+#                 1180 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1180 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1180 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1220 TxdPtr|txd 3|0
+#                 1220 Test 3
+#                 1220 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1220 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1220 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1260 TxdPtr|txd 2|0
+#                 1260 Test 3
+#                 1260 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1260 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1260 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1300 TxdPtr|txd 1|1
+#                 1300 Test 3
+#                 1300 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1300 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1300 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1340 TxdPtr|txd 0|1
+#                 1340 Test 3
+#                 1340 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1340 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1340 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1380 Test 3
+#                 1380 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1380 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1380 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1420 Test 3
+#                 1420 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1420 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1420 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1460 TxdPtr|txd 7|0
+#                 1460 Test 3
+#                 1460 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1460 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1460 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1500 TxdPtr|txd 6|0
+#                 1500 Test 3
+#                 1500 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1500 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1500 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1540 TxdPtr|txd 5|0
+#                 1540 Test 3
+#                 1540 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1540 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1540 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1580 TxdPtr|txd 4|1
+#                 1580 Test 3
+#                 1580 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1580 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1580 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1620 TxdPtr|txd 3|1
+#                 1620 Test 3
+#                 1620 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1620 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1620 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1660 TxdPtr|txd 2|1
+#                 1660 Test 3
+#                 1660 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1660 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1660 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1700 TxdPtr|txd 1|0
+#                 1700 Test 3
+#                 1700 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1700 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1700 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1740 TxdPtr|txd 0|0
+#                 1740 Test 3
+#                 1740 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1740 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1740 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1780 Test 3
+#                 1780 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1780 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1780 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1820 Test 3
+#                 1820 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1820 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1820 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1860 TxdPtr|txd 7|1
+#                 1860 Test 3
+#                 1860 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1860 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1860 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1900 TxdPtr|txd 6|1
+#                 1900 Test 3
+#                 1900 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1900 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1900 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1940 TxdPtr|txd 5|0
+#                 1940 Test 3
+#                 1940 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1940 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1940 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1980 TxdPtr|txd 4|0
+#                 1980 Test 3
+#                 1980 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1980 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1980 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2020 TxdPtr|txd 3|1
+#                 2020 Test 3
+#                 2020 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2020 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2020 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2060 TxdPtr|txd 2|1
+#                 2060 Test 3
+#                 2060 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2060 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2060 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2100 TxdPtr|txd 1|1
+#                 2100 Test 3
+#                 2100 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2100 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2100 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2140 TxdPtr|txd 0|0
+#                 2140 Test 3
+#                 2140 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2140 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2140 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2180 Test 3
+#                 2180 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2180 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2180 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2220 Test 3
+#                 2220 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2220 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2220 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2260 TxdPtr|txd 7|1
+#                 2260 Test 3
+#                 2260 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2260 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2260 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2300 TxdPtr|txd 6|0
+#                 2300 Test 3
+#                 2300 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2300 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2300 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2340 TxdPtr|txd 5|1
+#                 2340 Test 3
+#                 2340 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2340 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2340 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2380 TxdPtr|txd 4|0
+#                 2380 Test 3
+#                 2380 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2380 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2380 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2420 TxdPtr|txd 3|1
+#                 2420 Test 3
+#                 2420 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2420 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2420 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2460 TxdPtr|txd 2|0
+#                 2460 Test 3
+#                 2460 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2460 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2460 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2500 TxdPtr|txd 1|1
+#                 2500 Test 3
+#                 2500 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2500 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2500 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2540 TxdPtr|txd 0|0
+#                 2540 Test 3
+#                 2540 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2540 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2540 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2580 Test 3
+#                 2580 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2580 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2580 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2620 Test 3
+#                 2620 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2620 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2620 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
 # ** Note: $finish    : C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v(35)
 #    Time: 2631 ps  Iteration: 0  Instance: /ssp_test1
 # 1
@@ -613,124 +983,964 @@ restart
 # Loading work.ssp
 # Loading work.rxfifo
 run -all
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|x|0|ff|  0|0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|35|  0|0
-#                  140 we made it to input data to txf phase
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|ae| 53|1
-#                  180 we made it to input data to txf phase
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  260txd ptr 7
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  300txd ptr 6
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  340txd ptr 5
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  380txd ptr 4
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 0|1|0|ae|174|2
-#                  420txd ptr 3
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|26|174|2
-#                  420 we made it to input data to txf phase
-#                  460txd ptr 2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|39| 38|3
-#                  460 we made it to input data to txf phase
-#                  500txd ptr 1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|9d| 57|0
-#                  500 we made it to input data to txf phase
-#                  540txd ptr 0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|74|157|1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|8f|157|1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|b1|157|1
-#                  660txd ptr 7
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55|157|1
-#                  660 we made it to input data to txf phase
-#                  700txd ptr 6
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  740txd ptr 5
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  780txd ptr 4
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  820txd ptr 3
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  860txd ptr 2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  900txd ptr 1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                  940txd ptr 0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|1|55| 85|2
-#                 1060txd ptr 7
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1100txd ptr 6
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1140txd ptr 5
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1180txd ptr 4
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1220txd ptr 3
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1260txd ptr 2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1300txd ptr 1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1340txd ptr 0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1460txd ptr 7
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1500txd ptr 6
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1540txd ptr 5
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1580txd ptr 4
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1620txd ptr 3
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1660txd ptr 2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1700txd ptr 1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1740txd ptr 0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1860txd ptr 7
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1900txd ptr 6
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1940txd ptr 5
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 1980txd ptr 4
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 2020txd ptr 3
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 2060txd ptr 2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 2100txd ptr 1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 2140txd ptr 0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 2260txd ptr 7
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 2300txd ptr 6
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 2340txd ptr 5
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 2380txd ptr 4
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 2420txd ptr 3
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 2460txd ptr 2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 2500txd ptr 1
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-#                 2540txd ptr 0
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
-# PSEL|PWRITE|SSPTX|PWDATA|DREG-1|ptr 1|1|0|55| 85|2
+# GetModuleFileName: The specified module could not be found.
+# 
+# 
+#                  100 Test 0|3|7
+#                  100 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  100 DataReg1-3 00000000|00000000|00000000|00000000
+#                  100 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|x|0|0|0
+#                  140 Test 0|3|7
+#                  140 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  140 DataReg1-3 00000000|00000000|00000000|00000000
+#                  140 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  180 Test 0|3|7
+#                  180 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  180 DataReg1-3 00000000|00000000|00000000|00000000
+#                  180 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  220 Test 0|3|7
+#                  220 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  220 DataReg1-3 00000000|00000000|00000000|00000000
+#                  220 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  260 TxdPtr|txd 7|x
+#                  260 Test 0|3|7
+#                  260 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  260 DataReg1-3 00000000|00000000|00000000|00000000
+#                  260 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  300 TxdPtr|txd 6|0
+#                  300 Test 0|3|7
+#                  300 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  300 DataReg1-3 00000000|00000000|00000000|00000000
+#                  300 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  340 TxdPtr|txd 5|0
+#                  340 Test 0|3|7
+#                  340 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  340 DataReg1-3 00000000|00000000|00000000|00000000
+#                  340 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  380 TxdPtr|txd 4|1
+#                  380 Test 0|3|7
+#                  380 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  380 DataReg1-3 00000000|00000000|00000000|00000000
+#                  380 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  420 TxdPtr|txd 3|1
+#                  420 Test 0|3|7
+#                  420 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  420 DataReg1-3 00000000|00000000|00000000|00000000
+#                  420 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  460 TxdPtr|txd 2|0
+#                  460 Test 0|3|7
+#                  460 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  460 DataReg1-3 00000000|00000000|00000000|00000000
+#                  460 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  500 TxdPtr|txd 1|1
+#                  500 Test 0|3|7
+#                  500 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  500 DataReg1-3 00000000|00000000|00000000|00000000
+#                  500 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  540 TxdPtr|txd 0|0
+#                  540 Test 0|3|7
+#                  540 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  540 DataReg1-3 00000000|00000000|00000000|00000000
+#                  540 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  580 Test 0|3|7
+#                  580 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  580 DataReg1-3 00000000|00000000|00000000|00000000
+#                  580 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  620 Test 0|3|7
+#                  620 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  620 DataReg1-3 00000000|00000000|00000000|00000000
+#                  620 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  660 TxdPtr|txd 7|1
+#                  660 Test 0|3|7
+#                  660 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  660 DataReg1-3 00000000|00000000|00000000|00000000
+#                  660 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  700 TxdPtr|txd 6|1
+#                  700 Test 0|3|7
+#                  700 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  700 DataReg1-3 00000000|00000000|00000000|00000000
+#                  700 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  740 TxdPtr|txd 5|0
+#                  740 Test 0|3|7
+#                  740 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  740 DataReg1-3 00000000|00000000|00000000|00000000
+#                  740 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  780 TxdPtr|txd 4|1
+#                  780 Test 0|3|7
+#                  780 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  780 DataReg1-3 00000000|00000000|00000000|00000000
+#                  780 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  820 TxdPtr|txd 3|0
+#                  820 Test 0|3|7
+#                  820 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  820 DataReg1-3 00000000|00000000|00000000|00000000
+#                  820 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  860 TxdPtr|txd 2|1
+#                  860 Test 0|3|7
+#                  860 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  860 DataReg1-3 00000000|00000000|00000000|00000000
+#                  860 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  900 TxdPtr|txd 1|1
+#                  900 Test 0|3|7
+#                  900 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  900 DataReg1-3 00000000|00000000|00000000|00000000
+#                  900 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  940 TxdPtr|txd 0|1
+#                  940 Test 0|3|7
+#                  940 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  940 DataReg1-3 00000000|00000000|00000000|00000000
+#                  940 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  980 Test 0|3|7
+#                  980 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  980 DataReg1-3 00000000|00000000|00000000|00000000
+#                  980 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1020 Test 0|3|7
+#                 1020 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1020 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1020 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1060 TxdPtr|txd 7|0
+#                 1060 Test 0|3|7
+#                 1060 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1060 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1060 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1100 TxdPtr|txd 6|0
+#                 1100 Test 0|3|7
+#                 1100 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1100 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1100 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1140 TxdPtr|txd 5|0
+#                 1140 Test 0|3|7
+#                 1140 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1140 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1140 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1180 TxdPtr|txd 4|1
+#                 1180 Test 0|3|7
+#                 1180 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1180 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1180 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1220 TxdPtr|txd 3|0
+#                 1220 Test 0|3|7
+#                 1220 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1220 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1220 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1260 TxdPtr|txd 2|0
+#                 1260 Test 0|3|7
+#                 1260 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1260 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1260 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1300 TxdPtr|txd 1|1
+#                 1300 Test 0|3|7
+#                 1300 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1300 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1300 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1340 TxdPtr|txd 0|1
+#                 1340 Test 0|3|7
+#                 1340 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1340 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1340 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1380 Test 0|3|7
+#                 1380 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1380 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1380 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1420 Test 0|3|7
+#                 1420 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1420 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1420 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1460 TxdPtr|txd 7|0
+#                 1460 Test 0|3|7
+#                 1460 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1460 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1460 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1500 TxdPtr|txd 6|0
+#                 1500 Test 0|3|7
+#                 1500 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1500 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1500 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1540 TxdPtr|txd 5|0
+#                 1540 Test 0|3|7
+#                 1540 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1540 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1540 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1580 TxdPtr|txd 4|1
+#                 1580 Test 0|3|7
+#                 1580 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1580 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1580 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1620 TxdPtr|txd 3|1
+#                 1620 Test 0|3|7
+#                 1620 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1620 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1620 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1660 TxdPtr|txd 2|1
+#                 1660 Test 0|3|7
+#                 1660 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1660 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1660 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1700 TxdPtr|txd 1|0
+#                 1700 Test 0|3|7
+#                 1700 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1700 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1700 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1740 TxdPtr|txd 0|0
+#                 1740 Test 0|3|7
+#                 1740 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1740 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1740 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1780 Test 0|3|7
+#                 1780 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1780 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1780 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1820 Test 0|3|7
+#                 1820 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1820 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1820 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1860 TxdPtr|txd 7|1
+#                 1860 Test 0|3|7
+#                 1860 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1860 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1860 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1900 TxdPtr|txd 6|1
+#                 1900 Test 0|3|7
+#                 1900 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1900 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1900 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1940 TxdPtr|txd 5|0
+#                 1940 Test 0|3|7
+#                 1940 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1940 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1940 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1980 TxdPtr|txd 4|0
+#                 1980 Test 0|3|7
+#                 1980 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1980 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1980 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2020 TxdPtr|txd 3|1
+#                 2020 Test 0|3|7
+#                 2020 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2020 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2020 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2060 TxdPtr|txd 2|1
+#                 2060 Test 0|3|7
+#                 2060 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2060 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2060 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2100 TxdPtr|txd 1|1
+#                 2100 Test 0|3|7
+#                 2100 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2100 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2100 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2140 TxdPtr|txd 0|0
+#                 2140 Test 0|3|7
+#                 2140 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2140 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2140 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2180 Test 0|3|7
+#                 2180 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2180 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2180 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2220 Test 0|3|7
+#                 2220 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2220 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2220 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2260 TxdPtr|txd 7|1
+#                 2260 Test 0|3|7
+#                 2260 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2260 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2260 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2300 TxdPtr|txd 6|0
+#                 2300 Test 0|3|7
+#                 2300 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2300 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2300 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2340 TxdPtr|txd 5|1
+#                 2340 Test 0|3|7
+#                 2340 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2340 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2340 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2380 TxdPtr|txd 4|0
+#                 2380 Test 0|3|7
+#                 2380 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2380 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2380 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2420 TxdPtr|txd 3|1
+#                 2420 Test 0|3|7
+#                 2420 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2420 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2420 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2460 TxdPtr|txd 2|0
+#                 2460 Test 0|3|7
+#                 2460 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2460 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2460 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2500 TxdPtr|txd 1|1
+#                 2500 Test 0|3|7
+#                 2500 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2500 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2500 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2540 TxdPtr|txd 0|0
+#                 2540 Test 0|3|7
+#                 2540 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2540 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2540 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2580 Test 0|3|7
+#                 2580 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2580 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2580 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2620 Test 0|3|7
+#                 2620 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2620 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2620 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+# ** Note: $finish    : C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v(35)
+#    Time: 2631 ps  Iteration: 0  Instance: /ssp_test1
+# 1
+# Break in Module ssp_test1 at C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v line 35
+restart
+# Compile of RxFIFO.v was successful.
+# Compile of ssp.v was successful.
+# Compile of ssptest.v was successful.
+# Compile of trLogic.v was successful.
+# Compile of TxFIFO.v was successful.
+# 5 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.txfifo
+# Loading work.trlogic
+# Loading work.ssp_test1
+# Loading work.ssp
+# Loading work.rxfifo
+run -all
+# GetModuleFileName: The specified module could not be found.
+# 
+# 
+#                  100 Test 0|3|3
+#                  100 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  100 DataReg1-3 00000000|00000000|00000000|00000000
+#                  100 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|x|0|0|0
+#                  140 Test 0|3|3
+#                  140 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  140 DataReg1-3 00000000|00000000|00000000|00000000
+#                  140 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  180 Test 0|3|3
+#                  180 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  180 DataReg1-3 00000000|00000000|00000000|00000000
+#                  180 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  220 Test 0|3|3
+#                  220 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  220 DataReg1-3 00000000|00000000|00000000|00000000
+#                  220 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  260 TxdPtr|txd 7|x
+#                  260 Test 0|3|3
+#                  260 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  260 DataReg1-3 00000000|00000000|00000000|00000000
+#                  260 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  300 TxdPtr|txd 6|0
+#                  300 Test 0|3|3
+#                  300 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  300 DataReg1-3 00000000|00000000|00000000|00000000
+#                  300 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  340 TxdPtr|txd 5|0
+#                  340 Test 0|3|3
+#                  340 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  340 DataReg1-3 00000000|00000000|00000000|00000000
+#                  340 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  380 TxdPtr|txd 4|1
+#                  380 Test 0|3|3
+#                  380 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  380 DataReg1-3 00000000|00000000|00000000|00000000
+#                  380 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  420 TxdPtr|txd 3|1
+#                  420 Test 0|3|3
+#                  420 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  420 DataReg1-3 00000000|00000000|00000000|00000000
+#                  420 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  460 TxdPtr|txd 2|0
+#                  460 Test 0|3|3
+#                  460 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  460 DataReg1-3 00000000|00000000|00000000|00000000
+#                  460 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  500 TxdPtr|txd 1|1
+#                  500 Test 0|3|3
+#                  500 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  500 DataReg1-3 00000000|00000000|00000000|00000000
+#                  500 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  540 TxdPtr|txd 0|0
+#                  540 Test 0|3|3
+#                  540 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  540 DataReg1-3 00000000|00000000|00000000|00000000
+#                  540 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  580 Test 0|3|3
+#                  580 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  580 DataReg1-3 00000000|00000000|00000000|00000000
+#                  580 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  620 Test 0|3|3
+#                  620 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  620 DataReg1-3 00000000|00000000|00000000|00000000
+#                  620 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  660 TxdPtr|txd 7|1
+#                  660 Test 0|3|3
+#                  660 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  660 DataReg1-3 00000000|00000000|00000000|00000000
+#                  660 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  700 TxdPtr|txd 6|1
+#                  700 Test 0|3|3
+#                  700 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  700 DataReg1-3 00000000|00000000|00000000|00000000
+#                  700 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  740 TxdPtr|txd 5|0
+#                  740 Test 0|3|3
+#                  740 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  740 DataReg1-3 00000000|00000000|00000000|00000000
+#                  740 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  780 TxdPtr|txd 4|1
+#                  780 Test 0|3|3
+#                  780 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  780 DataReg1-3 00000000|00000000|00000000|00000000
+#                  780 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  820 TxdPtr|txd 3|0
+#                  820 Test 0|3|3
+#                  820 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  820 DataReg1-3 00000000|00000000|00000000|00000000
+#                  820 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  860 TxdPtr|txd 2|1
+#                  860 Test 0|3|3
+#                  860 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  860 DataReg1-3 00000000|00000000|00000000|00000000
+#                  860 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  900 TxdPtr|txd 1|1
+#                  900 Test 0|3|3
+#                  900 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  900 DataReg1-3 00000000|00000000|00000000|00000000
+#                  900 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  940 TxdPtr|txd 0|1
+#                  940 Test 0|3|3
+#                  940 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  940 DataReg1-3 00000000|00000000|00000000|00000000
+#                  940 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  980 Test 0|3|3
+#                  980 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                  980 DataReg1-3 00000000|00000000|00000000|00000000
+#                  980 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1020 Test 0|3|3
+#                 1020 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1020 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1020 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1060 TxdPtr|txd 7|0
+#                 1060 Test 0|3|3
+#                 1060 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1060 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1060 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1100 TxdPtr|txd 6|0
+#                 1100 Test 0|3|3
+#                 1100 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1100 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1100 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1140 TxdPtr|txd 5|0
+#                 1140 Test 0|3|3
+#                 1140 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1140 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1140 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1180 TxdPtr|txd 4|1
+#                 1180 Test 0|3|3
+#                 1180 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1180 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1180 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1220 TxdPtr|txd 3|0
+#                 1220 Test 0|3|3
+#                 1220 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1220 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1220 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1260 TxdPtr|txd 2|0
+#                 1260 Test 0|3|3
+#                 1260 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1260 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1260 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1300 TxdPtr|txd 1|1
+#                 1300 Test 0|3|3
+#                 1300 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1300 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1300 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1340 TxdPtr|txd 0|1
+#                 1340 Test 0|3|3
+#                 1340 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1340 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1340 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1380 Test 0|3|3
+#                 1380 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1380 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1380 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1420 Test 0|3|3
+#                 1420 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1420 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1420 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1460 TxdPtr|txd 7|0
+#                 1460 Test 0|3|3
+#                 1460 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1460 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1460 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1500 TxdPtr|txd 6|0
+#                 1500 Test 0|3|3
+#                 1500 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1500 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1500 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1540 TxdPtr|txd 5|0
+#                 1540 Test 0|3|3
+#                 1540 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1540 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1540 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1580 TxdPtr|txd 4|1
+#                 1580 Test 0|3|3
+#                 1580 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1580 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1580 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1620 TxdPtr|txd 3|1
+#                 1620 Test 0|3|3
+#                 1620 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1620 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1620 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1660 TxdPtr|txd 2|1
+#                 1660 Test 0|3|3
+#                 1660 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1660 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1660 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1700 TxdPtr|txd 1|0
+#                 1700 Test 0|3|3
+#                 1700 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1700 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1700 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1740 TxdPtr|txd 0|0
+#                 1740 Test 0|3|3
+#                 1740 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1740 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1740 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1780 Test 0|3|3
+#                 1780 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1780 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1780 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1820 Test 0|3|3
+#                 1820 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1820 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1820 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1860 TxdPtr|txd 7|1
+#                 1860 Test 0|3|3
+#                 1860 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1860 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1860 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1900 TxdPtr|txd 6|1
+#                 1900 Test 0|3|3
+#                 1900 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1900 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1900 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1940 TxdPtr|txd 5|0
+#                 1940 Test 0|3|3
+#                 1940 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1940 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1940 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1980 TxdPtr|txd 4|0
+#                 1980 Test 0|3|3
+#                 1980 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 1980 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1980 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2020 TxdPtr|txd 3|1
+#                 2020 Test 0|3|3
+#                 2020 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2020 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2020 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2060 TxdPtr|txd 2|1
+#                 2060 Test 0|3|3
+#                 2060 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2060 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2060 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2100 TxdPtr|txd 1|1
+#                 2100 Test 0|3|3
+#                 2100 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2100 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2100 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2140 TxdPtr|txd 0|0
+#                 2140 Test 0|3|3
+#                 2140 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2140 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2140 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2180 Test 0|3|3
+#                 2180 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2180 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2180 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2220 Test 0|3|3
+#                 2220 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2220 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2220 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2260 TxdPtr|txd 7|1
+#                 2260 Test 0|3|3
+#                 2260 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2260 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2260 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2300 TxdPtr|txd 6|0
+#                 2300 Test 0|3|3
+#                 2300 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2300 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2300 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2340 TxdPtr|txd 5|1
+#                 2340 Test 0|3|3
+#                 2340 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2340 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2340 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2380 TxdPtr|txd 4|0
+#                 2380 Test 0|3|3
+#                 2380 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2380 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2380 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2420 TxdPtr|txd 3|1
+#                 2420 Test 0|3|3
+#                 2420 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2420 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2420 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2460 TxdPtr|txd 2|0
+#                 2460 Test 0|3|3
+#                 2460 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2460 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2460 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2500 TxdPtr|txd 1|1
+#                 2500 Test 0|3|3
+#                 2500 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2500 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2500 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2540 TxdPtr|txd 0|0
+#                 2540 Test 0|3|3
+#                 2540 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2540 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2540 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2580 Test 0|3|3
+#                 2580 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2580 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2580 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2620 Test 0|3|3
+#                 2620 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|xx
+#                 2620 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2620 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+# ** Note: $finish    : C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v(35)
+#    Time: 2631 ps  Iteration: 0  Instance: /ssp_test1
+# 1
+# Break in Module ssp_test1 at C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v line 35
+# Compile of RxFIFO.v was successful.
+# Compile of ssp.v was successful.
+# Compile of ssptest.v was successful.
+# Compile of trLogic.v was successful.
+# Compile of TxFIFO.v was successful.
+# 5 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.txfifo
+# Loading work.trlogic
+# Loading work.ssp_test1
+# Loading work.ssp
+# Loading work.rxfifo
+run -all
+# GetModuleFileName: The specified module could not be found.
+# 
+# 
+#                  100 Test 0|3|3
+#                  100 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                  100 DataReg1-3 00000000|00000000|00000000|00000000
+#                  100 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|x|0|0|0
+#                  140 Test 0|3|3
+#                  140 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                  140 DataReg1-3 00000000|00000000|00000000|00000000
+#                  140 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  180 Test 0|3|3
+#                  180 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                  180 DataReg1-3 00000000|00000000|00000000|00000000
+#                  180 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  220 Test 0|3|3
+#                  220 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                  220 DataReg1-3 00000000|00000000|00000000|00000000
+#                  220 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  260 TxdPtr|txd 7|x
+#                  260 Test 0|3|3
+#                  260 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                  260 DataReg1-3 00000000|00000000|00000000|00000000
+#                  260 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  300 TxdPtr|txd 6|0
+#                  300 Test 0|3|3
+#                  300 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                  300 DataReg1-3 00000000|00000000|00000000|00000000
+#                  300 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  340 TxdPtr|txd 5|0
+#                  340 Test 0|3|3
+#                  340 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                  340 DataReg1-3 00000000|00000000|00000000|00000000
+#                  340 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  380 TxdPtr|txd 4|1
+#                  380 Test 0|3|3
+#                  380 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                  380 DataReg1-3 00000000|00000000|00000000|00000000
+#                  380 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 0|1|0|0|0
+#                  420 TxdPtr|txd 3|1
+#                  420 Test 0|3|3
+#                  420 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                  420 DataReg1-3 00000000|00000000|00000000|00000000
+#                  420 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  460 TxdPtr|txd 2|0
+#                  460 Test 0|3|3
+#                  460 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                  460 DataReg1-3 00000000|00000000|00000000|00000000
+#                  460 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  500 TxdPtr|txd 1|1
+#                  500 Test 0|3|3
+#                  500 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                  500 DataReg1-3 00000000|00000000|00000000|00000000
+#                  500 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  540 TxdPtr|txd 0|0
+#                  540 Test 0|3|3
+#                  540 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                  540 DataReg1-3 00000000|00000000|00000000|00000000
+#                  540 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  580 Test 0|3|3
+#                  580 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                  580 DataReg1-3 00000000|00000000|00000000|00000000
+#                  580 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  620 Test 0|3|3
+#                  620 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                  620 DataReg1-3 00000000|00000000|00000000|00000000
+#                  620 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  660 TxdPtr|txd 7|1
+#                  660 Test 0|3|3
+#                  660 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                  660 DataReg1-3 00000000|00000000|00000000|00000000
+#                  660 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  700 TxdPtr|txd 6|1
+#                  700 Test 0|3|3
+#                  700 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                  700 DataReg1-3 00000000|00000000|00000000|00000000
+#                  700 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  740 TxdPtr|txd 5|0
+#                  740 Test 0|3|3
+#                  740 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                  740 DataReg1-3 00000000|00000000|00000000|00000000
+#                  740 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  780 TxdPtr|txd 4|1
+#                  780 Test 0|3|3
+#                  780 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                  780 DataReg1-3 00000000|00000000|00000000|00000000
+#                  780 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  820 TxdPtr|txd 3|0
+#                  820 Test 0|3|3
+#                  820 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                  820 DataReg1-3 00000000|00000000|00000000|00000000
+#                  820 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  860 TxdPtr|txd 2|1
+#                  860 Test 0|3|3
+#                  860 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                  860 DataReg1-3 00000000|00000000|00000000|00000000
+#                  860 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  900 TxdPtr|txd 1|1
+#                  900 Test 0|3|3
+#                  900 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                  900 DataReg1-3 00000000|00000000|00000000|00000000
+#                  900 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  940 TxdPtr|txd 0|1
+#                  940 Test 0|3|3
+#                  940 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                  940 DataReg1-3 00000000|00000000|00000000|00000000
+#                  940 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                  980 Test 0|3|3
+#                  980 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                  980 DataReg1-3 00000000|00000000|00000000|00000000
+#                  980 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1020 Test 0|3|3
+#                 1020 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 1020 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1020 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1060 TxdPtr|txd 7|0
+#                 1060 Test 0|3|3
+#                 1060 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 1060 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1060 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1100 TxdPtr|txd 6|0
+#                 1100 Test 0|3|3
+#                 1100 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 1100 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1100 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1140 TxdPtr|txd 5|0
+#                 1140 Test 0|3|3
+#                 1140 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 1140 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1140 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1180 TxdPtr|txd 4|1
+#                 1180 Test 0|3|3
+#                 1180 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 1180 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1180 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1220 TxdPtr|txd 3|0
+#                 1220 Test 0|3|3
+#                 1220 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 1220 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1220 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1260 TxdPtr|txd 2|0
+#                 1260 Test 0|3|3
+#                 1260 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 1260 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1260 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1300 TxdPtr|txd 1|1
+#                 1300 Test 0|3|3
+#                 1300 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 1300 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1300 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1340 TxdPtr|txd 0|1
+#                 1340 Test 0|3|3
+#                 1340 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 1340 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1340 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1380 Test 0|3|3
+#                 1380 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 1380 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1380 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1420 Test 0|3|3
+#                 1420 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 1420 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1420 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1460 TxdPtr|txd 7|0
+#                 1460 Test 0|3|3
+#                 1460 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 1460 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1460 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1500 TxdPtr|txd 6|0
+#                 1500 Test 0|3|3
+#                 1500 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 1500 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1500 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1540 TxdPtr|txd 5|0
+#                 1540 Test 0|3|3
+#                 1540 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 1540 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1540 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1580 TxdPtr|txd 4|1
+#                 1580 Test 0|3|3
+#                 1580 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 1580 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1580 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1620 TxdPtr|txd 3|1
+#                 1620 Test 0|3|3
+#                 1620 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 1620 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1620 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1660 TxdPtr|txd 2|1
+#                 1660 Test 0|3|3
+#                 1660 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 1660 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1660 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1700 TxdPtr|txd 1|0
+#                 1700 Test 0|3|3
+#                 1700 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 1700 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1700 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1740 TxdPtr|txd 0|0
+#                 1740 Test 0|3|3
+#                 1740 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 1740 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1740 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1780 Test 0|3|3
+#                 1780 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 1780 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1780 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1820 Test 0|3|3
+#                 1820 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 1820 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1820 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1860 TxdPtr|txd 7|1
+#                 1860 Test 0|3|3
+#                 1860 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 1860 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1860 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1900 TxdPtr|txd 6|1
+#                 1900 Test 0|3|3
+#                 1900 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 1900 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1900 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1940 TxdPtr|txd 5|0
+#                 1940 Test 0|3|3
+#                 1940 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 1940 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1940 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 1980 TxdPtr|txd 4|0
+#                 1980 Test 0|3|3
+#                 1980 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 1980 DataReg1-3 00000000|00000000|00000000|00000000
+#                 1980 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2020 TxdPtr|txd 3|1
+#                 2020 Test 0|3|3
+#                 2020 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 2020 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2020 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2060 TxdPtr|txd 2|1
+#                 2060 Test 0|3|3
+#                 2060 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 2060 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2060 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2100 TxdPtr|txd 1|1
+#                 2100 Test 0|3|3
+#                 2100 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 2100 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2100 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2140 TxdPtr|txd 0|0
+#                 2140 Test 0|3|3
+#                 2140 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 2140 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2140 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2180 Test 0|3|3
+#                 2180 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 2180 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2180 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2220 Test 0|3|3
+#                 2220 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 2220 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2220 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2260 TxdPtr|txd 7|1
+#                 2260 Test 0|3|3
+#                 2260 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 2260 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2260 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2300 TxdPtr|txd 6|0
+#                 2300 Test 0|3|3
+#                 2300 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 2300 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2300 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2340 TxdPtr|txd 5|1
+#                 2340 Test 0|3|3
+#                 2340 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 2340 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2340 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2380 TxdPtr|txd 4|0
+#                 2380 Test 0|3|3
+#                 2380 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 2380 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2380 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2420 TxdPtr|txd 3|1
+#                 2420 Test 0|3|3
+#                 2420 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 2420 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2420 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2460 TxdPtr|txd 2|0
+#                 2460 Test 0|3|3
+#                 2460 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 2460 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2460 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2500 TxdPtr|txd 1|1
+#                 2500 Test 0|3|3
+#                 2500 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 2500 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2500 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2540 TxdPtr|txd 0|0
+#                 2540 Test 0|3|3
+#                 2540 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 2540 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2540 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2580 Test 0|3|3
+#                 2580 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 2580 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2580 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
+#                 2620 Test 0|3|3
+#                 2620 SSPXINTER|RX_RDY|RXDATA|LastREG 0|0|xx|00
+#                 2620 DataReg1-3 00000000|00000000|00000000|00000000
+#                 2620 PSEL|PWRITE|Rptr|Wptr|SSPRXINTR 1|1|0|0|0
 # ** Note: $finish    : C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v(35)
 #    Time: 2631 ps  Iteration: 0  Instance: /ssp_test1
 # 1

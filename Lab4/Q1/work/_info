@@ -10,140 +10,140 @@ z2
 cModel Technology
 dC:/intelFPGA/20.1
 vrxfifo
-Z0 !s110 1731791946
+!s110 1731902968
 !i10b 1
-!s100 ;PhF374J<iHHMFLW]iL9C2
-Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
-IzN=G7=e8o^FcRM]C^7j0V1
-Z2 VDg1SIo80bB@j0V0VzS_@n1
-Z3 dC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1
-Z4 w1731789850
+!s100 XiSlz@ckgZ6^;Jab3@N?F0
+Z0 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I2kPP?_8<C_`;JgP6:035d0
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+Z2 dC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1
+w1731902616
 8C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/RxFIFO.v
 FC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/RxFIFO.v
-!i122 35
-L0 1 53
-Z5 OV;L;2020.1;71
+!i122 100
+L0 1 57
+Z3 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z6 !s108 1731791946.000000
+Z4 !s108 1731902968.000000
 !s107 C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/RxFIFO.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/RxFIFO.v|
 !i113 1
-Z7 o-work work
-Z8 tCvgOpt 0
+Z5 o-work work
+Z6 tCvgOpt 0
 vssp
-R0
+Z7 !s110 1731902969
 !i10b 1
 !s100 AcjJZ>z0RoX19Ez[0R7ZD0
-R1
+R0
 IF]3O^YT:Foi68L@m^;8S?2
+R1
 R2
-R3
-R4
+w1731789850
 8C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssp.v
 FC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssp.v
-!i122 36
+!i122 101
 L0 1 63
-R5
+R3
 r1
 !s85 0
 31
-R6
+R4
 !s107 C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssp.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssp.v|
 !i113 1
-R7
-R8
+R5
+R6
 vssp_test1
-R0
+R7
 !i10b 1
 !s100 ^4AQ7Gc6cb2^1dJFHd^MP0
-R1
+R0
 I`KLeof6zjKPYJR;YddO5Y0
+R1
 R2
-R3
-Z9 w1731791352
-Z10 8C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v
-Z11 FC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v
-!i122 37
+Z8 w1731791352
+Z9 8C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v
+Z10 FC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v
+!i122 102
 L0 1 45
-R5
+R3
 r1
 !s85 0
 31
-R6
+Z11 !s108 1731902969.000000
 Z12 !s107 C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v|
 Z13 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/ssptest.v|
 !i113 1
-R7
-R8
+R5
+R6
 vssp_test2
-R0
+R7
 !i10b 1
 !s100 R??W^eE;XBEj97Wn4QP_H2
-R1
+R0
 Ih39eK:jkknd4Egmb[[_Mj2
+R1
 R2
-R3
+R8
 R9
 R10
-R11
-!i122 37
+!i122 102
 L0 47 44
-R5
+R3
 r1
 !s85 0
 31
-R6
+R11
 R12
 R13
 !i113 1
-R7
-R8
+R5
+R6
 vtrlogic
-R0
+R7
 !i10b 1
-!s100 J07EAXZZZ4RnR_@D9ZN4V1
+!s100 EGU7fN0Fi9GW_@@60R0fO3
+R0
+I>fGBz3GU01i[W@RKdSoYU3
 R1
-IVzdW:W=X4e320H3zU;M?^1
 R2
-R3
-w1731791245
+w1731902964
 8C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/trLogic.v
 FC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/trLogic.v
-!i122 38
-L0 1 76
-R5
+!i122 103
+L0 1 82
+R3
 r1
 !s85 0
 31
-R6
+R11
 !s107 C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/trLogic.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/trLogic.v|
 !i113 1
-R7
-R8
+R5
+R6
 vtxfifo
-!s110 1731791947
+R7
 !i10b 1
-!s100 EXAfn3ifCU76;0o3;aF@62
+!s100 >JL8bb;zJJK[BmJR@n0KH1
+R0
+IVoCURb;>CmW]Q;oPN4hNQ2
 R1
-IR6:@bKL1@zgj4Cz`]2OG12
 R2
-R3
-w1731791938
+w1731902643
 8C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/TxFIFO.v
 FC:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/TxFIFO.v
-!i122 39
-L0 1 68
-R5
+!i122 104
+L0 1 66
+R3
 r1
 !s85 0
 31
-R6
+R11
 !s107 C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/TxFIFO.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Rein Reign/Documents/GitHub/VLSI-FUN/Lab4/Q1/TxFIFO.v|
 !i113 1
-R7
-R8
+R5
+R6

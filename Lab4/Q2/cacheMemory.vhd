@@ -36,20 +36,6 @@ architecture sim of cacheMemory is
     signal sysAddress : std_logic_vector(15 downto 0) := (others => '0');
     signal sysDataIn, sysDataOut : std_logic_vector(31 downto 0) := (others => '0');
 
-    -- Function to convert std_logic_vector to string for debugging
-    function slv_to_string(slv: std_logic_vector) return string is
-        variable result : string(1 to slv'length);
-    begin
-        for i in slv'range loop
-            if slv(i) = '1' then
-                result(i - slv'low + 1) := '1';
-            else
-                result(i - slv'low + 1) := '0';
-            end if;
-        end loop;
-        return result;
-    end function;
-
 begin
     mm : mainMemory
         port map(sysRW, sysAddress, sysStrobe, sysDataIn, sysDataOut);
@@ -65,9 +51,7 @@ begin
             if pStrobe = '1' then
                 if pRW = '1' then
                     -- Write Operation
-                    report "Writing to Cache. Address: " & slv_to_string(pAddress) &
-                           ", Index: " & integer'image(index) &
-                           ", Data: " & slv_to_string(pDataIn);
+                    report "Writing to Cache.";
 
                     dirtyBit(index) <= '1';
                     tag(index) <= pAddress(15 downto 10);
@@ -83,15 +67,13 @@ begin
                     -- Read Operation
                     if tag(index) = pAddress(15 downto 10) and dirtyBit(index) = '1' then
                         -- Cache Hit
-                        report "Cache HIT! Address: " & slv_to_string(pAddress) &
-                               ", Index: " & integer'image(index) &
-                               ", Data: " & slv_to_string(cache(index));
+                        report "Cache HIT!";
 
                         pDataOut <= cache(index);
                         pReady <= '1';
                     else
                         -- Cache Miss
-                        report "Cache MISS! Address: " & slv_to_string(pAddress);
+                        report "Cache MISS!";
 
                         -- Fetch Data from Main Memory
                         pReady <= '0';
@@ -108,4 +90,3 @@ begin
         end if;
     end process;
 end architecture sim;
-

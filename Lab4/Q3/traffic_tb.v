@@ -30,30 +30,62 @@ module TrafficLightTB;
         sb = 0;
 
         // Apply reset
-        #10 reset = 0;
+        #20 reset = 0;
+        $display("Time: %0t - Reset complete, FSM starts at initial state", $time);
 
         // Test Case 1: Simulate car arrival on "A" street
-        #20 sa = 1;
-        #200 sa = 0;
+        #30 sa = 1;
+        $display("Time: %0t - Test Case 1: Car on 'A' street (Sa=1)", $time);
+
+        #210 sa = 0;
+        $display("Time: %0t - Test Case 1 complete: Car left 'A' street (Sa=0)", $time);
+
+        // Display traffic light status
+        $display("  Traffic Light Status: Ga=%b, Ya=%b, Ra=%b, Gb=%b, Yb=%b, Rb=%b", ga, ya, ra, gb, yb, rb);
 
         // Test Case 2: Simulate car arrival on "B" street
-        #20 sb = 1;
-        #50 sb = 0;
+        #40 sb = 1;
+        $display("Time: %0t - Test Case 2: Car on 'B' street (Sb=1)", $time);
+
+        #90 sb = 0;
+        $display("Time: %0t - Test Case 2 complete: Car left 'B' street (Sb=0)", $time);
+
+        // Display traffic light status
+        $display("  Traffic Light Status: Ga=%b, Ya=%b, Ra=%b, Gb=%b, Yb=%b, Rb=%b", ga, ya, ra, gb, yb, rb);
 
         // Test Case 3: Simulate extended green light for "B" street
-        #20 sb = 1;
-        #150 sb = 0;
+        #45 sb = 1;
+        $display("Time: %0t - Test Case 3: Extended green for 'B' street (Sb=1)", $time);
+
+        #160 sb = 0;
+        $display("Time: %0t - Test Case 3 complete: Car left 'B' street (Sb=0)", $time);
+
+        // Display traffic light status
+        $display("  Traffic Light Status: Ga=%b, Ya=%b, Ra=%b, Gb=%b, Yb=%b, Rb=%b", ga, ya, ra, gb, yb, rb);
 
         // Test Case 4: Reactivate "A" street after "B" street
-        #20 sa = 1;
-        #200 sa = 0;
+        #55 sa = 1;
+        $display("Time: %0t - Test Case 4: Car on 'A' street again (Sa=1)", $time);
+
+        #210 sa = 0;
+        $display("Time: %0t - Test Case 4 complete: Car left 'A' street (Sa=0)", $time);
+
+        // Display traffic light status
+        $display("  Traffic Light Status: Ga=%b, Ya=%b, Ra=%b, Gb=%b, Yb=%b, Rb=%b", ga, ya, ra, gb, yb, rb);
 
         // Additional Scenario: Reactivate both "A" and "B" for overlapping case
-        #20 sa = 1; sb = 1;
-        #100 sa = 0; sb = 0;
+        #50 sa = 1; sb = 1;
+        $display("Time: %0t - Additional Scenario: Cars on both 'A' and 'B' streets (Sa=1, Sb=1)", $time);
+
+        #110 sa = 0; sb = 0;
+        $display("Time: %0t - Additional Scenario complete: Cars left 'A' and 'B' streets (Sa=0, Sb=0)", $time);
+
+        // Display traffic light status
+        $display("  Traffic Light Status: Ga=%b, Ya=%b, Ra=%b, Gb=%b, Yb=%b, Rb=%b", ga, ya, ra, gb, yb, rb);
 
         // End the simulation
-        #10 $stop;
+        #20 $display("Time: %0t - End of simulation", $time);
+        $stop;
     end
 
 endmodule

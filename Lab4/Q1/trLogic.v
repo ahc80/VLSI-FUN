@@ -26,6 +26,7 @@ module trlogic (
         receiving = 1'b0;
         rx_ready = 1'b0;                // zero first right?
         transmit_complete = 1'b1;      // Start as 1; Ready to start transmitting from the get go
+        SSPOE_B = 1'b1;
     end
 
     // ------ ------ Receiving data ------ ------ \\
@@ -70,7 +71,6 @@ module trlogic (
         end
     end
 
-    
     always @(negedge SSPCLKOUT) begin
         if(transmit_complete) begin
             SSPOE_B <= 1'b0;
@@ -78,5 +78,4 @@ module trlogic (
             SSPOE_B <= 1'b1;
         end
     end
-    
 endmodule

@@ -38,6 +38,7 @@ module ssp_test1;
 	always 
 		#20 clock = ~clock;
 
+
 // serial output from SSP is looped back to the serial input.
 
 	ssp ssp1 (.PCLK(clock), .CLEAR_B(clear_b), .PSEL(psel), .PWRITE(pwrite), .SSPCLKIN(sspclkin), .SSPFSSIN(sspfssin), .SSPRXD(ssprxd), .PWDATA(data_in), .PRDATA(data_out), .SSPCLKOUT(sspclkout), .SSPFSSOUT(sspfssout), .SSPTXD(ssptxd), .SSPOE_B(sspoe_b), .SSPTXINTR(ssptxintr), .SSPRXINTR(ssprxintr));
@@ -77,7 +78,7 @@ module ssp_test2;
     	#40 	psel = 1'b0;
     	#3600 	pwrite = 1'b0;
     			psel = 1'b1;
-		#80 $finish;
+		#400 $finish;
 	end
 	
 	always 

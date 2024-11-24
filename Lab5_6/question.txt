@@ -1,3 +1,4 @@
 1. What version of C++?
 2. What version of Flex/Bison
 3. What C++ compilier? GNU/GCC?
+4. Is there a certain parameter which we input the verilog file and then it reads the code?

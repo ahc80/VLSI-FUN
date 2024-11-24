@@ -1,0 +1,13 @@
+input (a,b,c,d)
+
+test 0 1 2 (respectively)
+
+-> 0 1 2 
+-> 1 1 0
+-> 1 0 1
+
+-> 0 0 0
+
+Input and output to verify
+Large one take output and verify
+

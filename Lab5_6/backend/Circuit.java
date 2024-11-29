@@ -8,6 +8,7 @@ public class Circuit {
                                     // make a graph
     Wire[] inputs; 
     Wire[] outputs;
+    Gate firstGate;
     
     
 
@@ -32,10 +33,13 @@ public class Circuit {
      * a gate given its name and type
      * @param name Name of the gate.
      * @param type backend.GateType ENUM class type. Available types are INPUT, OUTPUT, WIRE, AND, NAND, OR, NOR, NOT, and DFF;
-     * @return Returns the created Gate. Save this value to a temp variable so you can run addFanOut and addFanIn
+     * @return Returns the created Gate. Use the returned gate in addFanIn, addFanOut, and addNextGate
      */
     Gate addGate(String name, GateType type){
-        return new Gate(name, type);
+        Gate gate = new Gate(name, type);
+        if(firstGate == null)
+            firstGate = gate;
+        return gate;
     }
 
     /***
@@ -90,5 +94,27 @@ public class Circuit {
             i++;
         }
         outputs[i] = wire;
+    }
+
+    /**
+     * Add the next gate to a gate in linked list fashion (helps with parsing for later operations)
+     * @param previous the previous gate
+     * @param next the next gate
+     */
+    void addNextGate(Gate previous, Gate next){
+        previous.nextGate = next;
+    }
+
+    /**
+     * Prints contents of the circuit
+     */
+    void printContents(){
+        if(firstGate != null)
+            firstGate.printContents();
+        Gate gate = firstGate.nextGate;
+        while(gate != null){
+            gate.printContents();
+            gate = gate.nextGate;
+        }
     }
 }

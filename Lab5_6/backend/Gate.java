@@ -35,10 +35,10 @@ public class Gate {
                 fanIn.data = wire;
             } else {
                 FanWrapper wrapper = fanIn;
-                while(wrapper.nextGate != null){
-                    wrapper = wrapper.nextGate;
+                while(wrapper.next != null){
+                    wrapper = wrapper.next;
                 }
-                wrapper.nextGate = new FanWrapper(wire);
+                wrapper.next = new FanWrapper(wire);
             }
         }
     }
@@ -49,10 +49,10 @@ public class Gate {
                 fanOut.data = wire;
             } else {
                 FanWrapper wrapper = fanIn;
-                while(wrapper.nextGate != null){
-                    wrapper = wrapper.nextGate;
+                while(wrapper.next != null){
+                    wrapper = wrapper.next;
                 }
-                wrapper.nextGate = new FanWrapper(wire);
+                wrapper.next = new FanWrapper(wire);
             }
         }
     }
@@ -63,7 +63,7 @@ public class Gate {
     
     private class FanWrapper {
         Wire       data;
-        FanWrapper nextGate;
+        FanWrapper next;
 
         FanWrapper(Wire data){
             this.data = data;

@@ -1,16 +1,10 @@
-package frontend;
-
-import backend.Circuit;
-import backend.Wire;
-import backend.Gate;
-import backend.GateType;  // To use the GateType ENUM from the backend package
+package backend;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;  // For reading files and handling potential I/O exceptions
-
+import java.io.IOException;
 import java.util.regex.Pattern;
-import java.util.regex.Matcher;  // For parsing gate declarations using regex
+import java.util.regex.Matcher;
 
 public class VerilogParser {
     private String fileName;
@@ -21,34 +15,43 @@ public class VerilogParser {
         this.circuit = new Circuit();
     }
 
+    /**
+     * Parses a Verilog file and returns the corresponding circuit object.
+     * 
+     * @return Circuit object representing the parsed Verilog design.
+     * @throws IOException if the file cannot be read.
+     */
     public Circuit parse() throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
-            Gate prevGate = null; // Temporary variable to store the previous gate
-    
+            Gate prevGate = null; // For linking gates in sequence
+
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
-    
+
                 if (line.startsWith("input")) {
-                    parseInputs(line); // Add all inputs
+                    parseInputs(line);
                 } else if (line.startsWith("output")) {
-                    parseOutputs(line); // Add all outputs
+                    parseOutputs(line);
                 } else if (line.startsWith("wire")) {
-                    parseWires(line); // Add all wires
+                    parseWires(line);
                 } else if (line.matches("^[a-zA-Z]+\\s+\\w+\\s*\\(.*\\);")) {
-                    // For each gate
-                    Gate newGate = parseGate(line); // Create new gate
+                    Gate newGate = parseGate(line);
                     if (prevGate != null) {
-                        circuit.addNextGate(prevGate, newGate); // Link to the previous gate
+                        circuit.addNextGate(prevGate, newGate);
                     }
-                    prevGate = newGate; // Update previous gate
+                    prevGate = newGate;
                 }
             }
-        } // BufferedReader is automatically closed here
+        }
         return circuit;
     }
-    
 
+    /**
+     * Parses input declarations from a Verilog line.
+     * 
+     * @param line The Verilog line starting with "input".
+     */
     private void parseInputs(String line) {
         String[] inputs = line.replace("input", "").replace(";", "").trim().split(",");
         for (String input : inputs) {
@@ -56,6 +59,11 @@ public class VerilogParser {
         }
     }
 
+    /**
+     * Parses output declarations from a Verilog line.
+     * 
+     * @param line The Verilog line starting with "output".
+     */
     private void parseOutputs(String line) {
         String[] outputs = line.replace("output", "").replace(";", "").trim().split(",");
         for (String output : outputs) {
@@ -63,6 +71,11 @@ public class VerilogParser {
         }
     }
 
+    /**
+     * Parses wire declarations from a Verilog line.
+     * 
+     * @param line The Verilog line starting with "wire".
+     */
     private void parseWires(String line) {
         String[] wires = line.replace("wire", "").replace(";", "").trim().split(",");
         for (String wire : wires) {
@@ -70,13 +83,19 @@ public class VerilogParser {
         }
     }
 
+    /**
+     * Parses a gate declaration from a Verilog line and adds it to the circuit.
+     * 
+     * @param line The Verilog line defining a gate.
+     * @return The parsed Gate object.
+     */
     private Gate parseGate(String line) {
         Pattern pattern = Pattern.compile("([a-zA-Z]+)\\s+(\\w+)\\s*\\((.*)\\);");
         Matcher matcher = pattern.matcher(line);
 
         if (matcher.find()) {
-            String gateType = matcher.group(1);   // Gate type (EX: AND, OR, NOT)
-            String gateName = matcher.group(2);   // Gate name (EX: XG1, XG2)
+            String gateType = matcher.group(1);   // Gate type (EX AND, OR)
+            String gateName = matcher.group(2);   // Gate name (EX XG1, XG2)
             String[] connections = matcher.group(3).split(","); // Connections (wires)
 
             GateType type = GateType.valueOf(gateType.toUpperCase());
@@ -92,6 +111,31 @@ public class VerilogParser {
 
             return gate;
         }
-        return null; // If no match, return null
+
+        throw new IllegalArgumentException("Invalid gate declaration: " + line);
+    }
+
+    /**
+     * Main method for testing the Verilog parser.
+     * 
+     * @param args Command-line arguments (not used).
+     */
+    public static void main(String[] args) {
+        if (args.length != 1) {
+            System.err.println("Usage: java frontend.VerilogParser <file-path>");
+            System.exit(1);
+        }
+
+        String filePath = args[0];
+
+        try {
+            VerilogParser parser = new VerilogParser(filePath);
+            Circuit circuit = parser.parse();
+            circuit.printContents();
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Error parsing Verilog file: " + e.getMessage());
+        }
     }
 }

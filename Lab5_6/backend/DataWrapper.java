@@ -8,7 +8,7 @@ public class DataWrapper<T> {
             this.data = data;
         }
 
-        public void add(T data){
+        void add(T data){
             if(this.data == null){
                 this.data = data;
             } else {

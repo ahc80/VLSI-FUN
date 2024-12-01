@@ -9,6 +9,7 @@ public class Circuit {
     Wire[] inputs; 
     Wire[] outputs;
     Gate firstGate;
+    Gate lastGate;
 
     Circuit(){
         this.wireList = new HashMap<String, Wire>(27157);
@@ -22,7 +23,7 @@ public class Circuit {
      * each wire will be taken care of while adding gates
      * @param name the name of the wire
      */
-    void addWire(String name){
+    public void addWire(String name){
         wireList.put(name, new Wire(name));
     }
 
@@ -33,10 +34,11 @@ public class Circuit {
      * @param type backend.GateType ENUM class type. Available types are INPUT, OUTPUT, WIRE, AND, NAND, OR, NOR, NOT, and DFF;
      * @return Returns the created Gate. Use the returned gate in addFanIn, addFanOut, and addNextGate
      */
-    Gate addGate(String name, GateType type){
+    public Gate addGate(String name, GateType type){
         Gate gate = new Gate(name, type);
-        if(firstGate == null)
+        if(firstGate == null) 
             firstGate = gate;
+        lastGate = gate;
         return gate;
     }
 
@@ -45,7 +47,7 @@ public class Circuit {
      * @param name the name of the wire
      * @param gate the gate you are adding the fanout to
      */
-    void addFanOut(String name, Gate gate){
+    public void addFanOut(String name, Gate gate){
         Wire wire = wireList.get(name);
         wire.addInput(gate);
         gate.addFanOut(wire);
@@ -56,7 +58,7 @@ public class Circuit {
      * @param name the name of the wire
      * @param gate the gate you are adding the fanin to
      */
-    void addFanIn(String name, Gate gate){
+    public void addFanIn(String name, Gate gate){
         Wire wire = wireList.get(name);
         wire.addOutput(gate);
         gate.addFanIn(wire);
@@ -66,7 +68,7 @@ public class Circuit {
      * Add an input to the circuit registry
      * @param name the name of the input
      */
-    void addInput(String name){
+    public void addInput(String name){
         Wire wire = new Wire(name, GateType.INPUT);
         wireList.put(name, wire);
         int i = 0;
@@ -83,7 +85,7 @@ public class Circuit {
      * Add an output wire to the circuit registry
      * @param name the name of the output
      */
-    void addOutput(String name){
+    public void addOutput(String name){
         Wire wire = new Wire(name, GateType.OUTPUT);
         wireList.put(name, wire);
         int i = 0;
@@ -101,13 +103,28 @@ public class Circuit {
      * @param previous the previous gate
      * @param next the next gate
      */
-    void addNextGate(Gate previous, Gate next){
+    public void addNextGate(Gate previous, Gate next){
         previous.nextGate = next;
+    }
+
+    public void addBuffers(){
+        // FINISH ME !! FINISH ME !! FINISH ME !! FINISH ME !! FINISH ME !! FINISH ME !! 
+
+        // take all wires
+        // iterate though list
+        //    run create buffer
+        //    delete wire from list
+        //    repeat
+    }
+
+    private void addBufferToList(){
+        // add list of buffers to overall list
     }
 
     /**
      * Prints the details of the circuit gates in a table format.
      */
+<<<<<<< Updated upstream
     void printContents() {
         if (firstGate != null) {
             // Print the table header
@@ -118,6 +135,11 @@ public class Circuit {
             firstGate.printDetails();
 
             // Iterate through the gates using the linked structure
+=======
+    public void printContents(){
+        if(firstGate != null) {
+            firstGate.printContents();
+>>>>>>> Stashed changes
             Gate gate = firstGate.nextGate;
             while (gate != null) {
                 gate.printDetails();
@@ -128,6 +150,7 @@ public class Circuit {
         }
     }
 
+<<<<<<< Updated upstream
 
     /**
      * Converts string "dff" and "nor" etc into GateType format
@@ -138,6 +161,8 @@ public class Circuit {
         return GateType.parseType(type);
     }
 
+=======
+>>>>>>> Stashed changes
     public static void main(String[] args) {
         String[] inputs = {"G0","G1","G2","G3"};
         String[] outputs = {"G17"};
@@ -179,7 +204,17 @@ public class Circuit {
         }
 
         circuit.printContents();
+        System.out.println(circuit.lastGate.toString());
 
+    }
+
+    /**
+     * Converts string "dff" and "nor" etc into GateType format
+     * @param type the desired string type to be changed- 
+     *             does not work with spaces!
+     */
+    public static GateType parseType(String type){
+        return GateType.parseType(type);
     }
 
     /**
@@ -187,7 +222,7 @@ public class Circuit {
      * (will automatically add to wire list and input list)
      * @param inputs String array of inputs, format ["G0","G1", etc] NO spaces
      */
-    void parseInputs(String[] inputs){
+    public void parseInputs(String[] inputs){
         for(String wire : inputs){
             addInput(wire);
         }
@@ -199,7 +234,7 @@ public class Circuit {
      * @param inputs String array of inputs, format ["G17","G18", etc] NO spaces
      *               also works for an array with only one entry
      */
-    void parseOutputs(String[] outputs){
+    public void parseOutputs(String[] outputs){
         for(String wire : outputs){
             addOutput(wire);
         }
@@ -209,7 +244,7 @@ public class Circuit {
      * Parses an array of wires
      * @param wires String array of wires, format ["G5",G6",etc] NO spaces
      */
-    void parseWires(String[] wires){
+    public void parseWires(String[] wires){
         for (String wire : wires) {
             addWire(wire);
         }
@@ -221,7 +256,7 @@ public class Circuit {
      *                 format [type, name, output, input1, input2, etc] NO spaces
      * @return
      */
-    Gate parseSingleGate(String[] gateData){
+    public Gate parseSingleGate(String[] gateData){
         int i;
         Gate gate = null;
         for(i=1;i<gateData.length;i++){

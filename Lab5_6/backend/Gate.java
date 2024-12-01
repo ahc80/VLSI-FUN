@@ -1,23 +1,17 @@
 package backend;
 
-public class Gate {
+public class Gate extends Entity{
 
     String              name; // Null name means buffer
     GateType            type;
-    DataWrapper<Wire>   fanIn, fanOut;
+    // DataWrapper<Wire>   fanIn, fanOut;  // replace!
     Gate                nextGate;
     int                 level;
 
     // Make gates independent of the circuit
     Gate(String name, GateType type) {
-        this.name   = name;
-        this.type   = type;
-        this.fanIn  = null;      // Probably not more than 15?
-        this.fanOut = null;      // Not more than 7 tbh
-        this.level  = -1;               // Not 0?
-        // this.fanIn = fanIn;          <-- Add one by one through methods
-        // this.fanOut = fanOut;        <--
-        // this.nextGate = nextGate;    <--
+        super(name, type);
+        this.level  = 0;               // Not -1?
     }
 
     void setNextGate(Gate gate) {
@@ -29,53 +23,23 @@ public class Gate {
     }
 
     // Format is OUTPUT, inputs<-->
-    void addFanIn(Wire wire) {
+    void addFanIn(Entity entity) {
         if(fanIn != null){
-            fanIn.add(wire);
+            fanIn.add(entity);
         } else {
-            fanIn = new DataWrapper<>(wire);
+            fanIn = new DataWrapper<>(entity);
         }
-        /* 
-        if(fanIn != null){
-            if(fanIn.data == null){
-                fanIn.data = wire;
-            } else {
-                DataWrapper<Wire> wrapper = fanIn;
-                while(wrapper.next != null){
-                    wrapper = wrapper.next;
-                }
-                wrapper.next = new DataWrapper<Wire>(wire);
-            }
-        }
-        */
     }
 
-    void addFanOut(Wire wire) {
+    void addFanOut(Entity entity) {
         if(fanOut != null){
-            fanOut.add(wire);
+            fanOut.add(entity);
         } else {
-            fanOut = new DataWrapper<>(wire);
+            fanOut = new DataWrapper<>(entity);
         }
-        /* 
-        if(fanOut != null){
-            if(fanOut.data == null){
-                fanOut.data = wire;
-            } else {
-                DataWrapper<Wire> wrapper = fanIn;
-                while(wrapper.next != null){
-                    wrapper = wrapper.next;
-                }
-                wrapper.next = new DataWrapper<Wire>(wire);
-            }
-        }
-        */
-    }
-
-    @Override
-    public String toString(){
-        return name;
     }
     
+<<<<<<< Updated upstream
     void printDetails() {
         // Handle null safety for fanIn and fanOut
         int fanInCount = (fanIn != null) ? fanIn.count() : 0;
@@ -94,6 +58,30 @@ public class Gate {
             fanOutWires,                                  // Fan-out wires
             name                                          // Gate name
         );
+=======
+    void printContents() {
+        // Gatetype  Output GateLevel #fanInN fin_1<->2 #fanoutM fout_1<->2 GateName
+        
+        /**
+         * Gatetype
+         * Output
+         * Level
+         * #fanin
+         * fanin list
+         * #fanout
+         * fanout list
+         * Gate name
+         */
+        System.out.print(GateType.readType(type) + " ");
+        System.out.print(fanOut.data.toString() + " ");
+        System.out.print(level + " ");
+        System.out.print(fanIn.data.fanOut.count() + " ");
+        System.out.print(fanIn.data.fanOut.toString() + " ");
+        System.out.print(fanOut.data.fanOut.count() + " ");
+        System.out.print(fanOut.data.fanOut.toString() + " ");
+        System.out.print(name);
+        System.out.println();
+>>>>>>> Stashed changes
     }
     
 

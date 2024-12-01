@@ -1,16 +1,13 @@
 package backend;
-public class Wire {
+public class Wire extends Entity {
 
     public String       name;
-    GateType            type;    // <-- so are we having a CircuitEntity interface?
-    DataWrapper<Gate>   inputs, outputs;
+    GateType            type;
+    // DataWrapper<Gate>   inputs, outputs;    // THIS CAN STAY
     
 
     Wire(String name, GateType type){
-        this.name = name;
-        this.type = type;
-        this.inputs  = null;
-        this.outputs = null;
+        super(name,type);
     }
 
     Wire(String name){
@@ -18,49 +15,62 @@ public class Wire {
     }
 
     void addInput(Gate gate){
-        if(inputs != null){
-            inputs.add(gate);
+        if(fanIn != null){
+            fanIn.add(gate);
         } else {
-            inputs = new DataWrapper<Gate>(gate);
+            fanIn = new DataWrapper<Entity>(gate);
         }
-        /**
-        if(inputs != null){
-            if(inputs.data == null){
-                inputs.data = gate;
-            } else {
-                DataWrapper<Gate> wrapper = inputs;
-                while(wrapper.next != null){
-                    wrapper = wrapper.next;
-                }
-                wrapper.next = new DataWrapper<Gate>(gate);
-            }
-        }
-        */
     }
 
     void addOutput(Gate gate){
-        if(outputs != null){
-            outputs.add(gate);
+        if(fanOut != null){
+            fanOut.add(gate);
         } else {
-            outputs = new DataWrapper<Gate>(gate);
+            fanOut = new DataWrapper<Entity>(gate);
         }
-        /* 
-        if(outputs != null){
-            if(outputs.data == null){
-                outputs.data = gate;
-            } else {
-                DataWrapper<Gate> wrapper = outputs;
-                while(wrapper.next != null){
-                    wrapper = wrapper.next;
-                }
-                wrapper.next = new DataWrapper<Gate>(gate);
-            }
-        }
-        */
     }
 
-    @Override
-    public String toString(){
-        return name;
+    /
+    Gate[] createBuffers(){
+        // Note, L R lines should work because wire still points to all gates
+        DataWrapper<Entity> gate = fanIn;
+        DataWrapper<Entity> out;
+        Gate buffer;
+        Gate prevBuffer;
+        Gate firstBuffer = null;
+        Gate lastBuffer = null;
+        int  count = 0;
+        if(this.type != GateType.OUTPUT && this.type != GateType.INPUT) {
+            // Cycle through inputs
+            while(gate != null){
+                out = fanOut;
+                // Cycle through outputs
+                while(out != null){
+                    // Create buffer
+                    buffer = new Gate("BUF", GateType.BUF); //Should we name buffers individually?
+                    // 'Left-side' connection handling + remove wire
+                    gate.data.fanOut.add(buffer);
+                    buffer.addFanIn(gate.data);
+                    gate.data.deleteOutput(this); // L
+                    // 'Right-side' connection handling + remove wire
+                    out.data.fanIn.add(buffer);
+                    buffer.addFanOut(out.data);
+                    out.data.deleteInput(this); // R
+                    // Handle buffer linking
+                    if(count == 0){
+                        firstBuffer = buffer;
+                    } else {
+                        prevBuffer.nextGate = buffer;
+                    }
+                    // Cycle values appropriately
+                    prevBuffer = buffer;
+                    out = out.next;
+                    count++;
+                }
+                gate = gate.next;
+            }
+            lastBuffer = buffer;
+        }
+        return new Gate[]{firstBuffer, lastBuffer};
     }
 }

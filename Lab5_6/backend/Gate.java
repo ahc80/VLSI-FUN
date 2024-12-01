@@ -12,8 +12,8 @@ public class Gate {
     Gate(String name, GateType type) {
         this.name   = name;
         this.type   = type;
-        this.fanIn  = new DataWrapper<Wire>(null);      // Probably not more than 15?
-        this.fanOut = new DataWrapper<Wire>(null);      // Not more than 7 tbh
+        this.fanIn  = null;      // Probably not more than 15?
+        this.fanOut = null;      // Not more than 7 tbh
         this.level  = -1;               // Not 0?
         // this.fanIn = fanIn;          <-- Add one by one through methods
         // this.fanOut = fanOut;        <--
@@ -31,6 +31,12 @@ public class Gate {
     // Format is OUTPUT, inputs<-->
     void addFanIn(Wire wire) {
         if(fanIn != null){
+            fanIn.add(wire);
+        } else {
+            fanIn = new DataWrapper<>(wire);
+        }
+        /* 
+        if(fanIn != null){
             if(fanIn.data == null){
                 fanIn.data = wire;
             } else {
@@ -41,9 +47,16 @@ public class Gate {
                 wrapper.next = new DataWrapper<Wire>(wire);
             }
         }
+        */
     }
 
     void addFanOut(Wire wire) {
+        if(fanOut != null){
+            fanOut.add(wire);
+        } else {
+            fanOut = new DataWrapper<>(wire);
+        }
+        /* 
         if(fanOut != null){
             if(fanOut.data == null){
                 fanOut.data = wire;
@@ -55,6 +68,7 @@ public class Gate {
                 wrapper.next = new DataWrapper<Wire>(wire);
             }
         }
+        */
     }
 
     @Override

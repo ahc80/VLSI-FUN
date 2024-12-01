@@ -8,6 +8,17 @@ public class DataWrapper<T> {
             this.data = data;
         }
 
+        public void add(T data){
+            if(this.data == null){
+                this.data = data;
+            } else {
+                DataWrapper<T> wrapper = this;
+                while(wrapper.next != null){
+                    wrapper = wrapper.next;
+                }
+                wrapper.next = new DataWrapper<T>(data);
+            }
+        }
         
         @Override
         public String toString(){

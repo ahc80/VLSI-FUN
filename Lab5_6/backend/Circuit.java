@@ -9,8 +9,6 @@ public class Circuit {
     Wire[] inputs; 
     Wire[] outputs;
     Gate firstGate;
-    
-    
 
     Circuit(){
         this.wireList = new HashMap<String, Wire>(27157);
@@ -69,7 +67,7 @@ public class Circuit {
      * @param name the name of the input
      */
     void addInput(String name){
-        Wire wire = new Wire(name);
+        Wire wire = new Wire(name, GateType.INPUT);
         wireList.put(name, wire);
         int i = 0;
         while(inputs[i] != null && i == inputs.length-1){
@@ -78,6 +76,7 @@ public class Circuit {
             i++;
         }
         inputs[i] = wire;
+        wire.addInput(new Gate(name, GateType.INPUT));
     }
 
     /**
@@ -85,7 +84,7 @@ public class Circuit {
      * @param name the name of the output
      */
     void addOutput(String name){
-        Wire wire = new Wire(name);
+        Wire wire = new Wire(name, GateType.OUTPUT);
         wireList.put(name, wire);
         int i = 0;
         while(outputs[i] != null && i == outputs.length-1){
@@ -94,6 +93,7 @@ public class Circuit {
             i++;
         }
         outputs[i] = wire;
+        wire.addOutput(new Gate(name, GateType.OUTPUT));
     }
 
     /**
@@ -109,12 +109,126 @@ public class Circuit {
      * Prints contents of the circuit
      */
     void printContents(){
-        if(firstGate != null)
+        if(firstGate != null) {
             firstGate.printContents();
-        Gate gate = firstGate.nextGate;
-        while(gate != null){
-            gate.printContents();
-            gate = gate.nextGate;
+            Gate gate = firstGate.nextGate;
+            while(gate != null){
+                gate.printContents();
+                gate = gate.nextGate;
+            }
+        } else {
+            System.out.println("Circuit is empty!");
         }
+    }
+
+    /**
+     * Converts string "dff" and "nor" etc into GateType format
+     * @param type the desired string type to be changed- 
+     *             does not work with spaces!
+     */
+    public static GateType parseType(String type){
+        return GateType.parseType(type);
+    }
+
+    public static void main(String[] args) {
+        String[] inputs = {"G0","G1","G2","G3"};
+        String[] outputs = {"G17"};
+        String[] wires  = {"G5","G6","G7","G14",
+                           "G8","G12","G15","G16",
+                           "G13","G9","G11","G10"};
+        String[][] gates  = {
+            {"dff", "XG1", "G5", "G10"},
+            {"dff", "XG2", "G6", "G11"},
+            {"dff", "XG3", "G7", "G13"},
+            {"not", "XG4", "G14","G0"},
+            {"and", "XG5", "G8", "G6",  "G14"},
+            {"nor", "XG6", "G12","G7",  "G1"},
+            {"or",  "XG7", "G15","G8",  "G12"},
+            {"or",  "XG8", "G16","G8",  "G3"},
+            {"nor", "XG9", "G13","G12", "G2"},
+            {"nand","XG10","G9", "G15", "G16"},
+            {"nor", "XG11","G11", "G9", "G5"},
+            {"nor", "XG12","G10", "G11","G14"},
+            {"not", "XG13","G17", "G11"}
+        };
+
+        Circuit circuit = new Circuit();
+        circuit.parseInputs(inputs);
+        circuit.parseOutputs(outputs);
+        
+        circuit.parseWires(wires);
+        int i;
+        Gate prevGate = null;
+        Gate currGate = null;
+        for(i=0;i<gates.length;i++){
+            if(i==0)
+                prevGate = circuit.parseSingleGate(gates[i]);
+            else {
+                currGate = circuit.parseSingleGate(gates[i]);
+                prevGate.nextGate = currGate;
+                prevGate = currGate;
+            }
+        }
+
+        circuit.printContents();
+
+    }
+
+    /**
+     * Parses an array of input wire names 
+     * (will automatically add to wire list and input list)
+     * @param inputs String array of inputs, format ["G0","G1", etc] NO spaces
+     */
+    void parseInputs(String[] inputs){
+        for(String wire : inputs){
+            addInput(wire);
+        }
+    }
+
+    /**
+     * Parses an array of output wire names 
+     * (will automatically add to wire list and output list)
+     * @param inputs String array of inputs, format ["G17","G18", etc] NO spaces
+     *               also works for an array with only one entry
+     */
+    void parseOutputs(String[] outputs){
+        for(String wire : outputs){
+            addOutput(wire);
+        }
+    }
+
+    /**
+     * Parses an array of wires
+     * @param wires String array of wires, format ["G5",G6",etc] NO spaces
+     */
+    void parseWires(String[] wires){
+        for (String wire : wires) {
+            addWire(wire);
+        }
+    }
+
+    /**
+     * Parses a single gate's info and returns the address of the created gate
+     * @param gateData String array for a single gate
+     *                 format [type, name, output, input1, input2, etc] NO spaces
+     * @return
+     */
+    Gate parseSingleGate(String[] gateData){
+        int i;
+        Gate gate = null;
+        for(i=1;i<gateData.length;i++){
+            switch (i){
+                case 1:
+                    gate = addGate(gateData[1], parseType(gateData[0]));
+                    break;
+                case 2:
+                    addFanOut(gateData[2],gate);
+                    break;
+                default:
+                    addFanIn(gateData[i], gate);
+                    break;
+            }
+        }
+        return gate;
     }
 }

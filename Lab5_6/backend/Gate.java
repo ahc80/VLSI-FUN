@@ -39,7 +39,6 @@ public class Gate extends Entity{
         }
     }
     
-<<<<<<< Updated upstream
     void printDetails() {
         // Handle null safety for fanIn and fanOut
         int fanInCount = (fanIn != null) ? fanIn.count() : 0;
@@ -58,30 +57,6 @@ public class Gate extends Entity{
             fanOutWires,                                  // Fan-out wires
             name                                          // Gate name
         );
-=======
-    void printContents() {
-        // Gatetype  Output GateLevel #fanInN fin_1<->2 #fanoutM fout_1<->2 GateName
-        
-        /**
-         * Gatetype
-         * Output
-         * Level
-         * #fanin
-         * fanin list
-         * #fanout
-         * fanout list
-         * Gate name
-         */
-        System.out.print(GateType.readType(type) + " ");
-        System.out.print(fanOut.data.toString() + " ");
-        System.out.print(level + " ");
-        System.out.print(fanIn.data.fanOut.count() + " ");
-        System.out.print(fanIn.data.fanOut.toString() + " ");
-        System.out.print(fanOut.data.fanOut.count() + " ");
-        System.out.print(fanOut.data.fanOut.toString() + " ");
-        System.out.print(name);
-        System.out.println();
->>>>>>> Stashed changes
     }
     
 

@@ -124,7 +124,6 @@ public class Circuit {
     /**
      * Prints the details of the circuit gates in a table format.
      */
-<<<<<<< Updated upstream
     void printContents() {
         if (firstGate != null) {
             // Print the table header
@@ -135,11 +134,6 @@ public class Circuit {
             firstGate.printDetails();
 
             // Iterate through the gates using the linked structure
-=======
-    public void printContents(){
-        if(firstGate != null) {
-            firstGate.printContents();
->>>>>>> Stashed changes
             Gate gate = firstGate.nextGate;
             while (gate != null) {
                 gate.printDetails();
@@ -150,7 +144,6 @@ public class Circuit {
         }
     }
 
-<<<<<<< Updated upstream
 
     /**
      * Converts string "dff" and "nor" etc into GateType format
@@ -161,8 +154,6 @@ public class Circuit {
         return GateType.parseType(type);
     }
 
-=======
->>>>>>> Stashed changes
     public static void main(String[] args) {
         String[] inputs = {"G0","G1","G2","G3"};
         String[] outputs = {"G17"};

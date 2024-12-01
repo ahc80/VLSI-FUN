@@ -28,7 +28,12 @@ public class VerilogParser {
 
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
-
+            
+                // Skip the module declaration
+                if (line.startsWith("module")) {
+                    continue;
+                }
+            
                 if (line.startsWith("input")) {
                     parseInputs(line);
                 } else if (line.startsWith("output")) {
@@ -43,6 +48,7 @@ public class VerilogParser {
                     prevGate = newGate;
                 }
             }
+            
         }
         return circuit;
     }
@@ -102,10 +108,12 @@ public class VerilogParser {
             Gate gate = circuit.addGate(gateName, type);
 
             // First connection is the output wire
+            ensureWireExists(connections[0].trim());
             circuit.addFanOut(connections[0].trim(), gate);
 
             // Remaining connections are input wires
             for (int i = 1; i < connections.length; i++) {
+                ensureWireExists(connections[i].trim());
                 circuit.addFanIn(connections[i].trim(), gate);
             }
 
@@ -116,13 +124,24 @@ public class VerilogParser {
     }
 
     /**
+     * Ensures a wire exists in the circuit. If it doesn't, adds it dynamically.
+     * 
+     * @param name The name of the wire to ensure exists.
+     */
+    private void ensureWireExists(String name) {
+        if (!circuit.wireList.containsKey(name)) {
+            circuit.addWire(name);
+        }
+    }
+
+    /**
      * Main method for testing the Verilog parser.
      * 
      * @param args Command-line arguments (not used).
      */
     public static void main(String[] args) {
         if (args.length != 1) {
-            System.err.println("Usage: java frontend.VerilogParser <file-path>");
+            System.err.println("Usage: java backend.VerilogParser <file-path>");
             System.exit(1);
         }
 

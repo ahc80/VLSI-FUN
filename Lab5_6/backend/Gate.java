@@ -76,28 +76,25 @@ public class Gate {
         return name;
     }
     
-    void printContents() {
-        // Gatetype  Output GateLevel #fanInN fin_1<->2 #fanoutM fout_1<->2 GateName
-        
-        /**
-         * Gatetype
-         * Output
-         * Level
-         * #fanin
-         * fanin list
-         * #fanout
-         * fanout list
-         * Gate name
-         */
-        System.out.print(GateType.readType(type) + " ");
-        System.out.print(fanOut.data.toString() + " ");
-        System.out.print(level + " ");
-        System.out.print(fanIn.data.outputs.count() + " ");
-        System.out.print(fanIn.data.outputs.toString() + " ");
-        System.out.print(fanOut.data.outputs.count() + " ");
-        System.out.print(fanOut.data.outputs.toString() + " ");
-        System.out.print(name);
-        System.out.println();
+    void printDetails() {
+        // Handle null safety for fanIn and fanOut
+        int fanInCount = (fanIn != null) ? fanIn.count() : 0;
+        String fanInWires = (fanIn != null) ? fanIn.toString() : "N/A";
+        int fanOutCount = (fanOut != null) ? fanOut.count() : 0;
+        String fanOutWires = (fanOut != null) ? fanOut.toString() : "N/A";
+    
+        // Print the gate details in the specified format
+        System.out.printf("%-10s %-10s %-10d %-10d %-20s %-10d %-20s %-10s%n",
+            GateType.readType(type),                      // Gate type
+            (fanOut != null && fanOut.data != null) ? fanOut.data.toString() : "N/A", // Output wire
+            level,                                        // Gate level
+            fanInCount,                                   // Fan-in count
+            fanInWires,                                   // Fan-in wires
+            fanOutCount,                                  // Fan-out count
+            fanOutWires,                                  // Fan-out wires
+            name                                          // Gate name
+        );
     }
+    
 
 }

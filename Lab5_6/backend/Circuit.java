@@ -106,20 +106,28 @@ public class Circuit {
     }
 
     /**
-     * Prints contents of the circuit
+     * Prints the details of the circuit gates in a table format.
      */
-    void printContents(){
-        if(firstGate != null) {
-            firstGate.printContents();
+    void printContents() {
+        if (firstGate != null) {
+            // Print the table header
+            System.out.printf("%-10s %-10s %-10s %-10s %-20s %-10s %-20s %-10s%n",
+                "GateType", "Output", "GateLevel", "#faninN", "faninWires", "#fanoutM", "fanoutWires", "GateName");
+
+            // Print details of the first gate
+            firstGate.printDetails();
+
+            // Iterate through the gates using the linked structure
             Gate gate = firstGate.nextGate;
-            while(gate != null){
-                gate.printContents();
+            while (gate != null) {
+                gate.printDetails();
                 gate = gate.nextGate;
             }
         } else {
             System.out.println("Circuit is empty!");
         }
     }
+
 
     /**
      * Converts string "dff" and "nor" etc into GateType format

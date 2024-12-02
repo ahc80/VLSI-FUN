@@ -49,13 +49,17 @@ public class Wire extends Entity {
                     // Create buffer
                     buffer = new Gate("BUF", GateType.BUF); //Should we name buffers individually?
                     // 'Left-side' connection handling + remove wire
-                    gate.data.fanOut.add(buffer);
-                    buffer.addFanIn(gate.data);
-                    gate.data.deleteOutput(this); // L
+                    if(fanOut != null) {                            // is this iff redundant?
+                        gate.data.fanOut.add(buffer);
+                        buffer.addFanIn(gate.data);
+                        gate.data.deleteOutput(this); // L
+                    }
                     // 'Right-side' connection handling + remove wire
-                    out.data.fanIn.add(buffer);
-                    buffer.addFanOut(out.data);
-                    out.data.deleteInput(this); // R
+                    if(fanIn != null){
+                        out.data.fanIn.add(buffer);
+                        buffer.addFanOut(out.data);
+                        out.data.deleteInput(this); // R
+                    }
                     // Handle buffer linking
                     if(count == 0){
                         firstBuffer = buffer;

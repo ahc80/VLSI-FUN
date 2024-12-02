@@ -1,5 +1,6 @@
 package backend;
 import java.util.HashMap;
+import java.util.Set;
 public class Circuit {
 
     HashMap<String, Wire> wireList;
@@ -146,6 +147,18 @@ public class Circuit {
         }
     }
 
+    void createBuffers(){
+        Set<String> wires = wireList.keySet();
+        
+        for(String wireName : wires){
+            Wire wire = wireList.get(wireName);
+            Gate[] firstLastBuf = wire.createBuffers();
+            wireList.remove(wireName);
+            lastGate.nextGate = firstLastBuf[0] ;
+            lastGate = firstLastBuf[1];
+        }
+    }
+
     public static void main(String[] args) {
         String[] inputs = {"G0","G1","G2","G3"};
         String[] outputs = {"G17"};
@@ -175,6 +188,7 @@ public class Circuit {
         int i;
         Gate prevGate = null;
         Gate currGate = null;
+        // Add gates to list
         for(i=0;i<gates.length;i++){
             if(i==0)
                 prevGate = circuit.parseSingleGate(gates[i]);
@@ -186,7 +200,10 @@ public class Circuit {
         }
 
         circuit.printContents();
-        System.out.println(circuit.lastGate.toString());
+
+        circuit.createBuffers();
+        circuit.printContents();
+        
 
     }
 

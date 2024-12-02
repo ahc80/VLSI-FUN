@@ -9,6 +9,7 @@ public class Entity {
     Entity(String name, GateType type) {
         this.name   = name;
         this.type   = type;
+        System.out.println(name + " " + type);
         this.fanIn  = null;
         this.fanOut = null;
     }
@@ -16,6 +17,14 @@ public class Entity {
     @Override
     public String toString(){
         return name;
+    }
+
+    String getName(){
+        return this.name;
+    }
+
+    GateType getType(){
+        return this.type;
     }
 
     DataWrapper<Entity> deleteInput(Entity data){

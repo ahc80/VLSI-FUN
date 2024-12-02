@@ -117,9 +117,11 @@ public class Circuit {
         //    repeat
     }
 
+    /* 
     private void addBufferToList(){
         // add list of buffers to overall list
     }
+    */
 
     /**
      * Prints the details of the circuit gates in a table format.
@@ -142,16 +144,6 @@ public class Circuit {
         } else {
             System.out.println("Circuit is empty!");
         }
-    }
-
-
-    /**
-     * Converts string "dff" and "nor" etc into GateType format
-     * @param type the desired string type to be changed- 
-     *             does not work with spaces!
-     */
-    public static GateType parseType(String type){
-        return GateType.parseType(type);
     }
 
     public static void main(String[] args) {
@@ -179,7 +171,6 @@ public class Circuit {
         Circuit circuit = new Circuit();
         circuit.parseInputs(inputs);
         circuit.parseOutputs(outputs);
-        
         circuit.parseWires(wires);
         int i;
         Gate prevGate = null;
@@ -205,7 +196,7 @@ public class Circuit {
      *             does not work with spaces!
      */
     public static GateType parseType(String type){
-        return GateType.parseType(type);
+        return GateType.readType(type);
     }
 
     /**

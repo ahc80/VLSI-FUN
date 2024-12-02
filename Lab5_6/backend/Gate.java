@@ -48,14 +48,14 @@ public class Gate extends Entity{
     
         // Print the gate details in the specified format
         System.out.printf("%-10s %-10s %-10d %-10d %-20s %-10d %-20s %-10s%n",
-            GateType.readType(type),                      // Gate type
+            (this.getType() != null) ? GateType.readType(this.getType()) : "no type",                      // Gate type
             (fanOut != null && fanOut.data != null) ? fanOut.data.toString() : "N/A", // Output wire
             level,                                        // Gate level
             fanInCount,                                   // Fan-in count
             fanInWires,                                   // Fan-in wires
             fanOutCount,                                  // Fan-out count
             fanOutWires,                                  // Fan-out wires
-            name                                          // Gate name
+            this.getName()                                // Gate name
         );
     }
     

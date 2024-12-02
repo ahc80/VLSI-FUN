@@ -1,7 +1,7 @@
 package backend;
 public class Wire extends Entity {
 
-    public String       name;
+    String       name;
     GateType            type;
     // DataWrapper<Gate>   inputs, outputs;    // THIS CAN STAY
     
@@ -30,13 +30,13 @@ public class Wire extends Entity {
         }
     }
 
-    /
+    
     Gate[] createBuffers(){
         // Note, L R lines should work because wire still points to all gates
         DataWrapper<Entity> gate = fanIn;
         DataWrapper<Entity> out;
-        Gate buffer;
-        Gate prevBuffer;
+        Gate buffer = null;
+        Gate prevBuffer = null;
         Gate firstBuffer = null;
         Gate lastBuffer = null;
         int  count = 0;

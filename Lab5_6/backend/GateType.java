@@ -41,7 +41,7 @@ public enum GateType {
         }
     }
 
-    static GateType parseType(String type){
+    static GateType readType(String type){
         switch (type) {
             case "input":
                 return INPUT;

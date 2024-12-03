@@ -27,21 +27,22 @@ public class Entity {
     }
 
     DataWrapper<Entity> deleteInput(Entity data){
+        System.out.println("input ----");
         return deleteFromList(data, fanIn);
     }
 
     DataWrapper<Entity> deleteOutput(Entity data){
+        System.out.println("output ----");
         return deleteFromList(data, fanOut);
     }
 
     private DataWrapper<Entity> deleteFromList(Entity data, DataWrapper<Entity> list){
         // Check to see if list is single entry
-        System.out.println("-- New --");
         if(list.next == null){
             // Delete single entry
             System.out.println("first entry: " + list.data.name + " compare " + data.name);
             if(list.data == data){
-                System.out.println("Hit! delete first entry");
+                System.out.println("Hit! delete first entry" + data + " in " + this);
                 return null;
             // Data not in single entry
             } else {
@@ -52,6 +53,11 @@ public class Entity {
         } else {
             DataWrapper<Entity> first = list;
             DataWrapper<Entity> ptr   = first;
+            // Check if item in first entry
+            if(list.data == data){
+                System.out.println("Hit! delete first entry" + data + " in " + this);
+                return list.next;
+            }
             // iterate to data entry before target (or to END of list)
             while(ptr.next != null && ptr.next.data != data){
                 System.out.println("next entry: " + ptr.data.name + " compare goal " + data.name);
@@ -60,9 +66,10 @@ public class Entity {
             // Check to see if next entry is the target (otherwise next entry does not exist)
             if(ptr.next != null && ptr.next.data == data){
                 if(ptr.next.next != null){
-                    System.out.println("Hit! deleted nonfirst entry");
+                    System.out.println("Hit! deleted nonfirst entry " + data + " in " + this);
                     ptr.next = ptr.next.next;
                 } else {
+                    System.out.println("Hit! deleted last entry " + data + " in " + this);
                     ptr.next = null;
                 }
             }

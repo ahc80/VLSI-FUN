@@ -150,7 +150,9 @@ public class VerilogParser {
         try {
             VerilogParser parser = new VerilogParser(filePath);
             Circuit circuit = parser.parse();
-            circuit.printContents();
+            circuit.printContents(); //prints
+            //Need to add the area to print it onto a txt file
+
         } catch (IOException e) {
             System.err.println("Error reading file: " + e.getMessage());
         } catch (Exception e) {

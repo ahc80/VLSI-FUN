@@ -153,10 +153,15 @@ public class Circuit {
         for(String wireName : wires){
             Wire wire = wireList.get(wireName);
             Gate[] firstLastBuf = wire.createBuffers();
-            wireList.remove(wireName);
-            lastGate.nextGate = firstLastBuf[0] ;
-            lastGate = firstLastBuf[1];
+            // wireList.remove(wireName);
+            if(firstLastBuf[0] != null) {
+                this.lastGate.nextGate = firstLastBuf[0];
+                this.lastGate = firstLastBuf[1];
+            }
         }
+
+        // wireList.clear();        We should store inputs and outputs in a hashmap!
+
     }
 
     public static void main(String[] args) {
@@ -199,11 +204,12 @@ public class Circuit {
             }
         }
 
-        circuit.printContents();
+        System.out.println("----------------------------------------------------------------------------------------------------------");
 
         circuit.createBuffers();
         circuit.printContents();
         
+        System.out.println("----------------------------------------------------------------------------------------------------------");
 
     }
 

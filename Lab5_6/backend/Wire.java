@@ -45,20 +45,23 @@ public class Wire extends Entity {
             while(gate != null){
                 out = fanOut;
                 // Cycle through outputs
-                while(out != null){
+                while(out != null  
+                    && gate.data.getType() != GateType.INPUT 
+                    && out.data.getType() != GateType.OUTPUT){
+
                     // Create buffer
                     buffer = new Gate("BUF", GateType.BUF); //Should we name buffers individually?
                     // 'Left-side' connection handling + remove wire
                     if(fanOut != null) {                            // is this iff redundant?
                         gate.data.fanOut.add(buffer);
                         buffer.addFanIn(gate.data);
-                        gate.data.deleteOutput(this); // L
+                        gate.data.fanOut = gate.data.deleteOutput(this); // L
                     }
                     // 'Right-side' connection handling + remove wire
                     if(fanIn != null){
                         out.data.fanIn.add(buffer);
                         buffer.addFanOut(out.data);
-                        out.data.deleteInput(this); // R
+                        out.data.fanIn = out.data.deleteInput(this); // R   // BUF for to output no?
                     }
                     // Handle buffer linking
                     if(count == 0){

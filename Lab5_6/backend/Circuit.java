@@ -79,7 +79,7 @@ public class Circuit {
             i++;
         }
         inputs[i] = wire;
-        wire.addInput(new Gate(name, GateType.INPUT));
+        wire.addInput(new Gate(name, GateType.INPUT));      // PROBLEM PROBLEM PROBLEM
     }
 
     /**
@@ -161,7 +161,15 @@ public class Circuit {
         }
 
         // wireList.clear();        We should store inputs and outputs in a hashmap!
+    }
 
+    public void calculateLevels(){
+        for(Wire wire: inputs){
+            if(wire != null){
+                System.out.println("On wire " + wire);
+                wire.calculateLevels(0);
+            }
+        }
     }
 
     public static void main(String[] args) {
@@ -207,6 +215,7 @@ public class Circuit {
         System.out.println("----------------------------------------------------------------------------------------------------------");
 
         circuit.createBuffers();
+        circuit.calculateLevels();
         circuit.printContents();
         
         System.out.println("----------------------------------------------------------------------------------------------------------");

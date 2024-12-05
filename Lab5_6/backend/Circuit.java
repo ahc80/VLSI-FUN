@@ -9,8 +9,8 @@ public class Circuit {
     // HashMap<String, Gate> gateList; // I dont think we need this class actually?
     // With the wires and inputs we automatically
     // make a graph
-    Wire[] inputs;
-    Wire[] outputs;
+    Wire[] inputs;      // TODO change structure to hash map
+    Wire[] outputs;     // TODO change structure to hash map
     Gate firstGate;
     Gate lastGate;
 
@@ -83,12 +83,13 @@ public class Circuit {
         Wire wire = new Wire(name, GateType.INPUT);
         wireList.put(name, wire);
         int i = 0;
-        while (inputs[i] != null && i == inputs.length - 1) {
+        while ( i == inputs.length - 1 && inputs[i] == null) {
             if (i == inputs.length - 1)
                 System.err.println("Inputs array max length met");
             i++;
         }
         inputs[i] = wire;
+        System.out.println("Input["+i+"] = " + wire);
         wire.addInput(new Gate(name, GateType.INPUT)); // PROBLEM PROBLEM PROBLEM
     }
 
@@ -177,12 +178,29 @@ public class Circuit {
                 wire.calculateLevels(0, new HashMap<String, Entity>());
             }
         }
+
+        // TODO hardcode it to manually set DFF outputs to level zero
+        // Run through list of DFFs
+    }
+
+    public void simulateCircuit(){
+        System.out.println(
+            "----------------------------------------------------------------------------------------------------------"
+        );
+        createBuffers();
+        calculateLevels();
+        printContents();
+        System.out.println(
+            "----------------------------------------------------------------------------------------------------------"
+        );
+
     }
 
     public static void main(String[] args) {
         String[] inputs = { "G0", "G1", "G2", "G3" };
         String[] outputs = { "G17" };
-        String[] wires = { "G5", "G6", "G7", "G14",
+        String[] wires = 
+              { "G5", "G6", "G7", "G14",
                 "G8", "G12", "G15", "G16",
                 "G13", "G9", "G11", "G10" };
         String[][] gates = {
@@ -219,15 +237,7 @@ public class Circuit {
             }
         }
 
-        System.out.println(
-                "----------------------------------------------------------------------------------------------------------");
-
-        circuit.createBuffers();
-        circuit.calculateLevels();
-        circuit.printContents();
-
-        System.out.println(
-                "----------------------------------------------------------------------------------------------------------");
+        circuit.simulateCircuit();
 
     }
 

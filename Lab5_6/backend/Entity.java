@@ -85,13 +85,16 @@ public class Entity {
     // Dont have to worry about making a DFF list, theyre always in the front
     // Run first with 0 when running on inputs, run with -1 on DFF?
     void calculateLevels(int level, HashMap<String, Entity> traversedList) {
+
+
+        // During level calculation we can add each gate of a specific level to a hashmap of levels
+        // We can also remove hashmaps from old level when level updating, and put them into the right hashmap
+
+
         if (this.level < level) {
-            // WIRES BACKTRACK AND WE DONT ACCOUNT FOR THIS
+            // System.out.println("Hit on " + getName());
 
-            System.out.println("Hit on " + getName());
-
-            // If entity is NOT a buffer and has not yet been traversed, increment level and
-            // call recursively
+            // If entity is NOT a buffer and has not yet been traversed, increment level and call recursively
             if (this.type != GateType.BUF && !traversedList.containsKey(this.getName())) {
                 this.level = level + 1;
                 traversedList.put(this.getName(), this);
@@ -105,7 +108,7 @@ public class Entity {
             } else {
                 // If buffer
                 if (fanOut != null && fanOut.data != null && this.type == GateType.BUF) {
-                    this.level = level;
+                    this.level = level + 1;
                     fanOut.data.calculateLevels(level, traversedList);
                 }
             }

@@ -104,8 +104,10 @@ public class Entity {
                 // We are looking at a buffer or traversed entity
             } else {
                 // If buffer
-                if (fanOut != null && fanOut.data != null && this.type == GateType.BUF)
+                if (fanOut != null && fanOut.data != null && this.type == GateType.BUF) {
+                    this.level = level;
                     fanOut.data.calculateLevels(level, traversedList);
+                }
             }
 
         }

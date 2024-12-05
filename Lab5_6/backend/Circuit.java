@@ -6,19 +6,18 @@ import java.util.Set;
 public class Circuit {
 
     HashMap<String, Wire> wireList;
-    // HashMap<String, Gate> gateList; // I dont think we need this class actually?
-    // With the wires and inputs we automatically
-    // make a graph
-    Wire[] inputs;      // TODO change structure to hash map
-    Wire[] outputs;     // TODO change structure to hash map
+    HashMap<String, Wire> inputs;
+    HashMap<String, Wire> outputs;
+    HashMap<Integer, HashMap<String, Entity>> sched;
     Gate firstGate;
     Gate lastGate;
 
     Circuit() {
         this.wireList = new HashMap<String, Wire>(27157);
         // this.gateList = new HashMap<String, Gate>(27571);
-        this.inputs = new Wire[40]; // I counted 38
-        this.outputs = new Wire[307]; // I counted 304
+        this.inputs = new HashMap<>(40); // I counted 38
+        this.outputs = new HashMap<>(310); // I counted 304
+        this.sched = new HashMap<>(1850);
     }
 
     /***
@@ -82,14 +81,7 @@ public class Circuit {
     public void addInput(String name) {
         Wire wire = new Wire(name, GateType.INPUT);
         wireList.put(name, wire);
-        int i = 0;
-        while ( i == inputs.length - 1 && inputs[i] == null) {
-            if (i == inputs.length - 1)
-                System.err.println("Inputs array max length met");
-            i++;
-        }
-        inputs[i] = wire;
-        System.out.println("Input["+i+"] = " + wire);
+        inputs.put(name, wire);
         wire.addInput(new Gate(name, GateType.INPUT)); // PROBLEM PROBLEM PROBLEM
     }
 
@@ -101,13 +93,7 @@ public class Circuit {
     public void addOutput(String name) {
         Wire wire = new Wire(name, GateType.OUTPUT);
         wireList.put(name, wire);
-        int i = 0;
-        while (outputs[i] != null && i == outputs.length - 1) {
-            if (i == outputs.length - 1)
-                System.err.println("Outputs array max length met");
-            i++;
-        }
-        outputs[i] = wire;
+        outputs.put(name, wire);
         wire.addOutput(new Gate(name, GateType.OUTPUT));
     }
 
@@ -163,44 +149,70 @@ public class Circuit {
                 this.lastGate = firstLastBuf[1];
             }
         }
-
-        // wireList.clear(); We should store inputs and outputs in a hashmap!
+        wireList.clear();
+        for (String wireName : inputs.keySet()) {
+            wireList.put(wireName, inputs.get(wireName));
+        }
+        for (String wireName : outputs.keySet()) {
+            wireList.put(wireName, inputs.get(wireName));
+        }
     }
 
     /**
      * Iterate through all inputs and DFFs to calibrate gate levels
      */
     public void calculateLevels() {
-        for (Wire wire : inputs) {
-            if (wire != null) {
-                System.out.println(wire.getLevel());
-                System.out.println("On wire " + wire);
-                wire.calculateLevels(0, new HashMap<String, Entity>());
+        Wire wire;
+        DataWrapper<Entity> fanOut_ptr;
+        for (String wireName : inputs.keySet()) {
+            wire = inputs.get(wireName);
+            fanOut_ptr = wire.getFanOut();
+            while (fanOut_ptr != null) {
+                // fanOut_ptr.data.setLevel(0);
+                fanOut_ptr.data.calculateLevels(0, new HashMap<String, Entity>(1500), sched);
+                fanOut_ptr = fanOut_ptr.next;
             }
+
+            wire.calculateLevels(0, new HashMap<String, Entity>(1500), sched);
+        }
+        Gate gate_ptr = firstGate;
+        int oldLevel;
+        while (gate_ptr.getType() == GateType.DFF) {
+            oldLevel = gate_ptr.getLevel();
+            gate_ptr.setLevel(0);
+            gate_ptr.recordLevel(oldLevel, 0, sched); // TODO this method needs a prev level
+            gate_ptr.calculateLevels(0, new HashMap<String, Entity>(1500), sched);
+            gate_ptr = gate_ptr.nextGate;
         }
 
         // TODO hardcode it to manually set DFF outputs to level zero
         // Run through list of DFFs
     }
 
-    public void simulateCircuit(){
+    public void simulateCircuit() {
         System.out.println(
-            "----------------------------------------------------------------------------------------------------------"
-        );
+                "----------------------------------------------------------------------------------------------------------");
+        long startTime = System.currentTimeMillis();
         createBuffers();
+        long endTime = System.currentTimeMillis();
+        System.out.println("Created buffers took " + (endTime - startTime) + " ms");
         calculateLevels();
+        endTime = System.currentTimeMillis();
+        System.out.println("All level traversals took " + (endTime - startTime) + " ms");
         printContents();
+        for (Integer i : sched.keySet()) {
+            for (String name : sched.get(i).keySet()) {
+                System.out.println("Key set " + i + " has " + name);
+            }
+        }
         System.out.println(
-            "----------------------------------------------------------------------------------------------------------"
-        );
-
+                "----------------------------------------------------------------------------------------------------------");
     }
 
     public static void main(String[] args) {
         String[] inputs = { "G0", "G1", "G2", "G3" };
         String[] outputs = { "G17" };
-        String[] wires = 
-              { "G5", "G6", "G7", "G14",
+        String[] wires = { "G5", "G6", "G7", "G14",
                 "G8", "G12", "G15", "G16",
                 "G13", "G9", "G11", "G10" };
         String[][] gates = {

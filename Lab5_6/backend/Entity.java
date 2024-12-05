@@ -14,7 +14,7 @@ public class Entity {
         this.type = type;
         this.fanIn = null;
         this.fanOut = null;
-        level = -1;
+        level = -2;
     }
 
     @Override
@@ -36,6 +36,14 @@ public class Entity {
 
     void setLevel(int level) {
         this.level = level;
+    }
+
+    DataWrapper<Entity> getFanIn() {
+        return fanIn;
+    }
+
+    DataWrapper<Entity> getFanOut() {
+        return fanOut;
     }
 
     DataWrapper<Entity> deleteInput(Entity data) {
@@ -84,36 +92,68 @@ public class Entity {
     // Expects NO intermediary wires are present
     // Dont have to worry about making a DFF list, theyre always in the front
     // Run first with 0 when running on inputs, run with -1 on DFF?
-    void calculateLevels(int level, HashMap<String, Entity> traversedList) {
+    /**
+     * 
+     * @param level
+     * @param traversedList hashmap of already traversed nodes
+     * @param sched         hashmap that organizes each entity by level
+     */
+    void calculateLevels(int newLevel, HashMap<String, Entity> traversedList,
+            HashMap<Integer, HashMap<String, Entity>> sched) {
 
-
-        // During level calculation we can add each gate of a specific level to a hashmap of levels
-        // We can also remove hashmaps from old level when level updating, and put them into the right hashmap
-
-
-        if (this.level < level) {
+        if (this.level < newLevel) {
             // System.out.println("Hit on " + getName());
 
-            // If entity is NOT a buffer and has not yet been traversed, increment level and call recursively
+            // If entity is NOT a buffer and has not yet been traversed, increment level and
+            // call recursively
             if (this.type != GateType.BUF && !traversedList.containsKey(this.getName())) {
-                this.level = level + 1;
+                // If we need to delete prev level (if it exists)
+                System.out.println("Hit on " + name + "! old|new: " + this.level + '|' + newLevel);
+                // If we need to
+                int oldLevel = this.level;
+                this.level = newLevel;
+                recordLevel(oldLevel, newLevel, sched);
                 traversedList.put(this.getName(), this);
                 DataWrapper<Entity> ptr = this.fanOut;
                 while (ptr != null) {
                     if (ptr.data != null)
-                        ptr.data.calculateLevels(level + 1, traversedList);
+                        ptr.data.calculateLevels(newLevel + 1, traversedList, sched);
                     ptr = ptr.next;
                 }
                 // We are looking at a buffer or traversed entity
             } else {
                 // If buffer
                 if (fanOut != null && fanOut.data != null && this.type == GateType.BUF) {
-                    this.level = level + 1;
-                    fanOut.data.calculateLevels(level, traversedList);
+                    int oldLevel = this.level;
+                    this.level = newLevel;
+                    recordLevel(oldLevel, newLevel + 1, sched);
+                    fanOut.data.calculateLevels(level, traversedList, sched);
                 }
             }
 
         }
+    }
+
+    /**
+     * Helper method for calculateLevels that checks to see if the entity is already
+     * logged into the sched data set,
+     * and updates the value accordingly
+     * 
+     * @param level the level of the entity AFTER being incremented
+     * @param sched the sched database
+     */
+    void recordLevel(int oldLevel, int newLevel, HashMap<Integer, HashMap<String, Entity>> sched) {
+        // If the entity was previously logged into sched, remove it
+        if (sched.containsKey(oldLevel) && sched.get(oldLevel).containsKey(this.name)) {
+            sched.get(oldLevel).remove(this.name);
+        }
+        // If sched does not have a map for current level, create it
+        if (!sched.containsKey(newLevel)) {
+            sched.put(Integer.valueOf(newLevel), new HashMap<>(100));
+            sched.get(newLevel).put(name, null);
+        }
+        // Add entity to new spot in sched
+        sched.get(newLevel).put(this.name, this);
     }
 
 }

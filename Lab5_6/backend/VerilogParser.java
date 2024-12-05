@@ -28,12 +28,12 @@ public class VerilogParser {
 
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
-            
+
                 // Skip the module declaration
                 if (line.startsWith("module")) {
                     continue;
                 }
-            
+
                 if (line.startsWith("input")) {
                     parseInputs(line);
                 } else if (line.startsWith("output")) {
@@ -48,7 +48,7 @@ public class VerilogParser {
                     prevGate = newGate;
                 }
             }
-            
+
         }
         return circuit;
     }
@@ -100,8 +100,8 @@ public class VerilogParser {
         Matcher matcher = pattern.matcher(line);
 
         if (matcher.find()) {
-            String gateType = matcher.group(1);   // Gate type (EX AND, OR)
-            String gateName = matcher.group(2);   // Gate name (EX XG1, XG2)
+            String gateType = matcher.group(1); // Gate type (EX AND, OR)
+            String gateName = matcher.group(2); // Gate name (EX XG1, XG2)
             String[] connections = matcher.group(3).split(","); // Connections (wires)
 
             GateType type = GateType.valueOf(gateType.toUpperCase());
@@ -150,8 +150,8 @@ public class VerilogParser {
         try {
             VerilogParser parser = new VerilogParser(filePath);
             Circuit circuit = parser.parse();
-            circuit.printContents(); //prints
-            //Need to add the area to print it onto a txt file
+            circuit.simulateCircuit(); // Simulates circuit and prints output
+            // TODO Need to add the area to print it onto a txt file
 
         } catch (IOException e) {
             System.err.println("Error reading file: " + e.getMessage());

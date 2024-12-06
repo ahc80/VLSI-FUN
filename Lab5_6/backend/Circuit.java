@@ -187,6 +187,14 @@ public class Circuit {
         // Run through list of DFFs
     }
 
+    public void calculateStates() {
+        for (Integer i : sched.keySet()) {
+            for (String entityName : sched.get(Integer.valueOf(i)).keySet()) {
+
+            }
+        }
+    }
+
     public void simulateCircuit() {
         // Create buffers
         long startTime = System.currentTimeMillis();

@@ -148,35 +148,35 @@ public class Entity {
         // Using 1 0 and 4
         DataWrapper<Entity> ptr = fanIn;
 
-        while (ptr != null) { // it wont loop for NOT and BUF
-            switch (this.type) {
-                // case INPUT:
-                // case DFF:
-                // case WIRE:
-                case OUTPUT:
-                    state = fanIn.data.getState();
-                    break;
-                case AND:
-                    runAND();
-                    break;
-                case NAND:
-                    runNAND();
-                    break;
-                case OR:
-                    runOR();
-                    break;
-                case NOR:
-                    runNOR();
-                    break;
-                case NOT:
-                    calcNOT(fanIn.data.getState());
-                    break;
-                case BUF:
-                    state = fanIn.data.getState();
-                    break;
-                default:
-                    break;
-            }
+        switch (this.type) {
+            // case INPUT:
+            // case WIRE:
+            case DFF:
+                state = fanIn.data.getState();
+                break;
+            case BUF:
+                state = fanIn.data.getState();
+                break;
+            case OUTPUT:
+                state = fanIn.data.getState();
+                break;
+            case AND:
+                runAND();
+                break;
+            case NAND:
+                runNAND();
+                break;
+            case OR:
+                runOR();
+                break;
+            case NOR:
+                runNOR();
+                break;
+            case NOT:
+                calcNOT(fanIn.data.getState());
+                break;
+            default:
+                break;
         }
     }
 

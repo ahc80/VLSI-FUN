@@ -162,49 +162,46 @@ public class Circuit {
      * Iterate through all inputs and DFFs to calibrate gate levels
      */
     public void calculateLevels() {
+        // Calibrate inputs
         Wire wire;
-        DataWrapper<Entity> fanOut_ptr;
+        // DataWrapper<Entity> fanOut_ptr;
         for (String wireName : inputs.keySet()) {
             wire = inputs.get(wireName);
-            fanOut_ptr = wire.getFanOut();
-            while (fanOut_ptr != null) {
-                // fanOut_ptr.data.setLevel(0);
-                fanOut_ptr.data.calculateLevels(0, new HashMap<String, Entity>(1500), sched);
-                fanOut_ptr = fanOut_ptr.next;
-            }
-
-            wire.calculateLevels(0, new HashMap<String, Entity>(1500), sched);
+            wire.calculateLevels(0, sched);
         }
+        // Calibrate DFFs
         Gate gate_ptr = firstGate;
         int oldLevel;
         while (gate_ptr.getType() == GateType.DFF) {
             oldLevel = gate_ptr.getLevel();
             gate_ptr.setLevel(0);
-            gate_ptr.recordLevel(oldLevel, 0, sched); // TODO this method needs a prev level
-            gate_ptr.calculateLevels(0, new HashMap<String, Entity>(1500), sched);
+            gate_ptr.recordLevel(oldLevel, 0, sched);
+            gate_ptr.calculateLevels(0, sched);
             gate_ptr = gate_ptr.nextGate;
         }
+        // Calibrate inputs
+        // Wire wire;
+        // DataWrapper<Entity> fanOut_ptr;
 
         // TODO hardcode it to manually set DFF outputs to level zero
         // Run through list of DFFs
     }
 
     public void simulateCircuit() {
-        System.out.println(
-                "----------------------------------------------------------------------------------------------------------");
+        // Create buffers
         long startTime = System.currentTimeMillis();
         createBuffers();
         long endTime = System.currentTimeMillis();
         System.out.println("Created buffers took " + (endTime - startTime) + " ms");
+        // Calibrate levels
+        startTime = System.currentTimeMillis();
         calculateLevels();
         endTime = System.currentTimeMillis();
         System.out.println("All level traversals took " + (endTime - startTime) + " ms");
-        printContents();
-        for (Integer i : sched.keySet()) {
-            for (String name : sched.get(i).keySet()) {
-                System.out.println("Key set " + i + " has " + name);
-            }
-        }
+
+        System.out.println(
+                "----------------------------------------------------------------------------------------------------------");
+        // printContents();
         System.out.println(
                 "----------------------------------------------------------------------------------------------------------");
     }

@@ -7,6 +7,7 @@ public class Entity {
     String name;
     GateType type;
     DataWrapper<Entity> fanIn, fanOut;
+    int state;
     int level;
 
     Entity(String name, GateType type) {
@@ -14,7 +15,8 @@ public class Entity {
         this.type = type;
         this.fanIn = null;
         this.fanOut = null;
-        level = -2;
+        this.level = -1;
+        this.state = 4;
     }
 
     @Override
@@ -32,6 +34,10 @@ public class Entity {
 
     int getLevel() {
         return level;
+    }
+
+    int getState() {
+        return this.state;
     }
 
     void setLevel(int level) {
@@ -98,39 +104,21 @@ public class Entity {
      * @param traversedList hashmap of already traversed nodes
      * @param sched         hashmap that organizes each entity by level
      */
-    void calculateLevels(int newLevel, HashMap<String, Entity> traversedList,
-            HashMap<Integer, HashMap<String, Entity>> sched) {
-
+    void calculateLevels(int newLevel, HashMap<Integer, HashMap<String, Entity>> sched) {
+        // If we reach a flip flop, stop and do not calibrate
+        if (this.type == GateType.DFF)
+            return;
+        // If entity's max level is lower its new level, calibrate and traverse outputs
         if (this.level < newLevel) {
-            // System.out.println("Hit on " + getName());
-
-            // If entity is NOT a buffer and has not yet been traversed, increment level and
-            // call recursively
-            if (this.type != GateType.BUF && !traversedList.containsKey(this.getName())) {
-                // If we need to delete prev level (if it exists)
-                System.out.println("Hit on " + name + "! old|new: " + this.level + '|' + newLevel);
-                // If we need to
-                int oldLevel = this.level;
-                this.level = newLevel;
-                recordLevel(oldLevel, newLevel, sched);
-                traversedList.put(this.getName(), this);
-                DataWrapper<Entity> ptr = this.fanOut;
-                while (ptr != null) {
-                    if (ptr.data != null)
-                        ptr.data.calculateLevels(newLevel + 1, traversedList, sched);
-                    ptr = ptr.next;
-                }
-                // We are looking at a buffer or traversed entity
-            } else {
-                // If buffer
-                if (fanOut != null && fanOut.data != null && this.type == GateType.BUF) {
-                    int oldLevel = this.level;
-                    this.level = newLevel;
-                    recordLevel(oldLevel, newLevel + 1, sched);
-                    fanOut.data.calculateLevels(level, traversedList, sched);
-                }
+            int oldLevel = this.level;
+            this.level = newLevel;
+            recordLevel(oldLevel, newLevel, sched);
+            DataWrapper<Entity> ptr = this.fanOut;
+            while (ptr != null) {
+                if (ptr.data != null)
+                    ptr.data.calculateLevels(newLevel + 1, sched);
+                ptr = ptr.next;
             }
-
         }
     }
 
@@ -154,6 +142,120 @@ public class Entity {
         }
         // Add entity to new spot in sched
         sched.get(newLevel).put(this.name, this);
+    }
+
+    void calculateState() {
+        // Using 1 0 and 4
+        DataWrapper<Entity> ptr = fanIn;
+
+        while (ptr != null) { // it wont loop for NOT and BUF
+            switch (this.type) {
+                // case INPUT:
+                // case DFF:
+                // case WIRE:
+                case OUTPUT:
+                    state = fanIn.data.getState();
+                    break;
+                case AND:
+                    runAND();
+                    break;
+                case NAND:
+                    runNAND();
+                    break;
+                case OR:
+                    runOR();
+                    break;
+                case NOR:
+                    runNOR();
+                    break;
+                case NOT:
+                    calcNOT(fanIn.data.getState());
+                    break;
+                case BUF:
+                    state = fanIn.data.getState();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    void runAND() {
+        int lastCalc; // holds 'sum' of last 2 inputs
+        DataWrapper<Entity> ptr = fanIn;
+        lastCalc = ptr.data.state;
+        ptr = ptr.next;
+        while (ptr != null) {
+            lastCalc = calcAND(lastCalc, ptr.data.getState());
+            ptr = ptr.next;
+        }
+        this.state = lastCalc;
+    }
+
+    void runNAND() {
+        int lastCalc; // holds 'sum' of last 2 inputs
+        DataWrapper<Entity> ptr = fanIn;
+        lastCalc = ptr.data.state;
+        ptr = ptr.next;
+        while (ptr != null) {
+            lastCalc = calcAND(lastCalc, ptr.data.getState());
+            ptr = ptr.next;
+        }
+        this.state = calcNOT(lastCalc);
+    }
+
+    void runOR() {
+        int lastCalc; // holds 'sum' of last 2 inputs
+        DataWrapper<Entity> ptr = fanIn;
+        lastCalc = ptr.data.state;
+        ptr = ptr.next;
+        while (ptr != null) {
+            lastCalc = calcOR(lastCalc, ptr.data.getState());
+            ptr = ptr.next;
+        }
+        this.state = lastCalc;
+    }
+
+    void runNOR() {
+        int lastCalc; // holds 'sum' of last 2 inputs
+        DataWrapper<Entity> ptr = fanIn;
+        lastCalc = ptr.data.state;
+        ptr = ptr.next;
+        while (ptr != null) {
+            lastCalc = calcOR(lastCalc, ptr.data.getState());
+            ptr = ptr.next;
+        }
+        this.state = calcNOT(lastCalc);
+    }
+
+    int calcAND(int x, int y) {
+        if (x == 4 || y == 4)
+            return 4;
+
+        if (x == 1 && y == 1)
+            return 1;
+        else
+            return 0;
+    }
+
+    int calcOR(int x, int y) {
+        if (x == 4 || y == 4)
+            return 4;
+
+        if (x == 1 || y == 1)
+            return 1;
+        else
+            return 0;
+    }
+
+    int calcNOT(int x) {
+        if (x == 4)
+            return 4;
+
+        if (x == 1)
+            return 0;
+        else
+            return 1;
     }
 
 }

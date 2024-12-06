@@ -233,12 +233,14 @@ public class Circuit {
             // Print output states
             for (j = 0; j < orderedOutputs.length; j++) {
                 wireName = orderedOutputs[j];
-                // System.out.println("Funny wire fanin is " +
                 // outputs.get(wireName).fanIn.data);
-                System.out.println("Output " + outputs.get(wireName) + " state: " + outputs.get(wireName).getState());
-                System.out.println((i + 1) + " ^^^^^^^^^ " + (i + 1) + " ^^^^^^^^^ " + (i + 1));
-                System.out.println();
+                // System.out.println("Output " + outputs.get(wireName) + " state: " +
+                // outputs.get(wireName).getState());
+                // System.out.println((i + 1) + " ^^^^^^^^^ " + (i + 1) + " ^^^^^^^^^ " + (i +
+                // 1));
+                System.out.print(outputs.get(wireName).getState());
             }
+            System.out.println();
         }
 
     }
@@ -252,14 +254,16 @@ public class Circuit {
             for (String entityName : sched.get(level).keySet()) {
                 // System.out.println("Entity " + entityName + " on level " + level);
                 sched.get(level).get(entityName).calculateState();
-                System.out
-                        .println("Entity " + entityName + " state now " + sched.get(level).get(entityName).getState());
+                // System.out.println("Entity " + entityName + " state now " +
+                // sched.get(level).get(entityName).getState());
             }
         }
     }
 
     // TODO Update this method when the real main method below it is updated
-    public void mainMethod(String[] inputs, String[] outputs, String[] wires, String[][] gates, String[][] vectors) {
+    public void mainMethod(String[] inputs, String[] outputs, String[] wires, String[][] gates, String[][] vectors,
+            String filePath) {
+        long overallStartTime = System.currentTimeMillis();
         Circuit circuit = new Circuit();
         circuit.parseInputs(inputs);
         circuit.parseOutputs(outputs);
@@ -280,6 +284,8 @@ public class Circuit {
 
         circuit.calibrateCircuit();
         circuit.simulateCircuit(inputs, outputs, vectors, "filepath_placeholder");
+        long overallFinishTime = System.currentTimeMillis();
+        System.out.println("Full simulation time took " + (overallFinishTime - overallStartTime) + " ms");
     }
 
     public static void main(String[] args) {
@@ -311,6 +317,7 @@ public class Circuit {
                 { "1", "1", "1", "1" }
         };
 
+        long overallStartTime = System.currentTimeMillis();
         Circuit circuit = new Circuit();
         circuit.parseInputs(inputs);
         circuit.parseOutputs(outputs);
@@ -331,6 +338,8 @@ public class Circuit {
 
         circuit.calibrateCircuit();
         circuit.simulateCircuit(inputs, outputs, vectors, "filepath_placeholder");
+        long overallFinishTime = System.currentTimeMillis();
+        System.out.println("Full simulation time took " + (overallFinishTime - overallStartTime) + " ms");
     }
 
     /**

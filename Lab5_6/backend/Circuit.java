@@ -16,7 +16,7 @@ public class Circuit {
         this.wireList = new HashMap<String, Wire>(27157);
         // this.gateList = new HashMap<String, Gate>(27571);
         this.inputs = new HashMap<>(40); // I counted 38
-        this.outputs = new HashMap<>(310); // I counted 304
+        this.outputs = new HashMap<>(350); // I counted 304
         this.sched = new HashMap<>(1850);
     }
 
@@ -137,6 +137,7 @@ public class Circuit {
         }
     }
 
+    // TODO Make sure input and output wires are properly ordered
     void createBuffers() {
         Set<String> wires = wireList.keySet();
 
@@ -149,11 +150,15 @@ public class Circuit {
                 this.lastGate = firstLastBuf[1];
             }
         }
-        wireList.clear();
+        // wireList.clear();
         for (String wireName : inputs.keySet()) {
+            // System.out.println("Adding INPUT wire " + wireName + " to wireList"); //
+            // ---------------------------------------------------
             wireList.put(wireName, inputs.get(wireName));
         }
         for (String wireName : outputs.keySet()) {
+            // System.out.println("Adding OUTPUT wire " + wireName + " to wireList"); //
+            // --------------------------------------------------
             wireList.put(wireName, inputs.get(wireName));
         }
     }
@@ -179,23 +184,9 @@ public class Circuit {
             gate_ptr.calculateLevels(0, sched);
             gate_ptr = gate_ptr.nextGate;
         }
-        // Calibrate inputs
-        // Wire wire;
-        // DataWrapper<Entity> fanOut_ptr;
-
-        // TODO hardcode it to manually set DFF outputs to level zero
-        // Run through list of DFFs
     }
 
-    public void calculateStates() {
-        for (Integer i : sched.keySet()) {
-            for (String entityName : sched.get(Integer.valueOf(i)).keySet()) {
-
-            }
-        }
-    }
-
-    public void simulateCircuit() {
+    public void calibrateCircuit() {
         // Create buffers
         long startTime = System.currentTimeMillis();
         createBuffers();
@@ -210,8 +201,85 @@ public class Circuit {
         System.out.println(
                 "----------------------------------------------------------------------------------------------------------");
         // printContents();
+
         System.out.println(
                 "----------------------------------------------------------------------------------------------------------");
+    }
+
+    /**
+     * 
+     * @param orderedInputs
+     * @param orderedOutputs
+     * @param vectors        List of vectors in format {"1", "0", "1", "0", "0"}
+     */
+    // TODO actually implement filePath
+    public void simulateCircuit(String[] orderedInputs, String[] orderedOutputs, String[][] vectors, String filePath) {
+        if (orderedInputs.length != vectors[0].length) {
+            System.err.println("Inputs list and vector length does not match!");
+        }
+
+        int i, j, state;
+        String wireName;
+        // Cycle through all vector combinations, top to bottom
+        for (i = 0; i < vectors.length; i++) {
+            // Assign input states
+            for (j = 0; j < orderedInputs.length; j++) {
+                wireName = orderedInputs[j];
+                state = Integer.valueOf(vectors[i][j]);
+                inputs.get(wireName).setState(state);
+            }
+            // Simulate circuit
+            calculateStates();
+            // Print output states
+            for (j = 0; j < orderedOutputs.length; j++) {
+                wireName = orderedOutputs[j];
+                // System.out.println("Funny wire fanin is " +
+                // outputs.get(wireName).fanIn.data);
+                System.out.println("Output " + outputs.get(wireName) + " state: " + outputs.get(wireName).getState());
+                System.out.println((i + 1) + " ^^^^^^^^^ " + (i + 1) + " ^^^^^^^^^ " + (i + 1));
+                System.out.println();
+            }
+        }
+
+    }
+
+    /**
+     * Helper method to simulateCircuit that, after all input states are assigned,
+     * simulates the circuit
+     */
+    public void calculateStates() {
+        for (Integer level : sched.keySet()) {
+            for (String entityName : sched.get(level).keySet()) {
+                // System.out.println("Entity " + entityName + " on level " + level);
+                sched.get(level).get(entityName).calculateState();
+                System.out
+                        .println("Entity " + entityName + " state now " + sched.get(level).get(entityName).getState());
+            }
+        }
+    }
+
+    // TODO Update this method when the real main method below it is updated
+    public void mainMethod(String[] inputs, String[] outputs, String[] wires, String[][] gates, String[][] vectors) {
+        Circuit circuit = new Circuit();
+        circuit.parseInputs(inputs);
+        circuit.parseOutputs(outputs);
+        circuit.parseWires(wires);
+        int i;
+        Gate prevGate = null;
+        Gate currGate = null;
+        // Add gates to list
+        for (i = 0; i < gates.length; i++) {
+            if (i == 0)
+                prevGate = circuit.parseSingleGate(gates[i]);
+            else {
+                currGate = circuit.parseSingleGate(gates[i]);
+                prevGate.nextGate = currGate;
+                prevGate = currGate;
+            }
+        }
+
+        circuit.calibrateCircuit();
+        circuit.simulateCircuit(inputs, outputs, vectors, "filepath_placeholder");
     }
 
     public static void main(String[] args) {
@@ -235,6 +303,13 @@ public class Circuit {
                 { "nor", "XG12", "G10", "G11", "G14" },
                 { "not", "XG13", "G17", "G11" }
         };
+        String[][] vectors = {
+                { "0", "0", "0", "0" },
+                { "0", "0", "1", "0" },
+                { "0", "1", "0", "0" },
+                { "1", "0", "0", "0" },
+                { "1", "1", "1", "1" }
+        };
 
         Circuit circuit = new Circuit();
         circuit.parseInputs(inputs);
@@ -254,8 +329,8 @@ public class Circuit {
             }
         }
 
-        circuit.simulateCircuit();
-
+        circuit.calibrateCircuit();
+        circuit.simulateCircuit(inputs, outputs, vectors, "filepath_placeholder");
     }
 
     /**
@@ -328,5 +403,10 @@ public class Circuit {
             }
         }
         return gate;
+    }
+
+    // TODO idk make this ig
+    void parseCircuitInputs() {
+        // How to apply vec array to inputs
     }
 }

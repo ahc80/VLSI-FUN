@@ -150,7 +150,12 @@ public class VerilogParser {
         try {
             VerilogParser parser = new VerilogParser(filePath);
             Circuit circuit = parser.parse();
-            circuit.simulateCircuit(); // Simulates circuit and prints output
+            // iterate through wires appropriately
+            circuit.calibrateCircuit(); // Simulates circuit and prints output
+
+            // TODO create method that inputs the circuit that reads the inputs and outputs
+            // from .v and also reads .vec file
+
             // TODO Need to add the area to print it onto a txt file
 
         } catch (IOException e) {

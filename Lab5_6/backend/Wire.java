@@ -14,6 +14,10 @@ public class Wire extends Entity {
         this(name, GateType.WIRE);
     }
 
+    void setState(int state) {
+        this.setTheState(state);
+    }
+
     void addInput(Gate gate) {
         if (fanIn != null) {
             fanIn.add(gate);

@@ -40,6 +40,10 @@ public class Entity {
         return this.state;
     }
 
+    protected void setTheState(int state) {
+        this.state = state;
+    }
+
     void setLevel(int level) {
         this.level = level;
     }
@@ -131,8 +135,12 @@ public class Entity {
      * @param sched the sched database
      */
     void recordLevel(int oldLevel, int newLevel, HashMap<Integer, HashMap<String, Entity>> sched) {
+        if (this.type == GateType.OUTPUT)
+            System.out.println("Record level on output" + this.name);
+
         // If the entity was previously logged into sched, remove it
         if (sched.containsKey(oldLevel) && sched.get(oldLevel).containsKey(this.name)) {
+            System.out.println("Was previously under level + " + oldLevel); // ------------------------------
             sched.get(oldLevel).remove(this.name);
         }
         // If sched does not have a map for current level, create it
@@ -145,12 +153,11 @@ public class Entity {
     }
 
     void calculateState() {
-        // Using 1 0 and 4
-        DataWrapper<Entity> ptr = fanIn;
-
+        if (this.type == GateType.INPUT || this.fanIn == null) {
+            // System.out.println("Rejected calc on " + name + "state: " + this.state);
+            return;
+        }
         switch (this.type) {
-            // case INPUT:
-            // case WIRE:
             case DFF:
                 state = fanIn.data.getState();
                 break;
@@ -173,11 +180,12 @@ public class Entity {
                 runNOR();
                 break;
             case NOT:
-                calcNOT(fanIn.data.getState());
+                this.state = calcNOT(fanIn.data.getState());
                 break;
             default:
                 break;
         }
+        // System.out.println("State calculated on" + this + " state: " + this.state);
     }
 
     void runAND() {
@@ -229,33 +237,27 @@ public class Entity {
     }
 
     int calcAND(int x, int y) {
-        if (x == 4 || y == 4)
-            return 4;
-
+        if (x == 0 || y == 0)
+            return 0;
         if (x == 1 && y == 1)
             return 1;
-        else
-            return 0;
+        return 4;
     }
 
     int calcOR(int x, int y) {
-        if (x == 4 || y == 4)
-            return 4;
-
         if (x == 1 || y == 1)
             return 1;
-        else
+        if (x == 0 && y == 0)
             return 0;
+        return 4;
     }
 
     int calcNOT(int x) {
         if (x == 4)
             return 4;
-
         if (x == 1)
             return 0;
-        else
-            return 1;
+        return 1;
     }
 
 }

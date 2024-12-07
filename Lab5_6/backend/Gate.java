@@ -11,6 +11,11 @@ public class Gate extends Entity {
         super(name, type);
     }
 
+    @Override
+    public String printClass() {
+        return "Gate";
+    }
+
     void setNextGate(Gate gate) {
         this.nextGate = gate;
     }

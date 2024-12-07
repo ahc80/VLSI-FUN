@@ -1,7 +1,6 @@
 package backend;
 
 import java.util.HashMap;
-import java.util.Set;
 
 public class Circuit {
 
@@ -14,9 +13,8 @@ public class Circuit {
 
     Circuit() {
         this.wireList = new HashMap<String, Wire>(27157);
-        // this.gateList = new HashMap<String, Gate>(27571);
-        this.inputs = new HashMap<>(40); // I counted 38
-        this.outputs = new HashMap<>(350); // I counted 304
+        this.inputs = new HashMap<>(40);
+        this.outputs = new HashMap<>(350);
         this.sched = new HashMap<>(1850);
     }
 
@@ -82,7 +80,9 @@ public class Circuit {
         Wire wire = new Wire(name, GateType.INPUT);
         wireList.put(name, wire);
         inputs.put(name, wire);
-        wire.addInput(new Gate(name, GateType.INPUT)); // PROBLEM PROBLEM PROBLEM
+
+        // TODO Make sure this doesnt do anything
+        // wire.addInput(new Gate(name, GateType.INPUT)); // PROBLEM PROBLEM PROBLEM
     }
 
     /**
@@ -140,9 +140,7 @@ public class Circuit {
     // Input and output wires are not properly ordered. We will simply use the
     // string[] in/out again
     void createBuffers() {
-        Set<String> wires = wireList.keySet();
-
-        for (String wireName : wires) {
+        for (String wireName : wireList.keySet()) {
             Wire wire = wireList.get(wireName);
             Gate[] firstLastBuf = wire.createBuffers();
             // wireList.remove(wireName);
@@ -182,7 +180,7 @@ public class Circuit {
             oldLevel = gate_ptr.getLevel();
             gate_ptr.setLevel(0);
             gate_ptr.recordLevel(oldLevel, 0, sched);
-            gate_ptr.calculateLevels(0, sched);
+            gate_ptr.fanOut.data.calculateLevels(1, sched);
             gate_ptr = gate_ptr.nextGate;
         }
     }
@@ -190,19 +188,23 @@ public class Circuit {
     public void calibrateCircuit(String filePath) {
         // Create buffers
         long startTime = System.currentTimeMillis();
+
         createBuffers();
+
         long endTime = System.currentTimeMillis();
         System.out.println("Created buffers took " + (endTime - startTime) + " ms");
         // Calibrate levels
         startTime = System.currentTimeMillis();
+
         calculateLevels();
+
         endTime = System.currentTimeMillis();
         System.out.println("All level traversals took " + (endTime - startTime) + " ms");
 
         System.out.println(
                 "----------------------------------------------------------------------------------------------------------");
         // TODO make this print create a filepath and print to it
-        // printContents();
+        printContents();
         System.out.println(
                 "----------------------------------------------------------------------------------------------------------");
     }
@@ -232,6 +234,7 @@ public class Circuit {
             // Simulate circuit
             calculateStates();
             // Print output states
+            System.out.print("OUTPUTS: ");
             for (j = 0; j < orderedOutputs.length; j++) {
                 wireName = orderedOutputs[j];
                 // outputs.get(wireName).fanIn.data);
@@ -239,7 +242,6 @@ public class Circuit {
                 // outputs.get(wireName).getState());
                 // System.out.println((i + 1) + " ^^^^^^^^^ " + (i + 1) + " ^^^^^^^^^ " + (i +
                 // 1));
-                System.out.print("OUTPUTS: ");
                 System.out.print(outputs.get(wireName).getState());
             }
             System.out.println();
@@ -284,7 +286,7 @@ public class Circuit {
 
         String filePath = createOutputFile();
         calibrateCircuit(filePath);
-        simulateCircuit(inputs, outputs, vectors, filePath);
+        // simulateCircuit(inputs, outputs, vectors, filePath);
     }
 
     public static void main(String[] args) {

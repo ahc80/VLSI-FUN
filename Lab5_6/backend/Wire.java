@@ -4,7 +4,6 @@ public class Wire extends Entity {
 
     String name;
     GateType type;
-    // DataWrapper<Gate> inputs, outputs; // THIS CAN STAY
 
     Wire(String name, GateType type) {
         super(name, type);
@@ -14,23 +13,28 @@ public class Wire extends Entity {
         this(name, GateType.WIRE);
     }
 
+    @Override
+    public String printClass() {
+        return "Wire";
+    }
+
     void setState(int state) {
         this.setTheState(state);
     }
 
     void addInput(Gate gate) {
-        if (fanIn != null) {
-            fanIn.add(gate);
+        if (getFanIn() != null) {
+            getFanIn().add(gate);
         } else {
-            fanIn = new DataWrapper<Entity>(gate);
+            setFanIn(new DataWrapper<Entity>(gate));
         }
     }
 
     void addOutput(Gate gate) {
-        if (fanOut != null) {
-            fanOut.add(gate);
+        if (getFanOut() != null) {
+            getFanOut().add(gate);
         } else {
-            fanOut = new DataWrapper<Entity>(gate);
+            setFanOut(new DataWrapper<Entity>(gate));
         }
     }
 

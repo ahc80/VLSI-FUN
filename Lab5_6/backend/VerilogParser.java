@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 
 public class VerilogParser {
@@ -22,8 +24,8 @@ public class VerilogParser {
      * @throws IOException if the file cannot be read.
      */
     public String[][] parse() throws IOException {
-        DataWrapper<String> inputs;
-        DataWrapper<String> outputs;
+        DataWrapper<String[]> inputs = new DataWrapper<String[]>(null);
+        DataWrapper<String[]> outputs = new DataWrapper<String[]>(null);
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             Gate prevGate = null; // For linking gates in sequence
@@ -37,10 +39,12 @@ public class VerilogParser {
                 }
 
                 if (line.startsWith("input")) {
-                    parseInputs(line);
+                    inputs.add(parseInputs(line));
                 } else if (line.startsWith("output")) {
-                    parseOutputs(line);
+                    outputs.add(parseOutputs(line));
                 } else if (line.startsWith("wire")) {
+                    circuit.parseInputs(stringListToArray(inputs));
+                    circuit.parseOutputs(stringListToArray(outputs));
                     parseWires(line);
                 } else if (line.matches("^[a-zA-Z]+\\s+\\w+\\s*\\(.*\\);")) {
                     Gate newGate = parseGate(line);
@@ -52,7 +56,17 @@ public class VerilogParser {
             }
 
         }
-        return circuit;
+        return new String[][] { stringListToArray(inputs), stringListToArray(outputs) };
+    }
+
+    private String[] stringListToArray(DataWrapper<String[]> list) {
+        String[] array = new String[list.count()];
+        int i = 0;
+        while (list != null) {
+            array[i++] = list.data[0];
+            list = list.next;
+        }
+        return array;
     }
 
     /**
@@ -60,11 +74,8 @@ public class VerilogParser {
      * 
      * @param line The Verilog line starting with "input".
      */
-    private void parseInputs(String line) {
-        String[] inputs = line.replace("input", "").replace(";", "").trim().split(",");
-        for (String input : inputs) {
-            circuit.addInput(input.trim());
-        }
+    private String[] parseInputs(String line) {
+        return line.replace("input", "").replace(";", "").trim().split(",");
     }
 
     /**
@@ -72,11 +83,8 @@ public class VerilogParser {
      * 
      * @param line The Verilog line starting with "output".
      */
-    private void parseOutputs(String line) {
-        String[] outputs = line.replace("output", "").replace(";", "").trim().split(",");
-        for (String output : outputs) {
-            circuit.addOutput(output.trim());
-        }
+    private String[] parseOutputs(String line) {
+        return line.replace("output", "").replace(";", "").trim().split(",");
     }
 
     /**
@@ -166,22 +174,29 @@ public class VerilogParser {
      * @param args Command-line arguments (not used).
      */
     public static void main(String[] args) {
-        if (args.length != 1) {
-            System.err.println("Usage: java backend.VerilogParser <file-path>");
+        if (args.length != 2) {
+            System.err.println("Usage: java backend.VerilogParser <file-path> <vector-file-path");
             System.exit(1);
         }
 
         String filePath = args[0];
+        String vectorFilePath = args[1];
 
         try {
+            long totalStartTime = System.currentTimeMillis();
+
             VerilogParser parser = new VerilogParser(filePath);
-            Circuit circuit = parser.parse();
+            String[][] inputsOutputsList = parser.parse();
+            String[][] vectors = parser.parseVectorFile(vectorFilePath);
             // iterate through wires appropriately
 
-            // TODO in the parameters please put in String[] inputs and outputs as well as
             // String[][] vectors
-            // circuit.mainMethod(inputsArray, outputsArray, vectorsDoubleArray); //
+            parser.circuit.mainMethod(inputsOutputsList[0], inputsOutputsList[1], vectors);
             // Simulates circuit and prints output
+
+            long totalEndTime = System.currentTimeMillis();
+
+            System.out.println("Total simulation time: " + (totalEndTime - totalStartTime) + " ms");
 
         } catch (IOException e) {
             System.err.println("Error reading file: " + e.getMessage());

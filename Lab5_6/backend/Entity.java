@@ -19,6 +19,10 @@ public class Entity {
         this.state = 4;
     }
 
+    public String printClass() {
+        return "Entity";
+    }
+
     @Override
     public String toString() {
         return name;
@@ -50,6 +54,14 @@ public class Entity {
 
     DataWrapper<Entity> getFanIn() {
         return fanIn;
+    }
+
+    protected void setFanIn(DataWrapper<Entity> gate) {
+        fanIn = gate;
+    }
+
+    protected void setFanOut(DataWrapper<Entity> gate) {
+        fanOut = gate;
     }
 
     DataWrapper<Entity> getFanOut() {

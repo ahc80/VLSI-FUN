@@ -135,12 +135,8 @@ public class Entity {
      * @param sched the sched database
      */
     void recordLevel(int oldLevel, int newLevel, HashMap<Integer, HashMap<String, Entity>> sched) {
-        if (this.type == GateType.OUTPUT)
-            System.out.println("Record level on output" + this.name);
-
         // If the entity was previously logged into sched, remove it
         if (sched.containsKey(oldLevel) && sched.get(oldLevel).containsKey(this.name)) {
-            System.out.println("Was previously under level + " + oldLevel); // ------------------------------
             sched.get(oldLevel).remove(this.name);
         }
         // If sched does not have a map for current level, create it
@@ -154,7 +150,6 @@ public class Entity {
 
     void calculateState() {
         if (this.type == GateType.INPUT || this.fanIn == null) {
-            // System.out.println("Rejected calc on " + name + "state: " + this.state);
             return;
         }
         switch (this.type) {

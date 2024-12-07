@@ -239,6 +239,7 @@ public class Circuit {
                 // outputs.get(wireName).getState());
                 // System.out.println((i + 1) + " ^^^^^^^^^ " + (i + 1) + " ^^^^^^^^^ " + (i +
                 // 1));
+                System.out.print("OUTPUTS: ");
                 System.out.print(outputs.get(wireName).getState());
             }
             System.out.println();
@@ -335,8 +336,7 @@ public class Circuit {
             }
         }
 
-        circuit.calibrateCircuit();
-        circuit.simulateCircuit(inputs, outputs, vectors, "filepath_placeholder");
+        circuit.mainMethod(inputs, outputs, vectors);
 
         long overallFinishTime = System.currentTimeMillis();
 

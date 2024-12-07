@@ -154,7 +154,8 @@ public class VerilogParser {
 
             // TODO in the parameters please put in String[] inputs and outputs as well as
             // String[][] vectors
-            circuit.mainMethod(inputsArray, outputsArray, vectorsDoubleArray); // Simulates circuit and prints output
+            // circuit.mainMethod(inputsArray, outputsArray, vectorsDoubleArray); //
+            // Simulates circuit and prints output
 
         } catch (IOException e) {
             System.err.println("Error reading file: " + e.getMessage());

@@ -21,7 +21,9 @@ public class VerilogParser {
      * @return Circuit object representing the parsed Verilog design.
      * @throws IOException if the file cannot be read.
      */
-    public Circuit parse() throws IOException {
+    public String[][] parse() throws IOException {
+        DataWrapper<String> inputs;
+        DataWrapper<String> outputs;
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             Gate prevGate = null; // For linking gates in sequence
@@ -131,6 +133,30 @@ public class VerilogParser {
     private void ensureWireExists(String name) {
         if (!circuit.wireList.containsKey(name)) {
             circuit.addWire(name);
+        }
+    }
+
+    /**
+     * Parses vector file
+     * 
+     * @param vectorFilePath
+     * @return
+     * @throws IOException
+     */
+    public String[][] parseVectorFile(String vectorFilePath) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(vectorFilePath))) {
+            List<String[]> vectors = new ArrayList<>();
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                line = line.trim();
+                if (line.isEmpty() || line.startsWith("#")) {
+                    continue;
+                }
+                vectors.add(line.split(""));
+            }
+
+            return vectors.toArray(new String[0][]);
         }
     }
 

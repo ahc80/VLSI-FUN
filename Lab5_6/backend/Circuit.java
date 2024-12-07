@@ -137,7 +137,8 @@ public class Circuit {
         }
     }
 
-    // TODO Make sure input and output wires are properly ordered
+    // Input and output wires are not properly ordered. We will simply use the
+    // string[] in/out again
     void createBuffers() {
         Set<String> wires = wireList.keySet();
 
@@ -186,7 +187,7 @@ public class Circuit {
         }
     }
 
-    public void calibrateCircuit() {
+    public void calibrateCircuit(String filePath) {
         // Create buffers
         long startTime = System.currentTimeMillis();
         createBuffers();
@@ -200,8 +201,8 @@ public class Circuit {
 
         System.out.println(
                 "----------------------------------------------------------------------------------------------------------");
+        // TODO make this print create a filepath and print to it
         // printContents();
-
         System.out.println(
                 "----------------------------------------------------------------------------------------------------------");
     }
@@ -260,32 +261,29 @@ public class Circuit {
         }
     }
 
-    // TODO Update this method when the real main method below it is updated
-    public void mainMethod(String[] inputs, String[] outputs, String[] wires, String[][] gates, String[][] vectors,
-            String filePath) {
-        long overallStartTime = System.currentTimeMillis();
-        Circuit circuit = new Circuit();
-        circuit.parseInputs(inputs);
-        circuit.parseOutputs(outputs);
-        circuit.parseWires(wires);
-        int i;
-        Gate prevGate = null;
-        Gate currGate = null;
-        // Add gates to list
-        for (i = 0; i < gates.length; i++) {
-            if (i == 0)
-                prevGate = circuit.parseSingleGate(gates[i]);
-            else {
-                currGate = circuit.parseSingleGate(gates[i]);
-                prevGate.nextGate = currGate;
-                prevGate = currGate;
-            }
-        }
+    // TODO make this
+    public String createOutputFile() {
+        return "filepath";
+    }
 
-        circuit.calibrateCircuit();
-        circuit.simulateCircuit(inputs, outputs, vectors, "filepath_placeholder");
-        long overallFinishTime = System.currentTimeMillis();
-        System.out.println("Full simulation time took " + (overallFinishTime - overallStartTime) + " ms");
+    /**
+     * The "main" method of Circuit class. It calibrates the circuit then simulates
+     * it
+     * 
+     * @param inputs  A string array of inputs format {"G0","G1", etc}. Used to
+     *                assign vector values in the proper order
+     * @param outputs A string array of outputs format {"G17", etc}. Used to print
+     *                out output values in the proper order
+     * @param vectors A string double array format {VECTOR1[], VECTOR2[], etc}.
+     *                VECTOR1, VECTOR2, etc use format {"1","0","0",etc}
+     */
+    public void mainMethod(String[] inputs, String[] outputs, String[][] vectors) {
+        // Todo implement filewriting system that always outputs new file (how does
+        // duplicate names work? Does windows auto handle that?)
+
+        String filePath = createOutputFile();
+        calibrateCircuit(filePath);
+        simulateCircuit(inputs, outputs, vectors, filePath);
     }
 
     public static void main(String[] args) {
@@ -318,6 +316,7 @@ public class Circuit {
         };
 
         long overallStartTime = System.currentTimeMillis();
+
         Circuit circuit = new Circuit();
         circuit.parseInputs(inputs);
         circuit.parseOutputs(outputs);
@@ -338,7 +337,9 @@ public class Circuit {
 
         circuit.calibrateCircuit();
         circuit.simulateCircuit(inputs, outputs, vectors, "filepath_placeholder");
+
         long overallFinishTime = System.currentTimeMillis();
+
         System.out.println("Full simulation time took " + (overallFinishTime - overallStartTime) + " ms");
     }
 
@@ -412,10 +413,5 @@ public class Circuit {
             }
         }
         return gate;
-    }
-
-    // TODO idk make this ig
-    void parseCircuitInputs() {
-        // How to apply vec array to inputs
     }
 }

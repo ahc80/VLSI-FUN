@@ -5,8 +5,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class VerilogParser {
     private String fileName;
@@ -71,29 +69,24 @@ public class VerilogParser {
 
     private Gate parseGate(String line) {
         System.out.println("[FLAG] Parsing gate: " + line);
-        Pattern pattern = Pattern.compile("([a-zA-Z]+)\\s+(\\w+)\\s*\\((.*)\\);");
-        Matcher matcher = pattern.matcher(line);
+        String[] parts = line.split("\\s+|\\(|\\)");
+        String gateType = parts[0];
+        String gateName = parts[1];
+        String[] connections = parts[2].split(",");
+        System.out.println("[FLAG] GateType: " + gateType + ", GateName: " + gateName + ", Connections: " + String.join(", ", connections));
 
-        if (matcher.find()) {
-            String gateType = matcher.group(1);
-            String gateName = matcher.group(2);
-            String[] connections = matcher.group(3).split(",");
-            System.out.println("[FLAG] GateType: " + gateType + ", GateName: " + gateName + ", Connections: " + String.join(", ", connections));
+        GateType type = GateType.valueOf(gateType.toUpperCase());
+        Gate gate = circuit.addGate(gateName, type);
 
-            GateType type = GateType.valueOf(gateType.toUpperCase());
-            Gate gate = circuit.addGate(gateName, type);
+        ensureWireExists(connections[0].trim());
+        circuit.addFanOut(connections[0].trim(), gate);
 
-            ensureWireExists(connections[0].trim());
-            circuit.addFanOut(connections[0].trim(), gate);
-
-            for (int i = 1; i < connections.length; i++) {
-                ensureWireExists(connections[i].trim());
-                circuit.addFanIn(connections[i].trim(), gate);
-            }
-
-            return gate;
+        for (int i = 1; i < connections.length; i++) {
+            ensureWireExists(connections[i].trim());
+            circuit.addFanIn(connections[i].trim(), gate);
         }
-        throw new IllegalArgumentException("Invalid gate declaration: " + line);
+
+        return gate;
     }
 
     private void ensureWireExists(String name) {
@@ -114,7 +107,7 @@ public class VerilogParser {
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
                 if (line.isEmpty() || line.startsWith("#")) {
-                    System.out.println("[debug] Skipping comment/empty line: " + line);
+                    System.out.println("[FLAG] Skipping comment/empty line: " + line);
                     continue;
                 }
                 vectors.add(line.split(""));
@@ -128,8 +121,7 @@ public class VerilogParser {
     public void simulateWithVectors(String[] inputs, String[][] vectors) {
         for (String[] vector : vectors) {
             System.out.println("[debug] Simulating with inputs: " + String.join(", ", vector));
-    
-            // Assign vector states to corresponding wires
+
             for (int i = 0; i < inputs.length; i++) {
                 Wire wire = circuit.wireList.get(inputs[i]);
                 if (wire != null) {
@@ -139,16 +131,19 @@ public class VerilogParser {
                     System.err.println("[ERROR] Wire not found: " + inputs[i]);
                 }
             }
-    
-            // Run circuit simulation
-            circuit.calculateStates();
-    
-            // Debug each gate and wire
+
+            System.out.println("[debug] Gate details before state calculation:");
             for (Gate gate : circuit.getAllGates()) {
-                System.out.println("[debug] Gate " + gate.getName() + " output: " + gate.getOutputState());
+                gate.printDetails();
             }
-    
-            // Collect and print output states
+
+            circuit.calculateStates();
+
+            System.out.println("[debug] Gate details after state calculation:");
+            for (Gate gate : circuit.getAllGates()) {
+                gate.printDetails();
+            }
+
             List<String> outputStates = new ArrayList<>();
             for (String outputName : circuit.getOutputNames()) {
                 Wire outputWire = circuit.outputs.get(outputName);
@@ -161,7 +156,6 @@ public class VerilogParser {
             System.out.println("[debug] Outputs: " + String.join(", ", outputStates));
         }
     }
-    
 
     public static void main(String[] args) {
         if (args.length != 2) {
@@ -182,32 +176,7 @@ public class VerilogParser {
             String[][] vectors = parser.parseVectorFile(vectorFilePath);
 
             System.out.println("[FLAG] Simulating Circuit...");
-            for (String[] vector : vectors) {
-                System.out.println("[debug] Inputs: " + String.join(", ", vector));
-
-                for (int i = 0; i < inputNames.size(); i++) {
-                    String inputName = inputNames.get(i);
-                    Wire inputWire = circuit.inputs.get(inputName);
-                    if (inputWire != null) {
-                        inputWire.setState(Integer.parseInt(vector[i]));
-                    } else {
-                        System.err.println("[ERROR] Input wire not found: " + inputName);
-                    }
-                }
-
-                circuit.calculateStates();
-
-                List<String> outputStates = new ArrayList<>();
-                for (String outputName : outputNames) {
-                    Wire outputWire = circuit.outputs.get(outputName);
-                    if (outputWire != null) {
-                        outputStates.add(String.valueOf(outputWire.getState()));
-                    } else {
-                        System.err.println("[ERROR] Output wire not found: " + outputName);
-                    }
-                }
-                System.out.println("[debug] Outputs: " + String.join(", ", outputStates));
-            }
+            parser.simulateWithVectors(inputNames.toArray(new String[0]), vectors);
 
         } catch (IOException e) {
             System.err.println("[ERROR] Error reading file: " + e.getMessage());

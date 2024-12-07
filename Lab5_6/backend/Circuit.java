@@ -1,6 +1,8 @@
 package backend;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 public class Circuit {
@@ -106,6 +108,32 @@ public class Circuit {
      */
     public void addNextGate(Gate previous, Gate next) {
         previous.nextGate = next;
+    }
+
+    /**
+     * Retrieves all gates in the circuit starting from the firstGate in sequence.
+     *
+     * @return A List of Gate objects representing all gates in the circuit.
+     */
+    public List<Gate> getAllGates() {
+        List<Gate> gates = new ArrayList<>();
+        Gate currentGate = firstGate;
+
+        while (currentGate != null) {
+            gates.add(currentGate);
+            currentGate = currentGate.getNexGate(); // Traverse linked gates
+        }
+
+        return gates;
+    }
+
+    /**
+     * Retrieves the names of all output wires in the circuit.
+     *
+     * @return A List of Strings representing the output wire names.
+     */
+    public List<String> getOutputNames() {
+        return new ArrayList<>(outputs.keySet());
     }
 
     /*

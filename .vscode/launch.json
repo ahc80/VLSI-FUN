@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "ExtractBetween",
+            "request": "launch",
+            "mainClass": "backend.ExtractBetween",
+            "projectName": "VLSI-FUN_28fc00ce"
+        },
+        {
+            "type": "java",
+            "name": "VerilogParser",
+            "request": "launch",
+            "mainClass": "backend.VerilogParser",
+            "projectName": "VLSI-FUN_28fc00ce"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"

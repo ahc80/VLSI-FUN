@@ -1,5 +1,7 @@
 package backend;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 
 public class Circuit {
@@ -116,20 +118,21 @@ public class Circuit {
 
     /**
      * Prints the details of the circuit gates in a table format.
+     * @throws IOException 
      */
-    void printContents() {
+    void printContents(FileWriter writer) throws IOException {
         if (firstGate != null) {
             // Print the table header
-            System.out.printf("%-10s %-10s %-10s %-10s %-20s %-10s %-20s %-10s%n",
+            String header = String.format("%-10s %-10s %-10s %-10s %-20s %-10s %-20s %-10s%n\n",
                     "GateType", "Output", "GateLevel", "#faninN", "faninWires", "#fanoutM", "fanoutWires", "GateName");
-
+            writer.write(header);
             // Print details of the first gate
-            firstGate.printDetails();
+            firstGate.printDetails(writer);
 
             // Iterate through the gates using the linked structure
             Gate gate = firstGate.nextGate;
             while (gate != null) {
-                gate.printDetails();
+                gate.printDetails(writer);
                 gate = gate.nextGate;
             }
         } else {
@@ -151,13 +154,9 @@ public class Circuit {
         }
         // wireList.clear();
         for (String wireName : inputs.keySet()) {
-            // System.out.println("Adding INPUT wire " + wireName + " to wireList"); //
-            // ---------------------------------------------------
             wireList.put(wireName, inputs.get(wireName));
         }
         for (String wireName : outputs.keySet()) {
-            // System.out.println("Adding OUTPUT wire " + wireName + " to wireList"); //
-            // --------------------------------------------------
             wireList.put(wireName, outputs.get(wireName));
         }
     }
@@ -185,7 +184,7 @@ public class Circuit {
         }
     }
 
-    public void calibrateCircuit(String filePath) {
+    public void calibrateCircuit(FileWriter writer) throws IOException {
         // Create buffers
         long startTime = System.currentTimeMillis();
 
@@ -201,12 +200,11 @@ public class Circuit {
         endTime = System.currentTimeMillis();
         System.out.println("Level calculation took " + (endTime - startTime) + " ms");
 
-        System.out.println(
-                "----------------------------------------------------------------------------------------------------------");
-        // TODO make this print create a filepath and print to it
-        // printContents();
-        System.out.println(
-                "----------------------------------------------------------------------------------------------------------");
+        writer.write(
+                "----------------------------------------------------------------------------------------------------------\n");
+        printContents(writer);
+        writer.write(
+                "----------------------------------------------------------------------------------------------------------\n");
     }
 
     /**
@@ -214,9 +212,10 @@ public class Circuit {
      * @param orderedInputs
      * @param orderedOutputs
      * @param vectors        List of vectors in format {"1", "0", "1", "0", "0"}
-     */
-    // TODO actually implement filePath
-    public void simulateCircuit(String[] orderedInputs, String[] orderedOutputs, String[][] vectors, String filePath) {
+          * @throws IOException 
+          */
+         // TODO actually implement filePath
+         public void simulateCircuit(String[] orderedInputs, String[] orderedOutputs, String[][] vectors, FileWriter writer) throws IOException {
         if (orderedInputs.length != vectors[0].length) {
             System.err.println("Inputs list and vector length does not match!");
         }
@@ -235,26 +234,28 @@ public class Circuit {
             // Simulate circuit
             calculateStates();
 
-            System.out.print("State: ");
+            // Print inputs
+            writer.write("Inputs: ");
+            for(String input : orderedInputs){
+                writer.write(input);
+            }
+            writer.write("\n");
+
+            // Print states
+            writer.write("State: ");
             gate = firstGate;
             while (gate.getType() == GateType.DFF) {
-                System.out.print(gate.getState());
+                writer.write(gate.getState());  
                 gate = gate.nextGate;
             }
-            System.out.println();
+            writer.write("\n");
 
             // Print output states
-            System.out.print("OUTPUTS: ");
+            writer.write("OUTPUTS: ");
             for (j = 0; j < orderedOutputs.length; j++) {
-                wireName = orderedOutputs[j];
-                // outputs.get(wireName).fanIn.data);
-                // System.out.println("Output " + outputs.get(wireName) + " state: " +
-                // outputs.get(wireName).getState());
-                // System.out.println((i + 1) + " ^^^^^^^^^ " + (i + 1) + " ^^^^^^^^^ " + (i +
-                // 1));
-                System.out.print(outputs.get(wireName).getState());
+                writer.write(outputs.get(orderedOutputs[j]).getState());
             }
-            System.out.println();
+            writer.write("\n");
         }
 
     }
@@ -266,10 +267,7 @@ public class Circuit {
     public void calculateStates() {
         for (Integer level : sched.keySet()) {
             for (String entityName : sched.get(level).keySet()) {
-                // System.out.println("Entity " + entityName + " on level " + level);
                 sched.get(level).get(entityName).calculateState();
-                // System.out.println("Entity " + entityName + " state now " +
-                // sched.get(level).get(entityName).getState());
             }
         }
     }
@@ -290,13 +288,21 @@ public class Circuit {
      * @param vectors A string double array format {VECTOR1[], VECTOR2[], etc}.
      *                VECTOR1, VECTOR2, etc use format {"1","0","0",etc}
      */
-    public void mainMethod(String[] inputs, String[] outputs, String[][] vectors) {
+    public void mainMethod(String[] inputs, String[] outputs, String[][] vectors, String filePath) {
         // Todo implement filewriting system that always outputs new file (how does
         // duplicate names work? Does windows auto handle that?)
 
-        String filePath = createOutputFile();
-        calibrateCircuit(filePath);
-        simulateCircuit(inputs, outputs, vectors, filePath);
+        String fileName = extractBetween(filePath) + "_simdata";
+        FileWriter writer;
+        try {
+            writer = new FileWriter(fileName);
+            calibrateCircuit(writer);
+            simulateCircuit(inputs, outputs, vectors, writer);    
+        } catch (IOException e) {
+            System.out.println("Error with writer");
+            e.printStackTrace();
+        }
+         
     }
 
     public static void main(String[] args) {
@@ -348,11 +354,29 @@ public class Circuit {
             }
         }
 
-        circuit.mainMethod(inputs, outputs, vectors);
+        String[] names = {"./S27.v", "./S385.v", "./S359.v"};
+
+        // circuit.mainMethod(inputs, outputs, vectors, "output_file");
 
         long overallFinishTime = System.currentTimeMillis();
 
         System.out.println("Full simulation time took " + (overallFinishTime - overallStartTime) + " ms");
+    }
+
+    private static String extractBetween(String input) {
+        // Find the last occurrence of '/' and the first occurrence of '.'
+        int start = input.lastIndexOf('/') + 1; // Start right after the last '/'
+        int end = input.indexOf('.', start);    // Find '.' after the start index
+
+        if(start == -1)
+            start = 0;
+
+        // Extract and validate the substring
+        if (end > start) { // Ensure valid positions
+            return input.substring(start, end);
+        } else {
+            return "Invalid format";
+        }
     }
 
     /**

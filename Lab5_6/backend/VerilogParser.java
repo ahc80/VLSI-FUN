@@ -191,7 +191,7 @@ public class VerilogParser {
             // iterate through wires appropriately
 
             // String[][] vectors
-            parser.circuit.mainMethod(inputsOutputsList[0], inputsOutputsList[1], vectors);
+            parser.circuit.mainMethod(inputsOutputsList[0], inputsOutputsList[1], vectors, filePath);
             // Simulates circuit and prints output
 
             long totalEndTime = System.currentTimeMillis();

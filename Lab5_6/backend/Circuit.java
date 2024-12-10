@@ -158,7 +158,7 @@ public class Circuit {
         for (String wireName : outputs.keySet()) {
             // System.out.println("Adding OUTPUT wire " + wireName + " to wireList"); //
             // --------------------------------------------------
-            wireList.put(wireName, inputs.get(wireName));
+            wireList.put(wireName, outputs.get(wireName));
         }
     }
 
@@ -192,19 +192,19 @@ public class Circuit {
         createBuffers();
 
         long endTime = System.currentTimeMillis();
-        System.out.println("Created buffers took " + (endTime - startTime) + " ms");
+        System.out.println("Buffer creation took " + (endTime - startTime) + " ms");
         // Calibrate levels
         startTime = System.currentTimeMillis();
 
         calculateLevels();
 
         endTime = System.currentTimeMillis();
-        System.out.println("All level traversals took " + (endTime - startTime) + " ms");
+        System.out.println("Level calculation took " + (endTime - startTime) + " ms");
 
         System.out.println(
                 "----------------------------------------------------------------------------------------------------------");
         // TODO make this print create a filepath and print to it
-        printContents();
+        // printContents();
         System.out.println(
                 "----------------------------------------------------------------------------------------------------------");
     }
@@ -223,6 +223,7 @@ public class Circuit {
 
         int i, j, state;
         String wireName;
+        Gate gate;
         // Cycle through all vector combinations, top to bottom
         for (i = 0; i < vectors.length; i++) {
             // Assign input states
@@ -233,6 +234,15 @@ public class Circuit {
             }
             // Simulate circuit
             calculateStates();
+
+            System.out.print("State: ");
+            gate = firstGate;
+            while (gate.getType() == GateType.DFF) {
+                System.out.print(gate.getState());
+                gate = gate.nextGate;
+            }
+            System.out.println();
+
             // Print output states
             System.out.print("OUTPUTS: ");
             for (j = 0; j < orderedOutputs.length; j++) {
@@ -286,7 +296,7 @@ public class Circuit {
 
         String filePath = createOutputFile();
         calibrateCircuit(filePath);
-        // simulateCircuit(inputs, outputs, vectors, filePath);
+        simulateCircuit(inputs, outputs, vectors, filePath);
     }
 
     public static void main(String[] args) {

@@ -121,6 +121,7 @@ public class Entity {
      * @param sched         hashmap that organizes each entity by level
      */
     void calculateLevels(int newLevel, HashMap<Integer, HashMap<String, Entity>> sched) {
+        // TODO implement traversed hmap again
         // If we reach a flip flop, stop and do not calibrate
         if (this.type == GateType.DFF)
             return;
@@ -154,7 +155,6 @@ public class Entity {
         // If sched does not have a map for current level, create it
         if (!sched.containsKey(newLevel)) {
             sched.put(Integer.valueOf(newLevel), new HashMap<>(100));
-            sched.get(newLevel).put(name, null);
         }
         // Add entity to new spot in sched
         sched.get(newLevel).put(this.name, this);
@@ -198,7 +198,7 @@ public class Entity {
     void runAND() {
         int lastCalc; // holds 'sum' of last 2 inputs
         DataWrapper<Entity> ptr = fanIn;
-        lastCalc = ptr.data.state;
+        lastCalc = ptr.data.getState();
         ptr = ptr.next;
         while (ptr != null) {
             lastCalc = calcAND(lastCalc, ptr.data.getState());
@@ -210,7 +210,7 @@ public class Entity {
     void runNAND() {
         int lastCalc; // holds 'sum' of last 2 inputs
         DataWrapper<Entity> ptr = fanIn;
-        lastCalc = ptr.data.state;
+        lastCalc = ptr.data.getState();
         ptr = ptr.next;
         while (ptr != null) {
             lastCalc = calcAND(lastCalc, ptr.data.getState());
@@ -222,7 +222,7 @@ public class Entity {
     void runOR() {
         int lastCalc; // holds 'sum' of last 2 inputs
         DataWrapper<Entity> ptr = fanIn;
-        lastCalc = ptr.data.state;
+        lastCalc = ptr.data.getState();
         ptr = ptr.next;
         while (ptr != null) {
             lastCalc = calcOR(lastCalc, ptr.data.getState());
@@ -234,7 +234,7 @@ public class Entity {
     void runNOR() {
         int lastCalc; // holds 'sum' of last 2 inputs
         DataWrapper<Entity> ptr = fanIn;
-        lastCalc = ptr.data.state;
+        lastCalc = ptr.data.getState();
         ptr = ptr.next;
         while (ptr != null) {
             lastCalc = calcOR(lastCalc, ptr.data.getState());
@@ -260,11 +260,11 @@ public class Entity {
     }
 
     int calcNOT(int x) {
-        if (x == 4)
-            return 4;
         if (x == 1)
             return 0;
-        return 1;
+        if (x == 0)
+            return 1;
+        return 4;
     }
 
 }

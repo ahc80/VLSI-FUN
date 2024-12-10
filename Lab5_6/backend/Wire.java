@@ -2,8 +2,8 @@ package backend;
 
 public class Wire extends Entity {
 
-    String name;
-    GateType type;
+    // String name;
+    // GateType type;
 
     Wire(String name, GateType type) {
         super(name, type);

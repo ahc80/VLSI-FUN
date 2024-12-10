@@ -236,7 +236,7 @@ public class Circuit {
 
             // Print inputs
             writer.write("Inputs: ");
-            for(String input : orderedInputs){
+            for(String input : vectors[i]){
                 writer.write(input);
             }
             writer.write("\n");
@@ -245,7 +245,7 @@ public class Circuit {
             writer.write("State: ");
             gate = firstGate;
             while (gate.getType() == GateType.DFF) {
-                writer.write(gate.getState());  
+                writer.write(String.valueOf(gate.getState()));  
                 gate = gate.nextGate;
             }
             writer.write("\n");
@@ -253,8 +253,9 @@ public class Circuit {
             // Print output states
             writer.write("OUTPUTS: ");
             for (j = 0; j < orderedOutputs.length; j++) {
-                writer.write(outputs.get(orderedOutputs[j]).getState());
+                writer.write(String.valueOf(outputs.get(orderedOutputs[j]).getState()));
             }
+            writer.write("\n");
             writer.write("\n");
         }
 
@@ -289,15 +290,13 @@ public class Circuit {
      *                VECTOR1, VECTOR2, etc use format {"1","0","0",etc}
      */
     public void mainMethod(String[] inputs, String[] outputs, String[][] vectors, String filePath) {
-        // Todo implement filewriting system that always outputs new file (how does
-        // duplicate names work? Does windows auto handle that?)
-
         String fileName = extractBetween(filePath) + "_simdata";
         FileWriter writer;
         try {
             writer = new FileWriter(fileName);
             calibrateCircuit(writer);
-            simulateCircuit(inputs, outputs, vectors, writer);    
+            simulateCircuit(inputs, outputs, vectors, writer);   
+            writer.close(); 
         } catch (IOException e) {
             System.out.println("Error with writer");
             e.printStackTrace();
@@ -353,8 +352,6 @@ public class Circuit {
                 prevGate = currGate;
             }
         }
-
-        String[] names = {"./S27.v", "./S385.v", "./S359.v"};
 
         // circuit.mainMethod(inputs, outputs, vectors, "output_file");
 

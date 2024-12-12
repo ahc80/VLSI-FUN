@@ -5,11 +5,9 @@ import java.io.IOException;
 
 public class Gate extends Entity {
 
-    String name; // Null name means buffer
-    // DataWrapper<Wire> fanIn, fanOut; // replace!
+    String name;
     Gate nextGate;
 
-    // Make gates independent of the circuit
     Gate(String name, GateType type) {
         super(name, type);
     }

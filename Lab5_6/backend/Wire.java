@@ -53,15 +53,15 @@ public class Wire extends Entity {
                 out = fanOut;
                 // Cycle through outputs
                 while (out != null
-                        && gate.data.getType() != GateType.INPUT
-                        && out.data.getType() != GateType.OUTPUT) {
+                /*
+                 * && gate.data.getType() != GateType.INPUT
+                 * && out.data.getType() != GateType.OUTPUT
+                 */) {
 
                     // Create buffer
-                    buffer = new Gate("BUF" + gate.data.getName() + out.data.getName(), GateType.BUF); // Should we name
-                                                                                                       // buffers
-                                                                                                       // individually?
+                    buffer = new Gate("BUF" + gate.data.getName() + out.data.getName(), GateType.BUF);
                     // 'Left-side' connection handling + remove wire
-                    if (fanOut != null) { // is this iff redundant?
+                    if (fanOut != null) {
                         gate.data.fanOut.add(buffer);
                         buffer.addFanIn(gate.data);
                         gate.data.fanOut = gate.data.deleteOutput(this); // L

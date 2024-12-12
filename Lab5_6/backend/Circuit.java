@@ -96,7 +96,7 @@ public class Circuit {
         Wire wire = new Wire(name, GateType.OUTPUT);
         wireList.put(name, wire);
         outputs.put(name, wire);
-        wire.addOutput(new Gate(name, GateType.OUTPUT));
+        // wire.addOutput(new Gate(name, GateType.OUTPUT));
     }
 
     /**
@@ -118,13 +118,14 @@ public class Circuit {
 
     /**
      * Prints the details of the circuit gates in a table format.
-     * @throws IOException 
+     * 
+     * @throws IOException
      */
     void printContents(FileWriter writer) throws IOException {
         if (firstGate != null) {
             // Print the table header
             String header = String.format("%-10s %-10s %-10s %-10s %-20s %-10s %-20s %-10s%n\n",
-                    "GateType", "Output", "GateLevel", "#faninN", "faninWires", "#fanoutM", "fanoutWires", "GateName");
+                    "GateType", "Output", "GateLevel", "#faninN", "fanin", "#fanoutM", "fanout", "GateName");
             writer.write(header);
             // Print details of the first gate
             firstGate.printDetails(writer);
@@ -146,19 +147,20 @@ public class Circuit {
         for (String wireName : wireList.keySet()) {
             Wire wire = wireList.get(wireName);
             Gate[] firstLastBuf = wire.createBuffers();
-            // wireList.remove(wireName);
             if (firstLastBuf[0] != null) {
                 this.lastGate.nextGate = firstLastBuf[0];
                 this.lastGate = firstLastBuf[1];
             }
         }
-        // wireList.clear();
-        for (String wireName : inputs.keySet()) {
-            wireList.put(wireName, inputs.get(wireName));
-        }
-        for (String wireName : outputs.keySet()) {
-            wireList.put(wireName, outputs.get(wireName));
-        }
+        wireList.clear();
+        /*
+         * for (String wireName : inputs.keySet()) {
+         * wireList.put(wireName, inputs.get(wireName));
+         * }
+         * for (String wireName : outputs.keySet()) {
+         * wireList.put(wireName, outputs.get(wireName));
+         * }
+         */
     }
 
     /**
@@ -175,11 +177,19 @@ public class Circuit {
         // Calibrate DFFs
         Gate gate_ptr = firstGate;
         int oldLevel;
-        while (gate_ptr.getType() == GateType.DFF) {
-            oldLevel = gate_ptr.getLevel();
-            gate_ptr.setLevel(0);
-            gate_ptr.recordLevel(oldLevel, 0, sched);
-            gate_ptr.fanOut.data.calculateLevels(1, sched);
+        DataWrapper<Entity> out_ptr;
+        while (gate_ptr != null) {
+            if (gate_ptr.getType() == GateType.DFF) {
+                oldLevel = gate_ptr.getLevel();
+                gate_ptr.setLevel(0);
+                gate_ptr.recordLevel(oldLevel, 0, sched);
+                out_ptr = gate_ptr.fanOut;
+                while (out_ptr != null) {
+                    out_ptr.data.calculateLevels(1, sched);
+                    out_ptr = out_ptr.next;
+                }
+                gate_ptr.fanOut.data.calculateLevels(1, sched);
+            }
             gate_ptr = gate_ptr.nextGate;
         }
     }
@@ -212,10 +222,11 @@ public class Circuit {
      * @param orderedInputs
      * @param orderedOutputs
      * @param vectors        List of vectors in format {"1", "0", "1", "0", "0"}
-          * @throws IOException 
-          */
-         // TODO actually implement filePath
-         public void simulateCircuit(String[] orderedInputs, String[] orderedOutputs, String[][] vectors, FileWriter writer) throws IOException {
+     * @throws IOException
+     */
+    // TODO actually implement filePath
+    public void simulateCircuit(String[] orderedInputs, String[] orderedOutputs, String[][] vectors, FileWriter writer)
+            throws IOException {
         if (orderedInputs.length != vectors[0].length) {
             System.err.println("Inputs list and vector length does not match!");
         }
@@ -236,7 +247,7 @@ public class Circuit {
 
             // Print inputs
             writer.write("Inputs: ");
-            for(String input : vectors[i]){
+            for (String input : vectors[i]) {
                 writer.write(input);
             }
             writer.write("\n");
@@ -245,7 +256,7 @@ public class Circuit {
             writer.write("State: ");
             gate = firstGate;
             while (gate.getType() == GateType.DFF) {
-                writer.write(String.valueOf(gate.getState()));  
+                writer.write(String.valueOf(gate.getState()));
                 gate = gate.nextGate;
             }
             writer.write("\n");
@@ -290,82 +301,26 @@ public class Circuit {
      *                VECTOR1, VECTOR2, etc use format {"1","0","0",etc}
      */
     public void mainMethod(String[] inputs, String[] outputs, String[][] vectors, String filePath) {
-        String fileName = extractBetween(filePath) + "_simdata";
+        String fileName = extractBetween(filePath) + "_simdata.txt";
         FileWriter writer;
         try {
             writer = new FileWriter(fileName);
             calibrateCircuit(writer);
-            simulateCircuit(inputs, outputs, vectors, writer);   
-            writer.close(); 
+            simulateCircuit(inputs, outputs, vectors, writer);
+            writer.close();
         } catch (IOException e) {
             System.out.println("Error with writer");
             e.printStackTrace();
         }
-         
-    }
 
-    public static void main(String[] args) {
-        String[] inputs = { "G0", "G1", "G2", "G3" };
-        String[] outputs = { "G17" };
-        String[] wires = { "G5", "G6", "G7", "G14",
-                "G8", "G12", "G15", "G16",
-                "G13", "G9", "G11", "G10" };
-        String[][] gates = {
-                { "dff", "XG1", "G5", "G10" },
-                { "dff", "XG2", "G6", "G11" },
-                { "dff", "XG3", "G7", "G13" },
-                { "not", "XG4", "G14", "G0" },
-                { "and", "XG5", "G8", "G6", "G14" },
-                { "nor", "XG6", "G12", "G7", "G1" },
-                { "or", "XG7", "G15", "G8", "G12" },
-                { "or", "XG8", "G16", "G8", "G3" },
-                { "nor", "XG9", "G13", "G12", "G2" },
-                { "nand", "XG10", "G9", "G15", "G16" },
-                { "nor", "XG11", "G11", "G9", "G5" },
-                { "nor", "XG12", "G10", "G11", "G14" },
-                { "not", "XG13", "G17", "G11" }
-        };
-        String[][] vectors = {
-                { "0", "0", "0", "0" },
-                { "0", "0", "1", "0" },
-                { "0", "1", "0", "0" },
-                { "1", "0", "0", "0" },
-                { "1", "1", "1", "1" }
-        };
-
-        long overallStartTime = System.currentTimeMillis();
-
-        Circuit circuit = new Circuit();
-        circuit.parseInputs(inputs);
-        circuit.parseOutputs(outputs);
-        circuit.parseWires(wires);
-        int i;
-        Gate prevGate = null;
-        Gate currGate = null;
-        // Add gates to list
-        for (i = 0; i < gates.length; i++) {
-            if (i == 0)
-                prevGate = circuit.parseSingleGate(gates[i]);
-            else {
-                currGate = circuit.parseSingleGate(gates[i]);
-                prevGate.nextGate = currGate;
-                prevGate = currGate;
-            }
-        }
-
-        // circuit.mainMethod(inputs, outputs, vectors, "output_file");
-
-        long overallFinishTime = System.currentTimeMillis();
-
-        System.out.println("Full simulation time took " + (overallFinishTime - overallStartTime) + " ms");
     }
 
     private static String extractBetween(String input) {
         // Find the last occurrence of '/' and the first occurrence of '.'
         int start = input.lastIndexOf('/') + 1; // Start right after the last '/'
-        int end = input.indexOf('.', start);    // Find '.' after the start index
+        int end = input.indexOf('.', start); // Find '.' after the start index
 
-        if(start == -1)
+        if (start == -1)
             start = 0;
 
         // Extract and validate the substring

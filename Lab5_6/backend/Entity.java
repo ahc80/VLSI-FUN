@@ -111,9 +111,6 @@ public class Entity {
         }
     }
 
-    // Expects NO intermediary wires are present
-    // Dont have to worry about making a DFF list, theyre always in the front
-    // Run first with 0 when running on inputs, run with -1 on DFF?
     /**
      * 
      * @param level
@@ -121,7 +118,6 @@ public class Entity {
      * @param sched         hashmap that organizes each entity by level
      */
     void calculateLevels(int newLevel, HashMap<Integer, HashMap<String, Entity>> sched) {
-        // TODO implement traversed hmap again
         // If we reach a flip flop, stop and do not calibrate
         if (this.type == GateType.DFF)
             return;
@@ -192,7 +188,6 @@ public class Entity {
             default:
                 break;
         }
-        // System.out.println("State calculated on" + this + " state: " + this.state);
     }
 
     void runAND() {
